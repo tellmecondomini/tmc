@@ -6,6 +6,7 @@
             "home": "Início",
             "entities": {
                 "main": "Entidades",
+                "endereco": "Endereco",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

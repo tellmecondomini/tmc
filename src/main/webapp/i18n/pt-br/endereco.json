@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "endereco" : {
+            "home": {
+                "title": "Enderecos",
+                "createLabel": "Create a new Endereco",
+                "createOrEditLabel": "Create or edit a Endereco"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Endereco {{ id }}?"
+            },
+            "detail": {
+                "title": "Endereco"
+            },
+            "logradouro": "Logradouro",
+            "numero": "Numero",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "uf": "Uf"
+        }
+    }
+}

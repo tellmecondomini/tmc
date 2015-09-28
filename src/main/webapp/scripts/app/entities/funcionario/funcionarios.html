@@ -50,6 +50,7 @@
                     <th translate="tmcApp.funcionario.ativo">Ativo</th>
                     <th translate="tmcApp.funcionario.dataCadastro">DataCadastro</th>
                     <th translate="tmcApp.funcionario.telefone">Telefone</th>
+                    <th translate="tmcApp.funcionario.endereco">endereco</th>
                     <th translate="tmcApp.funcionario.condominio">condominio</th>
                     <th></th>
                 </tr>
@@ -66,6 +67,9 @@
                     <td>{{funcionario.ativo}}</td>
                     <td>{{funcionario.dataCadastro}}</td>
                     <td>{{funcionario.telefone}}</td>
+                    <td>
+                        <a ui-sref="endereco.detail({id:funcionario.endereco.id})">{{funcionario.endereco.id}}</a>
+                    </td>
                     <td>
                         <a ui-sref="condominio.detail({id:funcionario.condominio.id})">{{funcionario.condominio.id}}</a>
                     </td>

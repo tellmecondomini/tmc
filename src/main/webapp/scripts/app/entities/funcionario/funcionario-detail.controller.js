@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('FuncionarioDetailController', function ($scope, $rootScope, $stateParams, entity, Funcionario, Condominio, Endereco) {
+    .controller('FuncionarioDetailController', function ($scope, $rootScope, $stateParams, entity, Funcionario, Endereco, Condominio) {
         $scope.funcionario = entity;
         $scope.load = function (id) {
             Funcionario.get({id: id}, function(result) {

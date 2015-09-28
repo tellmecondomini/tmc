@@ -5,20 +5,11 @@
             "relationshipName": "endereco",
             "otherEntityName": "endereco",
             "relationshipType": "one-to-one",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "condominio"
+            "ownerSide": true
         },
         {
             "relationshipId": 2,
-            "relationshipName": "responsavel",
-            "otherEntityName": "funcionario",
-            "relationshipType": "one-to-one",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "condominio"
-        },
-        {
-            "relationshipId": 3,
-            "relationshipName": "funcionarios",
+            "relationshipName": "funcionario",
             "otherEntityName": "funcionario",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "condominio"
@@ -41,8 +32,8 @@
                 "required",
                 "pattern"
             ],
-            "fieldValidateRulesPattern": "^d{2}.d{3}.d{3}/d{4}-d{2}$",
-            "fieldValidateRulesPatternJava": "^d{2}.d{3}.d{3}/d{4}-d{2}$"
+            "fieldValidateRulesPattern": "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})",
+            "fieldValidateRulesPatternJava": "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})"
         },
         {
             "fieldId": 3,

@@ -18,8 +18,7 @@
             "dataCadastro": "DataCadastro",
             "telefone": "Telefone",
             "endereco": "Endereco",
-            "responsavel": "Responsavel",
-            "funcionarios": "Funcionarios"
+            "funcionario": "Funcionario"
         }
     }
 }

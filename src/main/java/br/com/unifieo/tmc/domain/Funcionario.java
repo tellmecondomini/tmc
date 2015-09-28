@@ -3,7 +3,6 @@ package br.com.unifieo.tmc.domain;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Cache;
@@ -34,7 +33,7 @@ public class Funcionario implements Serializable {
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "^d{3}.d{3}.d{3}-d{2}$")
+    @Pattern(regexp = "([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
@@ -71,12 +70,11 @@ public class Funcionario implements Serializable {
     @Column(name = "telefone")
     private Integer telefone;
 
+    @OneToOne
+    private Endereco endereco;
+
     @ManyToOne
     private Condominio condominio;
-
-    @OneToOne(mappedBy = "funcionario")
-    @JsonIgnore
-    private Endereco endereco;
 
     public Long getId() {
         return id;
@@ -158,20 +156,20 @@ public class Funcionario implements Serializable {
         this.telefone = telefone;
     }
 
-    public Condominio getCondominio() {
-        return condominio;
-    }
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
     }
 
     @Override

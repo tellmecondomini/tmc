@@ -48,8 +48,8 @@ public class CondominioResourceTest {
 
     private static final String DEFAULT_RAZAO_SOCIAL = "SAMPLE_TEXT";
     private static final String UPDATED_RAZAO_SOCIAL = "UPDATED_TEXT";
-    private static final String DEFAULT_CNPJ = "SAMPLE_TEXT";
-    private static final String UPDATED_CNPJ = "UPDATED_TEXT";
+    private static final String DEFAULT_CNPJ = "70.037.161/0001-35";
+    private static final String UPDATED_CNPJ = "70.037.161/0001-35";
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;

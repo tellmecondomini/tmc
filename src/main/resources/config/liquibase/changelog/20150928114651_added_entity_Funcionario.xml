@@ -43,6 +43,9 @@
                 <constraints nullable="false" />
             </column>
             <column name="telefone" type="integer"/>
+            <column name="endereco_id" type="bigint">
+                <constraints unique="true"/>
+            </column>
             <column name="condominio_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="FUNCIONARIO" columnName="data_nascimento" columnDataType="datetime"/>
@@ -50,6 +53,12 @@
         <dropDefaultValue tableName="FUNCIONARIO" columnName="data_cadastro" columnDataType="datetime"/>
 
         
+        <addForeignKeyConstraint baseColumnNames="endereco_id"
+                                 baseTableName="FUNCIONARIO"
+                                 constraintName="fk_funcionario_endereco_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ENDERECO"/>
+
         <addForeignKeyConstraint baseColumnNames="condominio_id"
                                  baseTableName="FUNCIONARIO"
                                  constraintName="fk_funcionario_condominio_id"

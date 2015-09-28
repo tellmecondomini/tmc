@@ -17,8 +17,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing Funcionario.
@@ -75,15 +73,7 @@ public class FuncionarioResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Funcionario> getAllFuncionarios(@RequestParam(required = false) String filter) {
-        if ("endereco-is-null".equals(filter)) {
-            log.debug("REST request to get all Funcionarios where endereco is null");
-            return StreamSupport
-                .stream(funcionarioRepository.findAll().spliterator(), false)
-                .filter(funcionario -> funcionario.getEndereco() == null)
-                .collect(Collectors.toList());
-        }
-
+    public List<Funcionario> getAllFuncionarios() {
         log.debug("REST request to get all Funcionarios");
         return funcionarioRepository.findAll();
     }

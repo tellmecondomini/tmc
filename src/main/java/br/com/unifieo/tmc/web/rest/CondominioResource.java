@@ -17,8 +17,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing Condominio.
@@ -75,23 +73,7 @@ public class CondominioResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Condominio> getAllCondominios(@RequestParam(required = false) String filter) {
-        if ("endereco-is-null".equals(filter)) {
-            log.debug("REST request to get all Condominios where endereco is null");
-            return StreamSupport
-                .stream(condominioRepository.findAll().spliterator(), false)
-                .filter(condominio -> condominio.getEndereco() == null)
-                .collect(Collectors.toList());
-        }
-
-        if ("responsavel-is-null".equals(filter)) {
-            log.debug("REST request to get all Condominios where responsavel is null");
-            return StreamSupport
-                .stream(condominioRepository.findAll().spliterator(), false)
-                .filter(condominio -> condominio.getResponsavel() == null)
-                .collect(Collectors.toList());
-        }
-
+    public List<Condominio> getAllCondominios() {
         log.debug("REST request to get all Condominios");
         return condominioRepository.findAll();
     }

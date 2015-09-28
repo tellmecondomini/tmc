@@ -48,8 +48,8 @@ public class FuncionarioResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_CPF = "SAMPLE_TEXT";
-    private static final String UPDATED_CPF = "UPDATED_TEXT";
+    private static final String DEFAULT_CPF = "103.212.687-68";
+    private static final String UPDATED_CPF = "103.212.687-68";
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;
@@ -57,8 +57,8 @@ public class FuncionarioResourceTest {
     private static final DateTime DEFAULT_DATA_NASCIMENTO = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_DATA_NASCIMENTO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATA_NASCIMENTO_STR = dateTimeFormatter.print(DEFAULT_DATA_NASCIMENTO);
-    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
-    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
+    private static final String DEFAULT_EMAIL = "tellme@condominium.com.br";
+    private static final String UPDATED_EMAIL = "tellme@condominium.com.br";
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 

@@ -35,7 +35,7 @@ public class Condominio implements Serializable {
     private String razaoSocial;
 
     @NotNull
-    @Pattern(regexp = "^d{2}.d{3}.d{3}/d{4}-d{2}$")
+    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})")
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
@@ -52,18 +52,13 @@ public class Condominio implements Serializable {
     @Column(name = "telefone")
     private Integer telefone;
 
-    @OneToOne(mappedBy = "condominio")
-    @JsonIgnore
+    @OneToOne
     private Endereco endereco;
-
-    @OneToOne(mappedBy = "condominio")
-    @JsonIgnore
-    private Funcionario responsavel;
 
     @OneToMany(mappedBy = "condominio")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Funcionario> funcionarioss = new HashSet<>(1024);
+    private Set<Funcionario> funcionarios = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -121,20 +116,12 @@ public class Condominio implements Serializable {
         this.endereco = endereco;
     }
 
-    public Funcionario getResponsavel() {
-        return responsavel;
+    public Set<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
-    public void setResponsavel(Funcionario funcionario) {
-        this.responsavel = funcionario;
-    }
-
-    public Set<Funcionario> getFuncionarioss() {
-        return funcionarioss;
-    }
-
-    public void setFuncionarioss(Set<Funcionario> funcionarios) {
-        this.funcionarioss = funcionarios;
+    public void setFuncionarios(Set<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
 
     @Override

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
+angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate',
                'ui.bootstrap', // for modal dialogs
     'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'infinite-scroll'])
 
@@ -14,12 +14,12 @@ angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
             if (Principal.isIdentityResolved()) {
                 Auth.authorize();
             }
-            
+
             // Update the language
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
-            
+
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -32,12 +32,12 @@ angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
-            
+
             $translate(titleKey).then(function (title) {
                 // Change window title with translated one
                 $window.document.title = title;
             });
-            
+
         });
 
         $rootScope.back = function() {
@@ -82,13 +82,13 @@ angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
         $httpProvider.interceptors.push('errorHandlerInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
         $httpProvider.interceptors.push('notificationInterceptor');
-        
+
         // Initialize angular-translate
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: 'i18n/{lang}/{part}.json'
         });
 
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage('pt-br');
         $translateProvider.useCookieStorage();
         $translateProvider.useSanitizeValueStrategy('escaped');
         $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
@@ -96,5 +96,5 @@ angular.module('tmcApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage();
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
-        
+
     });

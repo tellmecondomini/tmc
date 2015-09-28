@@ -6,5 +6,7 @@
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928112700_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928114651_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928115541_added_entity_Condominio.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,94 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "condominio",
+            "otherEntityName": "condominio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "funcionario"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "cpf",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": " ",
+            "fieldValidateRulesPatternJava": " "
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "sexo",
+            "fieldType": "Sexo",
+            "fieldValues": "M, F"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "dataNascimento",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$\"",
+            "fieldValidateRulesPatternJava": "\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\""
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "senha",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "ativo",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "dataCadastro",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "telefone",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20150928114651",
+    "dto": "no",
+    "pagination": "no"
+}

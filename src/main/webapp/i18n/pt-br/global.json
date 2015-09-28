@@ -7,6 +7,8 @@
             "entities": {
                 "main": "Entidades",
                 "endereco": "Endereco",
+                "funcionario": "Funcionario",
+                "condominio": "Condominio",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

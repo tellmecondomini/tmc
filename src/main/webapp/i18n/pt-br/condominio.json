@@ -1,0 +1,25 @@
+{
+    "tmcApp": {
+        "condominio" : {
+            "home": {
+                "title": "Condominios",
+                "createLabel": "Create a new Condominio",
+                "createOrEditLabel": "Create or edit a Condominio"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Condominio {{ id }}?"
+            },
+            "detail": {
+                "title": "Condominio"
+            },
+            "razaoSocial": "RazaoSocial",
+            "cnpj": "Cnpj",
+            "ativo": "Ativo",
+            "dataCadastro": "DataCadastro",
+            "telefone": "Telefone",
+            "endereco": "Endereco",
+            "responsavel": "Responsavel",
+            "funcionarios": "Funcionarios"
+        }
+    }
+}

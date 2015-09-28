@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="tmcApp.funcionario.detail.title">Funcionario</span> {{funcionario.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.nome">Nome</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.nome}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.cpf">Cpf</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.cpf}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.sexo">Sexo</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'tmcApp.Sexo.' + funcionario.sexo}}">{{funcionario.sexo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.dataNascimento">DataNascimento</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.dataNascimento}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.email">Email</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.email}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.senha">Senha</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.senha}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.ativo">Ativo</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.ativo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.dataCadastro">DataCadastro</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.dataCadastro}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.telefone">Telefone</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{funcionario.telefone}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.funcionario.condominio">condominio</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominio.id})">{{funcionario.condominio.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

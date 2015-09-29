@@ -1,0 +1,89 @@
+<div>
+    <h2 translate="tmcApp.morador.home.title">Moradors</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="morador.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.morador.home.createLabel">Create a new Morador</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteMoradorConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(morador.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="tmcApp.morador.delete.question" translate-values="{id: '{{morador.id}}'}">Are you sure you want to delete this Morador?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="tmcApp.morador.nome">Nome</th>
+                    <th translate="tmcApp.morador.cpf">Cpf</th>
+                    <th translate="tmcApp.morador.sexo">Sexo</th>
+                    <th translate="tmcApp.morador.email">Email</th>
+                    <th translate="tmcApp.morador.senha">Senha</th>
+                    <th translate="tmcApp.morador.dataNascimento">DataNascimento</th>
+                    <th translate="tmcApp.morador.ativo">Ativo</th>
+                    <th translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</th>
+                    <th translate="tmcApp.morador.telefone">Telefone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="morador in moradors">
+                    <td><a ui-sref="morador.detail({id:morador.id})">{{morador.id}}</a></td>
+                    <td>{{morador.nome}}</td>
+                    <td>{{morador.cpf}}</td>
+                    <td translate="{{'tmcApp.Sexo.' + morador.sexo}}">{{morador.sexo}}</td>
+                    <td>{{morador.email}}</td>
+                    <td>{{morador.senha}}</td>
+                    <td>{{morador.dataNascimento}}</td>
+                    <td>{{morador.ativo}}</td>
+                    <td>{{morador.bloqueiaAgendamento}}</td>
+                    <td>{{morador.telefone}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="morador.detail({id:morador.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="morador.edit({id:morador.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(morador.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

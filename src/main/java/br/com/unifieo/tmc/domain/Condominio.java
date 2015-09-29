@@ -35,7 +35,7 @@ public class Condominio implements Serializable {
     private String razaoSocial;
 
     @NotNull
-    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 

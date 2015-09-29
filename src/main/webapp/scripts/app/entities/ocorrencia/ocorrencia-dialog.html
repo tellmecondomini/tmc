@@ -1,0 +1,84 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myOcorrenciaLabel" translate="tmcApp.ocorrencia.home.createOrEditLabel">Create or edit a Ocorrencia</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="ocorrencia.id" readonly>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.ocorrencia.dataAbertura" for="field_dataAbertura">DataAbertura</label>
+            <input type="date" class="form-control" name="dataAbertura" id="field_dataAbertura"
+                    ng-model="ocorrencia.dataAbertura"
+                    required>
+            <div ng-show="editForm.dataAbertura.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.dataAbertura.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.ocorrencia.dataFechamento" for="field_dataFechamento">DataFechamento</label>
+            <input type="date" class="form-control" name="dataFechamento" id="field_dataFechamento"
+                    ng-model="ocorrencia.dataFechamento"
+                    required>
+            <div ng-show="editForm.dataFechamento.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.dataFechamento.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.ocorrencia.menssagem" for="field_menssagem">Menssagem</label>
+            <input type="text" class="form-control" name="menssagem" id="field_menssagem"
+                    ng-model="ocorrencia.menssagem"
+                    required ng-minlength="10" ng-maxlength="1024">
+            <div ng-show="editForm.menssagem.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.menssagem.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.menssagem.$error.minlength" translate="entity.validation.minlength" translate-value-min="10">
+                    This field is required to be at least 10 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.menssagem.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="1024">
+                    This field cannot be longer than 1024 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.ocorrencia.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="ocorrencia.status" id="field_status" required>
+                <option value="PENDENTE" translate="tmcApp.StatusSolicitacao.PENDENTE">PENDENTE</option>
+                <option value="EM_ANALISE" translate="tmcApp.StatusSolicitacao.EM_ANALISE">EM_ANALISE</option>
+                <option value="RESPONDIDA" translate="tmcApp.StatusSolicitacao.RESPONDIDA">RESPONDIDA</option>
+            </select>
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

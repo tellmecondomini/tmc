@@ -9,6 +9,10 @@
                 "endereco": "Endereco",
                 "funcionario": "Funcionario",
                 "condominio": "Condominio",
+                "morador": "Morador",
+                "imovel": "Imovel",
+                "prestadorServico": "PrestadorServico",
+                "ocorrencia": "Ocorrencia",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

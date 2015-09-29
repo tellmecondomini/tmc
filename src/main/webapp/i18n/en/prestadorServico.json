@@ -1,0 +1,26 @@
+{
+    "tmcApp": {
+        "prestadorServico" : {
+            "home": {
+                "title": "PrestadorServicos",
+                "createLabel": "Create a new PrestadorServico",
+                "createOrEditLabel": "Create or edit a PrestadorServico"
+            },
+            "created": "A new PrestadorServico is created with identifier {{ param }}",
+            "updated": "A PrestadorServico is updated with identifier {{ param }}",
+            "deleted": "A PrestadorServico is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PrestadorServico {{ id }}?"
+            },
+            "detail": {
+                "title": "PrestadorServico"
+            },
+            "nome": "Nome",
+            "email": "Email",
+            "telefone": "Telefone",
+            "documento": "Documento",
+            "pessoa": "Pessoa",
+            "endereco": "Endereco"
+        }
+    }
+}

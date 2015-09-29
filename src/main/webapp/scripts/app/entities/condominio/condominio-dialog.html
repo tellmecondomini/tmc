@@ -29,15 +29,15 @@
             <label translate="tmcApp.condominio.cnpj" for="field_cnpj">Cnpj</label>
             <input type="text" class="form-control" name="cnpj" id="field_cnpj"
                     ng-model="condominio.cnpj"
-                    required ng-pattern="/^d{2}.d{3}.d{3}/d{4}-d{2}$/">
+                    required ng-pattern="/([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})/">
             <div ng-show="editForm.cnpj.$invalid">
                 <p class="help-block"
                     ng-show="editForm.cnpj.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.cnpj.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="^d{2}.d{3}.d{3}/d{4}-d{2}$">
-                    This field should follow pattern "^d{2}.d{3}.d{3}/d{4}-d{2}$".
+                    ng-show="editForm.cnpj.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})">
+                    This field should follow pattern "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})".
                 </p>
             </div>
         </div>

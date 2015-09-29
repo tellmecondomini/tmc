@@ -32,8 +32,8 @@
                 "required",
                 "pattern"
             ],
-            "fieldValidateRulesPattern": "([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})",
-            "fieldValidateRulesPatternJava": "([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})"
+            "fieldValidateRulesPattern": "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})",
+            "fieldValidateRulesPatternJava": "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
         },
         {
             "fieldId": 3,
@@ -57,8 +57,8 @@
                 "required",
                 "pattern"
             ],
-            "fieldValidateRulesPattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$",
-            "fieldValidateRulesPatternJava": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$"
+            "fieldValidateRulesPattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$",
+            "fieldValidateRulesPatternJava": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
         },
         {
             "fieldId": 6,

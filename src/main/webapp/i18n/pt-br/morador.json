@@ -1,0 +1,27 @@
+{
+    "tmcApp": {
+        "morador" : {
+            "home": {
+                "title": "Moradors",
+                "createLabel": "Create a new Morador",
+                "createOrEditLabel": "Create or edit a Morador"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Morador {{ id }}?"
+            },
+            "detail": {
+                "title": "Morador"
+            },
+            "nome": "Nome",
+            "cpf": "Cpf",
+            "sexo": "Sexo",
+            "email": "Email",
+            "senha": "Senha",
+            "dataNascimento": "DataNascimento",
+            "ativo": "Ativo",
+            "bloqueiaAgendamento": "BloqueiaAgendamento",
+            "telefone": "Telefone",
+            "imovel": "Imovel"
+        }
+    }
+}

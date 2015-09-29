@@ -33,7 +33,7 @@ public class Funcionario implements Serializable {
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
@@ -49,7 +49,7 @@ public class Funcionario implements Serializable {
     private DateTime dataNascimento;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
     @Column(name = "email", nullable = false)
     private String email;
 

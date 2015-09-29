@@ -1,0 +1,10 @@
+{
+    "tmcApp": {
+        "StatusSolicitacao" : {
+            "null": "",
+            "PENDENTE": "PENDENTE",
+            "EM_ANALISE": "EM_ANALISE",
+            "RESPONDIDA": "RESPONDIDA"
+        }
+    }
+}

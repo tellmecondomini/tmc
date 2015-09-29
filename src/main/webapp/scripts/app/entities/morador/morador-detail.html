@@ -1,0 +1,94 @@
+
+<div>
+    <h2><span translate="tmcApp.morador.detail.title">Morador</span> {{morador.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.nome">Nome</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.nome}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.cpf">Cpf</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.cpf}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.sexo">Sexo</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'tmcApp.Sexo.' + morador.sexo}}">{{morador.sexo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.email">Email</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.email}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.senha">Senha</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.senha}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.dataNascimento">DataNascimento</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.dataNascimento}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.ativo">Ativo</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.ativo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.bloqueiaAgendamento}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.telefone">Telefone</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{morador.telefone}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span translate="tmcApp.ocorrencia.detail.title">Ocorrencia</span> {{ocorrencia.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.ocorrencia.dataAbertura">DataAbertura</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ocorrencia.dataAbertura}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.ocorrencia.dataFechamento">DataFechamento</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ocorrencia.dataFechamento}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.ocorrencia.menssagem">Menssagem</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{ocorrencia.menssagem}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.ocorrencia.status">Status</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'tmcApp.StatusSolicitacao.' + ocorrencia.status}}">{{ocorrencia.status}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

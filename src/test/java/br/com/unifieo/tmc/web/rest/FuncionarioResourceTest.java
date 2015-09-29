@@ -48,8 +48,8 @@ public class FuncionarioResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_CPF = "103.212.687-68";
-    private static final String UPDATED_CPF = "103.212.687-68";
+    private static final String DEFAULT_CPF = "093.617.336-05";
+    private static final String UPDATED_CPF = "093.617.336-05";
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;

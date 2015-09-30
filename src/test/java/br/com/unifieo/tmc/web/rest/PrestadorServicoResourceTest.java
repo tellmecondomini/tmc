@@ -47,8 +47,8 @@ public class PrestadorServicoResourceTest {
 
     private static final Integer DEFAULT_TELEFONE = 1;
     private static final Integer UPDATED_TELEFONE = 2;
-    private static final String DEFAULT_DOCUMENTO = "093.617.336-05";
-    private static final String UPDATED_DOCUMENTO = "093.617.336-05";
+    private static final String DEFAULT_DOCUMENTO = "66.741.263/0001-60";
+    private static final String UPDATED_DOCUMENTO = "66.741.263/0001-60";
 
     private static final Pessoa DEFAULT_PESSOA = Pessoa.FISICA;
     private static final Pessoa UPDATED_PESSOA = Pessoa.JURIDICA;

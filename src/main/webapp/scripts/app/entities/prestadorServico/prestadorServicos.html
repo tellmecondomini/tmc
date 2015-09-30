@@ -46,7 +46,7 @@
                     <th translate="tmcApp.prestadorServico.telefone">Telefone</th>
                     <th translate="tmcApp.prestadorServico.documento">Documento</th>
                     <th translate="tmcApp.prestadorServico.pessoa">Pessoa</th>
-                    <th translate="tmcApp.prestadorServico.endereco">endereco</th>
+                    <th translate="tmcApp.prestadorServico.cep">cep</th>
                     <th></th>
                 </tr>
             </thead>
@@ -59,7 +59,7 @@
                     <td>{{prestadorServico.documento}}</td>
                     <td translate="{{'tmcApp.Pessoa.' + prestadorServico.pessoa}}">{{prestadorServico.pessoa}}</td>
                     <td>
-                        <a ui-sref="endereco.detail({id:prestadorServico.endereco.id})">{{prestadorServico.endereco.id}}</a>
+                        <a ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.id}}</a>
                     </td>
                     <td>
                         <button type="submit"

@@ -46,7 +46,7 @@
                     <th translate="tmcApp.condominio.ativo">Ativo</th>
                     <th translate="tmcApp.condominio.dataCadastro">DataCadastro</th>
                     <th translate="tmcApp.condominio.telefone">Telefone</th>
-                    <th translate="tmcApp.condominio.endereco">endereco</th>
+                    <th translate="tmcApp.condominio.cep">cep</th>
                     <th></th>
                 </tr>
             </thead>
@@ -59,7 +59,7 @@
                     <td>{{condominio.dataCadastro}}</td>
                     <td>{{condominio.telefone}}</td>
                     <td>
-                        <a ui-sref="endereco.detail({id:condominio.endereco.id})">{{condominio.endereco.id}}</a>
+                        <a ui-sref="cep.detail({id:condominio.cep.id})">{{condominio.cep.id}}</a>
                     </td>
                     <td>
                         <button type="submit"

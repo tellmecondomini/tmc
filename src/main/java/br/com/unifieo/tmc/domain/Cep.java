@@ -1,45 +1,50 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-import br.com.unifieo.tmc.domain.enumeration.Uf;
-
 /**
- * A Endereco.
+ * A Cep.
  */
 @Entity
-@Table(name = "ENDERECO")
+@Table(name = "CEP")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Endereco implements Serializable {
+public class Cep implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
-    @NotNull        
+    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
-    
-    @Column(name = "bairro")
+
+    @NotNull
+    @Column(name = "bairro", nullable = false)
     private String bairro;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cidade", nullable = false)
     private String cidade;
-    
+
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "uf")
+    @Column(name = "uf", nullable = false)
     private Uf uf;
+
+    @NotNull
+    @Column(name = "cep", nullable = false)
+    private Integer cep;
 
     public Long getId() {
         return id;
@@ -89,6 +94,14 @@ public class Endereco implements Serializable {
         this.uf = uf;
     }
 
+    public Integer getCep() {
+        return cep;
+    }
+
+    public void setCep(Integer cep) {
+        this.cep = cep;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -98,9 +111,9 @@ public class Endereco implements Serializable {
             return false;
         }
 
-        Endereco endereco = (Endereco) o;
+        Cep cep = (Cep) o;
 
-        if ( ! Objects.equals(id, endereco.id)) return false;
+        if ( ! Objects.equals(id, cep.id)) return false;
 
         return true;
     }
@@ -112,13 +125,14 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "Endereco{" +
+        return "Cep{" +
                 "id=" + id +
                 ", logradouro='" + logradouro + "'" +
                 ", numero='" + numero + "'" +
                 ", bairro='" + bairro + "'" +
                 ", cidade='" + cidade + "'" +
                 ", uf='" + uf + "'" +
+                ", cep='" + cep + "'" +
                 '}';
     }
 }

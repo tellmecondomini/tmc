@@ -1,11 +1,11 @@
 package br.com.unifieo.tmc.config;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.servlet.InstrumentedFilter;
-import com.codahale.metrics.servlets.MetricsServlet;
 import br.com.unifieo.tmc.web.filter.CachingHttpHeadersFilter;
 import br.com.unifieo.tmc.web.filter.StaticResourcesProductionFilter;
 import br.com.unifieo.tmc.web.filter.gzip.GZipServletFilter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.servlet.InstrumentedFilter;
+import com.codahale.metrics.servlets.MetricsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

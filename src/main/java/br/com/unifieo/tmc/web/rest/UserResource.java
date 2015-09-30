@@ -1,6 +1,5 @@
 package br.com.unifieo.tmc.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Authority;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.AuthorityRepository;
@@ -8,9 +7,9 @@ import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.security.AuthoritiesConstants;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.ManagedUserDTO;
-import br.com.unifieo.tmc.web.rest.dto.UserDTO;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import br.com.unifieo.tmc.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,7 +25,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

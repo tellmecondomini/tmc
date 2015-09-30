@@ -1,7 +1,6 @@
 package br.com.unifieo.tmc.config.apidoc;
 
 import br.com.unifieo.tmc.config.Constants;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -16,6 +15,8 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Date;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 

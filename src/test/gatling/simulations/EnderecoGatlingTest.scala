@@ -67,7 +67,7 @@ class EnderecoGatlingTest extends Simulation {
             .exec(http("Create new endereco")
             .post("/api/enderecos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "logradouro":"SAMPLE_TEXT", "numero":"0", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "uf":null}""")).asJSON
+            .body(StringBody("""{"id":null, "logradouro":"SAMPLE_TEXT", "numero":"0", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "uf":null, "cep":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_endereco_url")))
             .pause(10)

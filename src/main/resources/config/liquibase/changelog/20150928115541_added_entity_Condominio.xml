@@ -33,18 +33,18 @@
                 <constraints nullable="false" />
             </column>
             <column name="telefone" type="integer"/>
-            <column name="endereco_id" type="bigint">
+            <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>
         </createTable>
         <dropDefaultValue tableName="CONDOMINIO" columnName="data_cadastro" columnDataType="datetime"/>
 
         
-        <addForeignKeyConstraint baseColumnNames="endereco_id"
+        <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="CONDOMINIO"
-                                 constraintName="fk_condominio_endereco_id"
+                                 constraintName="fk_condominio_cep_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="ENDERECO"/>
+                                 referencedTableName="CEP"/>
 
     </changeSet>
 </databaseChangeLog>

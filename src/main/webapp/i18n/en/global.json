@@ -13,6 +13,7 @@
                 "imovel": "Imovel",
                 "prestadorServico": "PrestadorServico",
                 "ocorrencia": "Ocorrencia",
+                "cep": "Cep",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

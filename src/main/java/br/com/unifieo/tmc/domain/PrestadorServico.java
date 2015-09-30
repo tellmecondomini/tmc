@@ -43,7 +43,7 @@ public class PrestadorServico implements Serializable {
     private Pessoa pessoa;
 
     @OneToOne
-    private Endereco endereco;
+    private Cep cep;
 
     public Long getId() {
         return id;
@@ -93,12 +93,12 @@ public class PrestadorServico implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Cep getCep() {
+        return cep;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setCep(Cep cep) {
+        this.cep = cep;
     }
 
     @Override

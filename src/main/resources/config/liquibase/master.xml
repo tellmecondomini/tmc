@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928112700_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150930213358_added_entity_Cep.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928115541_added_entity_Condominio.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928114651_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928222637_added_entity_Morador.xml" relativeToChangelogFile="false"/>

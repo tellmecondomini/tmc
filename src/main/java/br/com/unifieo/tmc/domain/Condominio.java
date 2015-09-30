@@ -53,7 +53,7 @@ public class Condominio implements Serializable {
     private Integer telefone;
 
     @OneToOne
-    private Endereco endereco;
+    private Cep cep;
 
     @OneToMany(mappedBy = "condominio")
     @JsonIgnore
@@ -108,12 +108,12 @@ public class Condominio implements Serializable {
         this.telefone = telefone;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Cep getCep() {
+        return cep;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setCep(Cep cep) {
+        this.cep = cep;
     }
 
     public Set<Funcionario> getFuncionarios() {

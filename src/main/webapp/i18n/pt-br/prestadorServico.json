@@ -17,7 +17,7 @@
             "telefone": "Telefone",
             "documento": "Documento",
             "pessoa": "Pessoa",
-            "endereco": "Endereco"
+            "cep": "Cep"
         }
     }
 }

@@ -31,16 +31,16 @@
                 <constraints nullable="false" />
             </column>
             <column name="pessoa" type="varchar(255)"/>
-            <column name="endereco_id" type="bigint">
+            <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="endereco_id"
+        <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="PRESTADOR_SERVICO"
-                                 constraintName="fk_prestadorservico_endereco_id"
+                                 constraintName="fk_prestadorservico_cep_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="ENDERECO"/>
+                                 referencedTableName="CEP"/>
 
     </changeSet>
 </databaseChangeLog>

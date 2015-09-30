@@ -1,9 +1,9 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.web.rest.dto.LoggerDTO;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import com.codahale.metrics.annotation.Timed;
-import br.com.unifieo.tmc.web.rest.dto.LoggerDTO;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +29,7 @@ public class LogsResource {
             .stream()
             .map(LoggerDTO::new)
             .collect(Collectors.toList());
-        
+
     }
 
     @RequestMapping(value = "/logs",

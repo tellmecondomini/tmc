@@ -24,7 +24,7 @@
             "ativo": "Ativo",
             "dataCadastro": "DataCadastro",
             "telefone": "Telefone",
-            "endereco": "Endereco",
+            "cep": "Cep",
             "condominio": "Condominio"
         }
     }

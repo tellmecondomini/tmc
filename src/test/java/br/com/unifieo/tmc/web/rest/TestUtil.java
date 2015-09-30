@@ -1,17 +1,16 @@
 package br.com.unifieo.tmc.web.rest;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
+import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.http.MediaType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * Utility class for testing REST controllers.

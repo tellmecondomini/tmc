@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.domain;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;

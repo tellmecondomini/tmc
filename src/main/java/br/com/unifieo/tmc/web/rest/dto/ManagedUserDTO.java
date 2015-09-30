@@ -1,8 +1,7 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
-import org.joda.time.DateTime;
-
 import br.com.unifieo.tmc.domain.User;
+import org.joda.time.DateTime;
 
 /**
  * A DTO extending the UserDTO, which is meant to be used in the user management UI.

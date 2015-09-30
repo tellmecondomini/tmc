@@ -2,8 +2,8 @@
     "relationships": [
         {
             "relationshipId": 1,
-            "relationshipName": "endereco",
-            "otherEntityName": "endereco",
+            "relationshipName": "cep",
+            "otherEntityName": "cep",
             "relationshipType": "one-to-one",
             "ownerSide": true
         },

@@ -71,7 +71,7 @@ public class Funcionario implements Serializable {
     private Integer telefone;
 
     @OneToOne
-    private Endereco endereco;
+    private Cep cep;
 
     @ManyToOne
     private Condominio condominio;
@@ -156,12 +156,12 @@ public class Funcionario implements Serializable {
         this.telefone = telefone;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Cep getCep() {
+        return cep;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setCep(Cep cep) {
+        this.cep = cep;
     }
 
     public Condominio getCondominio() {

@@ -43,7 +43,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="telefone" type="integer"/>
-            <column name="endereco_id" type="bigint">
+            <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>
             <column name="condominio_id" type="bigint"/>
@@ -53,11 +53,11 @@
         <dropDefaultValue tableName="FUNCIONARIO" columnName="data_cadastro" columnDataType="datetime"/>
 
         
-        <addForeignKeyConstraint baseColumnNames="endereco_id"
+        <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="FUNCIONARIO"
-                                 constraintName="fk_funcionario_endereco_id"
+                                 constraintName="fk_funcionario_cep_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="ENDERECO"/>
+                                 referencedTableName="CEP"/>
 
         <addForeignKeyConstraint baseColumnNames="condominio_id"
                                  baseTableName="FUNCIONARIO"

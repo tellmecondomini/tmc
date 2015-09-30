@@ -1,7 +1,5 @@
 package br.com.unifieo.tmc.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import br.com.unifieo.tmc.domain.Authority;
 import br.com.unifieo.tmc.domain.PersistentToken;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;
@@ -11,6 +9,7 @@ import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.KeyAndPasswordDTO;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
+import com.codahale.metrics.annotation.Timed;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.

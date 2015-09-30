@@ -1,7 +1,6 @@
 package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Authority;
-import br.com.unifieo.tmc.domain.PersistentToken;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.AuthorityRepository;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;

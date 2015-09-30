@@ -16,7 +16,8 @@
             "numero": "Numero",
             "bairro": "Bairro",
             "cidade": "Cidade",
-            "uf": "Uf"
+            "uf": "Uf",
+            "cep": "Cep"
         }
     }
 }

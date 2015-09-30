@@ -1,0 +1,70 @@
+
+<div>
+    <h2><span translate="tmcApp.cep.detail.title">Cep</span> {{cep.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.logradouro">Logradouro</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.logradouro}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.numero">Numero</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.numero}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.bairro">Bairro</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.bairro}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.cidade">Cidade</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.cidade}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.uf">Uf</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'tmcApp.Uf.' + cep.uf}}">{{cep.uf}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.cep.cep">Cep</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.cep}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

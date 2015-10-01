@@ -5,7 +5,7 @@
             "relationshipName": "imovel",
             "otherEntityName": "imovel",
             "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "morador"
+            "otherEntityRelationshipName": "morador" /* Contrario */
         }
     ],
     "fields": [
@@ -75,6 +75,12 @@
             "fieldId": 9,
             "fieldName": "telefone",
             "fieldType": "Integer"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "tipo",
+            "fieldType": "TipoMorador",
+            "fieldValues": "PROPRIETARIO, MORADOR, LOCATARIO"
         }
     ],
     "changelogDate": "20150928222637",

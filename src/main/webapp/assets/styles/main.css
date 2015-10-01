@@ -75,6 +75,15 @@ Browser Upgrade Prompt
     background-size: contain;
 }
 
+.logo {
+    display: inline-block;
+    width: 120px;
+    height: 60px;
+    margin-top: -22px;
+    background: url("../images/logo_tmc.png") no-repeat center;
+    background-size: contain;
+}
+
 .pad {
     padding: 10px;
 }

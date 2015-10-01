@@ -1,7 +1,7 @@
 {
     "main": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to Tell Me Condominium!",
+        "subtitle": "Your condominiums management system",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },

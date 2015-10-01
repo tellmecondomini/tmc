@@ -11,14 +11,6 @@
         },
         {
             "fieldId": 2,
-            "fieldName": "numero",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldId": 3,
             "fieldName": "bairro",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -26,7 +18,7 @@
             ]
         },
         {
-            "fieldId": 4,
+            "fieldId": 3,
             "fieldName": "cidade",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -34,7 +26,7 @@
             ]
         },
         {
-            "fieldId": 5,
+            "fieldId": 4,
             "fieldName": "uf",
             "fieldType": "Uf",
             "fieldValues": "SP",
@@ -43,7 +35,7 @@
             ]
         },
         {
-            "fieldId": 6,
+            "fieldId": 5,
             "fieldName": "cep",
             "fieldType": "Integer",
             "fieldValidateRules": [

@@ -52,6 +52,12 @@
             "fieldId": 5,
             "fieldName": "telefone",
             "fieldType": "Integer"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "disposicao",
+            "fieldType": "Disposicao",
+            "fieldValues": "VENRTICAL, HORIZONTAL, HIBRIDO"
         }
     ],
     "changelogDate": "20150928115541",

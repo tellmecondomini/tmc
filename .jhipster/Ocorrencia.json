@@ -38,6 +38,23 @@
                 "required"
             ]
         }
+
+        /*
+
+        evidencia, campo imagem, upload
+        pode ter varias imagens
+
+        */
+
+        /*
+
+        Criar tabela Tipo ocorrencia
+
+        ocorrencia
+
+
+        */
+
     ],
     "changelogDate": "20150928233759",
     "dto": "no",

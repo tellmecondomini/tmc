@@ -85,6 +85,9 @@
             "fieldId": 9,
             "fieldName": "telefone",
             "fieldType": "Integer"
+            /*
+             Criar tabela TELEFONE_FUNCIONARIO
+            */
         }
     ],
     "changelogDate": "20150928114651",

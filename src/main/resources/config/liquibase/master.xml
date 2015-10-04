@@ -8,12 +8,12 @@
     <include file="classpath:config/liquibase/changelog/20150930213358_added_entity_Cep.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928115541_added_entity_Condominio.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928114651_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928222637_added_entity_Morador.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928232012_added_entity_Imovel.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928232351_added_entity_PrestadorServico.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928233759_added_entity_Ocorrencia.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142439_added_entity_TelefoneFuncionario.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928232012_added_entity_Imovel.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928222637_added_entity_Morador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142552_added_entity_TelefoneMorador.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928232351_added_entity_PrestadorServico.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142745_added_entity_TelefonePrestadorServico.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150928233759_added_entity_Ocorrencia.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

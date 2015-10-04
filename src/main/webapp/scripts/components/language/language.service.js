@@ -8,7 +8,7 @@ angular.module('tmcApp')
                 var language = $translate.storage().get('NG_TRANSLATE_LANG_KEY');
 
                 if (angular.isUndefined(language)) {
-                    language = 'en';
+                    language = 'pt-br';
                 }
 
                 deferred.resolve(language);

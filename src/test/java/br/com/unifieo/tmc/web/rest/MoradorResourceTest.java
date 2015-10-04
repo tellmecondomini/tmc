@@ -2,18 +2,18 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Morador;
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.repository.MoradorRepository;
-import org.joda.time.LocalDate;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -23,12 +23,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.joda.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
 
 /**
  * Test class for the MoradorResource REST controller.
@@ -43,13 +46,13 @@ public class MoradorResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_CPF = "093.617.336-05";
-    private static final String UPDATED_CPF = "093.617.336-05";
+    private static final String DEFAULT_CPF = "SAMPLE_TEXT";
+    private static final String UPDATED_CPF = "UPDATED_TEXT";
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;
-    private static final String DEFAULT_EMAIL = "tellme@condominium.com.br";
-    private static final String UPDATED_EMAIL = "tellme@condominium.com.br";
+    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
+    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 
@@ -64,6 +67,9 @@ public class MoradorResourceTest {
 
     private static final Integer DEFAULT_TELEFONE = 1;
     private static final Integer UPDATED_TELEFONE = 2;
+
+    private static final TipoMorador DEFAULT_TIPO = TipoMorador.PROPRIETARIO;
+    private static final TipoMorador UPDATED_TIPO = TipoMorador.MORADOR;
 
     @Inject
     private MoradorRepository moradorRepository;
@@ -100,6 +106,7 @@ public class MoradorResourceTest {
         morador.setAtivo(DEFAULT_ATIVO);
         morador.setBloqueiaAgendamento(DEFAULT_BLOQUEIA_AGENDAMENTO);
         morador.setTelefone(DEFAULT_TELEFONE);
+        morador.setTipo(DEFAULT_TIPO);
     }
 
     @Test
@@ -127,6 +134,7 @@ public class MoradorResourceTest {
         assertThat(testMorador.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(DEFAULT_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
+        assertThat(testMorador.getTipo()).isEqualTo(DEFAULT_TIPO);
     }
 
     @Test
@@ -238,7 +246,8 @@ public class MoradorResourceTest {
                 .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].bloqueiaAgendamento").value(hasItem(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue())))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)));
+                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
+                .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
     }
 
     @Test
@@ -260,7 +269,8 @@ public class MoradorResourceTest {
             .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.bloqueiaAgendamento").value(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue()))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE));
+            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
+            .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()));
     }
 
     @Test
@@ -289,7 +299,8 @@ public class MoradorResourceTest {
         morador.setAtivo(UPDATED_ATIVO);
         morador.setBloqueiaAgendamento(UPDATED_BLOQUEIA_AGENDAMENTO);
         morador.setTelefone(UPDATED_TELEFONE);
-
+        morador.setTipo(UPDATED_TIPO);
+        
 
         restMoradorMockMvc.perform(put("/api/moradors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -309,6 +320,7 @@ public class MoradorResourceTest {
         assertThat(testMorador.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(UPDATED_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTelefone()).isEqualTo(UPDATED_TELEFONE);
+        assertThat(testMorador.getTipo()).isEqualTo(UPDATED_TIPO);
     }
 
     @Test

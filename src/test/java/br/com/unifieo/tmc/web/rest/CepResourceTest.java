@@ -2,17 +2,18 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Cep;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.CepRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -25,9 +26,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 
 /**
  * Test class for the CepResource REST controller.
@@ -42,9 +44,6 @@ public class CepResourceTest {
 
     private static final String DEFAULT_LOGRADOURO = "SAMPLE_TEXT";
     private static final String UPDATED_LOGRADOURO = "UPDATED_TEXT";
-
-    private static final Integer DEFAULT_NUMERO = 1;
-    private static final Integer UPDATED_NUMERO = 2;
     private static final String DEFAULT_BAIRRO = "SAMPLE_TEXT";
     private static final String UPDATED_BAIRRO = "UPDATED_TEXT";
     private static final String DEFAULT_CIDADE = "SAMPLE_TEXT";
@@ -83,7 +82,6 @@ public class CepResourceTest {
     public void initTest() {
         cep = new Cep();
         cep.setLogradouro(DEFAULT_LOGRADOURO);
-        cep.setNumero(DEFAULT_NUMERO);
         cep.setBairro(DEFAULT_BAIRRO);
         cep.setCidade(DEFAULT_CIDADE);
         cep.setUf(DEFAULT_UF);
@@ -107,7 +105,6 @@ public class CepResourceTest {
         assertThat(ceps).hasSize(databaseSizeBeforeCreate + 1);
         Cep testCep = ceps.get(ceps.size() - 1);
         assertThat(testCep.getLogradouro()).isEqualTo(DEFAULT_LOGRADOURO);
-        assertThat(testCep.getNumero()).isEqualTo(DEFAULT_NUMERO);
         assertThat(testCep.getBairro()).isEqualTo(DEFAULT_BAIRRO);
         assertThat(testCep.getCidade()).isEqualTo(DEFAULT_CIDADE);
         assertThat(testCep.getUf()).isEqualTo(DEFAULT_UF);
@@ -120,24 +117,6 @@ public class CepResourceTest {
         int databaseSizeBeforeTest = cepRepository.findAll().size();
         // set the field null
         cep.setLogradouro(null);
-
-        // Create the Cep, which fails.
-
-        restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
-
-        List<Cep> ceps = cepRepository.findAll();
-        assertThat(ceps).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkNumeroIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cepRepository.findAll().size();
-        // set the field null
-        cep.setNumero(null);
 
         // Create the Cep, which fails.
 
@@ -234,7 +213,6 @@ public class CepResourceTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(cep.getId().intValue())))
                 .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO.toString())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
                 .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO.toString())))
                 .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE.toString())))
                 .andExpect(jsonPath("$.[*].uf").value(hasItem(DEFAULT_UF.toString())))
@@ -253,7 +231,6 @@ public class CepResourceTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(cep.getId().intValue()))
             .andExpect(jsonPath("$.logradouro").value(DEFAULT_LOGRADOURO.toString()))
-            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
             .andExpect(jsonPath("$.bairro").value(DEFAULT_BAIRRO.toString()))
             .andExpect(jsonPath("$.cidade").value(DEFAULT_CIDADE.toString()))
             .andExpect(jsonPath("$.uf").value(DEFAULT_UF.toString()))
@@ -278,12 +255,11 @@ public class CepResourceTest {
 
         // Update the cep
         cep.setLogradouro(UPDATED_LOGRADOURO);
-        cep.setNumero(UPDATED_NUMERO);
         cep.setBairro(UPDATED_BAIRRO);
         cep.setCidade(UPDATED_CIDADE);
         cep.setUf(UPDATED_UF);
         cep.setCep(UPDATED_CEP);
-
+        
 
         restCepMockMvc.perform(put("/api/ceps")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -295,7 +271,6 @@ public class CepResourceTest {
         assertThat(ceps).hasSize(databaseSizeBeforeUpdate);
         Cep testCep = ceps.get(ceps.size() - 1);
         assertThat(testCep.getLogradouro()).isEqualTo(UPDATED_LOGRADOURO);
-        assertThat(testCep.getNumero()).isEqualTo(UPDATED_NUMERO);
         assertThat(testCep.getBairro()).isEqualTo(UPDATED_BAIRRO);
         assertThat(testCep.getCidade()).isEqualTo(UPDATED_CIDADE);
         assertThat(testCep.getUf()).isEqualTo(UPDATED_UF);

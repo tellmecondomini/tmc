@@ -16,7 +16,6 @@
                 "title": "Cep"
             },
             "logradouro": "Logradouro",
-            "numero": "Numero",
             "bairro": "Bairro",
             "cidade": "Cidade",
             "uf": "Uf",

@@ -1,0 +1,19 @@
+{
+    "tmcApp": {
+        "telefonePrestadorServico" : {
+            "home": {
+                "title": "TelefonePrestadorServicos",
+                "createLabel": "Create a new TelefonePrestadorServico",
+                "createOrEditLabel": "Create or edit a TelefonePrestadorServico"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete TelefonePrestadorServico {{ id }}?"
+            },
+            "detail": {
+                "title": "TelefonePrestadorServico"
+            },
+            "numero": "Numero",
+            "prestadorServico": "PrestadorServico"
+        }
+    }
+}

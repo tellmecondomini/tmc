@@ -67,7 +67,7 @@ class CepGatlingTest extends Simulation {
             .exec(http("Create new cep")
             .post("/api/ceps")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "logradouro":"SAMPLE_TEXT", "numero":"0", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "uf":null, "cep":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "logradouro":"SAMPLE_TEXT", "bairro":"SAMPLE_TEXT", "cidade":"SAMPLE_TEXT", "uf":null, "cep":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_cep_url")))
             .pause(10)

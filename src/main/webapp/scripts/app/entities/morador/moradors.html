@@ -50,6 +50,8 @@
                     <th translate="tmcApp.morador.ativo">Ativo</th>
                     <th translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</th>
                     <th translate="tmcApp.morador.telefone">Telefone</th>
+                    <th translate="tmcApp.morador.tipo">Tipo</th>
+                    <th translate="tmcApp.morador.imovel">imovel</th>
                     <th></th>
                 </tr>
             </thead>
@@ -65,6 +67,10 @@
                     <td>{{morador.ativo}}</td>
                     <td>{{morador.bloqueiaAgendamento}}</td>
                     <td>{{morador.telefone}}</td>
+                    <td translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</td>
+                    <td>
+                        <a ui-sref="imovel.detail({id:morador.imovel.id})">{{morador.imovel.id}}</a>
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="morador.detail({id:morador.id})"

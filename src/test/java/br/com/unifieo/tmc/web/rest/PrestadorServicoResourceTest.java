@@ -2,17 +2,18 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.PrestadorServico;
-import br.com.unifieo.tmc.domain.enumeration.Pessoa;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -25,9 +26,10 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import br.com.unifieo.tmc.domain.enumeration.Pessoa;
 
 /**
  * Test class for the PrestadorServicoResource REST controller.
@@ -42,13 +44,10 @@ public class PrestadorServicoResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_EMAIL = "tellme@condominium.com.br";
-    private static final String UPDATED_EMAIL = "tellme@condominium.com.br";
-
-    private static final Integer DEFAULT_TELEFONE = 1;
-    private static final Integer UPDATED_TELEFONE = 2;
-    private static final String DEFAULT_DOCUMENTO = "66.741.263/0001-60";
-    private static final String UPDATED_DOCUMENTO = "66.741.263/0001-60";
+    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
+    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
+    private static final String DEFAULT_DOCUMENTO = "SAMPLE_TEXT";
+    private static final String UPDATED_DOCUMENTO = "UPDATED_TEXT";
 
     private static final Pessoa DEFAULT_PESSOA = Pessoa.FISICA;
     private static final Pessoa UPDATED_PESSOA = Pessoa.JURIDICA;
@@ -81,7 +80,6 @@ public class PrestadorServicoResourceTest {
         prestadorServico = new PrestadorServico();
         prestadorServico.setNome(DEFAULT_NOME);
         prestadorServico.setEmail(DEFAULT_EMAIL);
-        prestadorServico.setTelefone(DEFAULT_TELEFONE);
         prestadorServico.setDocumento(DEFAULT_DOCUMENTO);
         prestadorServico.setPessoa(DEFAULT_PESSOA);
     }
@@ -104,7 +102,6 @@ public class PrestadorServicoResourceTest {
         PrestadorServico testPrestadorServico = prestadorServicos.get(prestadorServicos.size() - 1);
         assertThat(testPrestadorServico.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testPrestadorServico.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testPrestadorServico.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
         assertThat(testPrestadorServico.getDocumento()).isEqualTo(DEFAULT_DOCUMENTO);
         assertThat(testPrestadorServico.getPessoa()).isEqualTo(DEFAULT_PESSOA);
     }
@@ -158,7 +155,6 @@ public class PrestadorServicoResourceTest {
                 .andExpect(jsonPath("$.[*].id").value(hasItem(prestadorServico.getId().intValue())))
                 .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
                 .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())))
                 .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_PESSOA.toString())));
     }
@@ -176,7 +172,6 @@ public class PrestadorServicoResourceTest {
             .andExpect(jsonPath("$.id").value(prestadorServico.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
             .andExpect(jsonPath("$.documento").value(DEFAULT_DOCUMENTO.toString()))
             .andExpect(jsonPath("$.pessoa").value(DEFAULT_PESSOA.toString()));
     }
@@ -200,10 +195,9 @@ public class PrestadorServicoResourceTest {
         // Update the prestadorServico
         prestadorServico.setNome(UPDATED_NOME);
         prestadorServico.setEmail(UPDATED_EMAIL);
-        prestadorServico.setTelefone(UPDATED_TELEFONE);
         prestadorServico.setDocumento(UPDATED_DOCUMENTO);
         prestadorServico.setPessoa(UPDATED_PESSOA);
-
+        
 
         restPrestadorServicoMockMvc.perform(put("/api/prestadorServicos")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -216,7 +210,6 @@ public class PrestadorServicoResourceTest {
         PrestadorServico testPrestadorServico = prestadorServicos.get(prestadorServicos.size() - 1);
         assertThat(testPrestadorServico.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testPrestadorServico.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testPrestadorServico.getTelefone()).isEqualTo(UPDATED_TELEFONE);
         assertThat(testPrestadorServico.getDocumento()).isEqualTo(UPDATED_DOCUMENTO);
         assertThat(testPrestadorServico.getPessoa()).isEqualTo(UPDATED_PESSOA);
     }

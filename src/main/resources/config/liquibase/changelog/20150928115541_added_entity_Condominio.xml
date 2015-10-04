@@ -33,6 +33,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="telefone" type="integer"/>
+            <column name="disposicao" type="varchar(255)"/>
             <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>

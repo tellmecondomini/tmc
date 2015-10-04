@@ -1,11 +1,14 @@
 package br.com.unifieo.tmc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -20,16 +23,18 @@ public class Imovel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "rua_bloco", nullable = false)
     private String ruaBloco;
 
-    @NotNull
+    @NotNull        
     @Column(name = "numero", nullable = false)
     private Integer numero;
 
-    @ManyToOne
-    private Morador morador;
+    @OneToMany(mappedBy = "imovel")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Morador> moradors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -55,12 +60,12 @@ public class Imovel implements Serializable {
         this.numero = numero;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Set<Morador> getMoradors() {
+        return moradors;
     }
 
-    public void setMorador(Morador morador) {
-        this.morador = morador;
+    public void setMoradors(Set<Morador> moradors) {
+        this.moradors = moradors;
     }
 
     @Override

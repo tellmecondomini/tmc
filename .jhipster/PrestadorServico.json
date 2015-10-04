@@ -11,7 +11,7 @@
         {
             "relationshipId": 2,
             "relationshipName": "telefonePrestadorServico",
-            "otherEntityName": "telefoneMoradorPrestadorServico",
+            "otherEntityName": "telefonePrestadorServico",
             "relationshipType": "one-to-many",
             "otherEntityField": "id"
         }

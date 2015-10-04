@@ -1,13 +1,14 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 
 /**
  * A Cep.
@@ -21,28 +22,24 @@ public class Cep implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
-    @NotNull
-    @Column(name = "numero", nullable = false)
-    private Integer numero;
-
-    @NotNull
+    @NotNull        
     @Column(name = "bairro", nullable = false)
     private String bairro;
 
-    @NotNull
+    @NotNull        
     @Column(name = "cidade", nullable = false)
     private String cidade;
 
-    @NotNull
+    @NotNull        
     @Enumerated(EnumType.STRING)
     @Column(name = "uf", nullable = false)
     private Uf uf;
 
-    @NotNull
+    @NotNull        
     @Column(name = "cep", nullable = false)
     private Integer cep;
 
@@ -60,14 +57,6 @@ public class Cep implements Serializable {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
     }
 
     public String getBairro() {
@@ -128,7 +117,6 @@ public class Cep implements Serializable {
         return "Cep{" +
                 "id=" + id +
                 ", logradouro='" + logradouro + "'" +
-                ", numero='" + numero + "'" +
                 ", bairro='" + bairro + "'" +
                 ", cidade='" + cidade + "'" +
                 ", uf='" + uf + "'" +

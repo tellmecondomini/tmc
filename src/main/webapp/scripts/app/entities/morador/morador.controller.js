@@ -32,6 +32,6 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.morador = {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, telefone: null, id: null};
+            $scope.morador = {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, telefone: null, tipo: null, id: null};
         };
     });

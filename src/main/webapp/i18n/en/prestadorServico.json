@@ -17,10 +17,10 @@
             },
             "nome": "Nome",
             "email": "Email",
-            "telefone": "Telefone",
             "documento": "Documento",
             "pessoa": "Pessoa",
-            "cep": "Cep"
+            "cep": "Cep",
+            "telefonePrestadorServico": "TelefonePrestadorServico"
         }
     }
 }

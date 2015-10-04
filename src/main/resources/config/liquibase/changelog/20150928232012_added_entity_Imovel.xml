@@ -28,14 +28,7 @@
             <column name="numero" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="morador_id" type="bigint"/>
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="morador_id"
-                                 baseTableName="IMOVEL"
-                                 constraintName="fk_imovel_morador_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="MORADOR"/>
-
     </changeSet>
 </databaseChangeLog>

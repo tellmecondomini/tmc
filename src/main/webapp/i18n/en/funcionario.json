@@ -23,9 +23,9 @@
             "senha": "Senha",
             "ativo": "Ativo",
             "dataCadastro": "DataCadastro",
-            "telefone": "Telefone",
             "cep": "Cep",
-            "condominio": "Condominio"
+            "condominio": "Condominio",
+            "telefoneFuncionario": "TelefoneFuncionario"
         }
     }
 }

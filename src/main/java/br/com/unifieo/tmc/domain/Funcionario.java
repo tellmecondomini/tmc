@@ -1,20 +1,23 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
 
 /**
  * A Funcionario.
@@ -28,20 +31,20 @@ public class Funcionario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "nome", nullable = false)
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")        
     @Column(name = "cpf", nullable = false)
     private String cpf;
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -49,32 +52,34 @@ public class Funcionario implements Serializable {
     private DateTime dataNascimento;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")        
     @Column(name = "email", nullable = false)
     private String email;
 
-    @NotNull
+    @NotNull        
     @Column(name = "senha", nullable = false)
     private String senha;
-
+    
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
 
-    @Column(name = "telefone")
-    private Integer telefone;
-
     @OneToOne
     private Cep cep;
 
     @ManyToOne
     private Condominio condominio;
+
+    @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<TelefoneFuncionario> telefoneFuncionarios = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -148,14 +153,6 @@ public class Funcionario implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public Integer getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
-    }
-
     public Cep getCep() {
         return cep;
     }
@@ -170,6 +167,14 @@ public class Funcionario implements Serializable {
 
     public void setCondominio(Condominio condominio) {
         this.condominio = condominio;
+    }
+
+    public Set<TelefoneFuncionario> getTelefoneFuncionarios() {
+        return telefoneFuncionarios;
+    }
+
+    public void setTelefoneFuncionarios(Set<TelefoneFuncionario> telefoneFuncionarios) {
+        this.telefoneFuncionarios = telefoneFuncionarios;
     }
 
     @Override
@@ -205,7 +210,6 @@ public class Funcionario implements Serializable {
                 ", senha='" + senha + "'" +
                 ", ativo='" + ativo + "'" +
                 ", dataCadastro='" + dataCadastro + "'" +
-                ", telefone='" + telefone + "'" +
                 '}';
     }
 }

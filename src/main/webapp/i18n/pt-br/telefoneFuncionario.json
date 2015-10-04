@@ -1,0 +1,19 @@
+{
+    "tmcApp": {
+        "telefoneFuncionario" : {
+            "home": {
+                "title": "TelefoneFuncionarios",
+                "createLabel": "Create a new TelefoneFuncionario",
+                "createOrEditLabel": "Create or edit a TelefoneFuncionario"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete TelefoneFuncionario {{ id }}?"
+            },
+            "detail": {
+                "title": "TelefoneFuncionario"
+            },
+            "numero": "Numero",
+            "funcionario": "Funcionario"
+        }
+    }
+}

@@ -67,7 +67,7 @@ class CondominioGatlingTest extends Simulation {
             .exec(http("Create new condominio")
             .post("/api/condominios")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "razaoSocial":"SAMPLE_TEXT", "cnpj":"SAMPLE_TEXT", "ativo":null, "dataCadastro":"2020-01-01T00:00:00.000Z", "telefone":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "razaoSocial":"SAMPLE_TEXT", "cnpj":"SAMPLE_TEXT", "ativo":null, "dataCadastro":"2020-01-01T00:00:00.000Z", "telefone":"0", "disposicao":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_condominio_url")))
             .pause(10)

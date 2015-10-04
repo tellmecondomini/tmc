@@ -1,20 +1,20 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.StatusSolicitacao;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
+import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.StatusSolicitacao;
 
 /**
  * A Ocorrencia.
@@ -28,14 +28,14 @@ public class Ocorrencia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     @JsonSerialize(using = CustomLocalDateSerializer.class)
     @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
     @Column(name = "data_abertura", nullable = false)
     private LocalDate dataAbertura;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     @JsonSerialize(using = CustomLocalDateSerializer.class)
     @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
@@ -43,11 +43,11 @@ public class Ocorrencia implements Serializable {
     private LocalDate dataFechamento;
 
     @NotNull
-    @Size(min = 10, max = 1024)
+    @Size(min = 10, max = 1024)        
     @Column(name = "menssagem", length = 1024, nullable = false)
     private String menssagem;
 
-    @NotNull
+    @NotNull        
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusSolicitacao status;

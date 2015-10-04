@@ -14,6 +14,9 @@
                 "prestadorServico": "PrestadorServico",
                 "ocorrencia": "Ocorrencia",
                 "cep": "Cep",
+                "telefoneFuncionario": "TelefoneFuncionario",
+                "telefoneMorador": "TelefoneMorador",
+                "telefonePrestadorServico": "TelefonePrestadorServico",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

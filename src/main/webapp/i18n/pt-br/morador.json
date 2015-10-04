@@ -21,7 +21,9 @@
             "ativo": "Ativo",
             "bloqueiaAgendamento": "BloqueiaAgendamento",
             "telefone": "Telefone",
-            "imovel": "Imovel"
+            "tipo": "Tipo",
+            "imovel": "Imovel",
+            "telefoneMorador": "TelefoneMorador"
         }
     }
 }

@@ -17,6 +17,7 @@
             "ativo": "Ativo",
             "dataCadastro": "DataCadastro",
             "telefone": "Telefone",
+            "disposicao": "Disposicao",
             "cep": "Cep",
             "funcionario": "Funcionario"
         }

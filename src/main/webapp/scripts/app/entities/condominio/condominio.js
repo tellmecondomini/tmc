@@ -19,6 +19,7 @@ angular.module('tmcApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('condominio');
+                        $translatePartialLoader.addPart('disposicao');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -40,6 +41,7 @@ angular.module('tmcApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('condominio');
+                        $translatePartialLoader.addPart('disposicao');
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'Condominio', function($stateParams, Condominio) {
@@ -60,7 +62,7 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, telefone: null, id: null};
+                                return {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, telefone: null, disposicao: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

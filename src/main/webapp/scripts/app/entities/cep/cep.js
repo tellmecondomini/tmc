@@ -62,7 +62,7 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {logradouro: null, numero: null, bairro: null, cidade: null, uf: null, cep: null, id: null};
+                                return {logradouro: null, bairro: null, cidade: null, uf: null, cep: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

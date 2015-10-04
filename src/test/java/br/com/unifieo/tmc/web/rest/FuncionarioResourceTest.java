@@ -2,21 +2,18 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Funcionario;
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -26,12 +23,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
 
 /**
  * Test class for the FuncionarioResource REST controller.
@@ -48,8 +50,8 @@ public class FuncionarioResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_CPF = "123.543.057-02";
-    private static final String UPDATED_CPF = "123.543.057-02";
+    private static final String DEFAULT_CPF = "SAMPLE_TEXT";
+    private static final String UPDATED_CPF = "UPDATED_TEXT";
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;
@@ -57,8 +59,8 @@ public class FuncionarioResourceTest {
     private static final DateTime DEFAULT_DATA_NASCIMENTO = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_DATA_NASCIMENTO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATA_NASCIMENTO_STR = dateTimeFormatter.print(DEFAULT_DATA_NASCIMENTO);
-    private static final String DEFAULT_EMAIL = "tellme@condominium.com.br";
-    private static final String UPDATED_EMAIL = "tellme@condominium.com.br";
+    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
+    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 
@@ -68,9 +70,6 @@ public class FuncionarioResourceTest {
     private static final DateTime DEFAULT_DATA_CADASTRO = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_DATA_CADASTRO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATA_CADASTRO_STR = dateTimeFormatter.print(DEFAULT_DATA_CADASTRO);
-
-    private static final Integer DEFAULT_TELEFONE = 1;
-    private static final Integer UPDATED_TELEFONE = 2;
 
     @Inject
     private FuncionarioRepository funcionarioRepository;
@@ -106,7 +105,6 @@ public class FuncionarioResourceTest {
         funcionario.setSenha(DEFAULT_SENHA);
         funcionario.setAtivo(DEFAULT_ATIVO);
         funcionario.setDataCadastro(DEFAULT_DATA_CADASTRO);
-        funcionario.setTelefone(DEFAULT_TELEFONE);
     }
 
     @Test
@@ -133,7 +131,6 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getSenha()).isEqualTo(DEFAULT_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
-        assertThat(testFuncionario.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
     }
 
     @Test
@@ -262,8 +259,7 @@ public class FuncionarioResourceTest {
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)));
+                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)));
     }
 
     @Test
@@ -284,8 +280,7 @@ public class FuncionarioResourceTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE));
+            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR));
     }
 
     @Test
@@ -313,8 +308,7 @@ public class FuncionarioResourceTest {
         funcionario.setSenha(UPDATED_SENHA);
         funcionario.setAtivo(UPDATED_ATIVO);
         funcionario.setDataCadastro(UPDATED_DATA_CADASTRO);
-        funcionario.setTelefone(UPDATED_TELEFONE);
-
+        
 
         restFuncionarioMockMvc.perform(put("/api/funcionarios")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -333,7 +327,6 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
-        assertThat(testFuncionario.getTelefone()).isEqualTo(UPDATED_TELEFONE);
     }
 
     @Test

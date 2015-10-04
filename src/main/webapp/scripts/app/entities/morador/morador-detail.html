@@ -82,6 +82,22 @@
                     <span class="form-control-static">{{morador.telefone}}</span>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.tipo">Tipo</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.morador.imovel">imovel</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="imovel.detail({id:morador.imovel.id})">{{morador.imovel.id}}</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

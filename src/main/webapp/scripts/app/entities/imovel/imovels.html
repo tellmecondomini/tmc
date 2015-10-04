@@ -43,7 +43,6 @@
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.imovel.ruaBloco">RuaBloco</th>
                     <th translate="tmcApp.imovel.numero">Numero</th>
-                    <th translate="tmcApp.imovel.morador">morador</th>
                     <th></th>
                 </tr>
             </thead>
@@ -52,9 +51,6 @@
                     <td><a ui-sref="imovel.detail({id:imovel.id})">{{imovel.id}}</a></td>
                     <td>{{imovel.ruaBloco}}</td>
                     <td>{{imovel.numero}}</td>
-                    <td>
-                        <a ui-sref="morador.detail({id:imovel.morador.id})">{{imovel.morador.nome}}</a>
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="imovel.detail({id:imovel.id})"

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('PrestadorServicoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep',
-        function($scope, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep', 'TelefonePrestadorServico',
+        function($scope, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep, TelefonePrestadorServico) {
 
         $scope.prestadorServico = entity;
         $scope.ceps = Cep.query({filter: 'prestadorservico-is-null'});
@@ -14,6 +14,7 @@ angular.module('tmcApp').controller('PrestadorServicoDialogController',
         }).then(function(cep) {
             $scope.ceps.push(cep);
         });
+        $scope.telefoneprestadorservicos = TelefonePrestadorServico.query();
         $scope.load = function(id) {
             PrestadorServico.get({id : id}, function(result) {
                 $scope.prestadorServico = result;

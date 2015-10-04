@@ -32,6 +32,6 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.cep = {logradouro: null, numero: null, bairro: null, cidade: null, uf: null, cep: null, id: null};
+            $scope.cep = {logradouro: null, bairro: null, cidade: null, uf: null, cep: null, id: null};
         };
     });

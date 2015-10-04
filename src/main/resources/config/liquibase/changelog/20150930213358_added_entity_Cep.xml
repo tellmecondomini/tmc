@@ -25,9 +25,6 @@
             <column name="logradouro" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="numero" type="integer">
-                <constraints nullable="false" />
-            </column>
             <column name="bairro" type="varchar(255)">
                 <constraints nullable="false" />
             </column>

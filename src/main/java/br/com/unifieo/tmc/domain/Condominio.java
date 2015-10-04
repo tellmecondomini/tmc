@@ -1,22 +1,23 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 
 /**
  * A Condominio.
@@ -30,27 +31,31 @@ public class Condominio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "razao_social", nullable = false)
     private String razaoSocial;
 
     @NotNull
-    @Pattern(regexp = "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")        
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
-
+    
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
-
+    
     @Column(name = "telefone")
     private Integer telefone;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "disposicao")
+    private Disposicao disposicao;
 
     @OneToOne
     private Cep cep;
@@ -108,6 +113,14 @@ public class Condominio implements Serializable {
         this.telefone = telefone;
     }
 
+    public Disposicao getDisposicao() {
+        return disposicao;
+    }
+
+    public void setDisposicao(Disposicao disposicao) {
+        this.disposicao = disposicao;
+    }
+
     public Cep getCep() {
         return cep;
     }
@@ -154,6 +167,7 @@ public class Condominio implements Serializable {
                 ", ativo='" + ativo + "'" +
                 ", dataCadastro='" + dataCadastro + "'" +
                 ", telefone='" + telefone + "'" +
+                ", disposicao='" + disposicao + "'" +
                 '}';
     }
 }

@@ -32,6 +32,6 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.funcionario = {nome: null, cpf: null, sexo: null, dataNascimento: null, email: null, senha: null, ativo: null, dataCadastro: null, telefone: null, id: null};
+            $scope.funcionario = {nome: null, cpf: null, sexo: null, dataNascimento: null, email: null, senha: null, ativo: null, dataCadastro: null, id: null};
         };
     });

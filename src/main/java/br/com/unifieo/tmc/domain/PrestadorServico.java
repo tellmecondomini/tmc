@@ -1,14 +1,17 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.Pessoa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.Pessoa;
 
 /**
  * A PrestadorServico.
@@ -22,28 +25,30 @@ public class PrestadorServico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")        
     @Column(name = "email")
     private String email;
 
-    @Column(name = "telefone")
-    private Integer telefone;
-
     @NotNull
-    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")        
     @Column(name = "documento", nullable = false)
     private String documento;
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "pessoa")
     private Pessoa pessoa;
 
     @OneToOne
     private Cep cep;
+
+    @OneToMany(mappedBy = "prestadorServico")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -69,14 +74,6 @@ public class PrestadorServico implements Serializable {
         this.email = email;
     }
 
-    public Integer getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
-    }
-
     public String getDocumento() {
         return documento;
     }
@@ -99,6 +96,14 @@ public class PrestadorServico implements Serializable {
 
     public void setCep(Cep cep) {
         this.cep = cep;
+    }
+
+    public Set<TelefonePrestadorServico> getTelefonePrestadorServicos() {
+        return telefonePrestadorServicos;
+    }
+
+    public void setTelefonePrestadorServicos(Set<TelefonePrestadorServico> telefonePrestadorServicos) {
+        this.telefonePrestadorServicos = telefonePrestadorServicos;
     }
 
     @Override
@@ -128,7 +133,6 @@ public class PrestadorServico implements Serializable {
                 "id=" + id +
                 ", nome='" + nome + "'" +
                 ", email='" + email + "'" +
-                ", telefone='" + telefone + "'" +
                 ", documento='" + documento + "'" +
                 ", pessoa='" + pessoa + "'" +
                 '}';

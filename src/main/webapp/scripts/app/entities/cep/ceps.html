@@ -42,7 +42,6 @@
                 <tr>
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.cep.logradouro">Logradouro</th>
-                    <th translate="tmcApp.cep.numero">Numero</th>
                     <th translate="tmcApp.cep.bairro">Bairro</th>
                     <th translate="tmcApp.cep.cidade">Cidade</th>
                     <th translate="tmcApp.cep.uf">Uf</th>
@@ -54,7 +53,6 @@
                 <tr ng-repeat="cep in ceps">
                     <td><a ui-sref="cep.detail({id:cep.id})">{{cep.id}}</a></td>
                     <td>{{cep.logradouro}}</td>
-                    <td>{{cep.numero}}</td>
                     <td>{{cep.bairro}}</td>
                     <td>{{cep.cidade}}</td>
                     <td translate="{{'tmcApp.Uf.' + cep.uf}}">{{cep.uf}}</td>

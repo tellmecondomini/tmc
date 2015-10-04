@@ -106,7 +106,21 @@
                     ng-model="morador.telefone"
                     >
         </div>
+        <div class="form-group">
+            <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
+            <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
+                <option value="PROPRIETARIO" translate="tmcApp.TipoMorador.PROPRIETARIO">PROPRIETARIO</option>
+                <option value="MORADOR" translate="tmcApp.TipoMorador.MORADOR">MORADOR</option>
+                <option value="LOCATARIO" translate="tmcApp.TipoMorador.LOCATARIO">LOCATARIO</option>
+            </select>
+        </div>
 
+        <div class="form-group">
+            <label translate="tmcApp.morador.imovel" for="field_imovel">imovel</label>
+            <select class="form-control" id="field_imovel" name="imovel" ng-model="morador.imovel" ng-options="imovel as imovel.id for imovel in imovels track by imovel.id">
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

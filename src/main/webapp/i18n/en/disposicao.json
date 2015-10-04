@@ -1,0 +1,10 @@
+{
+    "tmcApp": {
+        "Disposicao" : {
+            "null": "",
+            "VENRTICAL": "VENRTICAL",
+            "HORIZONTAL": "HORIZONTAL",
+            "HIBRIDO": "HIBRIDO"
+        }
+    }
+}

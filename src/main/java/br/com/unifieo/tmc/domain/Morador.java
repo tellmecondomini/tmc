@@ -1,23 +1,25 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
+import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
+
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
+
+import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
 
 /**
  * A Morador.
@@ -31,48 +33,55 @@ public class Morador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull        
     @Column(name = "nome", nullable = false)
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")
+    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")        
     @Column(name = "cpf", nullable = false)
     private String cpf;
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "sexo")
     private Sexo sexo;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")        
     @Column(name = "email", nullable = false)
     private String email;
 
-    @NotNull
+    @NotNull        
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @NotNull
+    @NotNull        
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     @JsonSerialize(using = CustomLocalDateSerializer.class)
     @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
-
+    
     @Column(name = "ativo")
     private Boolean ativo;
-
+    
     @Column(name = "bloqueia_agendamento")
     private Boolean bloqueiaAgendamento;
-
+    
     @Column(name = "telefone")
     private Integer telefone;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo")
+    private TipoMorador tipo;
+
+    @ManyToOne
+    private Imovel imovel;
 
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Imovel> imovels = new HashSet<>();
+    private Set<TelefoneMorador> telefoneMoradors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -154,12 +163,28 @@ public class Morador implements Serializable {
         this.telefone = telefone;
     }
 
-    public Set<Imovel> getImovels() {
-        return imovels;
+    public TipoMorador getTipo() {
+        return tipo;
     }
 
-    public void setImovels(Set<Imovel> imovels) {
-        this.imovels = imovels;
+    public void setTipo(TipoMorador tipo) {
+        this.tipo = tipo;
+    }
+
+    public Imovel getImovel() {
+        return imovel;
+    }
+
+    public void setImovel(Imovel imovel) {
+        this.imovel = imovel;
+    }
+
+    public Set<TelefoneMorador> getTelefoneMoradors() {
+        return telefoneMoradors;
+    }
+
+    public void setTelefoneMoradors(Set<TelefoneMorador> telefoneMoradors) {
+        this.telefoneMoradors = telefoneMoradors;
     }
 
     @Override
@@ -196,6 +221,7 @@ public class Morador implements Serializable {
                 ", ativo='" + ativo + "'" +
                 ", bloqueiaAgendamento='" + bloqueiaAgendamento + "'" +
                 ", telefone='" + telefone + "'" +
+                ", tipo='" + tipo + "'" +
                 '}';
     }
 }

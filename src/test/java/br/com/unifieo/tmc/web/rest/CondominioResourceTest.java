@@ -3,19 +3,17 @@ package br.com.unifieo.tmc.web.rest;
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.repository.CondominioRepository;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -25,13 +23,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 
 /**
  * Test class for the CondominioResource REST controller.
@@ -48,8 +50,8 @@ public class CondominioResourceTest {
 
     private static final String DEFAULT_RAZAO_SOCIAL = "SAMPLE_TEXT";
     private static final String UPDATED_RAZAO_SOCIAL = "UPDATED_TEXT";
-    private static final String DEFAULT_CNPJ = "66.741.263/0001-60";
-    private static final String UPDATED_CNPJ = "66.741.263/0001-60";
+    private static final String DEFAULT_CNPJ = "SAMPLE_TEXT";
+    private static final String UPDATED_CNPJ = "UPDATED_TEXT";
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
@@ -60,6 +62,9 @@ public class CondominioResourceTest {
 
     private static final Integer DEFAULT_TELEFONE = 1;
     private static final Integer UPDATED_TELEFONE = 2;
+
+    private static final Disposicao DEFAULT_DISPOSICAO = Disposicao.VENRTICAL;
+    private static final Disposicao UPDATED_DISPOSICAO = Disposicao.HORIZONTAL;
 
     @Inject
     private CondominioRepository condominioRepository;
@@ -92,6 +97,7 @@ public class CondominioResourceTest {
         condominio.setAtivo(DEFAULT_ATIVO);
         condominio.setDataCadastro(DEFAULT_DATA_CADASTRO);
         condominio.setTelefone(DEFAULT_TELEFONE);
+        condominio.setDisposicao(DEFAULT_DISPOSICAO);
     }
 
     @Test
@@ -115,6 +121,7 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
         assertThat(testCondominio.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
+        assertThat(testCondominio.getDisposicao()).isEqualTo(DEFAULT_DISPOSICAO);
     }
 
     @Test
@@ -186,7 +193,8 @@ public class CondominioResourceTest {
                 .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)));
+                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
+                .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())));
     }
 
     @Test
@@ -204,7 +212,8 @@ public class CondominioResourceTest {
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE));
+            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
+            .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()));
     }
 
     @Test
@@ -229,7 +238,8 @@ public class CondominioResourceTest {
         condominio.setAtivo(UPDATED_ATIVO);
         condominio.setDataCadastro(UPDATED_DATA_CADASTRO);
         condominio.setTelefone(UPDATED_TELEFONE);
-
+        condominio.setDisposicao(UPDATED_DISPOSICAO);
+        
 
         restCondominioMockMvc.perform(put("/api/condominios")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -245,6 +255,7 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
         assertThat(testCondominio.getTelefone()).isEqualTo(UPDATED_TELEFONE);
+        assertThat(testCondominio.getDisposicao()).isEqualTo(UPDATED_DISPOSICAO);
     }
 
     @Test

@@ -67,7 +67,7 @@ class FuncionarioGatlingTest extends Simulation {
             .exec(http("Create new funcionario")
             .post("/api/funcionarios")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":null, "dataNascimento":"2020-01-01T00:00:00.000Z", "email":"SAMPLE_TEXT", "senha":"SAMPLE_TEXT", "ativo":null, "dataCadastro":"2020-01-01T00:00:00.000Z", "telefone":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":null, "dataNascimento":"2020-01-01T00:00:00.000Z", "email":"SAMPLE_TEXT", "senha":"SAMPLE_TEXT", "ativo":null, "dataCadastro":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_funcionario_url")))
             .pause(10)

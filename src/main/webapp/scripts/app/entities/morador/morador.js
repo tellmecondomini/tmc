@@ -20,6 +20,7 @@ angular.module('tmcApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('morador');
                         $translatePartialLoader.addPart('sexo');
+                        $translatePartialLoader.addPart('tipoMorador');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -42,6 +43,7 @@ angular.module('tmcApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('morador');
                         $translatePartialLoader.addPart('sexo');
+                        $translatePartialLoader.addPart('tipoMorador');
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'Morador', function($stateParams, Morador) {
@@ -62,7 +64,7 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, telefone: null, id: null};
+                                return {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, telefone: null, tipo: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

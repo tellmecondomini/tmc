@@ -42,7 +42,6 @@
             <column name="data_cadastro" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            <column name="telefone" type="integer"/>
             <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>

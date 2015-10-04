@@ -67,7 +67,7 @@ class MoradorGatlingTest extends Simulation {
             .exec(http("Create new morador")
             .post("/api/moradors")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":null, "email":"SAMPLE_TEXT", "senha":"SAMPLE_TEXT", "dataNascimento":"2020-01-01T00:00:00.000Z", "ativo":null, "bloqueiaAgendamento":null, "telefone":"0", "tipo":null}""")).asJSON
+            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "cpf":"SAMPLE_TEXT", "sexo":null, "email":"SAMPLE_TEXT", "senha":"SAMPLE_TEXT", "dataNascimento":"2020-01-01T00:00:00.000Z", "ativo":null, "bloqueiaAgendamento":null, "tipo":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_morador_url")))
             .pause(10)

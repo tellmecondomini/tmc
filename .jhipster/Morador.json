@@ -80,11 +80,6 @@
         },
         {
             "fieldId": 9,
-            "fieldName": "telefone",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldId": 10,
             "fieldName": "tipo",
             "fieldType": "TipoMorador",
             "fieldValues": "PROPRIETARIO, MORADOR, LOCATARIO"

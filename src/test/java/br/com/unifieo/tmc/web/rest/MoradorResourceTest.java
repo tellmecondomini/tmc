@@ -51,8 +51,8 @@ public class MoradorResourceTest {
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;
-    private static final String DEFAULT_EMAIL = "email@email.com.br";
-    private static final String UPDATED_EMAIL = "email@email.com.br";
+    private static final String DEFAULT_EMAIL = "morador@email.com.br";
+    private static final String UPDATED_EMAIL = "morador@gmail.com.br";
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 
@@ -64,9 +64,6 @@ public class MoradorResourceTest {
 
     private static final Boolean DEFAULT_BLOQUEIA_AGENDAMENTO = false;
     private static final Boolean UPDATED_BLOQUEIA_AGENDAMENTO = true;
-
-    private static final Integer DEFAULT_TELEFONE = 1;
-    private static final Integer UPDATED_TELEFONE = 2;
 
     private static final TipoMorador DEFAULT_TIPO = TipoMorador.PROPRIETARIO;
     private static final TipoMorador UPDATED_TIPO = TipoMorador.MORADOR;
@@ -105,7 +102,6 @@ public class MoradorResourceTest {
         morador.setDataNascimento(DEFAULT_DATA_NASCIMENTO);
         morador.setAtivo(DEFAULT_ATIVO);
         morador.setBloqueiaAgendamento(DEFAULT_BLOQUEIA_AGENDAMENTO);
-        morador.setTelefone(DEFAULT_TELEFONE);
         morador.setTipo(DEFAULT_TIPO);
     }
 
@@ -133,7 +129,6 @@ public class MoradorResourceTest {
         assertThat(testMorador.getDataNascimento()).isEqualTo(DEFAULT_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(DEFAULT_BLOQUEIA_AGENDAMENTO);
-        assertThat(testMorador.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
         assertThat(testMorador.getTipo()).isEqualTo(DEFAULT_TIPO);
     }
 
@@ -246,7 +241,6 @@ public class MoradorResourceTest {
                 .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].bloqueiaAgendamento").value(hasItem(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue())))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
                 .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
     }
 
@@ -269,7 +263,6 @@ public class MoradorResourceTest {
             .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.bloqueiaAgendamento").value(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue()))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
             .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()));
     }
 
@@ -298,9 +291,8 @@ public class MoradorResourceTest {
         morador.setDataNascimento(UPDATED_DATA_NASCIMENTO);
         morador.setAtivo(UPDATED_ATIVO);
         morador.setBloqueiaAgendamento(UPDATED_BLOQUEIA_AGENDAMENTO);
-        morador.setTelefone(UPDATED_TELEFONE);
         morador.setTipo(UPDATED_TIPO);
-
+        
 
         restMoradorMockMvc.perform(put("/api/moradors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -319,7 +311,6 @@ public class MoradorResourceTest {
         assertThat(testMorador.getDataNascimento()).isEqualTo(UPDATED_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(UPDATED_BLOQUEIA_AGENDAMENTO);
-        assertThat(testMorador.getTelefone()).isEqualTo(UPDATED_TELEFONE);
         assertThat(testMorador.getTipo()).isEqualTo(UPDATED_TIPO);
     }
 

@@ -40,7 +40,6 @@
             </column>
             <column name="ativo" type="bit"/>
             <column name="bloqueia_agendamento" type="bit"/>
-            <column name="telefone" type="integer"/>
             <column name="tipo" type="varchar(255)"/>
             <column name="imovel_id" type="bigint"/>
         </createTable>

@@ -23,7 +23,6 @@
             "dataNascimento": "DataNascimento",
             "ativo": "Ativo",
             "bloqueiaAgendamento": "BloqueiaAgendamento",
-            "telefone": "Telefone",
             "tipo": "Tipo",
             "imovel": "Imovel",
             "telefoneMorador": "TelefoneMorador"

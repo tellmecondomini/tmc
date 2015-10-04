@@ -68,9 +68,6 @@ public class Morador implements Serializable {
     @Column(name = "bloqueia_agendamento")
     private Boolean bloqueiaAgendamento;
     
-    @Column(name = "telefone")
-    private Integer telefone;
-    
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoMorador tipo;
@@ -155,14 +152,6 @@ public class Morador implements Serializable {
         this.bloqueiaAgendamento = bloqueiaAgendamento;
     }
 
-    public Integer getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
-    }
-
     public TipoMorador getTipo() {
         return tipo;
     }
@@ -220,7 +209,6 @@ public class Morador implements Serializable {
                 ", dataNascimento='" + dataNascimento + "'" +
                 ", ativo='" + ativo + "'" +
                 ", bloqueiaAgendamento='" + bloqueiaAgendamento + "'" +
-                ", telefone='" + telefone + "'" +
                 ", tipo='" + tipo + "'" +
                 '}';
     }

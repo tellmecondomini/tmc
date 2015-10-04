@@ -9,11 +9,11 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/tmc?useUnicode=true&characterEncoding=utf8
-        databaseName: 
-        serverName: 
-        username: root
-        password: 
+        url: jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/ad_289c277c5db2b52?useUnicode=true&characterEncoding=utf8
+        databaseName: ad_289c277c5db2b52
+        serverName: ClearDB
+        username: bdb602e8eca95a
+        password: 996364ea36b40ed
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048

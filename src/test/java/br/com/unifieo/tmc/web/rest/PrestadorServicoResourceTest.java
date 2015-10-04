@@ -44,10 +44,10 @@ public class PrestadorServicoResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
-    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
-    private static final String DEFAULT_DOCUMENTO = "SAMPLE_TEXT";
-    private static final String UPDATED_DOCUMENTO = "UPDATED_TEXT";
+    private static final String DEFAULT_EMAIL = "email@email.com.br";
+    private static final String UPDATED_EMAIL = "email@email.com.br";
+    private static final String DEFAULT_DOCUMENTO = "827.755.763-97";
+    private static final String UPDATED_DOCUMENTO = "827.755.763-97";
 
     private static final Pessoa DEFAULT_PESSOA = Pessoa.FISICA;
     private static final Pessoa UPDATED_PESSOA = Pessoa.JURIDICA;
@@ -197,7 +197,7 @@ public class PrestadorServicoResourceTest {
         prestadorServico.setEmail(UPDATED_EMAIL);
         prestadorServico.setDocumento(UPDATED_DOCUMENTO);
         prestadorServico.setPessoa(UPDATED_PESSOA);
-        
+
 
         restPrestadorServicoMockMvc.perform(put("/api/prestadorServicos")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

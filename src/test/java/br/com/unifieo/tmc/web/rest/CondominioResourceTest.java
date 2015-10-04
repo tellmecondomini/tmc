@@ -50,8 +50,8 @@ public class CondominioResourceTest {
 
     private static final String DEFAULT_RAZAO_SOCIAL = "SAMPLE_TEXT";
     private static final String UPDATED_RAZAO_SOCIAL = "UPDATED_TEXT";
-    private static final String DEFAULT_CNPJ = "SAMPLE_TEXT";
-    private static final String UPDATED_CNPJ = "UPDATED_TEXT";
+    private static final String DEFAULT_CNPJ = "57.107.138/0001-01";
+    private static final String UPDATED_CNPJ = "57.107.138/0001-01";
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
@@ -239,7 +239,7 @@ public class CondominioResourceTest {
         condominio.setDataCadastro(UPDATED_DATA_CADASTRO);
         condominio.setTelefone(UPDATED_TELEFONE);
         condominio.setDisposicao(UPDATED_DISPOSICAO);
-        
+
 
         restCondominioMockMvc.perform(put("/api/condominios")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

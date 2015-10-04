@@ -4,8 +4,15 @@
             "relationshipId": 1,
             "relationshipName": "imovel",
             "otherEntityName": "imovel",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "telefoneMorador",
+            "otherEntityName": "telefoneMorador",
             "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "morador" /* Contrario */
+            "otherEntityField": "id"
         }
     ],
     "fields": [

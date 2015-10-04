@@ -6,8 +6,14 @@
             "otherEntityName": "cep",
             "relationshipType": "one-to-one",
             "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "prestadorServico"
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "telefonePrestadorServico",
+            "otherEntityName": "telefoneMoradorPrestadorServico",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -31,11 +37,6 @@
         },
         {
             "fieldId": 3,
-            "fieldName": "telefone",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldId": 4,
             "fieldName": "documento",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -46,7 +47,7 @@
             "fieldValidateRulesPatternJava": "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})"
         },
         {
-            "fieldId": 5,
+            "fieldId": 4,
             "fieldName": "pessoa",
             "fieldType": "Pessoa",
             "fieldValues": "FISICA, JURIDICA"

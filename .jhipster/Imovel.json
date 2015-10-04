@@ -4,8 +4,8 @@
             "relationshipId": 1,
             "relationshipName": "morador",
             "otherEntityName": "morador",
-            "relationshipType": "many-to-one", /* Contrario, um imovel tem varios moradores */
-            "otherEntityField": "nome"
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "imovel"
         }
     ],
     "fields": [

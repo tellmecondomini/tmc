@@ -13,6 +13,13 @@
             "otherEntityName": "condominio",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "telefoneFuncionario",
+            "otherEntityName": "telefoneFuncionario",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -80,14 +87,6 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldId": 9,
-            "fieldName": "telefone",
-            "fieldType": "Integer"
-            /*
-             Criar tabela TELEFONE_FUNCIONARIO
-            */
         }
     ],
     "changelogDate": "20150928114651",

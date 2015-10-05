@@ -1,0 +1,20 @@
+{
+    "tmcApp": {
+        "ocorrenciaTipo" : {
+            "home": {
+                "title": "OcorrenciaTipos",
+                "createLabel": "Create a new OcorrenciaTipo",
+                "createOrEditLabel": "Create or edit a OcorrenciaTipo"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete OcorrenciaTipo {{ id }}?"
+            },
+            "detail": {
+                "title": "OcorrenciaTipo"
+            },
+            "ocorrenciaItem": "OcorrenciaItem",
+            "ocorrenciaSubItem": "OcorrenciaSubItem",
+            "ocorrenciaPrioridade": "OcorrenciaPrioridade"
+        }
+    }
+}

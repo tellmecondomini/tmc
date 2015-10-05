@@ -42,6 +42,14 @@
                     <span class="form-control-static" translate="{{'tmcApp.StatusSolicitacao.' + ocorrencia.status}}">{{ocorrencia.status}}</span>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.ocorrencia.ocorrenciaTipo">ocorrenciaTipo</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="ocorrenciaTipo.detail({id:ocorrencia.ocorrenciaTipo.id})">{{ocorrencia.ocorrenciaTipo.ocorrenciaItem.descricao}}</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

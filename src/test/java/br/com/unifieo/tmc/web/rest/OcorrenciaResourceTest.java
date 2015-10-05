@@ -52,8 +52,8 @@ public class OcorrenciaResourceTest {
     private static final String DEFAULT_MENSSAGEM = "SAMPLE_TEXT";
     private static final String UPDATED_MENSSAGEM = "UPDATED_TEXT";
 
-    private static final StatusSolicitacao DEFAULT_STATUS = StatusSolicitacao.PENDENTE;
-    private static final StatusSolicitacao UPDATED_STATUS = StatusSolicitacao.EM_ANALISE;
+    private static final StatusSolicitacao DEFAULT_STATUS = StatusSolicitacao.EM_ABERTO;
+    private static final StatusSolicitacao UPDATED_STATUS = StatusSolicitacao.AGUARDANDO_ATENDIMENTO;
 
     @Inject
     private OcorrenciaRepository ocorrenciaRepository;

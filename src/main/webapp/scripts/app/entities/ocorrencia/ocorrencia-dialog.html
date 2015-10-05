@@ -60,9 +60,9 @@
         <div class="form-group">
             <label translate="tmcApp.ocorrencia.status" for="field_status">Status</label>
             <select class="form-control" name="status" ng-model="ocorrencia.status" id="field_status" required>
-                <option value="PENDENTE" translate="tmcApp.StatusSolicitacao.PENDENTE">PENDENTE</option>
-                <option value="EM_ANALISE" translate="tmcApp.StatusSolicitacao.EM_ANALISE">EM_ANALISE</option>
-                <option value="RESPONDIDA" translate="tmcApp.StatusSolicitacao.RESPONDIDA">RESPONDIDA</option>
+                <option value="EM_ABERTO" translate="tmcApp.StatusSolicitacao.EM_ABERTO">EM_ABERTO</option>
+                <option value="AGUARDANDO_ATENDIMENTO" translate="tmcApp.StatusSolicitacao.AGUARDANDO_ATENDIMENTO">AGUARDANDO_ATENDIMENTO</option>
+                <option value="FECHADA" translate="tmcApp.StatusSolicitacao.FECHADA">FECHADA</option>
             </select>
             <div ng-show="editForm.status.$invalid">
                 <p class="help-block"
@@ -72,6 +72,12 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label translate="tmcApp.ocorrencia.ocorrenciaTipo" for="field_ocorrenciaTipo">ocorrenciaTipo</label>
+            <select class="form-control" id="field_ocorrenciaTipo" name="ocorrenciaTipo" ng-model="ocorrencia.ocorrenciaTipo" ng-options="ocorrenciaTipo as ocorrenciaTipo.ocorrenciaItem.descricao for ocorrenciaTipo in ocorrenciatipos | orderBy:'id' track by ocorrenciaTipo.id">
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

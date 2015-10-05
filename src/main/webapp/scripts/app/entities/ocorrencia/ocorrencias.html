@@ -45,6 +45,7 @@
                     <th translate="tmcApp.ocorrencia.dataFechamento">DataFechamento</th>
                     <th translate="tmcApp.ocorrencia.menssagem">Menssagem</th>
                     <th translate="tmcApp.ocorrencia.status">Status</th>
+                    <th translate="tmcApp.ocorrencia.ocorrenciaTipo">ocorrenciaTipo</th>
                     <th></th>
                 </tr>
             </thead>
@@ -55,6 +56,9 @@
                     <td>{{ocorrencia.dataFechamento}}</td>
                     <td>{{ocorrencia.menssagem}}</td>
                     <td translate="{{'tmcApp.StatusSolicitacao.' + ocorrencia.status}}">{{ocorrencia.status}}</td>
+                    <td>
+                        <a ui-sref="ocorrenciaTipo.detail({id:ocorrencia.ocorrenciaTipo.id})">{{ocorrencia.ocorrenciaTipo.ocorrenciaItem.descricao}}</a>
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="ocorrencia.detail({id:ocorrencia.id})"

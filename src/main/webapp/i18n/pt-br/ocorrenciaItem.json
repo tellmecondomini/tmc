@@ -1,0 +1,18 @@
+{
+    "tmcApp": {
+        "ocorrenciaItem" : {
+            "home": {
+                "title": "OcorrenciaItems",
+                "createLabel": "Create a new OcorrenciaItem",
+                "createOrEditLabel": "Create or edit a OcorrenciaItem"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete OcorrenciaItem {{ id }}?"
+            },
+            "detail": {
+                "title": "OcorrenciaItem"
+            },
+            "descricao": "Descricao"
+        }
+    }
+}

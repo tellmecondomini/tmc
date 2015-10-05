@@ -12,6 +12,8 @@ import org.joda.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import br.com.unifieo.tmc.domain.enumeration.StatusSolicitacao;
@@ -52,6 +54,9 @@ public class Ocorrencia implements Serializable {
     @Column(name = "status", nullable = false)
     private StatusSolicitacao status;
 
+    @OneToOne
+    private OcorrenciaTipo ocorrenciaTipo;
+
     public Long getId() {
         return id;
     }
@@ -90,6 +95,14 @@ public class Ocorrencia implements Serializable {
 
     public void setStatus(StatusSolicitacao status) {
         this.status = status;
+    }
+
+    public OcorrenciaTipo getOcorrenciaTipo() {
+        return ocorrenciaTipo;
+    }
+
+    public void setOcorrenciaTipo(OcorrenciaTipo ocorrenciaTipo) {
+        this.ocorrenciaTipo = ocorrenciaTipo;
     }
 
     @Override

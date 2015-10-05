@@ -15,7 +15,8 @@
             "dataAbertura": "DataAbertura",
             "dataFechamento": "DataFechamento",
             "menssagem": "Menssagem",
-            "status": "Status"
+            "status": "Status",
+            "ocorrenciaTipo": "OcorrenciaTipo"
         }
     }
 }

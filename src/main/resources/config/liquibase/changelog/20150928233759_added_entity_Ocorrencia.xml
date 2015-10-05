@@ -34,7 +34,16 @@
             <column name="status" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="ocorrencia_tipo_id" type="bigint">
+                <constraints unique="true"/>
+            </column>
         </createTable>
         
+        <addForeignKeyConstraint baseColumnNames="ocorrencia_tipo_id"
+                                 baseTableName="OCORRENCIA"
+                                 constraintName="fk_ocorrencia_ocorrenciatipo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="OCORRENCIA_TIPO"/>
+
     </changeSet>
 </databaseChangeLog>

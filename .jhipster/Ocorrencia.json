@@ -1,5 +1,15 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "ocorrenciaTipo",
+            "otherEntityName": "ocorrenciaTipo",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "ocorrenciaItem.descricao",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "ocorrenciaTipo"
+        }
+    ],
     "fields": [
         {
             "fieldId": 1,
@@ -33,7 +43,7 @@
             "fieldId": 4,
             "fieldName": "status",
             "fieldType": "StatusSolicitacao",
-            "fieldValues": "PENDENTE, EM_ANALISE, RESPONDIDA",
+            "fieldValues": "EM_ABERTO, AGUARDANDO_ATENDIMENTO, FECHADA",
             "fieldValidateRules": [
                 "required"
             ]

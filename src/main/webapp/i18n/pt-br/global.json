@@ -17,6 +17,10 @@
                 "telefoneFuncionario": "TelefoneFuncionario",
                 "telefoneMorador": "TelefoneMorador",
                 "telefonePrestadorServico": "TelefonePrestadorServico",
+                "ocorrenciaItem": "OcorrenciaItem",
+                "ocorrenciaSubItem": "OcorrenciaSubItem",
+                "ocorrenciaPrioridade": "OcorrenciaPrioridade",
+                "ocorrenciaTipo": "OcorrenciaTipo",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

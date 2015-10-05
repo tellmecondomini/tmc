@@ -14,6 +14,10 @@
     <include file="classpath:config/liquibase/changelog/20151004142552_added_entity_TelefoneMorador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928232351_added_entity_PrestadorServico.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142745_added_entity_TelefonePrestadorServico.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005212110_added_entity_OcorrenciaItem.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005212145_added_entity_OcorrenciaSubItem.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005212348_added_entity_OcorrenciaPrioridade.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151005213345_added_entity_OcorrenciaTipo.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928233759_added_entity_Ocorrencia.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

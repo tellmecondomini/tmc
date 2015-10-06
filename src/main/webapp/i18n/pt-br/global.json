@@ -21,6 +21,8 @@
                 "ocorrenciaSubItem": "OcorrenciaSubItem",
                 "ocorrenciaPrioridade": "OcorrenciaPrioridade",
                 "ocorrenciaTipo": "OcorrenciaTipo",
+                "disponibilidadeDependencia": "DisponibilidadeDependencia",
+                "dependencia": "Dependencia",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

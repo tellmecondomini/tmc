@@ -1,0 +1,26 @@
+{
+    "tmcApp": {
+        "dependencia" : {
+            "home": {
+                "title": "Dependencias",
+                "createLabel": "Create a new Dependencia",
+                "createOrEditLabel": "Create or edit a Dependencia"
+            },
+            "created": "A new Dependencia is created with identifier {{ param }}",
+            "updated": "A Dependencia is updated with identifier {{ param }}",
+            "deleted": "A Dependencia is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Dependencia {{ id }}?"
+            },
+            "detail": {
+                "title": "Dependencia"
+            },
+            "nome": "Nome",
+            "disponivel": "Disponivel",
+            "capacidade": "Capacidade",
+            "custoAdicional": "CustoAdicional",
+            "regraUso": "RegraUso",
+            "disponibilidadeDependencia": "DisponibilidadeDependencia"
+        }
+    }
+}

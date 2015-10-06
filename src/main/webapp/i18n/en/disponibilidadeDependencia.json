@@ -1,0 +1,24 @@
+{
+    "tmcApp": {
+        "disponibilidadeDependencia" : {
+            "home": {
+                "title": "DisponibilidadeDependencias",
+                "createLabel": "Create a new DisponibilidadeDependencia",
+                "createOrEditLabel": "Create or edit a DisponibilidadeDependencia"
+            },
+            "created": "A new DisponibilidadeDependencia is created with identifier {{ param }}",
+            "updated": "A DisponibilidadeDependencia is updated with identifier {{ param }}",
+            "deleted": "A DisponibilidadeDependencia is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete DisponibilidadeDependencia {{ id }}?"
+            },
+            "detail": {
+                "title": "DisponibilidadeDependencia"
+            },
+            "diaSemana": "DiaSemana",
+            "horaInicio": "HoraInicio",
+            "horaFim": "HoraFim",
+            "dependencia": "Dependencia"
+        }
+    }
+}

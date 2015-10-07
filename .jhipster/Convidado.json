@@ -1,0 +1,41 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "agenda",
+            "otherEntityName": "agenda",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "data"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "dependente",
+            "otherEntityName": "dependente",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "convidado"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "cpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151007220945",
+    "dto": "no",
+    "pagination": "no"
+}

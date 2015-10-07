@@ -1,0 +1,23 @@
+{
+    "tmcApp": {
+        "agenda" : {
+            "home": {
+                "title": "Agendas",
+                "createLabel": "Create a new Agenda",
+                "createOrEditLabel": "Create or edit a Agenda"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Agenda {{ id }}?"
+            },
+            "detail": {
+                "title": "Agenda"
+            },
+            "data": "Data",
+            "horaInicio": "HoraInicio",
+            "horaFim": "HoraFim",
+            "morador": "Morador",
+            "dependencia": "Dependencia",
+            "convidado": "Convidado"
+        }
+    }
+}

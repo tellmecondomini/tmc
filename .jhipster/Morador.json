@@ -12,14 +12,21 @@
             "relationshipName": "telefoneMorador",
             "otherEntityName": "telefoneMorador",
             "relationshipType": "one-to-many",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "morador"
         },
         {
             "relationshipId": 3,
             "relationshipName": "ocorrencia",
             "otherEntityName": "ocorrencia",
             "relationshipType": "one-to-many",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "morador"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "agenda",
+            "otherEntityName": "agenda",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "morador"
         }
     ],
     "fields": [

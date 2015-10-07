@@ -1,0 +1,20 @@
+{
+    "tmcApp": {
+        "dependente" : {
+            "home": {
+                "title": "Dependentes",
+                "createLabel": "Create a new Dependente",
+                "createOrEditLabel": "Create or edit a Dependente"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Dependente {{ id }}?"
+            },
+            "detail": {
+                "title": "Dependente"
+            },
+            "nome": "Nome",
+            "documento": "Documento",
+            "convidado": "Convidado"
+        }
+    }
+}

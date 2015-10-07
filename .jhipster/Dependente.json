@@ -1,0 +1,29 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "convidado",
+            "otherEntityName": "convidado",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "documento",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151007221559",
+    "dto": "no",
+    "pagination": "no"
+}

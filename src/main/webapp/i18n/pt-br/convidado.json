@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "convidado" : {
+            "home": {
+                "title": "Convidados",
+                "createLabel": "Create a new Convidado",
+                "createOrEditLabel": "Create or edit a Convidado"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Convidado {{ id }}?"
+            },
+            "detail": {
+                "title": "Convidado"
+            },
+            "nome": "Nome",
+            "cpf": "Cpf",
+            "email": "Email",
+            "agenda": "Agenda",
+            "dependente": "Dependente"
+        }
+    }
+}

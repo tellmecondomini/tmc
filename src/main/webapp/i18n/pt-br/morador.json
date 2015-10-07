@@ -23,7 +23,8 @@
             "tipo": "Tipo",
             "imovel": "Imovel",
             "telefoneMorador": "TelefoneMorador",
-            "ocorrencia": "Ocorrencia"
+            "ocorrencia": "Ocorrencia",
+            "agenda": "Agenda"
         }
     }
 }

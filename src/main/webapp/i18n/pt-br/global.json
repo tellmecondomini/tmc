@@ -24,6 +24,9 @@
                 "disponibilidadeDependencia": "DisponibilidadeDependencia",
                 "dependencia": "Dependencia",
                 "competenciaPrestador": "CompetenciaPrestador",
+                "agenda": "Agenda",
+                "convidado": "Convidado",
+                "dependente": "Dependente",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

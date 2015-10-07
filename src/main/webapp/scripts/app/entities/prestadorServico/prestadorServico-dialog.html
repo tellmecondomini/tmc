@@ -29,27 +29,17 @@
             <label translate="tmcApp.prestadorServico.email" for="field_email">Email</label>
             <input type="text" class="form-control" name="email" id="field_email"
                     ng-model="prestadorServico.email"
-                    ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/">
-            <div ng-show="editForm.email.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.email.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
-                    This field should follow pattern "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$".
-                </p>
-            </div>
+                    >
         </div>
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.documento" for="field_documento">Documento</label>
             <input type="text" class="form-control" name="documento" id="field_documento"
                     ng-model="prestadorServico.documento"
-                    required ng-pattern="/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})/">
+                    required>
             <div ng-show="editForm.documento.$invalid">
                 <p class="help-block"
                     ng-show="editForm.documento.$error.required" translate="entity.validation.required">
                     This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.documento.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})">
-                    This field should follow pattern "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})".
                 </p>
             </div>
         </div>
@@ -64,6 +54,12 @@
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.cep" for="field_cep">cep</label>
             <select class="form-control" id="field_cep" name="cep" ng-model="prestadorServico.cep" ng-options="cep as cep.id for cep in ceps | orderBy:'id' track by cep.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.prestadorServico.competenciaPrestador" for="field_competenciaPrestador">competenciaPrestador</label>
+            <select class="form-control" id="field_competenciaPrestador" name="competenciaPrestador" ng-model="prestadorServico.competenciaPrestador" ng-options="competenciaPrestador as competenciaPrestador.id for competenciaPrestador in competenciaprestadors | orderBy:'id' track by competenciaPrestador.id">
                 <option value=""></option>
             </select>
         </div>

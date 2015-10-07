@@ -23,6 +23,7 @@
                 "ocorrenciaTipo": "OcorrenciaTipo",
                 "disponibilidadeDependencia": "DisponibilidadeDependencia",
                 "dependencia": "Dependencia",
+                "competenciaPrestador": "CompetenciaPrestador",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

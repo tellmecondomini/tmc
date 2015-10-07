@@ -46,13 +46,13 @@ public class MoradorResourceTest {
 
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
-    private static final String DEFAULT_CPF = "827.755.763-97";
-    private static final String UPDATED_CPF = "827.755.763-97";
+    private static final String DEFAULT_CPF = "SAMPLE_TEXT";
+    private static final String UPDATED_CPF = "UPDATED_TEXT";
 
     private static final Sexo DEFAULT_SEXO = Sexo.M;
     private static final Sexo UPDATED_SEXO = Sexo.F;
-    private static final String DEFAULT_EMAIL = "morador@email.com.br";
-    private static final String UPDATED_EMAIL = "morador@gmail.com.br";
+    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
+    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 

@@ -28,13 +28,11 @@ public class PrestadorServico implements Serializable {
     @NotNull        
     @Column(name = "nome", nullable = false)
     private String nome;
-
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")        
+    
     @Column(name = "email")
     private String email;
 
-    @NotNull
-    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})|([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")        
+    @NotNull        
     @Column(name = "documento", nullable = false)
     private String documento;
     
@@ -49,6 +47,9 @@ public class PrestadorServico implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();
+
+    @OneToOne
+    private CompetenciaPrestador competenciaPrestador;
 
     public Long getId() {
         return id;
@@ -104,6 +105,14 @@ public class PrestadorServico implements Serializable {
 
     public void setTelefonePrestadorServicos(Set<TelefonePrestadorServico> telefonePrestadorServicos) {
         this.telefonePrestadorServicos = telefonePrestadorServicos;
+    }
+
+    public CompetenciaPrestador getCompetenciaPrestador() {
+        return competenciaPrestador;
+    }
+
+    public void setCompetenciaPrestador(CompetenciaPrestador competenciaPrestador) {
+        this.competenciaPrestador = competenciaPrestador;
     }
 
     @Override

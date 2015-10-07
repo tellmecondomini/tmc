@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('tmcApp').controller('MoradorDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Morador', 'Imovel', 'TelefoneMorador',
-        function($scope, $stateParams, $modalInstance, entity, Morador, Imovel, TelefoneMorador) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Morador', 'Imovel', 'TelefoneMorador', 'Ocorrencia',
+        function($scope, $stateParams, $modalInstance, entity, Morador, Imovel, TelefoneMorador, Ocorrencia) {
 
         $scope.morador = entity;
         $scope.imovels = Imovel.query();
         $scope.telefonemoradors = TelefoneMorador.query();
+        $scope.ocorrencias = Ocorrencia.query();
         $scope.load = function(id) {
             Morador.get({id : id}, function(result) {
                 $scope.morador = result;

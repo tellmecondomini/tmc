@@ -12,6 +12,7 @@
     <include file="classpath:config/liquibase/changelog/20150928232012_added_entity_Imovel.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928222637_added_entity_Morador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142552_added_entity_TelefoneMorador.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151007212144_added_entity_CompetenciaPrestador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928232351_added_entity_PrestadorServico.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142745_added_entity_TelefonePrestadorServico.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151005212110_added_entity_OcorrenciaItem.xml" relativeToChangelogFile="false"/>

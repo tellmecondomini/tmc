@@ -13,6 +13,13 @@
             "otherEntityName": "funcionario",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "condominio"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "dependencia",
+            "otherEntityName": "dependencia",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "condominio"
         }
     ],
     "fields": [
@@ -29,11 +36,8 @@
             "fieldName": "cnpj",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
-                "pattern"
-            ],
-            "fieldValidateRulesPattern": "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})",
-            "fieldValidateRulesPatternJava": "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})"
+                "required"
+            ]
         },
         {
             "fieldId": 3,

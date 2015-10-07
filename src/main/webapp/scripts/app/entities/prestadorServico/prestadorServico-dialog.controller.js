@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('PrestadorServicoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep', 'TelefonePrestadorServico',
-        function($scope, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep, TelefonePrestadorServico) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep', 'TelefonePrestadorServico', 'CompetenciaPrestador',
+        function($scope, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep, TelefonePrestadorServico, CompetenciaPrestador) {
 
         $scope.prestadorServico = entity;
         $scope.ceps = Cep.query({filter: 'prestadorservico-is-null'});
@@ -15,6 +15,15 @@ angular.module('tmcApp').controller('PrestadorServicoDialogController',
             $scope.ceps.push(cep);
         });
         $scope.telefoneprestadorservicos = TelefonePrestadorServico.query();
+        $scope.competenciaprestadors = CompetenciaPrestador.query({filter: 'prestadorservico-is-null'});
+        $q.all([$scope.prestadorServico.$promise, $scope.competenciaprestadors.$promise]).then(function() {
+            if (!$scope.prestadorServico.competenciaPrestador.id) {
+                return $q.reject();
+            }
+            return CompetenciaPrestador.get({id : $scope.prestadorServico.competenciaPrestador.id}).$promise;
+        }).then(function(competenciaPrestador) {
+            $scope.competenciaprestadors.push(competenciaPrestador);
+        });
         $scope.load = function(id) {
             PrestadorServico.get({id : id}, function(result) {
                 $scope.prestadorServico = result;

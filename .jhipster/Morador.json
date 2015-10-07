@@ -13,6 +13,13 @@
             "otherEntityName": "telefoneMorador",
             "relationshipType": "one-to-many",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "ocorrencia",
+            "otherEntityName": "ocorrencia",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -29,11 +36,8 @@
             "fieldName": "cpf",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
-                "pattern"
-            ],
-            "fieldValidateRulesPattern": "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})",
-            "fieldValidateRulesPatternJava": "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+                "required"
+            ]
         },
         {
             "fieldId": 3,
@@ -46,11 +50,8 @@
             "fieldName": "email",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
-                "pattern"
-            ],
-            "fieldValidateRulesPattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$",
-            "fieldValidateRulesPatternJava": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                "required"
+            ]
         },
         {
             "fieldId": 5,

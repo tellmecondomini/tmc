@@ -46,6 +46,7 @@
                     <th translate="tmcApp.dependencia.capacidade">Capacidade</th>
                     <th translate="tmcApp.dependencia.custoAdicional">CustoAdicional</th>
                     <th translate="tmcApp.dependencia.regraUso">RegraUso</th>
+                    <th translate="tmcApp.dependencia.condominio">condominio</th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,6 +58,9 @@
                     <td>{{dependencia.capacidade}}</td>
                     <td>{{dependencia.custoAdicional}}</td>
                     <td>{{dependencia.regraUso}}</td>
+                    <td>
+                        <a ui-sref="condominio.detail({id:dependencia.condominio.id})">{{dependencia.condominio.id}}</a>
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="dependencia.detail({id:dependencia.id})"

@@ -46,6 +46,7 @@
                     <th translate="tmcApp.prestadorServico.documento">Documento</th>
                     <th translate="tmcApp.prestadorServico.pessoa">Pessoa</th>
                     <th translate="tmcApp.prestadorServico.cep">cep</th>
+                    <th translate="tmcApp.prestadorServico.competenciaPrestador">competenciaPrestador</th>
                     <th></th>
                 </tr>
             </thead>
@@ -58,6 +59,9 @@
                     <td translate="{{'tmcApp.Pessoa.' + prestadorServico.pessoa}}">{{prestadorServico.pessoa}}</td>
                     <td>
                         <a ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="competenciaPrestador.detail({id:prestadorServico.competenciaPrestador.id})">{{prestadorServico.competenciaPrestador.id}}</a>
                     </td>
                     <td>
                         <button type="submit"

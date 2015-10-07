@@ -47,6 +47,9 @@ public class Dependencia implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<DisponibilidadeDependencia> disponibilidadeDependencias = new HashSet<>();
 
+    @ManyToOne
+    private Condominio condominio;
+
     public Long getId() {
         return id;
     }
@@ -101,6 +104,14 @@ public class Dependencia implements Serializable {
 
     public void setDisponibilidadeDependencias(Set<DisponibilidadeDependencia> disponibilidadeDependencias) {
         this.disponibilidadeDependencias = disponibilidadeDependencias;
+    }
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
     }
 
     @Override

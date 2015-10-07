@@ -22,7 +22,8 @@
             "telefone": "Telefone",
             "disposicao": "Disposicao",
             "cep": "Cep",
-            "funcionario": "Funcionario"
+            "funcionario": "Funcionario",
+            "dependencia": "Dependencia"
         }
     }
 }

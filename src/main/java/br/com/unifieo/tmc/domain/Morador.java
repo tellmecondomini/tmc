@@ -37,8 +37,7 @@ public class Morador implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotNull
-    @Pattern(regexp = "([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})")        
+    @NotNull        
     @Column(name = "cpf", nullable = false)
     private String cpf;
     
@@ -46,8 +45,7 @@ public class Morador implements Serializable {
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")        
+    @NotNull        
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -79,6 +77,11 @@ public class Morador implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneMorador> telefoneMoradors = new HashSet<>();
+
+    @OneToMany(mappedBy = "morador")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Ocorrencia> ocorrencias = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -174,6 +177,14 @@ public class Morador implements Serializable {
 
     public void setTelefoneMoradors(Set<TelefoneMorador> telefoneMoradors) {
         this.telefoneMoradors = telefoneMoradors;
+    }
+
+    public Set<Ocorrencia> getOcorrencias() {
+        return ocorrencias;
+    }
+
+    public void setOcorrencias(Set<Ocorrencia> ocorrencias) {
+        this.ocorrencias = ocorrencias;
     }
 
     @Override

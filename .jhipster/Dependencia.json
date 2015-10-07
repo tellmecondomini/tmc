@@ -6,6 +6,13 @@
             "otherEntityName": "disponibilidadeDependencia",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "dependencia"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "condominio",
+            "otherEntityName": "condominio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

@@ -57,6 +57,9 @@ public class Ocorrencia implements Serializable {
     @OneToOne
     private OcorrenciaTipo ocorrenciaTipo;
 
+    @ManyToOne
+    private Morador morador;
+
     public Long getId() {
         return id;
     }
@@ -103,6 +106,14 @@ public class Ocorrencia implements Serializable {
 
     public void setOcorrenciaTipo(OcorrenciaTipo ocorrenciaTipo) {
         this.ocorrenciaTipo = ocorrenciaTipo;
+    }
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
     }
 
     @Override

@@ -37,6 +37,7 @@
             <column name="ocorrencia_tipo_id" type="bigint">
                 <constraints unique="true"/>
             </column>
+            <column name="morador_id" type="bigint"/>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="ocorrencia_tipo_id"
@@ -44,6 +45,12 @@
                                  constraintName="fk_ocorrencia_ocorrenciatipo_id"
                                  referencedColumnNames="id"
                                  referencedTableName="OCORRENCIA_TIPO"/>
+
+        <addForeignKeyConstraint baseColumnNames="morador_id"
+                                 baseTableName="OCORRENCIA"
+                                 constraintName="fk_ocorrencia_morador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MORADOR"/>
 
     </changeSet>
 </databaseChangeLog>

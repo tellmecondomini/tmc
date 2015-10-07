@@ -35,8 +35,7 @@ public class Condominio implements Serializable {
     @Column(name = "razao_social", nullable = false)
     private String razaoSocial;
 
-    @NotNull
-    @Pattern(regexp = "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})")        
+    @NotNull        
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
     
@@ -64,6 +63,11 @@ public class Condominio implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Funcionario> funcionarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "condominio")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Dependencia> dependencias = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -135,6 +139,14 @@ public class Condominio implements Serializable {
 
     public void setFuncionarios(Set<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
+    }
+
+    public Set<Dependencia> getDependencias() {
+        return dependencias;
+    }
+
+    public void setDependencias(Set<Dependencia> dependencias) {
+        this.dependencias = dependencias;
     }
 
     @Override

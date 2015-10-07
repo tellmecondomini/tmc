@@ -17,7 +17,8 @@
             "capacidade": "Capacidade",
             "custoAdicional": "CustoAdicional",
             "regraUso": "RegraUso",
-            "disponibilidadeDependencia": "DisponibilidadeDependencia"
+            "disponibilidadeDependencia": "DisponibilidadeDependencia",
+            "condominio": "Condominio"
         }
     }
 }

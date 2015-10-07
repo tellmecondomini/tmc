@@ -33,7 +33,14 @@
                 <constraints nullable="false" />
             </column>
             <column name="regra_uso" type="varchar(255)"/>
+            <column name="condominio_id" type="bigint"/>
         </createTable>
         
+        <addForeignKeyConstraint baseColumnNames="condominio_id"
+                                 baseTableName="DEPENDENCIA"
+                                 constraintName="fk_dependencia_condominio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CONDOMINIO"/>
+
     </changeSet>
 </databaseChangeLog>

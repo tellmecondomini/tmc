@@ -16,7 +16,8 @@
             "dataFechamento": "DataFechamento",
             "menssagem": "Menssagem",
             "status": "Status",
-            "ocorrenciaTipo": "OcorrenciaTipo"
+            "ocorrenciaTipo": "OcorrenciaTipo",
+            "morador": "Morador"
         }
     }
 }

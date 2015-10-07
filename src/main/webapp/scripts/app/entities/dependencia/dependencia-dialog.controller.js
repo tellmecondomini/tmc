@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('tmcApp').controller('DependenciaDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Dependencia', 'DisponibilidadeDependencia',
-        function($scope, $stateParams, $modalInstance, entity, Dependencia, DisponibilidadeDependencia) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Dependencia', 'DisponibilidadeDependencia', 'Condominio',
+        function($scope, $stateParams, $modalInstance, entity, Dependencia, DisponibilidadeDependencia, Condominio) {
 
         $scope.dependencia = entity;
         $scope.disponibilidadedependencias = DisponibilidadeDependencia.query();
+        $scope.condominios = Condominio.query();
         $scope.load = function(id) {
             Dependencia.get({id : id}, function(result) {
                 $scope.dependencia = result;

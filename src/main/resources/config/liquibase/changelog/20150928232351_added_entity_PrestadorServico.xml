@@ -33,6 +33,9 @@
             <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>
+            <column name="competencia_prestador_id" type="bigint">
+                <constraints unique="true"/>
+            </column>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="cep_id"
@@ -40,6 +43,12 @@
                                  constraintName="fk_prestadorservico_cep_id"
                                  referencedColumnNames="id"
                                  referencedTableName="CEP"/>
+
+        <addForeignKeyConstraint baseColumnNames="competencia_prestador_id"
+                                 baseTableName="PRESTADOR_SERVICO"
+                                 constraintName="fk_prestadorservico_competenciaprestador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="COMPETENCIA_PRESTADOR"/>
 
     </changeSet>
 </databaseChangeLog>

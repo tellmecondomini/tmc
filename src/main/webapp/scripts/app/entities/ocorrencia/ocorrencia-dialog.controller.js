@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('OcorrenciaDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Ocorrencia', 'OcorrenciaTipo',
-        function($scope, $stateParams, $modalInstance, $q, entity, Ocorrencia, OcorrenciaTipo) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Ocorrencia', 'OcorrenciaTipo', 'Morador',
+        function($scope, $stateParams, $modalInstance, $q, entity, Ocorrencia, OcorrenciaTipo, Morador) {
 
         $scope.ocorrencia = entity;
         $scope.ocorrenciatipos = OcorrenciaTipo.query({filter: 'ocorrenciatipo-is-null'});
@@ -14,6 +14,7 @@ angular.module('tmcApp').controller('OcorrenciaDialogController',
         }).then(function(ocorrenciaTipo) {
             $scope.ocorrenciatipos.push(ocorrenciaTipo);
         });
+        $scope.moradors = Morador.query();
         $scope.load = function(id) {
             Ocorrencia.get({id : id}, function(result) {
                 $scope.ocorrencia = result;

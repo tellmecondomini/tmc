@@ -17,7 +17,8 @@
             "documento": "Documento",
             "pessoa": "Pessoa",
             "cep": "Cep",
-            "telefonePrestadorServico": "TelefonePrestadorServico"
+            "telefonePrestadorServico": "TelefonePrestadorServico",
+            "competenciaPrestador": "CompetenciaPrestador"
         }
     }
 }

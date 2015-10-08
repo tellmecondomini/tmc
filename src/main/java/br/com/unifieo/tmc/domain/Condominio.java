@@ -49,9 +49,6 @@ public class Condominio implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     private LocalDate dataCadastro;
     
-    @Column(name = "telefone")
-    private Integer telefone;
-    
     @Enumerated(EnumType.STRING)
     @Column(name = "disposicao")
     private Disposicao disposicao;
@@ -68,6 +65,11 @@ public class Condominio implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Dependencia> dependencias = new HashSet<>();
+
+    @OneToMany(mappedBy = "condominio")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -109,14 +111,6 @@ public class Condominio implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public Integer getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
-    }
-
     public Disposicao getDisposicao() {
         return disposicao;
     }
@@ -149,6 +143,14 @@ public class Condominio implements Serializable {
         this.dependencias = dependencias;
     }
 
+    public Set<TelefoneCondominio> getTelefoneCondominios() {
+        return telefoneCondominios;
+    }
+
+    public void setTelefoneCondominios(Set<TelefoneCondominio> telefoneCondominios) {
+        this.telefoneCondominios = telefoneCondominios;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -178,7 +180,6 @@ public class Condominio implements Serializable {
                 ", cnpj='" + cnpj + "'" +
                 ", ativo='" + ativo + "'" +
                 ", dataCadastro='" + dataCadastro + "'" +
-                ", telefone='" + telefone + "'" +
                 ", disposicao='" + disposicao + "'" +
                 '}';
     }

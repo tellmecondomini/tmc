@@ -19,11 +19,11 @@
             "cnpj": "Cnpj",
             "ativo": "Ativo",
             "dataCadastro": "DataCadastro",
-            "telefone": "Telefone",
             "disposicao": "Disposicao",
             "cep": "Cep",
             "funcionario": "Funcionario",
-            "dependencia": "Dependencia"
+            "dependencia": "Dependencia",
+            "telefoneCondominio": "TelefoneCondominio"
         }
     }
 }

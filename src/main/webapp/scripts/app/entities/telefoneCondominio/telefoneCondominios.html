@@ -1,27 +1,27 @@
 <div>
-    <h2 translate="tmcApp.condominio.home.title">Condominios</h2>
+    <h2 translate="tmcApp.telefoneCondominio.home.title">TelefoneCondominios</h2>
     <jh-alert></jh-alert>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="condominio.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.condominio.home.createLabel">Create a new Condominio</span>
+                <button class="btn btn-primary" ui-sref="telefoneCondominio.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.telefoneCondominio.home.createLabel">Create a new TelefoneCondominio</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="deleteCondominioConfirmation">
+    <div class="modal fade" id="deleteTelefoneCondominioConfirmation">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="deleteForm" ng-submit="confirmDelete(condominio.id)">
+                <form name="deleteForm" ng-submit="confirmDelete(telefoneCondominio.id)">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-                        <p translate="tmcApp.condominio.delete.question" translate-values="{id: '{{condominio.id}}'}">Are you sure you want to delete this Condominio?</p>
+                        <p translate="tmcApp.telefoneCondominio.delete.question" translate-values="{id: '{{telefoneCondominio.id}}'}">Are you sure you want to delete this TelefoneCondominio?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
@@ -41,39 +41,31 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.condominio.razaoSocial">RazaoSocial</th>
-                    <th translate="tmcApp.condominio.cnpj">Cnpj</th>
-                    <th translate="tmcApp.condominio.ativo">Ativo</th>
-                    <th translate="tmcApp.condominio.dataCadastro">DataCadastro</th>
-                    <th translate="tmcApp.condominio.disposicao">Disposicao</th>
-                    <th translate="tmcApp.condominio.cep">cep</th>
+                    <th translate="tmcApp.telefoneCondominio.numero">Numero</th>
+                    <th translate="tmcApp.telefoneCondominio.condominio">condominio</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="condominio in condominios">
-                    <td><a ui-sref="condominio.detail({id:condominio.id})">{{condominio.id}}</a></td>
-                    <td>{{condominio.razaoSocial}}</td>
-                    <td>{{condominio.cnpj}}</td>
-                    <td>{{condominio.ativo}}</td>
-                    <td>{{condominio.dataCadastro}}</td>
-                    <td translate="{{'tmcApp.Disposicao.' + condominio.disposicao}}">{{condominio.disposicao}}</td>
+                <tr ng-repeat="telefoneCondominio in telefoneCondominios">
+                    <td><a ui-sref="telefoneCondominio.detail({id:telefoneCondominio.id})">{{telefoneCondominio.id}}</a></td>
+                    <td>{{telefoneCondominio.numero}}</td>
                     <td>
-                        <a ui-sref="cep.detail({id:condominio.cep.id})">{{condominio.cep.id}}</a>
+                        <a ui-sref="condominio.detail({id:telefoneCondominio.condominio.id})">{{telefoneCondominio.condominio.razaoSocial}}</a>
                     </td>
                     <td>
                         <button type="submit"
-                                ui-sref="condominio.detail({id:condominio.id})"
+                                ui-sref="telefoneCondominio.detail({id:telefoneCondominio.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
                         </button>
                         <button type="submit"
-                                ui-sref="condominio.edit({id:condominio.id})"
+                                ui-sref="telefoneCondominio.edit({id:telefoneCondominio.id})"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                         </button>
                         <button type="submit"
-                                ng-click="delete(condominio.id)"
+                                ng-click="delete(telefoneCondominio.id)"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
                         </button>

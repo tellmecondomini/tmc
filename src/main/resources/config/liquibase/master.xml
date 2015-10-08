@@ -7,6 +7,7 @@
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150930213358_added_entity_Cep.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928115541_added_entity_Condominio.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151008223131_added_entity_TelefoneCondominio.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928114651_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142439_added_entity_TelefoneFuncionario.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928232012_added_entity_Imovel.xml" relativeToChangelogFile="false"/>

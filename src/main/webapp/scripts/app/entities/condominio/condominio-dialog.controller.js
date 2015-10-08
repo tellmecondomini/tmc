@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('CondominioDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Condominio', 'Cep', 'Funcionario', 'Dependencia',
-        function($scope, $stateParams, $modalInstance, $q, entity, Condominio, Cep, Funcionario, Dependencia) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Condominio', 'Cep', 'Funcionario', 'Dependencia', 'TelefoneCondominio',
+        function($scope, $stateParams, $modalInstance, $q, entity, Condominio, Cep, Funcionario, Dependencia, TelefoneCondominio) {
 
         $scope.condominio = entity;
         $scope.ceps = Cep.query({filter: 'condominio-is-null'});
@@ -16,6 +16,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
         });
         $scope.funcionarios = Funcionario.query();
         $scope.dependencias = Dependencia.query();
+        $scope.telefonecondominios = TelefoneCondominio.query();
         $scope.load = function(id) {
             Condominio.get({id : id}, function(result) {
                 $scope.condominio = result;

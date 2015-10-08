@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Condominio entity.
+ * Performance test for the TelefoneCondominio entity.
  */
-class CondominioGatlingTest extends Simulation {
+class TelefoneCondominioGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -37,7 +37,7 @@ class CondominioGatlingTest extends Simulation {
         "X-CSRF-TOKEN" -> "${csrf_token}"
     )
 
-    val scn = scenario("Test the Condominio entity")
+    val scn = scenario("Test the TelefoneCondominio entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -59,26 +59,26 @@ class CondominioGatlingTest extends Simulation {
         .check(headerRegex("Set-Cookie", "CSRF-TOKEN=(.*); [P,p]ath=/").saveAs("csrf_token")))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all condominios")
-            .get("/api/condominios")
+            exec(http("Get all telefoneCondominios")
+            .get("/api/telefoneCondominios")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new condominio")
-            .post("/api/condominios")
+            .exec(http("Create new telefoneCondominio")
+            .post("/api/telefoneCondominios")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "razaoSocial":"SAMPLE_TEXT", "cnpj":"SAMPLE_TEXT", "ativo":null, "dataCadastro":"2020-01-01T00:00:00.000Z", "disposicao":null}""")).asJSON
+            .body(StringBody("""{"id":null, "numero":"0"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_condominio_url")))
+            .check(headerRegex("Location", "(.*)").saveAs("new_telefoneCondominio_url")))
             .pause(10)
             .repeat(5) {
-                exec(http("Get created condominio")
-                .get("${new_condominio_url}")
+                exec(http("Get created telefoneCondominio")
+                .get("${new_telefoneCondominio_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created condominio")
-            .delete("${new_condominio_url}")
+            .exec(http("Delete created telefoneCondominio")
+            .delete("${new_telefoneCondominio_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

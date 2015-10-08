@@ -27,6 +27,7 @@
                 "agenda": "Agenda",
                 "convidado": "Convidado",
                 "dependente": "Dependente",
+                "telefoneCondominio": "TelefoneCondominio",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

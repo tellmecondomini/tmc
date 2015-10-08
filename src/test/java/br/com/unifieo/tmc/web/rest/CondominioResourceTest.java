@@ -54,9 +54,6 @@ public class CondominioResourceTest {
     private static final LocalDate DEFAULT_DATA_CADASTRO = new LocalDate(0L);
     private static final LocalDate UPDATED_DATA_CADASTRO = new LocalDate();
 
-    private static final Integer DEFAULT_TELEFONE = 1;
-    private static final Integer UPDATED_TELEFONE = 2;
-
     private static final Disposicao DEFAULT_DISPOSICAO = Disposicao.VENRTICAL;
     private static final Disposicao UPDATED_DISPOSICAO = Disposicao.HORIZONTAL;
 
@@ -90,7 +87,6 @@ public class CondominioResourceTest {
         condominio.setCnpj(DEFAULT_CNPJ);
         condominio.setAtivo(DEFAULT_ATIVO);
         condominio.setDataCadastro(DEFAULT_DATA_CADASTRO);
-        condominio.setTelefone(DEFAULT_TELEFONE);
         condominio.setDisposicao(DEFAULT_DISPOSICAO);
     }
 
@@ -114,7 +110,6 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getCnpj()).isEqualTo(DEFAULT_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testCondominio.getDataCadastro()).isEqualTo(DEFAULT_DATA_CADASTRO);
-        assertThat(testCondominio.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
         assertThat(testCondominio.getDisposicao()).isEqualTo(DEFAULT_DISPOSICAO);
     }
 
@@ -187,7 +182,6 @@ public class CondominioResourceTest {
                 .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO.toString())))
-                .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
                 .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())));
     }
 
@@ -206,7 +200,6 @@ public class CondominioResourceTest {
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO.toString()))
-            .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
             .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()));
     }
 
@@ -231,7 +224,6 @@ public class CondominioResourceTest {
         condominio.setCnpj(UPDATED_CNPJ);
         condominio.setAtivo(UPDATED_ATIVO);
         condominio.setDataCadastro(UPDATED_DATA_CADASTRO);
-        condominio.setTelefone(UPDATED_TELEFONE);
         condominio.setDisposicao(UPDATED_DISPOSICAO);
         
 
@@ -248,7 +240,6 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getCnpj()).isEqualTo(UPDATED_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testCondominio.getDataCadastro()).isEqualTo(UPDATED_DATA_CADASTRO);
-        assertThat(testCondominio.getTelefone()).isEqualTo(UPDATED_TELEFONE);
         assertThat(testCondominio.getDisposicao()).isEqualTo(UPDATED_DISPOSICAO);
     }
 

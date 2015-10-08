@@ -20,6 +20,13 @@
             "otherEntityName": "dependencia",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "condominio"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "telefoneCondominio",
+            "otherEntityName": "telefoneCondominio",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "condominio"
         }
     ],
     "fields": [
@@ -54,11 +61,6 @@
         },
         {
             "fieldId": 5,
-            "fieldName": "telefone",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldId": 6,
             "fieldName": "disposicao",
             "fieldType": "Disposicao",
             "fieldValues": "VENRTICAL, HORIZONTAL, HIBRIDO"

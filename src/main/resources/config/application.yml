@@ -30,10 +30,10 @@ spring:
             enabled: false
 
 swagger:
-    title: tmc API
-    description: tmc applications and beyond!
-    version: 0.0.1
+    title: Tell Me Condominium - API
+    description: API REST do Sistema
+    version: 1.0
     termsOfServiceUrl: http://jhipster.github.io/
-    contact:
+    contact: tellmecondominium@gmail.com
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html

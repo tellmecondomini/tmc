@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.joda.time.LocalDate;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -67,9 +68,8 @@ public class FuncionarioResourceTest {
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
 
-    private static final DateTime DEFAULT_DATA_CADASTRO = new DateTime(0L, DateTimeZone.UTC);
-    private static final DateTime UPDATED_DATA_CADASTRO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
-    private static final String DEFAULT_DATA_CADASTRO_STR = dateTimeFormatter.print(DEFAULT_DATA_CADASTRO);
+    private static final LocalDate DEFAULT_DATA_CADASTRO = new LocalDate(0L);
+    private static final LocalDate UPDATED_DATA_CADASTRO = new LocalDate();
 
     @Inject
     private FuncionarioRepository funcionarioRepository;
@@ -130,7 +130,7 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testFuncionario.getSenha()).isEqualTo(DEFAULT_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(DEFAULT_ATIVO);
-        assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
+        assertThat(testFuncionario.getDataCadastro()).isEqualTo(DEFAULT_DATA_CADASTRO);
     }
 
     @Test
@@ -259,7 +259,7 @@ public class FuncionarioResourceTest {
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)));
+                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO.toString())));
     }
 
     @Test
@@ -280,7 +280,7 @@ public class FuncionarioResourceTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR));
+            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO.toString()));
     }
 
     @Test
@@ -326,7 +326,7 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testFuncionario.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
+        assertThat(testFuncionario.getDataCadastro()).isEqualTo(UPDATED_DATA_CADASTRO);
     }
 
     @Test

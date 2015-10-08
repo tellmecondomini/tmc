@@ -40,6 +40,7 @@
             },
             "admin": {
                 "main": "Administração",
+                "user-management": "Usuários do sistema",
                 "tracker": "Rastreamento de usuário",
                 "metrics": "Métricas",
                 "health": "Estado do Sistema",

@@ -23,10 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,8 +43,6 @@ import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 @IntegrationTest
 public class CondominioResourceTest {
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
     private static final String DEFAULT_RAZAO_SOCIAL = "SAMPLE_TEXT";
     private static final String UPDATED_RAZAO_SOCIAL = "UPDATED_TEXT";
     private static final String DEFAULT_CNPJ = "SAMPLE_TEXT";
@@ -56,9 +51,8 @@ public class CondominioResourceTest {
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
 
-    private static final DateTime DEFAULT_DATA_CADASTRO = new DateTime(0L, DateTimeZone.UTC);
-    private static final DateTime UPDATED_DATA_CADASTRO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
-    private static final String DEFAULT_DATA_CADASTRO_STR = dateTimeFormatter.print(DEFAULT_DATA_CADASTRO);
+    private static final LocalDate DEFAULT_DATA_CADASTRO = new LocalDate(0L);
+    private static final LocalDate UPDATED_DATA_CADASTRO = new LocalDate();
 
     private static final Integer DEFAULT_TELEFONE = 1;
     private static final Integer UPDATED_TELEFONE = 2;
@@ -119,7 +113,7 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getRazaoSocial()).isEqualTo(DEFAULT_RAZAO_SOCIAL);
         assertThat(testCondominio.getCnpj()).isEqualTo(DEFAULT_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(DEFAULT_ATIVO);
-        assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
+        assertThat(testCondominio.getDataCadastro()).isEqualTo(DEFAULT_DATA_CADASTRO);
         assertThat(testCondominio.getTelefone()).isEqualTo(DEFAULT_TELEFONE);
         assertThat(testCondominio.getDisposicao()).isEqualTo(DEFAULT_DISPOSICAO);
     }
@@ -192,7 +186,7 @@ public class CondominioResourceTest {
                 .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL.toString())))
                 .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
+                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO.toString())))
                 .andExpect(jsonPath("$.[*].telefone").value(hasItem(DEFAULT_TELEFONE)))
                 .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())));
     }
@@ -211,7 +205,7 @@ public class CondominioResourceTest {
             .andExpect(jsonPath("$.razaoSocial").value(DEFAULT_RAZAO_SOCIAL.toString()))
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
+            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO.toString()))
             .andExpect(jsonPath("$.telefone").value(DEFAULT_TELEFONE))
             .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()));
     }
@@ -253,7 +247,7 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getRazaoSocial()).isEqualTo(UPDATED_RAZAO_SOCIAL);
         assertThat(testCondominio.getCnpj()).isEqualTo(UPDATED_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
+        assertThat(testCondominio.getDataCadastro()).isEqualTo(UPDATED_DATA_CADASTRO);
         assertThat(testCondominio.getTelefone()).isEqualTo(UPDATED_TELEFONE);
         assertThat(testCondominio.getDisposicao()).isEqualTo(UPDATED_DISPOSICAO);
     }

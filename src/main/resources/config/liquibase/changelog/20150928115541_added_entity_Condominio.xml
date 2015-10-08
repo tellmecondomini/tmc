@@ -29,7 +29,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="ativo" type="bit"/>
-            <column name="data_cadastro" type="timestamp">
+            <column name="data_cadastro" type="date">
                 <constraints nullable="false" />
             </column>
             <column name="telefone" type="integer"/>
@@ -38,8 +38,6 @@
                 <constraints unique="true"/>
             </column>
         </createTable>
-        <dropDefaultValue tableName="CONDOMINIO" columnName="data_cadastro" columnDataType="datetime"/>
-
         
         <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="CONDOMINIO"

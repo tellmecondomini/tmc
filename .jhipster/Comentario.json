@@ -1,0 +1,41 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "topico",
+            "otherEntityName": "topico",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "conteudo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "conteudo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "240"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "data",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "ativo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20151012162823",
+    "dto": "no",
+    "pagination": "no"
+}

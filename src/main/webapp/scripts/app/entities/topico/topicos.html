@@ -1,0 +1,81 @@
+<div>
+    <h2 translate="tmcApp.topico.home.title">Topicos</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="topico.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.topico.home.createLabel">Create a new Topico</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteTopicoConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(topico.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="tmcApp.topico.delete.question" translate-values="{id: '{{topico.id}}'}">Are you sure you want to delete this Topico?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="tmcApp.topico.conteudo">Conteudo</th>
+                    <th translate="tmcApp.topico.data">Data</th>
+                    <th translate="tmcApp.topico.aprovado">Aprovado</th>
+                    <th translate="tmcApp.topico.assunto">assunto</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="topico in topicos">
+                    <td><a ui-sref="topico.detail({id:topico.id})">{{topico.id}}</a></td>
+                    <td>{{topico.conteudo}}</td>
+                    <td>{{topico.data}}</td>
+                    <td>{{topico.aprovado}}</td>
+                    <td>
+                        <a ui-sref="assunto.detail({id:topico.assunto.id})">{{topico.assunto.id}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="topico.detail({id:topico.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="topico.edit({id:topico.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(topico.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

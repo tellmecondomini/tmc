@@ -28,6 +28,9 @@
                 "convidado": "Convidado",
                 "dependente": "Dependente",
                 "telefoneCondominio": "TelefoneCondominio",
+                "assunto": "Assunto",
+                "topico": "Topico",
+                "comentario": "Comentario",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

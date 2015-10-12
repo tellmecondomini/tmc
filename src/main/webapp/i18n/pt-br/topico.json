@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "topico" : {
+            "home": {
+                "title": "Topicos",
+                "createLabel": "Create a new Topico",
+                "createOrEditLabel": "Create or edit a Topico"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Topico {{ id }}?"
+            },
+            "detail": {
+                "title": "Topico"
+            },
+            "conteudo": "Conteudo",
+            "data": "Data",
+            "aprovado": "Aprovado",
+            "assunto": "Assunto",
+            "comentario": "Comentario"
+        }
+    }
+}

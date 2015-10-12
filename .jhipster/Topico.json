@@ -1,0 +1,44 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "assunto",
+            "otherEntityName": "assunto",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "comentario",
+            "otherEntityName": "comentario",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "topico"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "conteudo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "data",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "aprovado",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20151012162056",
+    "dto": "no",
+    "pagination": "no"
+}

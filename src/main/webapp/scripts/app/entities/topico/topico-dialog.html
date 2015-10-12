@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myTopicoLabel" translate="tmcApp.topico.home.createOrEditLabel">Create or edit a Topico</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="topico.id" readonly>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.topico.conteudo" for="field_conteudo">Conteudo</label>
+            <input type="text" class="form-control" name="conteudo" id="field_conteudo"
+                    ng-model="topico.conteudo"
+                    required>
+            <div ng-show="editForm.conteudo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.topico.data" for="field_data">Data</label>
+            <input type="date" class="form-control" name="data" id="field_data"
+                    ng-model="topico.data"
+                    required>
+            <div ng-show="editForm.data.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.data.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.topico.aprovado" for="field_aprovado">Aprovado</label>
+            <input type="checkbox" class="form-control" name="aprovado" id="field_aprovado"
+                    ng-model="topico.aprovado"
+                    >
+        </div>
+
+        <div class="form-group">
+            <label translate="tmcApp.topico.assunto" for="field_assunto">assunto</label>
+            <select class="form-control" id="field_assunto" name="assunto" ng-model="topico.assunto" ng-options="assunto as assunto.id for assunto in assuntos track by assunto.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

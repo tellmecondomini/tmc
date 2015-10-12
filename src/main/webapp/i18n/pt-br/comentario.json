@@ -1,0 +1,21 @@
+{
+    "tmcApp": {
+        "comentario" : {
+            "home": {
+                "title": "Comentarios",
+                "createLabel": "Create a new Comentario",
+                "createOrEditLabel": "Create or edit a Comentario"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Comentario {{ id }}?"
+            },
+            "detail": {
+                "title": "Comentario"
+            },
+            "conteudo": "Conteudo",
+            "data": "Data",
+            "ativo": "Ativo",
+            "topico": "Topico"
+        }
+    }
+}

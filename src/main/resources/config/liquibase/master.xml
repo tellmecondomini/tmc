@@ -26,5 +26,8 @@
     <include file="classpath:config/liquibase/changelog/20151007220545_added_entity_Agenda.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151007220945_added_entity_Convidado.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151007221559_added_entity_Dependente.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151012161438_added_entity_Assunto.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151012162056_added_entity_Topico.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151012162823_added_entity_Comentario.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

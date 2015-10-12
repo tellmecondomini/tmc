@@ -22,7 +22,8 @@
             "dataCadastro": "DataCadastro",
             "cep": "Cep",
             "condominio": "Condominio",
-            "telefoneFuncionario": "TelefoneFuncionario"
+            "telefoneFuncionario": "TelefoneFuncionario",
+            "comentario": "Comentario"
         }
     }
 }

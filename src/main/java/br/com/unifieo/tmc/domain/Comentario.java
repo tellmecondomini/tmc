@@ -46,6 +46,12 @@ public class Comentario implements Serializable {
     @ManyToOne
     private Topico topico;
 
+    @ManyToOne
+    private Morador morador;
+
+    @ManyToOne
+    private Funcionario funcionario;
+
     public Long getId() {
         return id;
     }
@@ -84,6 +90,22 @@ public class Comentario implements Serializable {
 
     public void setTopico(Topico topico) {
         this.topico = topico;
+    }
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     @Override

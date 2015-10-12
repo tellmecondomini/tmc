@@ -45,6 +45,8 @@
                     <th translate="tmcApp.comentario.data">Data</th>
                     <th translate="tmcApp.comentario.ativo">Ativo</th>
                     <th translate="tmcApp.comentario.topico">topico</th>
+                    <th translate="tmcApp.comentario.morador">morador</th>
+                    <th translate="tmcApp.comentario.funcionario">funcionario</th>
                     <th></th>
                 </tr>
             </thead>
@@ -56,6 +58,12 @@
                     <td>{{comentario.ativo}}</td>
                     <td>
                         <a ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.conteudo}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="morador.detail({id:comentario.morador.id})">{{comentario.morador.nome}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="funcionario.detail({id:comentario.funcionario.id})">{{comentario.funcionario.nome}}</a>
                     </td>
                     <td>
                         <button type="submit"

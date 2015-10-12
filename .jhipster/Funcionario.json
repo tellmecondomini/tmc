@@ -20,6 +20,13 @@
             "otherEntityName": "telefoneFuncionario",
             "relationshipType": "one-to-many",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "comentario",
+            "otherEntityName": "comentario",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

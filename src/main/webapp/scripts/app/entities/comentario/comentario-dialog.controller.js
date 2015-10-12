@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('tmcApp').controller('ComentarioDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Comentario', 'Topico',
-        function($scope, $stateParams, $modalInstance, entity, Comentario, Topico) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Comentario', 'Topico', 'Morador', 'Funcionario',
+        function($scope, $stateParams, $modalInstance, entity, Comentario, Topico, Morador, Funcionario) {
 
         $scope.comentario = entity;
         $scope.topicos = Topico.query();
+        $scope.moradors = Morador.query();
+        $scope.funcionarios = Funcionario.query();
         $scope.load = function(id) {
             Comentario.get({id : id}, function(result) {
                 $scope.comentario = result;

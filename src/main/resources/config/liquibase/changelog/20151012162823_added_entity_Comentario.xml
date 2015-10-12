@@ -30,6 +30,8 @@
             </column>
             <column name="ativo" type="bit"/>
             <column name="topico_id" type="bigint"/>
+            <column name="morador_id" type="bigint"/>
+            <column name="funcionario_id" type="bigint"/>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="topico_id"
@@ -37,6 +39,18 @@
                                  constraintName="fk_comentario_topico_id"
                                  referencedColumnNames="id"
                                  referencedTableName="TOPICO"/>
+
+        <addForeignKeyConstraint baseColumnNames="morador_id"
+                                 baseTableName="COMENTARIO"
+                                 constraintName="fk_comentario_morador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MORADOR"/>
+
+        <addForeignKeyConstraint baseColumnNames="funcionario_id"
+                                 baseTableName="COMENTARIO"
+                                 constraintName="fk_comentario_funcionario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="FUNCIONARIO"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -42,6 +42,22 @@
                     <a class="form-control-static" ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.conteudo}}</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.comentario.morador">morador</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="morador.detail({id:comentario.morador.id})">{{comentario.morador.nome}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.comentario.funcionario">funcionario</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="funcionario.detail({id:comentario.funcionario.id})">{{comentario.funcionario.nome}}</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

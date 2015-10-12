@@ -18,7 +18,9 @@
             "conteudo": "Conteudo",
             "data": "Data",
             "ativo": "Ativo",
-            "topico": "Topico"
+            "topico": "Topico",
+            "morador": "Morador",
+            "funcionario": "Funcionario"
         }
     }
 }

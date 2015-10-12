@@ -27,6 +27,13 @@
             "otherEntityName": "agenda",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "morador"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "comentario",
+            "otherEntityName": "comentario",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

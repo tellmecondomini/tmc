@@ -88,6 +88,11 @@ public class Morador implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Agenda> agendas = new HashSet<>();
 
+    @OneToMany(mappedBy = "morador")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Comentario> comentarios = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -198,6 +203,14 @@ public class Morador implements Serializable {
 
     public void setAgendas(Set<Agenda> agendas) {
         this.agendas = agendas;
+    }
+
+    public Set<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Set<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     @Override

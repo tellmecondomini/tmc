@@ -82,6 +82,11 @@ public class Funcionario implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneFuncionario> telefoneFuncionarios = new HashSet<>();
 
+    @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Comentario> comentarios = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -176,6 +181,14 @@ public class Funcionario implements Serializable {
 
     public void setTelefoneFuncionarios(Set<TelefoneFuncionario> telefoneFuncionarios) {
         this.telefoneFuncionarios = telefoneFuncionarios;
+    }
+
+    public Set<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Set<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     @Override

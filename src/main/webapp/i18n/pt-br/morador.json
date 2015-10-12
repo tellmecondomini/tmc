@@ -24,7 +24,8 @@
             "imovel": "Imovel",
             "telefoneMorador": "TelefoneMorador",
             "ocorrencia": "Ocorrencia",
-            "agenda": "Agenda"
+            "agenda": "Agenda",
+            "comentario": "Comentario"
         }
     }
 }

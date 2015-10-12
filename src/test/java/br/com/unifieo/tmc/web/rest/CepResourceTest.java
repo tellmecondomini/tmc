@@ -49,8 +49,8 @@ public class CepResourceTest {
     private static final String DEFAULT_CIDADE = "SAMPLE_TEXT";
     private static final String UPDATED_CIDADE = "UPDATED_TEXT";
 
-    private static final Uf DEFAULT_UF = Uf.SP;
-    private static final Uf UPDATED_UF = Uf.SP;
+    private static final Uf DEFAULT_UF = Uf.AC;
+    private static final Uf UPDATED_UF = Uf.AL;
 
     private static final Integer DEFAULT_CEP = 1;
     private static final Integer UPDATED_CEP = 2;

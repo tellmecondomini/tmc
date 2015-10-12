@@ -63,7 +63,7 @@
             "fieldId": 5,
             "fieldName": "disposicao",
             "fieldType": "Disposicao",
-            "fieldValues": "VENRTICAL, HORIZONTAL, HIBRIDO"
+            "fieldValues": "VERTICAL, HORIZONTAL, HIBRIDO"
         }
     ],
     "changelogDate": "20150928115541",

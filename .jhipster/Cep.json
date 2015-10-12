@@ -29,7 +29,7 @@
             "fieldId": 4,
             "fieldName": "uf",
             "fieldType": "Uf",
-            "fieldValues": "SP",
+            "fieldValues": "AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MT, MS, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO",
             "fieldValidateRules": [
                 "required"
             ]

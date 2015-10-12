@@ -54,7 +54,7 @@ public class CondominioResourceTest {
     private static final LocalDate DEFAULT_DATA_CADASTRO = new LocalDate(0L);
     private static final LocalDate UPDATED_DATA_CADASTRO = new LocalDate();
 
-    private static final Disposicao DEFAULT_DISPOSICAO = Disposicao.VENRTICAL;
+    private static final Disposicao DEFAULT_DISPOSICAO = Disposicao.VERTICAL;
     private static final Disposicao UPDATED_DISPOSICAO = Disposicao.HORIZONTAL;
 
     @Inject

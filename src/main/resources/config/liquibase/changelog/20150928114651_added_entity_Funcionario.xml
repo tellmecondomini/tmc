@@ -39,7 +39,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="ativo" type="bit"/>
-            <column name="data_cadastro" type="date">
+            <column name="data_cadastro" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="cep_id" type="bigint">
@@ -48,6 +48,8 @@
             <column name="condominio_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="FUNCIONARIO" columnName="data_nascimento" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="FUNCIONARIO" columnName="data_cadastro" columnDataType="datetime"/>
 
         
         <addForeignKeyConstraint baseColumnNames="cep_id"

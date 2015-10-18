@@ -23,7 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,12 +46,16 @@ import br.com.unifieo.tmc.domain.enumeration.StatusSolicitacao;
 @IntegrationTest
 public class OcorrenciaResourceTest {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-    private static final LocalDate DEFAULT_DATA_ABERTURA = new LocalDate(0L);
-    private static final LocalDate UPDATED_DATA_ABERTURA = new LocalDate();
 
-    private static final LocalDate DEFAULT_DATA_FECHAMENTO = new LocalDate(0L);
-    private static final LocalDate UPDATED_DATA_FECHAMENTO = new LocalDate();
+    private static final DateTime DEFAULT_DATA_ABERTURA = new DateTime(0L, DateTimeZone.UTC);
+    private static final DateTime UPDATED_DATA_ABERTURA = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
+    private static final String DEFAULT_DATA_ABERTURA_STR = dateTimeFormatter.print(DEFAULT_DATA_ABERTURA);
+
+    private static final DateTime DEFAULT_DATA_FECHAMENTO = new DateTime(0L, DateTimeZone.UTC);
+    private static final DateTime UPDATED_DATA_FECHAMENTO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
+    private static final String DEFAULT_DATA_FECHAMENTO_STR = dateTimeFormatter.print(DEFAULT_DATA_FECHAMENTO);
     private static final String DEFAULT_MENSSAGEM = "SAMPLE_TEXT";
     private static final String UPDATED_MENSSAGEM = "UPDATED_TEXT";
 
@@ -103,8 +110,8 @@ public class OcorrenciaResourceTest {
         List<Ocorrencia> ocorrencias = ocorrenciaRepository.findAll();
         assertThat(ocorrencias).hasSize(databaseSizeBeforeCreate + 1);
         Ocorrencia testOcorrencia = ocorrencias.get(ocorrencias.size() - 1);
-        assertThat(testOcorrencia.getDataAbertura()).isEqualTo(DEFAULT_DATA_ABERTURA);
-        assertThat(testOcorrencia.getDataFechamento()).isEqualTo(DEFAULT_DATA_FECHAMENTO);
+        assertThat(testOcorrencia.getDataAbertura().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_ABERTURA);
+        assertThat(testOcorrencia.getDataFechamento().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_FECHAMENTO);
         assertThat(testOcorrencia.getMenssagem()).isEqualTo(DEFAULT_MENSSAGEM);
         assertThat(testOcorrencia.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
@@ -192,8 +199,8 @@ public class OcorrenciaResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(ocorrencia.getId().intValue())))
-                .andExpect(jsonPath("$.[*].dataAbertura").value(hasItem(DEFAULT_DATA_ABERTURA.toString())))
-                .andExpect(jsonPath("$.[*].dataFechamento").value(hasItem(DEFAULT_DATA_FECHAMENTO.toString())))
+                .andExpect(jsonPath("$.[*].dataAbertura").value(hasItem(DEFAULT_DATA_ABERTURA_STR)))
+                .andExpect(jsonPath("$.[*].dataFechamento").value(hasItem(DEFAULT_DATA_FECHAMENTO_STR)))
                 .andExpect(jsonPath("$.[*].menssagem").value(hasItem(DEFAULT_MENSSAGEM.toString())))
                 .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
@@ -209,8 +216,8 @@ public class OcorrenciaResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(ocorrencia.getId().intValue()))
-            .andExpect(jsonPath("$.dataAbertura").value(DEFAULT_DATA_ABERTURA.toString()))
-            .andExpect(jsonPath("$.dataFechamento").value(DEFAULT_DATA_FECHAMENTO.toString()))
+            .andExpect(jsonPath("$.dataAbertura").value(DEFAULT_DATA_ABERTURA_STR))
+            .andExpect(jsonPath("$.dataFechamento").value(DEFAULT_DATA_FECHAMENTO_STR))
             .andExpect(jsonPath("$.menssagem").value(DEFAULT_MENSSAGEM.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
@@ -247,8 +254,8 @@ public class OcorrenciaResourceTest {
         List<Ocorrencia> ocorrencias = ocorrenciaRepository.findAll();
         assertThat(ocorrencias).hasSize(databaseSizeBeforeUpdate);
         Ocorrencia testOcorrencia = ocorrencias.get(ocorrencias.size() - 1);
-        assertThat(testOcorrencia.getDataAbertura()).isEqualTo(UPDATED_DATA_ABERTURA);
-        assertThat(testOcorrencia.getDataFechamento()).isEqualTo(UPDATED_DATA_FECHAMENTO);
+        assertThat(testOcorrencia.getDataAbertura().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_ABERTURA);
+        assertThat(testOcorrencia.getDataFechamento().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_FECHAMENTO);
         assertThat(testOcorrencia.getMenssagem()).isEqualTo(UPDATED_MENSSAGEM);
         assertThat(testOcorrencia.getStatus()).isEqualTo(UPDATED_STATUS);
     }

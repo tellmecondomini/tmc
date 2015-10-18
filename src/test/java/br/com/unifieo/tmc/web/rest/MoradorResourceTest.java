@@ -23,7 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,6 +47,8 @@ import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
 @IntegrationTest
 public class MoradorResourceTest {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
     private static final String DEFAULT_CPF = "SAMPLE_TEXT";
@@ -56,8 +61,9 @@ public class MoradorResourceTest {
     private static final String DEFAULT_SENHA = "SAMPLE_TEXT";
     private static final String UPDATED_SENHA = "UPDATED_TEXT";
 
-    private static final LocalDate DEFAULT_DATA_NASCIMENTO = new LocalDate(0L);
-    private static final LocalDate UPDATED_DATA_NASCIMENTO = new LocalDate();
+    private static final DateTime DEFAULT_DATA_NASCIMENTO = new DateTime(0L, DateTimeZone.UTC);
+    private static final DateTime UPDATED_DATA_NASCIMENTO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
+    private static final String DEFAULT_DATA_NASCIMENTO_STR = dateTimeFormatter.print(DEFAULT_DATA_NASCIMENTO);
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
@@ -126,7 +132,7 @@ public class MoradorResourceTest {
         assertThat(testMorador.getSexo()).isEqualTo(DEFAULT_SEXO);
         assertThat(testMorador.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testMorador.getSenha()).isEqualTo(DEFAULT_SENHA);
-        assertThat(testMorador.getDataNascimento()).isEqualTo(DEFAULT_DATA_NASCIMENTO);
+        assertThat(testMorador.getDataNascimento().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(DEFAULT_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTipo()).isEqualTo(DEFAULT_TIPO);
@@ -238,7 +244,7 @@ public class MoradorResourceTest {
                 .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
-                .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
+                .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO_STR)))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].bloqueiaAgendamento").value(hasItem(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue())))
                 .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
@@ -260,7 +266,7 @@ public class MoradorResourceTest {
             .andExpect(jsonPath("$.sexo").value(DEFAULT_SEXO.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA.toString()))
-            .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
+            .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO_STR))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.bloqueiaAgendamento").value(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue()))
             .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()));
@@ -308,7 +314,7 @@ public class MoradorResourceTest {
         assertThat(testMorador.getSexo()).isEqualTo(UPDATED_SEXO);
         assertThat(testMorador.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testMorador.getSenha()).isEqualTo(UPDATED_SENHA);
-        assertThat(testMorador.getDataNascimento()).isEqualTo(UPDATED_DATA_NASCIMENTO);
+        assertThat(testMorador.getDataNascimento().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(UPDATED_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTipo()).isEqualTo(UPDATED_TIPO);

@@ -35,7 +35,7 @@
             <column name="senha" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="data_nascimento" type="date">
+            <column name="data_nascimento" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="ativo" type="bit"/>
@@ -43,6 +43,8 @@
             <column name="tipo" type="varchar(255)"/>
             <column name="imovel_id" type="bigint"/>
         </createTable>
+        <dropDefaultValue tableName="MORADOR" columnName="data_nascimento" columnDataType="datetime"/>
+
         
         <addForeignKeyConstraint baseColumnNames="imovel_id"
                                  baseTableName="MORADOR"

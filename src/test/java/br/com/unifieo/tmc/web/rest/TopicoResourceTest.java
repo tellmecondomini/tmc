@@ -23,7 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,11 +45,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class TopicoResourceTest {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
     private static final String DEFAULT_CONTEUDO = "SAMPLE_TEXT";
     private static final String UPDATED_CONTEUDO = "UPDATED_TEXT";
 
-    private static final LocalDate DEFAULT_DATA = new LocalDate(0L);
-    private static final LocalDate UPDATED_DATA = new LocalDate();
+    private static final DateTime DEFAULT_DATA = new DateTime(0L, DateTimeZone.UTC);
+    private static final DateTime UPDATED_DATA = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
+    private static final String DEFAULT_DATA_STR = dateTimeFormatter.print(DEFAULT_DATA);
 
     private static final Boolean DEFAULT_APROVADO = false;
     private static final Boolean UPDATED_APROVADO = true;
@@ -99,7 +105,7 @@ public class TopicoResourceTest {
         assertThat(topicos).hasSize(databaseSizeBeforeCreate + 1);
         Topico testTopico = topicos.get(topicos.size() - 1);
         assertThat(testTopico.getConteudo()).isEqualTo(DEFAULT_CONTEUDO);
-        assertThat(testTopico.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA);
         assertThat(testTopico.getAprovado()).isEqualTo(DEFAULT_APROVADO);
     }
 
@@ -151,7 +157,7 @@ public class TopicoResourceTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(topico.getId().intValue())))
                 .andExpect(jsonPath("$.[*].conteudo").value(hasItem(DEFAULT_CONTEUDO.toString())))
-                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())))
+                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
                 .andExpect(jsonPath("$.[*].aprovado").value(hasItem(DEFAULT_APROVADO.booleanValue())));
     }
 
@@ -167,7 +173,7 @@ public class TopicoResourceTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(topico.getId().intValue()))
             .andExpect(jsonPath("$.conteudo").value(DEFAULT_CONTEUDO.toString()))
-            .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()))
+            .andExpect(jsonPath("$.data").value(DEFAULT_DATA_STR))
             .andExpect(jsonPath("$.aprovado").value(DEFAULT_APROVADO.booleanValue()));
     }
 
@@ -203,7 +209,7 @@ public class TopicoResourceTest {
         assertThat(topicos).hasSize(databaseSizeBeforeUpdate);
         Topico testTopico = topicos.get(topicos.size() - 1);
         assertThat(testTopico.getConteudo()).isEqualTo(UPDATED_CONTEUDO);
-        assertThat(testTopico.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA);
         assertThat(testTopico.getAprovado()).isEqualTo(UPDATED_APROVADO);
     }
 

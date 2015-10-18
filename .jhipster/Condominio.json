@@ -54,7 +54,7 @@
         {
             "fieldId": 4,
             "fieldName": "dataCadastro",
-            "fieldType": "LocalDate",
+            "fieldType": "DateTime",
             "fieldValidateRules": [
                 "required"
             ]

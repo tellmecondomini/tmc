@@ -23,7 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,9 +45,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class AgendaResourceTest {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-    private static final LocalDate DEFAULT_DATA = new LocalDate(0L);
-    private static final LocalDate UPDATED_DATA = new LocalDate();
+
+    private static final DateTime DEFAULT_DATA = new DateTime(0L, DateTimeZone.UTC);
+    private static final DateTime UPDATED_DATA = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
+    private static final String DEFAULT_DATA_STR = dateTimeFormatter.print(DEFAULT_DATA);
     private static final String DEFAULT_HORA_INICIO = "SAMPLE_TEXT";
     private static final String UPDATED_HORA_INICIO = "UPDATED_TEXT";
     private static final String DEFAULT_HORA_FIM = "SAMPLE_TEXT";
@@ -97,7 +103,7 @@ public class AgendaResourceTest {
         List<Agenda> agendas = agendaRepository.findAll();
         assertThat(agendas).hasSize(databaseSizeBeforeCreate + 1);
         Agenda testAgenda = agendas.get(agendas.size() - 1);
-        assertThat(testAgenda.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testAgenda.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA);
         assertThat(testAgenda.getHoraInicio()).isEqualTo(DEFAULT_HORA_INICIO);
         assertThat(testAgenda.getHoraFim()).isEqualTo(DEFAULT_HORA_FIM);
     }
@@ -167,7 +173,7 @@ public class AgendaResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(agenda.getId().intValue())))
-                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())))
+                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
                 .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
                 .andExpect(jsonPath("$.[*].horaFim").value(hasItem(DEFAULT_HORA_FIM.toString())));
     }
@@ -183,7 +189,7 @@ public class AgendaResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(agenda.getId().intValue()))
-            .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()))
+            .andExpect(jsonPath("$.data").value(DEFAULT_DATA_STR))
             .andExpect(jsonPath("$.horaInicio").value(DEFAULT_HORA_INICIO.toString()))
             .andExpect(jsonPath("$.horaFim").value(DEFAULT_HORA_FIM.toString()));
     }
@@ -219,7 +225,7 @@ public class AgendaResourceTest {
         List<Agenda> agendas = agendaRepository.findAll();
         assertThat(agendas).hasSize(databaseSizeBeforeUpdate);
         Agenda testAgenda = agendas.get(agendas.size() - 1);
-        assertThat(testAgenda.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testAgenda.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA);
         assertThat(testAgenda.getHoraInicio()).isEqualTo(UPDATED_HORA_INICIO);
         assertThat(testAgenda.getHoraFim()).isEqualTo(UPDATED_HORA_FIM);
     }

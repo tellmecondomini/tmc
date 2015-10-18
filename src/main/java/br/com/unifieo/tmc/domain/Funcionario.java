@@ -3,14 +3,11 @@ package br.com.unifieo.tmc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -65,11 +62,11 @@ public class Funcionario implements Serializable {
     private Boolean ativo;
 
     @NotNull        
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_cadastro", nullable = false)
-    private LocalDate dataCadastro;
+    private DateTime dataCadastro;
 
     @OneToOne
     private Cep cep;
@@ -151,11 +148,11 @@ public class Funcionario implements Serializable {
         this.ativo = ativo;
     }
 
-    public LocalDate getDataCadastro() {
+    public DateTime getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+    public void setDataCadastro(DateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

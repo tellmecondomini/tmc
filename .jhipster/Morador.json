@@ -78,7 +78,7 @@
         {
             "fieldId": 6,
             "fieldName": "dataNascimento",
-            "fieldType": "LocalDate",
+            "fieldType": "DateTime",
             "fieldValidateRules": [
                 "required"
             ]

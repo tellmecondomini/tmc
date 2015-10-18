@@ -27,7 +27,7 @@
         {
             "fieldId": 2,
             "fieldName": "data",
-            "fieldType": "LocalDate",
+            "fieldType": "DateTime",
             "fieldValidateRules": [
                 "required"
             ]

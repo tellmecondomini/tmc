@@ -25,12 +25,14 @@
             <column name="conteudo" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="data" type="date">
+            <column name="data" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="aprovado" type="bit"/>
             <column name="assunto_id" type="bigint"/>
         </createTable>
+        <dropDefaultValue tableName="TOPICO" columnName="data" columnDataType="datetime"/>
+
         
         <addForeignKeyConstraint baseColumnNames="assunto_id"
                                  baseTableName="TOPICO"

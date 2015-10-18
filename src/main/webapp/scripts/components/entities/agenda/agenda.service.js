@@ -8,23 +8,10 @@ angular.module('tmcApp')
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    data.data = DateUtils.convertLocaleDateFromServer(data.data);
+                    data.data = DateUtils.convertDateTimeFromServer(data.data);
                     return data;
                 }
             },
-            'update': {
-                method: 'PUT',
-                transformRequest: function (data) {
-                    data.data = DateUtils.convertLocaleDateToServer(data.data);
-                    return angular.toJson(data);
-                }
-            },
-            'save': {
-                method: 'POST',
-                transformRequest: function (data) {
-                    data.data = DateUtils.convertLocaleDateToServer(data.data);
-                    return angular.toJson(data);
-                }
-            }
+            'update': { method:'PUT' }
         });
     });

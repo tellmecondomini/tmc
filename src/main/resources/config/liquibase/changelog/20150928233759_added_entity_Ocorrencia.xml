@@ -22,10 +22,10 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="data_abertura" type="date">
+            <column name="data_abertura" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            <column name="data_fechamento" type="date">
+            <column name="data_fechamento" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="menssagem" type="varchar(1024)">
@@ -39,6 +39,10 @@
             </column>
             <column name="morador_id" type="bigint"/>
         </createTable>
+        <dropDefaultValue tableName="OCORRENCIA" columnName="data_abertura" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="OCORRENCIA" columnName="data_fechamento" columnDataType="datetime"/>
+
         
         <addForeignKeyConstraint baseColumnNames="ocorrencia_tipo_id"
                                  baseTableName="OCORRENCIA"

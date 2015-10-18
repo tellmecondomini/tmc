@@ -29,7 +29,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="ativo" type="bit"/>
-            <column name="data_cadastro" type="date">
+            <column name="data_cadastro" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="disposicao" type="varchar(255)"/>
@@ -37,6 +37,8 @@
                 <constraints unique="true"/>
             </column>
         </createTable>
+        <dropDefaultValue tableName="CONDOMINIO" columnName="data_cadastro" columnDataType="datetime"/>
+
         
         <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="CONDOMINIO"

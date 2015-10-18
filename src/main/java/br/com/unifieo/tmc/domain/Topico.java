@@ -3,12 +3,12 @@ package br.com.unifieo.tmc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -34,11 +34,11 @@ public class Topico implements Serializable {
     private String conteudo;
 
     @NotNull        
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data", nullable = false)
-    private LocalDate data;
+    private DateTime data;
     
     @Column(name = "aprovado")
     private Boolean aprovado;
@@ -67,11 +67,11 @@ public class Topico implements Serializable {
         this.conteudo = conteudo;
     }
 
-    public LocalDate getData() {
+    public DateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(DateTime data) {
         this.data = data;
     }
 

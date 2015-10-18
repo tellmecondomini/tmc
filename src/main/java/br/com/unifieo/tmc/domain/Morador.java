@@ -3,12 +3,12 @@ package br.com.unifieo.tmc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -54,11 +54,11 @@ public class Morador implements Serializable {
     private String senha;
 
     @NotNull        
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_nascimento", nullable = false)
-    private LocalDate dataNascimento;
+    private DateTime dataNascimento;
     
     @Column(name = "ativo")
     private Boolean ativo;
@@ -141,11 +141,11 @@ public class Morador implements Serializable {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento() {
+    public DateTime getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(DateTime dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

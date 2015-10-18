@@ -2,12 +2,12 @@ package br.com.unifieo.tmc.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomLocalDateSerializer;
-import br.com.unifieo.tmc.domain.util.ISO8601LocalDateDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -31,18 +31,18 @@ public class Ocorrencia implements Serializable {
     private Long id;
 
     @NotNull        
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_abertura", nullable = false)
-    private LocalDate dataAbertura;
+    private DateTime dataAbertura;
 
     @NotNull        
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    @JsonDeserialize(using = ISO8601LocalDateDeserializer.class)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_fechamento", nullable = false)
-    private LocalDate dataFechamento;
+    private DateTime dataFechamento;
 
     @NotNull
     @Size(min = 10, max = 1024)        
@@ -68,19 +68,19 @@ public class Ocorrencia implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDataAbertura() {
+    public DateTime getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(LocalDate dataAbertura) {
+    public void setDataAbertura(DateTime dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
-    public LocalDate getDataFechamento() {
+    public DateTime getDataFechamento() {
         return dataFechamento;
     }
 
-    public void setDataFechamento(LocalDate dataFechamento) {
+    public void setDataFechamento(DateTime dataFechamento) {
         this.dataFechamento = dataFechamento;
     }
 

@@ -1,26 +1,44 @@
 {
     "tmcApp": {
-        "condominio" : {
+        "condominio": {
             "home": {
                 "title": "Condominios",
-                "createLabel": "Create a new Condominio",
-                "createOrEditLabel": "Create or edit a Condominio"
+                "createLabel": "Novo condominio",
+                "createOrEditLabel": "Criar ou editar um condominio"
             },
             "delete": {
-                "question": "Are you sure you want to delete Condominio {{ id }}?"
+                "question": "Você tem certeza que deseja excluir o Condominio {{ id }}?"
             },
             "detail": {
                 "title": "Condominio"
             },
-            "razaoSocial": "RazaoSocial",
+            "razaoSocial": "Razao Social",
             "cnpj": "Cnpj",
             "ativo": "Ativo",
-            "dataCadastro": "DataCadastro",
+            "dataCadastro": "Data Cadastro",
             "disposicao": "Disposicao",
             "cep": "Cep",
             "funcionario": "Funcionario",
             "dependencia": "Dependencia",
-            "telefoneCondominio": "TelefoneCondominio"
+            "telefoneCondominio": "Telefones"
+        },
+        "cep": {
+            "home": {
+                "title": "Ceps",
+                "createLabel": "Create a new Cep",
+                "createOrEditLabel": "Create or edit a Cep"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Cep {{ id }}?"
+            },
+            "detail": {
+                "title": "Cep"
+            },
+            "logradouro": "Logradouro",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "uf": "Uf",
+            "cep": "Cep"
         }
     }
 }

@@ -62,7 +62,7 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, disposicao: null, id: null};
+                                return {razaoSocial: null, cnpj: null, ativo: null, disposicao: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

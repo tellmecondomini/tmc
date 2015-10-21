@@ -5,6 +5,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
         function($scope, $http, $stateParams, $modalInstance, $q, entity, Condominio, Cep, Funcionario, Dependencia, TelefoneCondominio) {
 
         $scope.condominio = entity;
+
         $scope.ceps = Cep.query({filter: 'condominio-is-null'});
         $q.all([$scope.condominio.$promise, $scope.ceps.$promise]).then(function() {
             if (!$scope.condominio.cep.id) {
@@ -14,6 +15,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
         }).then(function(cep) {
             $scope.ceps.push(cep);
         });
+
         $scope.funcionarios = Funcionario.query();
         $scope.dependencias = Dependencia.query();
         $scope.telefonecondominios = TelefoneCondominio.query();
@@ -32,7 +34,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
             if ($scope.condominio.id != null) {
                 Condominio.update($scope.condominio, onSaveFinished);
             } else {
-                Condominio.save($scope.condominio, onSaveFinished);
+                Condominio.save($scope.condominio, $scope.cep, $scope.funcionario, onSaveFinished);
             }
         };
 

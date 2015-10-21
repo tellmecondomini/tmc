@@ -26,6 +26,7 @@ public class CondominioService {
 
     public Condominio save(Condominio condominio) {
         condominio.setDataCadastro(new DateTime());
+        condominio.setAtivo(Boolean.TRUE);
         return condominioRepository.save(condominio);
     }
 }

@@ -41,14 +41,8 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.condominio.razaoSocial">RazaoSocial</th>
-                    <th translate="tmcApp.condominio.cnpj">Cnpj</th>
-                    <th translate="tmcApp.condominio.ativo">Ativo</th>
-                    <th translate="tmcApp.condominio.dataCadastro">DataCadastro</th>
-                    <th translate="tmcApp.condominio.disposicao">Disposicao</th>
-                    <th translate="tmcApp.condominio.numero">Numero</th>
-                    <th translate="tmcApp.condominio.complemento">Complemento</th>
-                    <th translate="tmcApp.condominio.cep">cep</th>
+                    <th translate="tmcApp.condominio.razaoSocial">RazaoSocial</th>                    
+                    <th translate="tmcApp.condominio.ativo">Ativo</th>                    
                     <th></th>
                 </tr>
             </thead>
@@ -56,15 +50,7 @@
                 <tr ng-repeat="condominio in condominios">
                     <td><a ui-sref="condominio.detail({id:condominio.id})">{{condominio.id}}</a></td>
                     <td>{{condominio.razaoSocial}}</td>
-                    <td>{{condominio.cnpj}}</td>
-                    <td>{{condominio.ativo}}</td>
-                    <td>{{condominio.dataCadastro}}</td>
-                    <td translate="{{'tmcApp.Disposicao.' + condominio.disposicao}}">{{condominio.disposicao}}</td>
-                    <td>{{condominio.numero}}</td>
-                    <td>{{condominio.complemento}}</td>
-                    <td>
-                        <a ui-sref="cep.detail({id:condominio.cep.id})">{{condominio.cep.id}}</a>
-                    </td>
+                    <td>{{condominio.ativo}}</td>                    
                     <td>
                         <button type="submit"
                                 ui-sref="condominio.detail({id:condominio.id})"

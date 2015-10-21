@@ -41,6 +41,34 @@
             "cidade": "Cidade",
             "uf": "Uf",
             "cep": "Cep"
+        },
+        "funcionario" : {
+            "home": {
+                "title": "Funcionarios",
+                "createLabel": "Create a new Funcionario",
+                "createOrEditLabel": "Create or edit a Funcionario"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Funcionario {{ id }}?"
+            },
+            "detail": {
+                "title": "Funcionario"
+            },
+            "nome": "Nome",
+            "cpf": "Cpf",
+            "sexo": "Sexo",
+            "dataNascimento": "Data Nascimento",
+            "email": "Email",
+            "senha": "Senha",
+            "ativo": "Ativo",
+            "dataCadastro": "Data Cadastro",
+            "numero": "Numero",
+            "complemento": "Complemento",
+            "responsavel": "Responsavel",
+            "cep": "Cep",
+            "condominio": "Condominio",
+            "telefoneFuncionario": "Telefones",
+            "comentario": "Comentario"
         }
     }
 }

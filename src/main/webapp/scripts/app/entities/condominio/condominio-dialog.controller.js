@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('CondominioDialogController',
-    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Condominio', 'Cep', 'Funcionario', 'Dependencia', 'TelefoneCondominio',
-        function($scope, $http, $stateParams, $modalInstance, $q, entity, Condominio, Cep, Funcionario, Dependencia, TelefoneCondominio) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Condominio', 'Cep', 'Funcionario', 'Dependencia', 'TelefoneCondominio',
+        function($scope, $stateParams, $modalInstance, $q, entity, Condominio, Cep, Funcionario, Dependencia, TelefoneCondominio) {
 
         $scope.condominio = entity;
         $scope.ceps = Cep.query({filter: 'condominio-is-null'});
@@ -38,16 +38,5 @@ angular.module('tmcApp').controller('CondominioDialogController',
 
         $scope.clear = function() {
             $modalInstance.dismiss('cancel');
-        };
-
-        $scope.buscaCep = function (object) {
-            if (object != null) {
-                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + object.cep;
-                var response = $http.get(url);
-                response.success(function(resultado) {
-                    console.log(resultado);
-                    return false;
-                });
-            }
         };
 }]);

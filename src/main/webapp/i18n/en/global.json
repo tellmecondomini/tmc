@@ -31,6 +31,7 @@
                 "assunto": "Assunto",
                 "topico": "Topico",
                 "comentario": "Comentario",
+                "prestadorServico": "PrestadorServico",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -68,6 +68,16 @@ public class Funcionario implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
 
+    @NotNull        
+    @Column(name = "numero", nullable = false)
+    private Integer numero;
+    
+    @Column(name = "complemento")
+    private String complemento;
+    
+    @Column(name = "responsavel")
+    private Boolean responsavel;
+
     @OneToOne
     private Cep cep;
 
@@ -156,6 +166,30 @@ public class Funcionario implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public Boolean getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Boolean responsavel) {
+        this.responsavel = responsavel;
+    }
+
     public Cep getCep() {
         return cep;
     }
@@ -221,6 +255,9 @@ public class Funcionario implements Serializable {
                 ", senha='" + senha + "'" +
                 ", ativo='" + ativo + "'" +
                 ", dataCadastro='" + dataCadastro + "'" +
+                ", numero='" + numero + "'" +
+                ", complemento='" + complemento + "'" +
+                ", responsavel='" + responsavel + "'" +
                 '}';
     }
 }

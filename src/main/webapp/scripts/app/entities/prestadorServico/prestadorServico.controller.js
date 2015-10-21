@@ -32,6 +32,6 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.prestadorServico = {nome: null, email: null, documento: null, pessoa: null, id: null};
+            $scope.prestadorServico = {nome: null, email: null, documento: null, pessoa: null, numero: null, complemento: null, id: null};
         };
     });

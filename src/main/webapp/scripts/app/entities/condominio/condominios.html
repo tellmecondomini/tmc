@@ -46,6 +46,8 @@
                     <th translate="tmcApp.condominio.ativo">Ativo</th>
                     <th translate="tmcApp.condominio.dataCadastro">DataCadastro</th>
                     <th translate="tmcApp.condominio.disposicao">Disposicao</th>
+                    <th translate="tmcApp.condominio.numero">Numero</th>
+                    <th translate="tmcApp.condominio.complemento">Complemento</th>
                     <th translate="tmcApp.condominio.cep">cep</th>
                     <th></th>
                 </tr>
@@ -58,6 +60,8 @@
                     <td>{{condominio.ativo}}</td>
                     <td>{{condominio.dataCadastro}}</td>
                     <td translate="{{'tmcApp.Disposicao.' + condominio.disposicao}}">{{condominio.disposicao}}</td>
+                    <td>{{condominio.numero}}</td>
+                    <td>{{condominio.complemento}}</td>
                     <td>
                         <a ui-sref="cep.detail({id:condominio.cep.id})">{{condominio.cep.id}}</a>
                     </td>

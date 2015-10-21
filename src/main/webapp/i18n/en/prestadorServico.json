@@ -19,6 +19,8 @@
             "email": "Email",
             "documento": "Documento",
             "pessoa": "Pessoa",
+            "numero": "Numero",
+            "complemento": "Complemento",
             "cep": "Cep",
             "telefonePrestadorServico": "TelefonePrestadorServico",
             "competenciaPrestador": "CompetenciaPrestador"

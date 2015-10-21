@@ -42,6 +42,11 @@
             <column name="data_cadastro" type="timestamp">
                 <constraints nullable="false" />
             </column>
+            <column name="numero" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="complemento" type="varchar(255)"/>
+            <column name="responsavel" type="bit"/>
             <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>

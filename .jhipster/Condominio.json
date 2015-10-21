@@ -64,6 +64,19 @@
             "fieldName": "disposicao",
             "fieldType": "Disposicao",
             "fieldValues": "VERTICAL, HORIZONTAL, HIBRIDO"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "numero",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "complemento",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20150928115541",

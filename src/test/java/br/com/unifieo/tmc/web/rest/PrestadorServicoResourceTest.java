@@ -52,6 +52,11 @@ public class PrestadorServicoResourceTest {
     private static final Pessoa DEFAULT_PESSOA = Pessoa.FISICA;
     private static final Pessoa UPDATED_PESSOA = Pessoa.JURIDICA;
 
+    private static final Integer DEFAULT_NUMERO = 1;
+    private static final Integer UPDATED_NUMERO = 2;
+    private static final String DEFAULT_COMPLEMENTO = "SAMPLE_TEXT";
+    private static final String UPDATED_COMPLEMENTO = "UPDATED_TEXT";
+
     @Inject
     private PrestadorServicoRepository prestadorServicoRepository;
 
@@ -82,6 +87,8 @@ public class PrestadorServicoResourceTest {
         prestadorServico.setEmail(DEFAULT_EMAIL);
         prestadorServico.setDocumento(DEFAULT_DOCUMENTO);
         prestadorServico.setPessoa(DEFAULT_PESSOA);
+        prestadorServico.setNumero(DEFAULT_NUMERO);
+        prestadorServico.setComplemento(DEFAULT_COMPLEMENTO);
     }
 
     @Test
@@ -104,6 +111,8 @@ public class PrestadorServicoResourceTest {
         assertThat(testPrestadorServico.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPrestadorServico.getDocumento()).isEqualTo(DEFAULT_DOCUMENTO);
         assertThat(testPrestadorServico.getPessoa()).isEqualTo(DEFAULT_PESSOA);
+        assertThat(testPrestadorServico.getNumero()).isEqualTo(DEFAULT_NUMERO);
+        assertThat(testPrestadorServico.getComplemento()).isEqualTo(DEFAULT_COMPLEMENTO);
     }
 
     @Test
@@ -144,6 +153,24 @@ public class PrestadorServicoResourceTest {
 
     @Test
     @Transactional
+    public void checkNumeroIsRequired() throws Exception {
+        int databaseSizeBeforeTest = prestadorServicoRepository.findAll().size();
+        // set the field null
+        prestadorServico.setNumero(null);
+
+        // Create the PrestadorServico, which fails.
+
+        restPrestadorServicoMockMvc.perform(post("/api/prestadorServicos")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+                .andExpect(status().isBadRequest());
+
+        List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
+        assertThat(prestadorServicos).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPrestadorServicos() throws Exception {
         // Initialize the database
         prestadorServicoRepository.saveAndFlush(prestadorServico);
@@ -156,7 +183,9 @@ public class PrestadorServicoResourceTest {
                 .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())))
-                .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_PESSOA.toString())));
+                .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_PESSOA.toString())))
+                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
     }
 
     @Test
@@ -173,7 +202,9 @@ public class PrestadorServicoResourceTest {
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.documento").value(DEFAULT_DOCUMENTO.toString()))
-            .andExpect(jsonPath("$.pessoa").value(DEFAULT_PESSOA.toString()));
+            .andExpect(jsonPath("$.pessoa").value(DEFAULT_PESSOA.toString()))
+            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
+            .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()));
     }
 
     @Test
@@ -197,6 +228,8 @@ public class PrestadorServicoResourceTest {
         prestadorServico.setEmail(UPDATED_EMAIL);
         prestadorServico.setDocumento(UPDATED_DOCUMENTO);
         prestadorServico.setPessoa(UPDATED_PESSOA);
+        prestadorServico.setNumero(UPDATED_NUMERO);
+        prestadorServico.setComplemento(UPDATED_COMPLEMENTO);
         
 
         restPrestadorServicoMockMvc.perform(put("/api/prestadorServicos")
@@ -212,6 +245,8 @@ public class PrestadorServicoResourceTest {
         assertThat(testPrestadorServico.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPrestadorServico.getDocumento()).isEqualTo(UPDATED_DOCUMENTO);
         assertThat(testPrestadorServico.getPessoa()).isEqualTo(UPDATED_PESSOA);
+        assertThat(testPrestadorServico.getNumero()).isEqualTo(UPDATED_NUMERO);
+        assertThat(testPrestadorServico.getComplemento()).isEqualTo(UPDATED_COMPLEMENTO);
     }
 
     @Test

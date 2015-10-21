@@ -30,6 +30,10 @@
                 <constraints nullable="false" />
             </column>
             <column name="pessoa" type="varchar(255)"/>
+            <column name="numero" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="complemento" type="varchar(255)"/>
             <column name="cep_id" type="bigint">
                 <constraints unique="true"/>
             </column>

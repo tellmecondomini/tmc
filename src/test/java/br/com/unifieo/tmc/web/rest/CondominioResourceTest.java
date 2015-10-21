@@ -63,6 +63,11 @@ public class CondominioResourceTest {
     private static final Disposicao DEFAULT_DISPOSICAO = Disposicao.VERTICAL;
     private static final Disposicao UPDATED_DISPOSICAO = Disposicao.HORIZONTAL;
 
+    private static final Integer DEFAULT_NUMERO = 1;
+    private static final Integer UPDATED_NUMERO = 2;
+    private static final String DEFAULT_COMPLEMENTO = "SAMPLE_TEXT";
+    private static final String UPDATED_COMPLEMENTO = "UPDATED_TEXT";
+
     @Inject
     private CondominioRepository condominioRepository;
 
@@ -94,6 +99,8 @@ public class CondominioResourceTest {
         condominio.setAtivo(DEFAULT_ATIVO);
         condominio.setDataCadastro(DEFAULT_DATA_CADASTRO);
         condominio.setDisposicao(DEFAULT_DISPOSICAO);
+        condominio.setNumero(DEFAULT_NUMERO);
+        condominio.setComplemento(DEFAULT_COMPLEMENTO);
     }
 
     @Test
@@ -117,6 +124,8 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
         assertThat(testCondominio.getDisposicao()).isEqualTo(DEFAULT_DISPOSICAO);
+        assertThat(testCondominio.getNumero()).isEqualTo(DEFAULT_NUMERO);
+        assertThat(testCondominio.getComplemento()).isEqualTo(DEFAULT_COMPLEMENTO);
     }
 
     @Test
@@ -175,6 +184,24 @@ public class CondominioResourceTest {
 
     @Test
     @Transactional
+    public void checkNumeroIsRequired() throws Exception {
+        int databaseSizeBeforeTest = condominioRepository.findAll().size();
+        // set the field null
+        condominio.setNumero(null);
+
+        // Create the Condominio, which fails.
+
+        restCondominioMockMvc.perform(post("/api/condominios")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(condominio)))
+                .andExpect(status().isBadRequest());
+
+        List<Condominio> condominios = condominioRepository.findAll();
+        assertThat(condominios).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllCondominios() throws Exception {
         // Initialize the database
         condominioRepository.saveAndFlush(condominio);
@@ -188,7 +215,9 @@ public class CondominioResourceTest {
                 .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
                 .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
-                .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())));
+                .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())))
+                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
     }
 
     @Test
@@ -206,7 +235,9 @@ public class CondominioResourceTest {
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
             .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
-            .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()));
+            .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()))
+            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
+            .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()));
     }
 
     @Test
@@ -231,6 +262,8 @@ public class CondominioResourceTest {
         condominio.setAtivo(UPDATED_ATIVO);
         condominio.setDataCadastro(UPDATED_DATA_CADASTRO);
         condominio.setDisposicao(UPDATED_DISPOSICAO);
+        condominio.setNumero(UPDATED_NUMERO);
+        condominio.setComplemento(UPDATED_COMPLEMENTO);
         
 
         restCondominioMockMvc.perform(put("/api/condominios")
@@ -247,6 +280,8 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
         assertThat(testCondominio.getDisposicao()).isEqualTo(UPDATED_DISPOSICAO);
+        assertThat(testCondominio.getNumero()).isEqualTo(UPDATED_NUMERO);
+        assertThat(testCondominio.getComplemento()).isEqualTo(UPDATED_COMPLEMENTO);
     }
 
     @Test

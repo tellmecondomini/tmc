@@ -106,6 +106,34 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label translate="tmcApp.funcionario.numero" for="field_numero">Numero</label>
+            <input type="number" class="form-control" name="numero" id="field_numero"
+                    ng-model="funcionario.numero"
+                    required>
+            <div ng-show="editForm.numero.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.numero.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.numero.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.funcionario.complemento" for="field_complemento">Complemento</label>
+            <input type="text" class="form-control" name="complemento" id="field_complemento"
+                    ng-model="funcionario.complemento"
+                    >
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.funcionario.responsavel" for="field_responsavel">Responsavel</label>
+            <input type="checkbox" class="form-control" name="responsavel" id="field_responsavel"
+                    ng-model="funcionario.responsavel"
+                    >
+        </div>
 
         <div class="form-group">
             <label translate="tmcApp.funcionario.cep" for="field_cep">cep</label>

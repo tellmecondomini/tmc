@@ -32,7 +32,6 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.condominio = {razaoSocial: null, cnpj: null, ativo: null, disposicao: null, id: null};
+            $scope.condominio = {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, disposicao: null, numero: null, complemento: null, id: null};
         };
-
     });

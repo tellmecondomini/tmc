@@ -53,6 +53,13 @@ public class Condominio implements Serializable {
     @Column(name = "disposicao")
     private Disposicao disposicao;
 
+    @NotNull        
+    @Column(name = "numero", nullable = false)
+    private Integer numero;
+    
+    @Column(name = "complemento")
+    private String complemento;
+
     @OneToOne
     private Cep cep;
 
@@ -119,6 +126,22 @@ public class Condominio implements Serializable {
         this.disposicao = disposicao;
     }
 
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
     public Cep getCep() {
         return cep;
     }
@@ -181,6 +204,8 @@ public class Condominio implements Serializable {
                 ", ativo='" + ativo + "'" +
                 ", dataCadastro='" + dataCadastro + "'" +
                 ", disposicao='" + disposicao + "'" +
+                ", numero='" + numero + "'" +
+                ", complemento='" + complemento + "'" +
                 '}';
     }
 }

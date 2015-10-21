@@ -71,6 +71,14 @@ public class FuncionarioResourceTest {
     private static final DateTime UPDATED_DATA_CADASTRO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATA_CADASTRO_STR = dateTimeFormatter.print(DEFAULT_DATA_CADASTRO);
 
+    private static final Integer DEFAULT_NUMERO = 1;
+    private static final Integer UPDATED_NUMERO = 2;
+    private static final String DEFAULT_COMPLEMENTO = "SAMPLE_TEXT";
+    private static final String UPDATED_COMPLEMENTO = "UPDATED_TEXT";
+
+    private static final Boolean DEFAULT_RESPONSAVEL = false;
+    private static final Boolean UPDATED_RESPONSAVEL = true;
+
     @Inject
     private FuncionarioRepository funcionarioRepository;
 
@@ -105,6 +113,9 @@ public class FuncionarioResourceTest {
         funcionario.setSenha(DEFAULT_SENHA);
         funcionario.setAtivo(DEFAULT_ATIVO);
         funcionario.setDataCadastro(DEFAULT_DATA_CADASTRO);
+        funcionario.setNumero(DEFAULT_NUMERO);
+        funcionario.setComplemento(DEFAULT_COMPLEMENTO);
+        funcionario.setResponsavel(DEFAULT_RESPONSAVEL);
     }
 
     @Test
@@ -131,6 +142,9 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getSenha()).isEqualTo(DEFAULT_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(DEFAULT_ATIVO);
         assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
+        assertThat(testFuncionario.getNumero()).isEqualTo(DEFAULT_NUMERO);
+        assertThat(testFuncionario.getComplemento()).isEqualTo(DEFAULT_COMPLEMENTO);
+        assertThat(testFuncionario.getResponsavel()).isEqualTo(DEFAULT_RESPONSAVEL);
     }
 
     @Test
@@ -243,6 +257,24 @@ public class FuncionarioResourceTest {
 
     @Test
     @Transactional
+    public void checkNumeroIsRequired() throws Exception {
+        int databaseSizeBeforeTest = funcionarioRepository.findAll().size();
+        // set the field null
+        funcionario.setNumero(null);
+
+        // Create the Funcionario, which fails.
+
+        restFuncionarioMockMvc.perform(post("/api/funcionarios")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(funcionario)))
+                .andExpect(status().isBadRequest());
+
+        List<Funcionario> funcionarios = funcionarioRepository.findAll();
+        assertThat(funcionarios).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllFuncionarios() throws Exception {
         // Initialize the database
         funcionarioRepository.saveAndFlush(funcionario);
@@ -259,7 +291,10 @@ public class FuncionarioResourceTest {
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
                 .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)));
+                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
+                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())))
+                .andExpect(jsonPath("$.[*].responsavel").value(hasItem(DEFAULT_RESPONSAVEL.booleanValue())));
     }
 
     @Test
@@ -280,7 +315,10 @@ public class FuncionarioResourceTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.senha").value(DEFAULT_SENHA.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR));
+            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
+            .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
+            .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()))
+            .andExpect(jsonPath("$.responsavel").value(DEFAULT_RESPONSAVEL.booleanValue()));
     }
 
     @Test
@@ -308,6 +346,9 @@ public class FuncionarioResourceTest {
         funcionario.setSenha(UPDATED_SENHA);
         funcionario.setAtivo(UPDATED_ATIVO);
         funcionario.setDataCadastro(UPDATED_DATA_CADASTRO);
+        funcionario.setNumero(UPDATED_NUMERO);
+        funcionario.setComplemento(UPDATED_COMPLEMENTO);
+        funcionario.setResponsavel(UPDATED_RESPONSAVEL);
         
 
         restFuncionarioMockMvc.perform(put("/api/funcionarios")
@@ -327,6 +368,9 @@ public class FuncionarioResourceTest {
         assertThat(testFuncionario.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testFuncionario.getAtivo()).isEqualTo(UPDATED_ATIVO);
         assertThat(testFuncionario.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
+        assertThat(testFuncionario.getNumero()).isEqualTo(UPDATED_NUMERO);
+        assertThat(testFuncionario.getComplemento()).isEqualTo(UPDATED_COMPLEMENTO);
+        assertThat(testFuncionario.getResponsavel()).isEqualTo(UPDATED_RESPONSAVEL);
     }
 
     @Test

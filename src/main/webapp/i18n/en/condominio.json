@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "condominio": {
+        "condominio" : {
             "home": {
                 "title": "Condominios",
                 "createLabel": "Create a new Condominio",
@@ -20,31 +20,12 @@
             "ativo": "Ativo",
             "dataCadastro": "DataCadastro",
             "disposicao": "Disposicao",
+            "numero": "Numero",
+            "complemento": "Complemento",
             "cep": "Cep",
             "funcionario": "Funcionario",
             "dependencia": "Dependencia",
             "telefoneCondominio": "TelefoneCondominio"
-        },
-        "cep": {
-            "home": {
-                "title": "Ceps",
-                "createLabel": "Create a new Cep",
-                "createOrEditLabel": "Create or edit a Cep"
-            },
-            "created": "A new Cep is created with identifier {{ param }}",
-            "updated": "A Cep is updated with identifier {{ param }}",
-            "deleted": "A Cep is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Cep {{ id }}?"
-            },
-            "detail": {
-                "title": "Cep"
-            },
-            "logradouro": "Logradouro",
-            "bairro": "Bairro",
-            "cidade": "Cidade",
-            "uf": "Uf",
-            "cep": "Cep"
         }
     }
 }

@@ -88,6 +88,24 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "numero",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "complemento",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "responsavel",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20150928114651",

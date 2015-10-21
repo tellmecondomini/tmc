@@ -62,7 +62,7 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {nome: null, email: null, documento: null, pessoa: null, id: null};
+                                return {nome: null, email: null, documento: null, pessoa: null, numero: null, complemento: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

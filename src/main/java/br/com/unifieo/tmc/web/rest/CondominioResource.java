@@ -1,6 +1,5 @@
 package br.com.unifieo.tmc.web.rest;
 
-import br.com.unifieo.tmc.service.CondominioService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.repository.CondominioRepository;
@@ -32,9 +31,6 @@ public class CondominioResource {
     @Inject
     private CondominioRepository condominioRepository;
 
-    @Inject
-    private CondominioService condominioService;
-
     /**
      * POST  /condominios -> Create a new condominio.
      */
@@ -42,12 +38,12 @@ public class CondominioResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> createCondominio(@RequestBody Condominio condominio) throws URISyntaxException {
+    public ResponseEntity<Condominio> createCondominio(@Valid @RequestBody Condominio condominio) throws URISyntaxException {
         log.debug("REST request to save Condominio : {}", condominio);
         if (condominio.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new condominio cannot already have an ID").body(null);
         }
-        Condominio result = condominioService.save(condominio);
+        Condominio result = condominioRepository.save(condominio);
         return ResponseEntity.created(new URI("/api/condominios/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("condominio", result.getId().toString()))
                 .body(result);

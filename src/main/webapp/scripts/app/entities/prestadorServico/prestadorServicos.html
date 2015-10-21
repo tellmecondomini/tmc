@@ -45,6 +45,8 @@
                     <th translate="tmcApp.prestadorServico.email">Email</th>
                     <th translate="tmcApp.prestadorServico.documento">Documento</th>
                     <th translate="tmcApp.prestadorServico.pessoa">Pessoa</th>
+                    <th translate="tmcApp.prestadorServico.numero">Numero</th>
+                    <th translate="tmcApp.prestadorServico.complemento">Complemento</th>
                     <th translate="tmcApp.prestadorServico.cep">cep</th>
                     <th translate="tmcApp.prestadorServico.competenciaPrestador">competenciaPrestador</th>
                     <th></th>
@@ -57,6 +59,8 @@
                     <td>{{prestadorServico.email}}</td>
                     <td>{{prestadorServico.documento}}</td>
                     <td translate="{{'tmcApp.Pessoa.' + prestadorServico.pessoa}}">{{prestadorServico.pessoa}}</td>
+                    <td>{{prestadorServico.numero}}</td>
+                    <td>{{prestadorServico.complemento}}</td>
                     <td>
                         <a ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.id}}</a>
                     </td>

@@ -51,6 +51,19 @@
             "fieldName": "pessoa",
             "fieldType": "Pessoa",
             "fieldValues": "FISICA, JURIDICA"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "numero",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "complemento",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20150928232351",

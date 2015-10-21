@@ -40,6 +40,13 @@ public class PrestadorServico implements Serializable {
     @Column(name = "pessoa")
     private Pessoa pessoa;
 
+    @NotNull        
+    @Column(name = "numero", nullable = false)
+    private Integer numero;
+    
+    @Column(name = "complemento")
+    private String complemento;
+
     @OneToOne
     private Cep cep;
 
@@ -89,6 +96,22 @@ public class PrestadorServico implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public Cep getCep() {
@@ -144,6 +167,8 @@ public class PrestadorServico implements Serializable {
                 ", email='" + email + "'" +
                 ", documento='" + documento + "'" +
                 ", pessoa='" + pessoa + "'" +
+                ", numero='" + numero + "'" +
+                ", complemento='" + complemento + "'" +
                 '}';
     }
 }

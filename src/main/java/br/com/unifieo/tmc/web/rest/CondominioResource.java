@@ -1,5 +1,8 @@
+
+
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.service.CondominioService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.repository.CondominioRepository;
@@ -31,22 +34,25 @@ public class CondominioResource {
     @Inject
     private CondominioRepository condominioRepository;
 
+    @Inject
+    private CondominioService condominioService;
+
     /**
      * POST  /condominios -> Create a new condominio.
      */
     @RequestMapping(value = "/condominios",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> createCondominio(@Valid @RequestBody Condominio condominio) throws URISyntaxException {
+    public ResponseEntity<Condominio> createCondominio(@RequestBody Condominio condominio) throws URISyntaxException {
         log.debug("REST request to save Condominio : {}", condominio);
         if (condominio.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new condominio cannot already have an ID").body(null);
         }
-        Condominio result = condominioRepository.save(condominio);
+        Condominio result = condominioService.save(condominio);
         return ResponseEntity.created(new URI("/api/condominios/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("condominio", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("condominio", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -63,16 +69,16 @@ public class CondominioResource {
         }
         Condominio result = condominioRepository.save(condominio);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("condominio", condominio.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("condominio", condominio.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /condominios -> get all the condominios.
      */
     @RequestMapping(value = "/condominios",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Condominio> getAllCondominios() {
         log.debug("REST request to get all Condominios");
@@ -83,8 +89,8 @@ public class CondominioResource {
      * GET  /condominios/:id -> get the "id" condominio.
      */
     @RequestMapping(value = "/condominios/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Condominio> getCondominio(@PathVariable Long id) {
         log.debug("REST request to get Condominio : {}", id);
@@ -99,8 +105,8 @@ public class CondominioResource {
      * DELETE  /condominios/:id -> delete the "id" condominio.
      */
     @RequestMapping(value = "/condominios/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteCondominio(@PathVariable Long id) {
         log.debug("REST request to delete Condominio : {}", id);

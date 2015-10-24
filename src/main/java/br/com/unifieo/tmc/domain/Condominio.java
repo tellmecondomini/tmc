@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -31,32 +32,32 @@ public class Condominio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "razao_social", nullable = false)
     private String razaoSocial;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
-    
+
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "disposicao")
     private Disposicao disposicao;
 
-    @NotNull        
+    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
-    
+
     @Column(name = "complemento")
     private String complemento;
 
@@ -77,6 +78,20 @@ public class Condominio implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
+
+    public Condominio() {
+    }
+
+    public Condominio(CondominioDTO condominioDto) {
+        this.razaoSocial = condominioDto.getRazaoSocial();
+        this.cnpj = condominioDto.getCnpj();
+        this.ativo = true;
+        this.dataCadastro = new DateTime();
+        this.disposicao = condominioDto.getDisposicao();
+        this.numero = condominioDto.getCondominioNumero();
+        this.complemento = condominioDto.getCondominioComplemento();
+        this.cep = new Cep(condominioDto.getCondominioLogradouro(), condominioDto.getCondominioBairro(), condominioDto.getCondominioCidade(), condominioDto.getCondominioUf(), condominioDto.getCondominioCep());
+    }
 
     public Long getId() {
         return id;

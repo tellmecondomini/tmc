@@ -62,7 +62,38 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, disposicao: null, numero: null, complemento: null, id: null};
+                                return {
+                                    id: null,
+                                    razaoSocial: null,
+                                    cnpj: null,
+                                    disposicao: null,
+
+                                    /* Cep Condominio */
+                                    condominioCep: null,
+                                    condominioLogradouro: null,
+                                    condominioBairro: null,
+                                    condominioCidade: null,
+                                    condominioUf: null,
+                                    condominioNumero: null,
+                                    condominioComplemento: null,
+
+                                    /* Dados do responsavel */
+                                    responsavelNome: null,
+                                    responsavelCpf: null,
+                                    responsavelSexo: null,
+                                    responsavelDataNascimento: null,
+                                    responsavelEmail: null,
+                                    responsavelSenha: null,
+
+                                    /* Cep responsavel */
+                                    responsavelCep: null,
+                                    responsavelLogradouro: null,
+                                    responsavelBairro: null,
+                                    responsavelCidade: null,
+                                    responsavelUf: null,
+                                    responsavelNumero: null,
+                                    responsavelComplemento: null
+                                };
                             }
                         }
                     }).result.then(function(result) {

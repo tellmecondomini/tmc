@@ -1,23 +1,24 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
+import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import java.util.Set;
 
 /**
  * A Funcionario.
@@ -31,50 +32,50 @@ public class Funcionario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cpf", nullable = false)
     private String cpf;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_nascimento", nullable = false)
     private DateTime dataNascimento;
 
-    @NotNull        
+    @NotNull
     @Column(name = "email", nullable = false)
     private String email;
 
-    @NotNull        
+    @NotNull
     @Column(name = "senha", nullable = false)
     private String senha;
-    
+
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
 
-    @NotNull        
+    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
-    
+
     @Column(name = "complemento")
     private String complemento;
-    
+
     @Column(name = "responsavel")
     private Boolean responsavel;
 
@@ -93,6 +94,43 @@ public class Funcionario implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
+
+    public Funcionario() {
+    }
+
+    public Funcionario(String nome, String cpf, Sexo sexo, DateTime dataNascimento, String email,
+                       String senha, Boolean ativo, DateTime dataCadastro, Integer numero, String complemento,
+                       Boolean responsavel, Cep cep, Condominio condominio) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.senha = senha;
+        this.ativo = ativo;
+        this.dataCadastro = dataCadastro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.responsavel = responsavel;
+        this.cep = cep;
+        this.condominio = condominio;
+    }
+
+    public Funcionario(CondominioDTO condominioDto, Condominio condominioSave) {
+        this.nome = condominioDto.getResponsavelNome();
+        this.cpf = String.valueOf(condominioDto.getResponsavelCpf());
+        this.sexo = condominioDto.getResponsavelSexo();
+        this.dataNascimento = new DateTime(condominioDto.getResponsavelDataNascimento());
+        this.email = condominioDto.getResponsavelEmail();
+        this.senha = condominioDto.getResponsavelSenha();
+        this.ativo = true;
+        this.dataCadastro = new DateTime(new Date());
+        this.numero = condominioDto.getResponsavelNumero();
+        this.complemento = condominioDto.getResponsavelComplemento();
+        this.responsavel = true;
+        this.cep = new Cep(condominioDto.getResponsavelLogradouro(), condominioDto.getResponsavelBairro(), condominioDto.getResponsavelCidade(), condominioDto.getResponsavelUf(), condominioDto.getResponsavelCep());
+        this.condominio = condominioSave;
+    }
 
     public Long getId() {
         return id;
@@ -233,7 +271,7 @@ public class Funcionario implements Serializable {
 
         Funcionario funcionario = (Funcionario) o;
 
-        if ( ! Objects.equals(id, funcionario.id)) return false;
+        if (!Objects.equals(id, funcionario.id)) return false;
 
         return true;
     }
@@ -246,18 +284,18 @@ public class Funcionario implements Serializable {
     @Override
     public String toString() {
         return "Funcionario{" +
-                "id=" + id +
-                ", nome='" + nome + "'" +
-                ", cpf='" + cpf + "'" +
-                ", sexo='" + sexo + "'" +
-                ", dataNascimento='" + dataNascimento + "'" +
-                ", email='" + email + "'" +
-                ", senha='" + senha + "'" +
-                ", ativo='" + ativo + "'" +
-                ", dataCadastro='" + dataCadastro + "'" +
-                ", numero='" + numero + "'" +
-                ", complemento='" + complemento + "'" +
-                ", responsavel='" + responsavel + "'" +
-                '}';
+            "id=" + id +
+            ", nome='" + nome + "'" +
+            ", cpf='" + cpf + "'" +
+            ", sexo='" + sexo + "'" +
+            ", dataNascimento='" + dataNascimento + "'" +
+            ", email='" + email + "'" +
+            ", senha='" + senha + "'" +
+            ", ativo='" + ativo + "'" +
+            ", dataCadastro='" + dataCadastro + "'" +
+            ", numero='" + numero + "'" +
+            ", complemento='" + complemento + "'" +
+            ", responsavel='" + responsavel + "'" +
+            '}';
     }
 }

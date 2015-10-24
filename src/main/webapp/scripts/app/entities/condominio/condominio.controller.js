@@ -2,12 +2,15 @@
 
 angular.module('tmcApp')
     .controller('CondominioController', function ($scope, Condominio) {
+
         $scope.condominios = [];
+
         $scope.loadAll = function() {
             Condominio.query(function(result) {
                $scope.condominios = result;
             });
         };
+
         $scope.loadAll();
 
         $scope.delete = function (id) {
@@ -32,6 +35,37 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.condominio = {razaoSocial: null, cnpj: null, ativo: null, dataCadastro: null, disposicao: null, numero: null, complemento: null, id: null};
+            $scope.condominio = {
+                id: null,
+                razaoSocial: null,
+                cnpj: null,
+                disposicao: null,
+
+                /* Cep Condominio */
+                condominioCep: null,
+                condominioLogradouro: null,
+                condominioBairro: null,
+                condominioCidade: null,
+                condominioUf: null,
+                condominioNumero: null,
+                condominioComplemento: null,
+
+                /* Dados do responsavel */
+                responsavelNome: null,
+                responsavelCpf: null,
+                responsavelSexo: null,
+                responsavelDataNascimento: null,
+                responsavelEmail: null,
+                responsavelSenha: null,
+
+                /* Cep responsavel */
+                responsavelCep: null,
+                responsavelLogradouro: null,
+                responsavelBairro: null,
+                responsavelCidade: null,
+                responsavelUf: null,
+                responsavelNumero: null,
+                responsavelComplemento: null
+            };
         };
     });

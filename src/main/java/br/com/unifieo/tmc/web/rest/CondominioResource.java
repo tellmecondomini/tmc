@@ -7,6 +7,7 @@ import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.service.CondominioService;
+import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -44,11 +45,7 @@ public class CondominioResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> createCondominio(
-            @RequestBody Condominio condominio,
-            @RequestBody Cep cepCondominio,
-            @RequestBody Funcionario funcionario,
-            @RequestBody Cep cepFuncionario) throws URISyntaxException {
+    public ResponseEntity<Condominio> createCondominio(@RequestBody CondominioDTO condominio) throws URISyntaxException {
 
         log.debug("REST request to save Condominio : {}", condominio);
         if (condominio.getId() != null)
@@ -68,15 +65,11 @@ public class CondominioResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> updateCondominio(
-            @RequestBody Condominio condominio,
-            @RequestBody Cep cepCondominio,
-            @RequestBody Funcionario funcionario,
-            @RequestBody Cep cepFuncionario) throws URISyntaxException {
+    public ResponseEntity<Condominio> updateCondominio(@RequestBody Condominio condominio) throws URISyntaxException {
 
         log.debug("REST request to update Condominio : {}", condominio);
         if (condominio.getId() == null)
-            return createCondominio(condominio, cepCondominio, funcionario, cepFuncionario);
+            return null; // createCondominio(condominio);
 
         Condominio result = condominioRepository.save(condominio);
 

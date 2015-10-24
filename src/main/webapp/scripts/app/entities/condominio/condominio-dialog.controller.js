@@ -7,6 +7,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
         $scope.condominio = entity;
 
         $scope.ceps = Cep.query({filter: 'condominio-is-null'});
+
         $q.all([$scope.condominio.$promise, $scope.ceps.$promise]).then(function() {
             if (!$scope.condominio.cep.id) {
                 return $q.reject();
@@ -17,8 +18,11 @@ angular.module('tmcApp').controller('CondominioDialogController',
         });
 
         $scope.funcionarios = Funcionario.query();
+
         $scope.dependencias = Dependencia.query();
+
         $scope.telefonecondominios = TelefoneCondominio.query();
+
         $scope.load = function(id) {
             Condominio.get({id : id}, function(result) {
                 $scope.condominio = result;
@@ -34,7 +38,7 @@ angular.module('tmcApp').controller('CondominioDialogController',
             if ($scope.condominio.id != null) {
                 Condominio.update($scope.condominio, onSaveFinished);
             } else {
-                Condominio.save($scope.condominio, $scope.cep, $scope.funcionario, onSaveFinished);
+                Condominio.save($scope.condominio, onSaveFinished);
             }
         };
 
@@ -42,12 +46,29 @@ angular.module('tmcApp').controller('CondominioDialogController',
             $modalInstance.dismiss('cancel');
         };
 
-        $scope.buscaCep = function (object) {
-            if (object != null) {
-                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + object.cep;
+        $scope.buscaCepCondominio = function (cep) {
+            if (cep != null) {
+                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep;
                 var response = $http.get(url);
                 response.success(function(resultado) {
-                    console.log(resultado);
+                    $scope.condominio.condominioLogradouro = resultado.logradouro;
+                    $scope.condominio.condominioBairro = resultado.bairro;
+                    $scope.condominio.condominioCidade = resultado.cidade;
+                    $scope.condominio.condominioUf = resultado.uf;
+                    return false;
+                });
+            }
+        };
+
+        $scope.buscaCepResponsavel = function (cep) {
+            if (cep != null) {
+                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep;
+                var response = $http.get(url);
+                response.success(function(resultado) {
+                    $scope.condominio.responsavelLogradouro = resultado.logradouro;
+                    $scope.condominio.responsavelBairro = resultado.bairro;
+                    $scope.condominio.responsavelCidade = resultado.cidade;
+                    $scope.condominio.responsavelUf = resultado.uf;
                     return false;
                 });
             }

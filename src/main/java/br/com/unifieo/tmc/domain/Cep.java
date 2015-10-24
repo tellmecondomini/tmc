@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,26 +23,37 @@ public class Cep implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
-    @NotNull        
+    @NotNull
     @Column(name = "bairro", nullable = false)
     private String bairro;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cidade", nullable = false)
     private String cidade;
 
-    @NotNull        
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "uf", nullable = false)
     private Uf uf;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cep", nullable = false)
     private Integer cep;
+
+    public Cep() {
+    }
+
+    public Cep(String logradouro, String bairro, String cidade, Uf uf, Integer cep) {
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.cep = cep;
+    }
 
     public Long getId() {
         return id;

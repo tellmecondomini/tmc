@@ -2,12 +2,12 @@
     "tmcApp": {
         "morador" : {
             "home": {
-                "title": "Moradors",
-                "createLabel": "Create a new Morador",
-                "createOrEditLabel": "Create or edit a Morador"
+                "title": "Moradores",
+                "createLabel": "Criar novo morador",
+                "createOrEditLabel": "Criar ou editar um morador"
             },
             "delete": {
-                "question": "Are you sure you want to delete Morador {{ id }}?"
+                "question": "Você tem certeza que deseja remover o Morador {{ id }}?"
             },
             "detail": {
                 "title": "Morador"
@@ -17,12 +17,12 @@
             "sexo": "Sexo",
             "email": "Email",
             "senha": "Senha",
-            "dataNascimento": "DataNascimento",
+            "dataNascimento": "Data de Nascimento",
             "ativo": "Ativo",
-            "bloqueiaAgendamento": "BloqueiaAgendamento",
+            "bloqueiaAgendamento": "Bloqueia Agendamento",
             "tipo": "Tipo",
             "imovel": "Imovel",
-            "telefoneMorador": "TelefoneMorador",
+            "telefoneMorador": "Telefone do Morador",
             "ocorrencia": "Ocorrencia",
             "agenda": "Agenda",
             "comentario": "Comentario"

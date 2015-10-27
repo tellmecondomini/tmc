@@ -43,17 +43,9 @@
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.funcionario.nome">Nome</th>
                     <th translate="tmcApp.funcionario.cpf">Cpf</th>
-                    <th translate="tmcApp.funcionario.sexo">Sexo</th>
-                    <th translate="tmcApp.funcionario.dataNascimento">DataNascimento</th>
-                    <th translate="tmcApp.funcionario.email">Email</th>
-                    <th translate="tmcApp.funcionario.senha">Senha</th>
                     <th translate="tmcApp.funcionario.ativo">Ativo</th>
                     <th translate="tmcApp.funcionario.dataCadastro">DataCadastro</th>
-                    <th translate="tmcApp.funcionario.numero">Numero</th>
-                    <th translate="tmcApp.funcionario.complemento">Complemento</th>
                     <th translate="tmcApp.funcionario.responsavel">Responsavel</th>
-                    <th translate="tmcApp.funcionario.cep">cep</th>
-                    <th translate="tmcApp.funcionario.condominio">condominio</th>
                     <th></th>
                 </tr>
             </thead>
@@ -62,21 +54,9 @@
                     <td><a ui-sref="funcionario.detail({id:funcionario.id})">{{funcionario.id}}</a></td>
                     <td>{{funcionario.nome}}</td>
                     <td>{{funcionario.cpf}}</td>
-                    <td translate="{{'tmcApp.Sexo.' + funcionario.sexo}}">{{funcionario.sexo}}</td>
-                    <td>{{funcionario.dataNascimento}}</td>
-                    <td>{{funcionario.email}}</td>
-                    <td>{{funcionario.senha}}</td>
                     <td>{{funcionario.ativo}}</td>
                     <td>{{funcionario.dataCadastro}}</td>
-                    <td>{{funcionario.numero}}</td>
-                    <td>{{funcionario.complemento}}</td>
                     <td>{{funcionario.responsavel}}</td>
-                    <td>
-                        <a ui-sref="cep.detail({id:funcionario.cep.id})">{{funcionario.cep.id}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="condominio.detail({id:funcionario.condominio.id})">{{funcionario.condominio.id}}</a>
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="funcionario.detail({id:funcionario.id})"

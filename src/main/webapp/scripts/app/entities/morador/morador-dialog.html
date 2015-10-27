@@ -1,120 +1,142 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myMoradorLabel" translate="tmcApp.morador.home.createOrEditLabel">Create or edit a Morador</h4>
+        <h4 class="modal-title" id="myMoradorLabel" translate="tmcApp.morador.home.createOrEditLabel">Create or edit a
+            Morador</h4>
     </div>
     <div class="modal-body">
+
         <jh-alert-error></jh-alert-error>
-        <div class="form-group">
-            <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="morador.id" readonly>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.nome" for="field_nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="field_nome"
-                    ng-model="morador.nome"
-                    required>
-            <div ng-show="editForm.nome.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.nome.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.nome" for="field_nome">Nome</label>
+                        <input type="text" class="form-control" name="nome" id="field_nome"
+                               ng-model="morador.nome"
+                               required>
+
+                        <div ng-show="editForm.nome.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.nome.$error.required" translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.cpf" for="field_cpf">Cpf</label>
-            <input type="text" class="form-control" name="cpf" id="field_cpf"
-                    ng-model="morador.cpf"
-                    required>
-            <div ng-show="editForm.cpf.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.cpf.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.cpf" for="field_cpf">Cpf</label>
+                        <input type="text" class="form-control" name="cpf" id="field_cpf"
+                               ng-model="morador.cpf"
+                               required>
+
+                        <div ng-show="editForm.cpf.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.cpf.$error.required" translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.dataNascimento"
+                               for="field_dataNascimento">DataNascimento</label>
+                        <input type="date" class="form-control" name="dataNascimento"
+                               id="field_dataNascimento"
+                               ng-model="morador.dataNascimento" ng-model-options="{timezone: 'UTC'}"
+                               required>
+
+                        <div ng-show="editForm.dataNascimento.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.dataNascimento.$error.required" translate="entity.validation.required">
+                                This field is required.
+                            </p>
+
+                            <p class="help-block"
+                               ng-show="editForm.dataNascimento.$error.datetimelocal"
+                               translate="entity.validation.datetimelocal">
+                                This field should be a date and time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.sexo" for="field_sexo">Sexo</label>
-            <select class="form-control" name="sexo" ng-model="morador.sexo" id="field_sexo">
-                <option value="M" translate="tmcApp.Sexo.M">M</option>
-                <option value="F" translate="tmcApp.Sexo.F">F</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.email" for="field_email">Email</label>
-            <input type="text" class="form-control" name="email" id="field_email"
-                    ng-model="morador.email"
-                    required>
-            <div ng-show="editForm.email.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.email.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.sexo" for="field_sexo">Sexo</label>
+                        <select class="form-control" name="sexo" ng-model="morador.sexo" id="field_sexo">
+                            <option value="M" translate="tmcApp.Sexo.M">M</option>
+                            <option value="F" translate="tmcApp.Sexo.F">F</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
+                        <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
+                            <option value="PROPRIETARIO" translate="tmcApp.TipoMorador.PROPRIETARIO">PROPRIETARIO
+                            </option>
+                            <option value="MORADOR" translate="tmcApp.TipoMorador.MORADOR">MORADOR</option>
+                            <option value="LOCATARIO" translate="tmcApp.TipoMorador.LOCATARIO">LOCATARIO</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.senha" for="field_senha">Senha</label>
-            <input type="text" class="form-control" name="senha" id="field_senha"
-                    ng-model="morador.senha"
-                    required>
-            <div ng-show="editForm.senha.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.senha.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.email" for="field_email">Email</label>
+                        <input type="text" class="form-control" name="email" id="field_email"
+                               ng-model="morador.email"
+                               required>
+
+                        <div ng-show="editForm.email.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.email.$error.required" translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label translate="tmcApp.morador.senha" for="field_senha">Senha</label>
+                        <input type="password" class="form-control" name="senha" id="field_senha"
+                               ng-model="morador.senha"
+                               required>
+
+                        <div ng-show="editForm.senha.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.senha.$error.required" translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.dataNascimento" for="field_dataNascimento">DataNascimento</label>
-            <input type="datetime-local" class="form-control" name="dataNascimento" id="field_dataNascimento"
-                    ng-model="morador.dataNascimento" ng-model-options="{timezone: 'UTC'}"
-                    required>
-            <div ng-show="editForm.dataNascimento.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.dataNascimento.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.dataNascimento.$error.datetimelocal" translate="entity.validation.datetimelocal">
-                    This field should be a date and time.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.ativo" for="field_ativo">Ativo</label>
-            <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
-                    ng-model="morador.ativo"
-                    >
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.bloqueiaAgendamento" for="field_bloqueiaAgendamento">BloqueiaAgendamento</label>
-            <input type="checkbox" class="form-control" name="bloqueiaAgendamento" id="field_bloqueiaAgendamento"
-                    ng-model="morador.bloqueiaAgendamento"
-                    >
-        </div>
-        <div class="form-group">
-            <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
-            <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
-                <option value="PROPRIETARIO" translate="tmcApp.TipoMorador.PROPRIETARIO">PROPRIETARIO</option>
-                <option value="MORADOR" translate="tmcApp.TipoMorador.MORADOR">MORADOR</option>
-                <option value="LOCATARIO" translate="tmcApp.TipoMorador.LOCATARIO">LOCATARIO</option>
-            </select>
+
         </div>
 
-        <div class="form-group">
-            <label translate="tmcApp.morador.imovel" for="field_imovel">imovel</label>
-            <select class="form-control" id="field_imovel" name="imovel" ng-model="morador.imovel" ng-options="imovel as imovel.id for imovel in imovels track by imovel.id">
-                <option value=""></option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

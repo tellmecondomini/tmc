@@ -99,10 +99,9 @@ public class CondominioResource {
     @Timed
     public ResponseEntity<Condominio> getCondominio(@PathVariable Long id) {
         log.debug("REST request to get Condominio : {}", id);
-        return Optional.ofNullable(condominioRepository.findOne(id))
-            .map(condominio -> new ResponseEntity<>(
-                condominio,
-                HttpStatus.OK))
+        return Optional
+            .ofNullable(condominioRepository.findOne(id))
+            .map(condominio -> new ResponseEntity<>(condominio, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

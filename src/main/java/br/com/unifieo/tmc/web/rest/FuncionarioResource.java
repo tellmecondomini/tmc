@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.service.FuncionarioService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
@@ -31,6 +32,9 @@ public class FuncionarioResource {
     @Inject
     private FuncionarioRepository funcionarioRepository;
 
+    @Inject
+    private FuncionarioService funcionarioService;
+
     /**
      * POST  /funcionarios -> Create a new funcionario.
      */
@@ -43,7 +47,7 @@ public class FuncionarioResource {
         if (funcionario.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new funcionario cannot already have an ID").body(null);
         }
-        Funcionario result = funcionarioRepository.save(funcionario);
+        Funcionario result = funcionarioService.save(funcionario);
         return ResponseEntity.created(new URI("/api/funcionarios/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("funcionario", result.getId().toString()))
                 .body(result);

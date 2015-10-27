@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.service.MoradorService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.repository.MoradorRepository;
@@ -31,6 +32,9 @@ public class MoradorResource {
     @Inject
     private MoradorRepository moradorRepository;
 
+    @Inject
+    private MoradorService moradorService;
+
     /**
      * POST  /moradors -> Create a new morador.
      */
@@ -43,7 +47,7 @@ public class MoradorResource {
         if (morador.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new morador cannot already have an ID").body(null);
         }
-        Morador result = moradorRepository.save(morador);
+        Morador result = moradorService.save(morador);
         return ResponseEntity.created(new URI("/api/moradors/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("morador", result.getId().toString()))
                 .body(result);

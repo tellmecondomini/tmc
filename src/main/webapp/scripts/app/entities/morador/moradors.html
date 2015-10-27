@@ -42,15 +42,9 @@
                 <tr>
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.morador.nome">Nome</th>
-                    <th translate="tmcApp.morador.cpf">Cpf</th>
-                    <th translate="tmcApp.morador.sexo">Sexo</th>
-                    <th translate="tmcApp.morador.email">Email</th>
-                    <th translate="tmcApp.morador.senha">Senha</th>
-                    <th translate="tmcApp.morador.dataNascimento">DataNascimento</th>
                     <th translate="tmcApp.morador.ativo">Ativo</th>
                     <th translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</th>
                     <th translate="tmcApp.morador.tipo">Tipo</th>
-                    <th translate="tmcApp.morador.imovel">imovel</th>
                     <th></th>
                 </tr>
             </thead>
@@ -58,11 +52,6 @@
                 <tr ng-repeat="morador in moradors">
                     <td><a ui-sref="morador.detail({id:morador.id})">{{morador.id}}</a></td>
                     <td>{{morador.nome}}</td>
-                    <td>{{morador.cpf}}</td>
-                    <td translate="{{'tmcApp.Sexo.' + morador.sexo}}">{{morador.sexo}}</td>
-                    <td>{{morador.email}}</td>
-                    <td>{{morador.senha}}</td>
-                    <td>{{morador.dataNascimento}}</td>
                     <td>{{morador.ativo}}</td>
                     <td>{{morador.bloqueiaAgendamento}}</td>
                     <td translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</td>

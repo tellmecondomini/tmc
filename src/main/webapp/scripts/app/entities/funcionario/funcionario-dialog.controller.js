@@ -39,4 +39,18 @@ angular.module('tmcApp').controller('FuncionarioDialogController',
         $scope.clear = function() {
             $modalInstance.dismiss('cancel');
         };
+
+        $scope.buscaCep = function (cep) {
+            if (cep != null) {
+                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep;
+                var response = $http.get(url);
+                response.success(function(resultado) {
+                    $scope.logradouro = resultado.logradouro;
+                    $scope.bairro = resultado.bairro;
+                    $scope.cidade = resultado.cidade;
+                    $scope.uf = resultado.uf;
+                    return false;
+                });
+            }
+        };
 }]);

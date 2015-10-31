@@ -4,6 +4,7 @@ import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
+import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -116,20 +117,35 @@ public class Funcionario implements Serializable {
         this.condominio = condominio;
     }
 
-    public Funcionario(CondominioDTO condominioDto, Condominio condominioSave) {
-        this.nome = condominioDto.getResponsavelNome();
-        this.cpf = String.valueOf(condominioDto.getResponsavelCpf());
-        this.sexo = condominioDto.getResponsavelSexo();
-        this.dataNascimento = new DateTime(condominioDto.getResponsavelDataNascimento());
-        this.email = condominioDto.getResponsavelEmail();
-        this.senha = condominioDto.getResponsavelSenha();
+    public Funcionario(CondominioDTO condominioDTO, Condominio condominioSave) {
+        this.nome = condominioDTO.getResponsavelNome();
+        this.cpf = String.valueOf(condominioDTO.getResponsavelCpf());
+        this.sexo = condominioDTO.getResponsavelSexo();
+        this.dataNascimento = new DateTime(condominioDTO.getResponsavelDataNascimento());
+        this.email = condominioDTO.getResponsavelEmail();
+        this.senha = condominioDTO.getResponsavelSenha();
         this.ativo = true;
         this.dataCadastro = new DateTime(new Date());
-        this.numero = condominioDto.getResponsavelNumero();
-        this.complemento = condominioDto.getResponsavelComplemento();
+        this.numero = condominioDTO.getResponsavelNumero();
+        this.complemento = condominioDTO.getResponsavelComplemento();
         this.responsavel = true;
-        this.cep = new Cep(condominioDto.getResponsavelLogradouro(), condominioDto.getResponsavelBairro(), condominioDto.getResponsavelCidade(), condominioDto.getResponsavelUf(), condominioDto.getResponsavelCep());
+        this.cep = new Cep(condominioDTO.getResponsavelLogradouro(), condominioDTO.getResponsavelBairro(), condominioDTO.getResponsavelCidade(), condominioDTO.getResponsavelUf(), condominioDTO.getResponsavelCep());
         this.condominio = condominioSave;
+    }
+
+    public Funcionario(FuncionarioDTO funcionarioDTO) {
+        this.nome = funcionarioDTO.getNome();
+        this.cpf = String.valueOf(funcionarioDTO.getCpf());
+        this.sexo = funcionarioDTO.getSexo();
+        this.dataNascimento = new DateTime(funcionarioDTO.getDataNascimento());
+        this.email = funcionarioDTO.getEmail();
+        this.senha = funcionarioDTO.getSenha();
+        this.ativo = true;
+        this.dataCadastro = new DateTime(new Date());
+        this.numero = funcionarioDTO.getNumero();
+        this.complemento = funcionarioDTO.getComplemento();
+        this.responsavel = false;
+        this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf(), funcionarioDTO.getCep());
     }
 
     public Long getId() {
@@ -271,9 +287,8 @@ public class Funcionario implements Serializable {
 
         Funcionario funcionario = (Funcionario) o;
 
-        if (!Objects.equals(id, funcionario.id)) return false;
+        return Objects.equals(id, funcionario.id);
 
-        return true;
     }
 
     @Override

@@ -26,7 +26,16 @@
             "cep": "Cep",
             "condominio": "Condominio",
             "telefoneFuncionario": "TelefoneFuncionario",
-            "comentario": "Comentario"
+            "comentario": "Comentario",
+            "numero": "Número",
+            "complemento": "Complemento"
+        },
+        "cep" : {
+            "logradouro": "Logradouro",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "uf": "Uf",
+            "cep": "Cep"
         }
     }
 }

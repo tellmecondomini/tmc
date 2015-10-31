@@ -2,18 +2,17 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Cep;
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.CepRepository;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -26,10 +25,9 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 
 /**
  * Test class for the CepResource REST controller.
@@ -113,78 +111,6 @@ public class CepResourceTest {
 
     @Test
     @Transactional
-    public void checkLogradouroIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cepRepository.findAll().size();
-        // set the field null
-        cep.setLogradouro(null);
-
-        // Create the Cep, which fails.
-
-        restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
-
-        List<Cep> ceps = cepRepository.findAll();
-        assertThat(ceps).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkBairroIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cepRepository.findAll().size();
-        // set the field null
-        cep.setBairro(null);
-
-        // Create the Cep, which fails.
-
-        restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
-
-        List<Cep> ceps = cepRepository.findAll();
-        assertThat(ceps).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCidadeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cepRepository.findAll().size();
-        // set the field null
-        cep.setCidade(null);
-
-        // Create the Cep, which fails.
-
-        restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
-
-        List<Cep> ceps = cepRepository.findAll();
-        assertThat(ceps).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkUfIsRequired() throws Exception {
-        int databaseSizeBeforeTest = cepRepository.findAll().size();
-        // set the field null
-        cep.setUf(null);
-
-        // Create the Cep, which fails.
-
-        restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
-
-        List<Cep> ceps = cepRepository.findAll();
-        assertThat(ceps).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkCepIsRequired() throws Exception {
         int databaseSizeBeforeTest = cepRepository.findAll().size();
         // set the field null
@@ -259,7 +185,7 @@ public class CepResourceTest {
         cep.setCidade(UPDATED_CIDADE);
         cep.setUf(UPDATED_UF);
         cep.setCep(UPDATED_CEP);
-        
+
 
         restCepMockMvc.perform(put("/api/ceps")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

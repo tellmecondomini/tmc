@@ -1,20 +1,19 @@
 package br.com.unifieo.tmc.web.rest;
 
-import br.com.unifieo.tmc.service.FuncionarioService;
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
+import br.com.unifieo.tmc.service.FuncionarioService;
+import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -36,38 +35,38 @@ public class FuncionarioResource {
     private FuncionarioService funcionarioService;
 
     /**
-     * POST  /funcionarios -> Create a new funcionario.
+     * POST  /funcionarios -> Create a new funcionarioDTO.
      */
     @RequestMapping(value = "/funcionarios",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Funcionario> createFuncionario(@Valid @RequestBody Funcionario funcionario) throws URISyntaxException {
-        log.debug("REST request to save Funcionario : {}", funcionario);
-        if (funcionario.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new funcionario cannot already have an ID").body(null);
+    public ResponseEntity<Funcionario> createFuncionario(@RequestBody FuncionarioDTO funcionarioDTO) throws URISyntaxException {
+        log.debug("REST request to save Funcionario : {}", funcionarioDTO);
+        if (funcionarioDTO.getId() != null) {
+            return ResponseEntity.badRequest().header("Failure", "A new funcionarioDTO cannot already have an ID").body(null);
         }
-        Funcionario result = funcionarioService.save(funcionario);
+        Funcionario result = funcionarioService.save(funcionarioDTO);
         return ResponseEntity.created(new URI("/api/funcionarios/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("funcionario", result.getId().toString()))
+                .headers(HeaderUtil.createEntityCreationAlert("funcionarioDTO", result.getId().toString()))
                 .body(result);
     }
 
     /**
-     * PUT  /funcionarios -> Updates an existing funcionario.
+     * PUT  /funcionarios -> Updates an existing funcionarioDTO.
      */
     @RequestMapping(value = "/funcionarios",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Funcionario> updateFuncionario(@Valid @RequestBody Funcionario funcionario) throws URISyntaxException {
-        log.debug("REST request to update Funcionario : {}", funcionario);
-        if (funcionario.getId() == null) {
-            return createFuncionario(funcionario);
+    public ResponseEntity<Funcionario> updateFuncionario(@RequestBody FuncionarioDTO funcionarioDTO) throws URISyntaxException {
+        log.debug("REST request to update Funcionario : {}", funcionarioDTO);
+        if (funcionarioDTO.getId() == null) {
+            return createFuncionario(funcionarioDTO);
         }
-        Funcionario result = funcionarioRepository.save(funcionario);
+        Funcionario result = funcionarioService.save(funcionarioDTO);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("funcionario", funcionario.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert("funcionarioDTO", funcionarioDTO.getId().toString()))
                 .body(result);
     }
 

@@ -17,41 +17,23 @@
             <label translate="tmcApp.cep.logradouro" for="field_logradouro">Logradouro</label>
             <input type="text" class="form-control" name="logradouro" id="field_logradouro"
                     ng-model="cep.logradouro"
-                    required>
-            <div ng-show="editForm.logradouro.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.logradouro.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+                    >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.bairro" for="field_bairro">Bairro</label>
             <input type="text" class="form-control" name="bairro" id="field_bairro"
                     ng-model="cep.bairro"
-                    required>
-            <div ng-show="editForm.bairro.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.bairro.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+                    >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.cidade" for="field_cidade">Cidade</label>
             <input type="text" class="form-control" name="cidade" id="field_cidade"
                     ng-model="cep.cidade"
-                    required>
-            <div ng-show="editForm.cidade.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.cidade.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+                    >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.uf" for="field_uf">Uf</label>
-            <select class="form-control" name="uf" ng-model="cep.uf" id="field_uf" required>
+            <select class="form-control" name="uf" ng-model="cep.uf" id="field_uf">
                 <option value="AC" translate="tmcApp.Uf.AC">AC</option>
                 <option value="AL" translate="tmcApp.Uf.AL">AL</option>
                 <option value="AM" translate="tmcApp.Uf.AM">AM</option>
@@ -80,12 +62,6 @@
                 <option value="SP" translate="tmcApp.Uf.SP">SP</option>
                 <option value="TO" translate="tmcApp.Uf.TO">TO</option>
             </select>
-            <div ng-show="editForm.uf.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.uf.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.cep" for="field_cep">Cep</label>

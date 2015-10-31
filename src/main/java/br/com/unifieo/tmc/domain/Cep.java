@@ -1,15 +1,13 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 
 /**
  * A Cep.
@@ -23,21 +21,17 @@ public class Cep implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "logradouro", nullable = false)
+    @Column(name = "logradouro")
     private String logradouro;
 
-    @NotNull
-    @Column(name = "bairro", nullable = false)
+    @Column(name = "bairro")
     private String bairro;
 
-    @NotNull
-    @Column(name = "cidade", nullable = false)
+    @Column(name = "cidade")
     private String cidade;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "uf", nullable = false)
+    @Column(name = "uf")
     private Uf uf;
 
     @NotNull
@@ -114,9 +108,8 @@ public class Cep implements Serializable {
 
         Cep cep = (Cep) o;
 
-        if ( ! Objects.equals(id, cep.id)) return false;
+        return Objects.equals(id, cep.id);
 
-        return true;
     }
 
     @Override
@@ -127,12 +120,12 @@ public class Cep implements Serializable {
     @Override
     public String toString() {
         return "Cep{" +
-                "id=" + id +
-                ", logradouro='" + logradouro + "'" +
-                ", bairro='" + bairro + "'" +
-                ", cidade='" + cidade + "'" +
-                ", uf='" + uf + "'" +
-                ", cep='" + cep + "'" +
-                '}';
+            "id=" + id +
+            ", logradouro='" + logradouro + "'" +
+            ", bairro='" + bairro + "'" +
+            ", cidade='" + cidade + "'" +
+            ", uf='" + uf + "'" +
+            ", cep='" + cep + "'" +
+            '}';
     }
 }

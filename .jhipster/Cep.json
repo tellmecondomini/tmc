@@ -4,35 +4,23 @@
         {
             "fieldId": 1,
             "fieldName": "logradouro",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldId": 2,
             "fieldName": "bairro",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldId": 3,
             "fieldName": "cidade",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldId": 4,
             "fieldName": "uf",
             "fieldType": "Uf",
-            "fieldValues": "AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MT, MS, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValues": "AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MT, MS, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO"
         },
         {
             "fieldId": 5,

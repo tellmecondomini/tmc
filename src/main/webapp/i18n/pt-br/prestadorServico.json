@@ -21,6 +21,27 @@
             "cep": "Cep",
             "telefonePrestadorServico": "TelefonePrestadorServico",
             "competenciaPrestador": "CompetenciaPrestador"
+        },
+        "cep" : {
+            "logradouro": "Logradouro",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "uf": "Uf",
+            "cep": "Cep"
+        },
+        "competenciaPrestador" : {
+            "home": {
+                "title": "CompetenciaPrestadors",
+                "createLabel": "Create a new CompetenciaPrestador",
+                "createOrEditLabel": "Create or edit a CompetenciaPrestador"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete CompetenciaPrestador {{ id }}?"
+            },
+            "detail": {
+                "title": "CompetenciaPrestador"
+            },
+            "descricao": "Descricao"
         }
     }
 }

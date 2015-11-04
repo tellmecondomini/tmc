@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('FuncionarioDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario', 'Comentario',
-        function($scope, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario, Comentario) {
+    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario', 'Comentario',
+        function($scope, $http, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario, Comentario) {
 
         $scope.funcionario = entity;
         $scope.ceps = Cep.query({filter: 'funcionario-is-null'});

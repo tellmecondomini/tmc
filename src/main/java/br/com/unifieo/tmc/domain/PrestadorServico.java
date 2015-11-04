@@ -1,17 +1,16 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Pessoa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Pessoa;
+import java.util.Set;
 
 /**
  * A PrestadorServico.
@@ -25,38 +24,43 @@ public class PrestadorServico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
-    
+
     @Column(name = "email")
     private String email;
 
-    @NotNull        
+    @NotNull
     @Column(name = "documento", nullable = false)
     private String documento;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "pessoa")
     private Pessoa pessoa;
 
-    @NotNull        
+    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
-    
+
     @Column(name = "complemento")
     private String complemento;
 
     @OneToOne
     private Cep cep;
 
+    @OneToOne
+    private CompetenciaPrestador competenciaPrestador;
+
     @OneToMany(mappedBy = "prestadorServico")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();
 
-    @OneToOne
-    private CompetenciaPrestador competenciaPrestador;
+    public PrestadorServico() {
+        this.cep = new Cep();
+        this.competenciaPrestador = new CompetenciaPrestador();
+    }
 
     public Long getId() {
         return id;
@@ -149,7 +153,7 @@ public class PrestadorServico implements Serializable {
 
         PrestadorServico prestadorServico = (PrestadorServico) o;
 
-        if ( ! Objects.equals(id, prestadorServico.id)) return false;
+        if (!Objects.equals(id, prestadorServico.id)) return false;
 
         return true;
     }
@@ -162,13 +166,13 @@ public class PrestadorServico implements Serializable {
     @Override
     public String toString() {
         return "PrestadorServico{" +
-                "id=" + id +
-                ", nome='" + nome + "'" +
-                ", email='" + email + "'" +
-                ", documento='" + documento + "'" +
-                ", pessoa='" + pessoa + "'" +
-                ", numero='" + numero + "'" +
-                ", complemento='" + complemento + "'" +
-                '}';
+            "id=" + id +
+            ", nome='" + nome + "'" +
+            ", email='" + email + "'" +
+            ", documento='" + documento + "'" +
+            ", pessoa='" + pessoa + "'" +
+            ", numero='" + numero + "'" +
+            ", complemento='" + complemento + "'" +
+            '}';
     }
 }

@@ -1,12 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Dependencia;
 import br.com.unifieo.tmc.repository.DependenciaRepository;
+import br.com.unifieo.tmc.service.DependenciaService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +31,9 @@ public class DependenciaResource {
     @Inject
     private DependenciaRepository dependenciaRepository;
 
+    @Inject
+    private DependenciaService dependenciaService;
+
     /**
      * POST  /dependencias -> Create a new dependencia.
      */
@@ -43,7 +46,7 @@ public class DependenciaResource {
         if (dependencia.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new dependencia cannot already have an ID").body(null);
         }
-        Dependencia result = dependenciaRepository.save(dependencia);
+        Dependencia result = dependenciaService.save(dependencia);
         return ResponseEntity.created(new URI("/api/dependencias/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("dependencia", result.getId().toString()))
                 .body(result);

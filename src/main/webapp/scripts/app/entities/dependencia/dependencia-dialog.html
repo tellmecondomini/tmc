@@ -1,48 +1,51 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myDependenciaLabel" translate="tmcApp.dependencia.home.createOrEditLabel">Create or edit a Dependencia</h4>
+        <h4 class="modal-title" id="myDependenciaLabel" translate="tmcApp.dependencia.home.createOrEditLabel">Create or
+            edit a Dependencia</h4>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
-        <div class="form-group">
+        <div class="form-group" ng-hide="dependencia.id == null">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="dependencia.id" readonly>
+                   ng-model="dependencia.id" readonly>
         </div>
         <div class="form-group">
             <label translate="tmcApp.dependencia.nome" for="field_nome">Nome</label>
             <input type="text" class="form-control" name="nome" id="field_nome"
-                    ng-model="dependencia.nome"
-                    required>
+                   ng-model="dependencia.nome"
+                   required>
+
             <div ng-show="editForm.nome.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.nome.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.nome.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-hide="dependencia.id == null">
             <label translate="tmcApp.dependencia.disponivel" for="field_disponivel">Disponivel</label>
             <input type="checkbox" class="form-control" name="disponivel" id="field_disponivel"
-                    ng-model="dependencia.disponivel"
-                    >
+                   ng-model="dependencia.disponivel"
+                >
         </div>
         <div class="form-group">
             <label translate="tmcApp.dependencia.capacidade" for="field_capacidade">Capacidade</label>
             <input type="number" class="form-control" name="capacidade" id="field_capacidade"
-                    ng-model="dependencia.capacidade"
-                    required>
+                   ng-model="dependencia.capacidade"
+                   required>
+
             <div ng-show="editForm.capacidade.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.capacidade.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.capacidade.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+
                 <p class="help-block"
-                    ng-show="editForm.capacidade.$error.number" translate="entity.validation.number">
+                   ng-show="editForm.capacidade.$error.number" translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
@@ -50,19 +53,23 @@
         <div class="form-group">
             <label translate="tmcApp.dependencia.custoAdicional" for="field_custoAdicional">CustoAdicional</label>
             <input type="number" class="form-control" name="custoAdicional" id="field_custoAdicional"
-                    ng-model="dependencia.custoAdicional"
-                    required min="0">
+                   ng-model="dependencia.custoAdicional"
+                   required min="0">
+
             <div ng-show="editForm.custoAdicional.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.custoAdicional.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.custoAdicional.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+
                 <p class="help-block"
-                    ng-show="editForm.custoAdicional.$error.min" translate="entity.validation.min" translate-value-min="0">
+                   ng-show="editForm.custoAdicional.$error.min" translate="entity.validation.min"
+                   translate-value-min="0">
                     This field should be more than 0.
                 </p>
+
                 <p class="help-block"
-                    ng-show="editForm.custoAdicional.$error.number" translate="entity.validation.number">
+                   ng-show="editForm.custoAdicional.$error.number" translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
@@ -70,20 +77,22 @@
         <div class="form-group">
             <label translate="tmcApp.dependencia.regraUso" for="field_regraUso">RegraUso</label>
             <input type="text" class="form-control" name="regraUso" id="field_regraUso"
-                    ng-model="dependencia.regraUso"
-                    >
+                   ng-model="dependencia.regraUso"
+                >
         </div>
 
         <div class="form-group">
             <label translate="tmcApp.dependencia.condominio" for="field_condominio">condominio</label>
-            <select class="form-control" id="field_condominio" name="condominio" ng-model="dependencia.condominio" ng-options="condominio as condominio.id for condominio in condominios track by condominio.id">
+            <select class="form-control" id="field_condominio" name="condominio" ng-model="dependencia.condominio"
+                    ng-options="condominio as condominio.id for condominio in condominios track by condominio.id">
                 <option value=""></option>
             </select>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

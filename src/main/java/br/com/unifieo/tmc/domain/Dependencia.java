@@ -5,11 +5,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Dependencia.
@@ -23,22 +24,22 @@ public class Dependencia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
-    
+
     @Column(name = "disponivel")
     private Boolean disponivel;
 
-    @NotNull        
+    @NotNull
     @Column(name = "capacidade", nullable = false)
     private Integer capacidade;
 
     @NotNull
-    @Min(value = 0)        
+    @Min(value = 0)
     @Column(name = "custo_adicional", nullable = false)
     private Double custoAdicional;
-    
+
     @Column(name = "regra_uso")
     private String regraUso;
 
@@ -125,9 +126,8 @@ public class Dependencia implements Serializable {
 
         Dependencia dependencia = (Dependencia) o;
 
-        if ( ! Objects.equals(id, dependencia.id)) return false;
+        return Objects.equals(id, dependencia.id);
 
-        return true;
     }
 
     @Override
@@ -146,4 +146,6 @@ public class Dependencia implements Serializable {
                 ", regraUso='" + regraUso + "'" +
                 '}';
     }
+
+
 }

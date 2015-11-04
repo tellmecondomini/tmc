@@ -44,11 +44,11 @@ public class FuncionarioResource {
     public ResponseEntity<Funcionario> createFuncionario(@RequestBody FuncionarioDTO funcionarioDTO) throws URISyntaxException {
         log.debug("REST request to save Funcionario : {}", funcionarioDTO);
         if (funcionarioDTO.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new funcionarioDTO cannot already have an ID").body(null);
+            return ResponseEntity.badRequest().header("Failure", "A new funcionario cannot already have an ID").body(null);
         }
         Funcionario result = funcionarioService.save(funcionarioDTO);
         return ResponseEntity.created(new URI("/api/funcionarios/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("funcionarioDTO", result.getId().toString()))
+                .headers(HeaderUtil.createEntityCreationAlert("funcionario", result.getId().toString()))
                 .body(result);
     }
 
@@ -66,7 +66,7 @@ public class FuncionarioResource {
         }
         Funcionario result = funcionarioService.save(funcionarioDTO);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("funcionarioDTO", funcionarioDTO.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert("funcionario", funcionarioDTO.getId().toString()))
                 .body(result);
     }
 

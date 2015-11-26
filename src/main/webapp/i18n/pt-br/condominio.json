@@ -2,21 +2,21 @@
     "tmcApp": {
         "condominio" : {
             "home": {
-                "title": "Condominios",
-                "createLabel": "Novo Condominio",
-                "createOrEditLabel": "Criar ou editar um Condominio"
+                "title": "Condomínios",
+                "createLabel": "Novo Condomínio",
+                "createOrEditLabel": "Criar ou editar um Condomínio"
             },
             "delete": {
-                "question": "Você tem certeza que deseja deletar o Condominio {{ id }}?"
+                "question": "Você tem certeza que deseja deletar o Condomínio {{ id }}?"
             },
             "detail": {
-                "title": "Condominio"
+                "title": "Condomínio"
             },
-            "razaoSocial": "Razao Social",
+            "razaoSocial": "Razão Social",
             "cnpj": "Cnpj",
             "ativo": "Ativo",
             "dataCadastro": "Data Cadastro",
-            "disposicao": "Disposicao",
+            "disposicao": "Disposição",
             "numero": "Número",
             "complemento": "Complemento",
             "cep": "Cep",
@@ -26,12 +26,12 @@
         },
         "cep" : {
             "home": {
-                "title": "Ceps",
-                "createLabel": "Create a new Cep",
-                "createOrEditLabel": "Create or edit a Cep"
+                "title": "Cep",
+                "createLabel": "Novo Cep",
+                "createOrEditLabel": "Criar ou editar um Cep"
             },
             "delete": {
-                "question": "Are you sure you want to delete Cep {{ id }}?"
+                "question": "Você tem certeza que deseja deletar o Cep {{ id }}?"
             },
             "detail": {
                 "title": "Cep"
@@ -39,17 +39,17 @@
             "logradouro": "Logradouro",
             "bairro": "Bairro",
             "cidade": "Cidade",
-            "uf": "Uf",
+            "uf": "UF",
             "cep": "Cep"
         },
         "funcionario" : {
             "home": {
                 "title": "Funcionarios",
-                "createLabel": "Create a new Funcionario",
-                "createOrEditLabel": "Create or edit a Funcionario"
+                "createLabel": "Novo Funcionário",
+                "createOrEditLabel": "Criar ou editar um Funcionário"
             },
             "delete": {
-                "question": "Are you sure you want to delete Funcionario {{ id }}?"
+                "question": "Você tem certeza que deseja deletar o Funcionário {{ id }}?"
             },
             "detail": {
                 "title": "Funcionario"
@@ -57,16 +57,16 @@
             "nome": "Nome",
             "cpf": "Cpf",
             "sexo": "Sexo",
-            "dataNascimento": "Data Nascimento",
-            "email": "Email",
+            "dataNascimento": "Data de Nascimento",
+            "email": "E-mail",
             "senha": "Senha",
             "ativo": "Ativo",
-            "dataCadastro": "Data Cadastro",
-            "numero": "Numero",
+            "dataCadastro": "Data de Cadastro",
+            "numero": "Número",
             "complemento": "Complemento",
-            "responsavel": "Responsavel",
+            "responsavel": "Responsável",
             "cep": "Cep",
-            "condominio": "Condominio",
+            "condominio": "Condomínio",
             "telefoneFuncionario": "Telefones",
             "comentario": "Comentario"
         }

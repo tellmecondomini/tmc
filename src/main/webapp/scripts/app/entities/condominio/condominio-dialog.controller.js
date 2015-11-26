@@ -9,10 +9,10 @@ angular.module('tmcApp').controller('CondominioDialogController',
         $scope.ceps = Cep.query({filter: 'condominio-is-null'});
 
         $q.all([$scope.condominio.$promise, $scope.ceps.$promise]).then(function() {
-            if (!$scope.condominio.cep.id) {
+            if (!$scope.condominio.cep) {
                 return $q.reject();
             }
-            return Cep.get({id : $scope.condominio.cep.id}).$promise;
+            return Cep.get({id : $scope.condominio.cep}).$promise;
         }).then(function(cep) {
             $scope.ceps.push(cep);
         });

@@ -1,7 +1,7 @@
 /*!
  * angular-ui-mask
  * https://github.com/angular-ui/ui-mask
- * Version: 1.6.1 - 2015-11-14T14:46:58.619Z
+ * Version: 1.6.0 - 2015-11-11T01:49:32.318Z
  * License: MIT
  */
 
@@ -44,15 +44,6 @@ angular.module('ui.mask', [])
                                     originalMaxlength = iAttrs.maxlength,
                                     // Vars used exclusively in eventHandler()
                                     oldValue, oldValueUnmasked, oldCaretPosition, oldSelectionLength;
-
-                            var originalIsEmpty = controller.$isEmpty;
-	                        controller.$isEmpty = function(value) {
-		                        if (maskPatterns) {
-			                        return originalIsEmpty(unmaskValue(value || ''));
-		                        } else {
-			                        return originalIsEmpty(value);
-		                        }
-	                        };
 
                             function initialize(maskAttr) {
                                 if (!angular.isDefined(maskAttr)) {
@@ -113,6 +104,9 @@ angular.module('ui.mask', [])
                                 // to be out-of-sync with what the controller's $viewValue is set to.
                                 controller.$viewValue = value.length ? maskValue(value) : '';
                                 controller.$setValidity('mask', isValid);
+                                if (value === '' && iAttrs.required) {
+                                    controller.$setValidity('required', !controller.$error.required);
+                                }
                                 if (isValid) {
                                     return modelViewValue ? controller.$viewValue : value;
                                 } else {

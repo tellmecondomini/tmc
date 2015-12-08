@@ -1,0 +1,83 @@
+{
+    "tmcApp": {
+        "condominio" : {
+            "home": {
+                "title": "Condominios",
+                "createLabel": "Create a new Condominio",
+                "createOrEditLabel": "Create or edit a Condominio"
+            },
+            "created": "A new Condominio is created with identifier {{ param }}",
+            "updated": "A Condominio is updated with identifier {{ param }}",
+            "deleted": "A Condominio is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Condominio {{ id }}?"
+            },
+            "detail": {
+                "title": "Condominio"
+            },
+            "razaoSocial": "RazaoSocial",
+            "cnpj": "Cnpj",
+            "ativo": "Ativo",
+            "dataCadastro": "DataCadastro",
+            "disposicao": "Disposicao",
+            "numero": "Numero",
+            "complemento": "Complemento",
+            "cep": "Cep",
+            "funcionario": "Funcionario",
+            "dependencia": "Dependencia",
+            "telefoneCondominio": "TelefoneCondominio"
+        },
+        "cep" : {
+            "home": {
+                "title": "Ceps",
+                "createLabel": "Create a new Cep",
+                "createOrEditLabel": "Create or edit a Cep"
+            },
+            "created": "A new Cep is created with identifier {{ param }}",
+            "updated": "A Cep is updated with identifier {{ param }}",
+            "deleted": "A Cep is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Cep {{ id }}?"
+            },
+            "detail": {
+                "title": "Cep"
+            },
+            "logradouro": "Logradouro",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "uf": "Uf",
+            "cep": "Cep"
+        },
+        "funcionario" : {
+            "home": {
+                "title": "Funcionarios",
+                "createLabel": "Create a new Funcionario",
+                "createOrEditLabel": "Create or edit a Funcionario"
+            },
+            "created": "A new Funcionario is created with identifier {{ param }}",
+            "updated": "A Funcionario is updated with identifier {{ param }}",
+            "deleted": "A Funcionario is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Funcionario {{ id }}?"
+            },
+            "detail": {
+                "title": "Funcionario"
+            },
+            "nome": "Nome",
+            "cpf": "Cpf",
+            "sexo": "Sexo",
+            "dataNascimento": "Data Nascimento",
+            "email": "Email",
+            "senha": "Senha",
+            "ativo": "Ativo",
+            "dataCadastro": "Data Cadastro",
+            "numero": "Numero",
+            "complemento": "Complemento",
+            "responsavel": "Responsavel",
+            "cep": "Cep",
+            "condominio": "Condominio",
+            "telefoneFuncionario": "TelefoneFuncionario",
+            "comentario": "Comentario"
+        }
+    }
+}

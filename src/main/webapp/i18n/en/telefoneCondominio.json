@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "telefoneCondominio" : {
+            "home": {
+                "title": "TelefoneCondominios",
+                "createLabel": "Create a new TelefoneCondominio",
+                "createOrEditLabel": "Create or edit a TelefoneCondominio"
+            },
+            "created": "A new TelefoneCondominio is created with identifier {{ param }}",
+            "updated": "A TelefoneCondominio is updated with identifier {{ param }}",
+            "deleted": "A TelefoneCondominio is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete TelefoneCondominio {{ id }}?"
+            },
+            "detail": {
+                "title": "TelefoneCondominio"
+            },
+            "numero": "Numero",
+            "condominio": "Condominio"
+        }
+    }
+}

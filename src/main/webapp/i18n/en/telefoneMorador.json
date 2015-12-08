@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "telefoneMorador" : {
+            "home": {
+                "title": "TelefoneMoradors",
+                "createLabel": "Create a new TelefoneMorador",
+                "createOrEditLabel": "Create or edit a TelefoneMorador"
+            },
+            "created": "A new TelefoneMorador is created with identifier {{ param }}",
+            "updated": "A TelefoneMorador is updated with identifier {{ param }}",
+            "deleted": "A TelefoneMorador is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete TelefoneMorador {{ id }}?"
+            },
+            "detail": {
+                "title": "TelefoneMorador"
+            },
+            "numero": "Numero",
+            "morador": "Morador"
+        }
+    }
+}

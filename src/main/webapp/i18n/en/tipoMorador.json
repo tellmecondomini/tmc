@@ -1,0 +1,10 @@
+{
+    "tmcApp": {
+        "TipoMorador" : {
+            "null": "",
+            "PROPRIETARIO": "PROPRIETARIO",
+            "MORADOR": "MORADOR",
+            "LOCATARIO": "LOCATARIO"
+        }
+    }
+}

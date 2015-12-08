@@ -1,0 +1,21 @@
+{
+    "tmcApp": {
+        "competenciaPrestador" : {
+            "home": {
+                "title": "CompetenciaPrestadors",
+                "createLabel": "Create a new CompetenciaPrestador",
+                "createOrEditLabel": "Create or edit a CompetenciaPrestador"
+            },
+            "created": "A new CompetenciaPrestador is created with identifier {{ param }}",
+            "updated": "A CompetenciaPrestador is updated with identifier {{ param }}",
+            "deleted": "A CompetenciaPrestador is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CompetenciaPrestador {{ id }}?"
+            },
+            "detail": {
+                "title": "CompetenciaPrestador"
+            },
+            "descricao": "Descricao"
+        }
+    }
+}

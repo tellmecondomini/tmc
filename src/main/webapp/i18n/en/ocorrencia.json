@@ -1,0 +1,26 @@
+{
+    "tmcApp": {
+        "ocorrencia" : {
+            "home": {
+                "title": "Ocorrencias",
+                "createLabel": "Create a new Ocorrencia",
+                "createOrEditLabel": "Create or edit a Ocorrencia"
+            },
+            "created": "A new Ocorrencia is created with identifier {{ param }}",
+            "updated": "A Ocorrencia is updated with identifier {{ param }}",
+            "deleted": "A Ocorrencia is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ocorrencia {{ id }}?"
+            },
+            "detail": {
+                "title": "Ocorrencia"
+            },
+            "dataAbertura": "DataAbertura",
+            "dataFechamento": "DataFechamento",
+            "menssagem": "Menssagem",
+            "status": "Status",
+            "ocorrenciaTipo": "OcorrenciaTipo",
+            "morador": "Morador"
+        }
+    }
+}

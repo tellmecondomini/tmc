@@ -4,7 +4,7 @@ angular.module('tmcApp', [
     'LocalStorageModule',
     'tmh.dynamicLocale',
     'pascalprecht.translate',
-    'ui.bootstrap', // for modal dialogs
+    'ui.bootstrap',
     'ngResource',
     'ui.router',
     'ngCookies',
@@ -30,7 +30,6 @@ angular.module('tmcApp', [
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
-
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -48,7 +47,6 @@ angular.module('tmcApp', [
                 // Change window title with translated one
                 $window.document.title = title;
             });
-
         });
 
         $rootScope.back = function() {
@@ -99,7 +97,7 @@ angular.module('tmcApp', [
             urlTemplate: 'i18n/{lang}/{part}.json'
         });
 
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage('pt-br');
         $translateProvider.useCookieStorage();
         $translateProvider.useSanitizeValueStrategy('escaped');
         $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
@@ -107,5 +105,4 @@ angular.module('tmcApp', [
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage();
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
-
     });

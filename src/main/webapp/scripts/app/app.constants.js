@@ -4,6 +4,6 @@ angular.module('tmcApp')
 
 .constant('ENV', 'dev')
 
-.constant('VERSION', '0.0.1-SNAPSHOT')
+.constant('VERSION', '1.0.0')
 
 ;

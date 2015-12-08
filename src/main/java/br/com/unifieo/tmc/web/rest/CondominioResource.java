@@ -1,10 +1,6 @@
-
-
 package br.com.unifieo.tmc.web.rest;
 
-import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Condominio;
-import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
@@ -39,22 +35,22 @@ public class CondominioResource {
     private CondominioService condominioService;
 
     /**
-     * POST  /condominios -> Create a new condominio.
+     * POST  /condominios -> Create a new condominioDTO.
      */
     @RequestMapping(value = "/condominios",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> createCondominio(@RequestBody CondominioDTO condominio) throws URISyntaxException {
+    public ResponseEntity<Condominio> createCondominio(@RequestBody CondominioDTO condominioDTO) throws URISyntaxException {
 
-        log.debug("REST request to save Condominio : {}", condominio);
-        if (condominio.getId() != null)
-            return ResponseEntity.badRequest().header("Failure", "A new condominio cannot already have an ID").body(null);
+        log.debug("REST request to save Condominio : {}", condominioDTO);
+        if (condominioDTO.getId() != null)
+            return ResponseEntity.badRequest().header("Failure", "A new condominioDTO cannot already have an ID").body(null);
 
-        Condominio result = condominioService.save(condominio);
+        Condominio result = condominioService.save(condominioDTO);
 
         return ResponseEntity.created(new URI("/api/condominios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("condominio", result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert("condominioDTO", result.getId().toString()))
             .body(result);
     }
 

@@ -68,7 +68,8 @@ angular.module('tmcApp')
                                     cnpj: null,
                                     disposicao: null,
 
-                                    /* Cep Condominio */
+                                    // Cep Condominio
+
                                     condominioCep: null,
                                     condominioLogradouro: null,
                                     condominioBairro: null,
@@ -77,7 +78,8 @@ angular.module('tmcApp')
                                     condominioNumero: null,
                                     condominioComplemento: null,
 
-                                    /* Dados do responsavel */
+                                    // Dados do responsavel
+
                                     responsavelNome: null,
                                     responsavelCpf: null,
                                     responsavelSexo: null,
@@ -85,7 +87,8 @@ angular.module('tmcApp')
                                     responsavelEmail: null,
                                     responsavelSenha: null,
 
-                                    /* Cep responsavel */
+                                    // Cep responsavel
+
                                     responsavelCep: null,
                                     responsavelLogradouro: null,
                                     responsavelBairro: null,

@@ -206,7 +206,8 @@
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.funcionario.dataNascimento" for="field_responsavel_dataNascimento">DataNascimento</label>
                     <input type="date" class="form-control" name="dataNascimento" id="field_responsavel_dataNascimento"
-                           ng-model="condominio.responsavelDataNascimento" required>
+                           ng-model="condominio.responsavelDataNascimento" ng-model-options="{timezone: 'UTC'}"
+                           required>
 
                     <div ng-show="editForm.dataNascimento.$invalid">
                         <p class="help-block" ng-show="editForm.dataNascimento.$error.required"

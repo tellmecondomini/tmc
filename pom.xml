@@ -11,7 +11,7 @@
 
     <groupId>br.com.unifieo.tmc</groupId>
     <artifactId>tmc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
     <name>tmc</name>

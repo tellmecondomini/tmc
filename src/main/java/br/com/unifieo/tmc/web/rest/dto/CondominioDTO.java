@@ -5,8 +5,6 @@ import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
 
-import java.util.Date;
-
 public class CondominioDTO {
 
     private Long id;
@@ -321,8 +319,7 @@ public class CondominioDTO {
     @Override
     public String toString() {
         return "CondominioDTO{" +
-            "id=" + id +
-            ", razaoSocial='" + razaoSocial + '\'' +
+            "razaoSocial='" + razaoSocial + '\'' +
             '}';
     }
 }

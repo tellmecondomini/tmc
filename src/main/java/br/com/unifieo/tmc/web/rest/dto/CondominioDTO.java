@@ -25,7 +25,7 @@ public class CondominioDTO {
     // Dados do responsavel
 
     private String responsavelNome;
-    private Integer responsavelCpf;
+    private String responsavelCpf;
     private Sexo responsavelSexo;
     private DateTime responsavelDataNascimento;
     private String responsavelEmail;
@@ -141,11 +141,11 @@ public class CondominioDTO {
         this.responsavelNome = responsavelNome;
     }
 
-    public Integer getResponsavelCpf() {
+    public String getResponsavelCpf() {
         return responsavelCpf;
     }
 
-    public void setResponsavelCpf(Integer responsavelCpf) {
+    public void setResponsavelCpf(String responsavelCpf) {
         this.responsavelCpf = responsavelCpf;
     }
 
@@ -237,6 +237,7 @@ public class CondominioDTO {
         this.responsavelComplemento = responsavelComplemento;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -245,45 +246,7 @@ public class CondominioDTO {
         CondominioDTO that = (CondominioDTO) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (razaoSocial != null ? !razaoSocial.equals(that.razaoSocial) : that.razaoSocial != null) return false;
-        if (cnpj != null ? !cnpj.equals(that.cnpj) : that.cnpj != null) return false;
-        if (disposicao != that.disposicao) return false;
-        if (condominioCep != null ? !condominioCep.equals(that.condominioCep) : that.condominioCep != null)
-            return false;
-        if (condominioLogradouro != null ? !condominioLogradouro.equals(that.condominioLogradouro) : that.condominioLogradouro != null)
-            return false;
-        if (condominioBairro != null ? !condominioBairro.equals(that.condominioBairro) : that.condominioBairro != null)
-            return false;
-        if (condominioCidade != null ? !condominioCidade.equals(that.condominioCidade) : that.condominioCidade != null)
-            return false;
-        if (condominioUf != that.condominioUf) return false;
-        if (condominioNumero != null ? !condominioNumero.equals(that.condominioNumero) : that.condominioNumero != null)
-            return false;
-        if (condominioComplemento != null ? !condominioComplemento.equals(that.condominioComplemento) : that.condominioComplemento != null)
-            return false;
-        if (responsavelNome != null ? !responsavelNome.equals(that.responsavelNome) : that.responsavelNome != null)
-            return false;
-        if (responsavelCpf != null ? !responsavelCpf.equals(that.responsavelCpf) : that.responsavelCpf != null)
-            return false;
-        if (responsavelSexo != that.responsavelSexo) return false;
-        if (responsavelDataNascimento != null ? !responsavelDataNascimento.equals(that.responsavelDataNascimento) : that.responsavelDataNascimento != null)
-            return false;
-        if (responsavelEmail != null ? !responsavelEmail.equals(that.responsavelEmail) : that.responsavelEmail != null)
-            return false;
-        if (responsavelSenha != null ? !responsavelSenha.equals(that.responsavelSenha) : that.responsavelSenha != null)
-            return false;
-        if (responsavelCep != null ? !responsavelCep.equals(that.responsavelCep) : that.responsavelCep != null)
-            return false;
-        if (responsavelLogradouro != null ? !responsavelLogradouro.equals(that.responsavelLogradouro) : that.responsavelLogradouro != null)
-            return false;
-        if (responsavelBairro != null ? !responsavelBairro.equals(that.responsavelBairro) : that.responsavelBairro != null)
-            return false;
-        if (responsavelCidade != null ? !responsavelCidade.equals(that.responsavelCidade) : that.responsavelCidade != null)
-            return false;
-        if (responsavelUf != that.responsavelUf) return false;
-        if (responsavelNumero != null ? !responsavelNumero.equals(that.responsavelNumero) : that.responsavelNumero != null)
-            return false;
-        return !(responsavelComplemento != null ? !responsavelComplemento.equals(that.responsavelComplemento) : that.responsavelComplemento != null);
+        return !(razaoSocial != null ? !razaoSocial.equals(that.razaoSocial) : that.razaoSocial != null);
 
     }
 
@@ -291,28 +254,6 @@ public class CondominioDTO {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (razaoSocial != null ? razaoSocial.hashCode() : 0);
-        result = 31 * result + (cnpj != null ? cnpj.hashCode() : 0);
-        result = 31 * result + (disposicao != null ? disposicao.hashCode() : 0);
-        result = 31 * result + (condominioCep != null ? condominioCep.hashCode() : 0);
-        result = 31 * result + (condominioLogradouro != null ? condominioLogradouro.hashCode() : 0);
-        result = 31 * result + (condominioBairro != null ? condominioBairro.hashCode() : 0);
-        result = 31 * result + (condominioCidade != null ? condominioCidade.hashCode() : 0);
-        result = 31 * result + (condominioUf != null ? condominioUf.hashCode() : 0);
-        result = 31 * result + (condominioNumero != null ? condominioNumero.hashCode() : 0);
-        result = 31 * result + (condominioComplemento != null ? condominioComplemento.hashCode() : 0);
-        result = 31 * result + (responsavelNome != null ? responsavelNome.hashCode() : 0);
-        result = 31 * result + (responsavelCpf != null ? responsavelCpf.hashCode() : 0);
-        result = 31 * result + (responsavelSexo != null ? responsavelSexo.hashCode() : 0);
-        result = 31 * result + (responsavelDataNascimento != null ? responsavelDataNascimento.hashCode() : 0);
-        result = 31 * result + (responsavelEmail != null ? responsavelEmail.hashCode() : 0);
-        result = 31 * result + (responsavelSenha != null ? responsavelSenha.hashCode() : 0);
-        result = 31 * result + (responsavelCep != null ? responsavelCep.hashCode() : 0);
-        result = 31 * result + (responsavelLogradouro != null ? responsavelLogradouro.hashCode() : 0);
-        result = 31 * result + (responsavelBairro != null ? responsavelBairro.hashCode() : 0);
-        result = 31 * result + (responsavelCidade != null ? responsavelCidade.hashCode() : 0);
-        result = 31 * result + (responsavelUf != null ? responsavelUf.hashCode() : 0);
-        result = 31 * result + (responsavelNumero != null ? responsavelNumero.hashCode() : 0);
-        result = 31 * result + (responsavelComplemento != null ? responsavelComplemento.hashCode() : 0);
         return result;
     }
 

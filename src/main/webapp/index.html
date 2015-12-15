@@ -22,15 +22,17 @@
     <!-- endbuild -->
 </head>
 <body ng-app="tmcApp">
-
 <!--[if lt IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-
 <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
 <div ui-view="navbar" ng-cloak=""></div>
 <div class="container">
-    <div ui-view="content"></div>
+    <div class="well" ui-view="content"></div>
+
+    <div class="footer">
+        <p><span class="navbar-version">v.{{VERSION}}</span></p>
+    </div>
 </div>
 
 <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
@@ -71,6 +73,7 @@
 <script src="bower_components/wow/dist/wow.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
+
 
 <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
 <script src="scripts/app/app.js"></script>

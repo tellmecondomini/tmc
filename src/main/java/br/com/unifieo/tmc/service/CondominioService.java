@@ -34,10 +34,22 @@ public class CondominioService {
     public Condominio save(CondominioDTO condominioDto) {
         Condominio condominio = new Condominio(condominioDto);
         cepRepository.save(condominio.getCep());
-        condominioRepository.save(condominio);
+        Condominio condominioSaved = condominioRepository.save(condominio);
+        condominioDto.setId(condominioSaved.getId());
         Funcionario funcionario = new Funcionario(condominioDto, condominio);
+        funcionario.setResponsavel(true);
         cepRepository.save(funcionario.getCep());
         funcionarioRepository.save(funcionario);
+        condominioDto.setId(condominio.getId());
         return condominio;
+    }
+
+    public void delete(Long id) {
+        Condominio condominio = condominioRepository.findOne(id);
+        Funcionario funcionario = funcionarioRepository.findOneByCondominioAndResponsavel(condominio, true);
+        funcionario.setResponsavel(false);
+        funcionario.setCondominio(null);
+        funcionarioRepository.save(funcionario);
+        condominioRepository.delete(id);
     }
 }

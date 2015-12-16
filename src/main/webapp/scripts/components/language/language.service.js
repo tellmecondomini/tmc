@@ -8,7 +8,7 @@ angular.module('tmcApp')
                 var language = $translate.storage().get('NG_TRANSLATE_LANG_KEY');
 
                 if (angular.isUndefined(language)) {
-                    language = 'en';
+                    language = 'pt-br';
                 }
 
                 deferred.resolve(language);
@@ -27,7 +27,8 @@ angular.module('tmcApp')
  They are written in English to avoid character encoding issues (not a perfect solution)
  */
     .constant('LANGUAGES', [
-        'en', 'pt-br'
+        'en',
+        'pt-br'
         //JHipster will add new languages here
     ]
 );

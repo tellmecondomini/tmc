@@ -4,6 +4,7 @@ import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.repository.MoradorRepository;
 
+import br.com.unifieo.tmc.service.MoradorService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,7 +66,7 @@ public class MoradorResourceTest {
     private static final DateTime UPDATED_DATA_NASCIMENTO = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
     private static final String DEFAULT_DATA_NASCIMENTO_STR = dateTimeFormatter.print(DEFAULT_DATA_NASCIMENTO);
 
-    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean DEFAULT_ATIVO = true;
     private static final Boolean UPDATED_ATIVO = true;
 
     private static final Boolean DEFAULT_BLOQUEIA_AGENDAMENTO = false;
@@ -76,6 +77,9 @@ public class MoradorResourceTest {
 
     @Inject
     private MoradorRepository moradorRepository;
+
+    @Inject
+    private MoradorService moradorService;
 
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -92,6 +96,7 @@ public class MoradorResourceTest {
         MockitoAnnotations.initMocks(this);
         MoradorResource moradorResource = new MoradorResource();
         ReflectionTestUtils.setField(moradorResource, "moradorRepository", moradorRepository);
+        ReflectionTestUtils.setField(moradorResource, "moradorService", moradorService);
         this.restMoradorMockMvc = MockMvcBuilders.standaloneSetup(moradorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -298,7 +303,7 @@ public class MoradorResourceTest {
         morador.setAtivo(UPDATED_ATIVO);
         morador.setBloqueiaAgendamento(UPDATED_BLOQUEIA_AGENDAMENTO);
         morador.setTipo(UPDATED_TIPO);
-        
+
 
         restMoradorMockMvc.perform(put("/api/moradors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

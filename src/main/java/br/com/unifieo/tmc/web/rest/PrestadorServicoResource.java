@@ -1,6 +1,5 @@
 package br.com.unifieo.tmc.web.rest;
 
-import br.com.unifieo.tmc.service.PrestadorServicoService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
@@ -32,9 +31,6 @@ public class PrestadorServicoResource {
     @Inject
     private PrestadorServicoRepository prestadorServicoRepository;
 
-    @Inject
-    private PrestadorServicoService prestadorServicoService;
-
     /**
      * POST  /prestadorServicos -> Create a new prestadorServico.
      */
@@ -47,7 +43,7 @@ public class PrestadorServicoResource {
         if (prestadorServico.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new prestadorServico cannot already have an ID").body(null);
         }
-        PrestadorServico result = prestadorServicoService.save(prestadorServico);
+        PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.created(new URI("/api/prestadorServicos/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", result.getId().toString()))
                 .body(result);

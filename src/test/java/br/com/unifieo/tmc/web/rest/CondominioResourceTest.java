@@ -2,18 +2,25 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.enumeration.Disposicao;
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.CondominioRepository;
-
+import br.com.unifieo.tmc.service.CondominioService;
+import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -23,17 +30,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 
 /**
  * Test class for the CondominioResource REST controller.
@@ -53,7 +55,7 @@ public class CondominioResourceTest {
     private static final String DEFAULT_CNPJ = "SAMPLE_TEXT";
     private static final String UPDATED_CNPJ = "UPDATED_TEXT";
 
-    private static final Boolean DEFAULT_ATIVO = false;
+    private static final Boolean DEFAULT_ATIVO = true;
     private static final Boolean UPDATED_ATIVO = true;
 
     private static final DateTime DEFAULT_DATA_CADASTRO = new DateTime(0L, DateTimeZone.UTC);
@@ -72,6 +74,9 @@ public class CondominioResourceTest {
     private CondominioRepository condominioRepository;
 
     @Inject
+    private CondominioService condominioService;
+
+    @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
@@ -79,13 +84,14 @@ public class CondominioResourceTest {
 
     private MockMvc restCondominioMockMvc;
 
-    private Condominio condominio;
+    private CondominioDTO condominioDTO;
 
     @PostConstruct
     public void setup() {
         MockitoAnnotations.initMocks(this);
         CondominioResource condominioResource = new CondominioResource();
         ReflectionTestUtils.setField(condominioResource, "condominioRepository", condominioRepository);
+        ReflectionTestUtils.setField(condominioResource, "condominioService", condominioService);
         this.restCondominioMockMvc = MockMvcBuilders.standaloneSetup(condominioResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -93,14 +99,31 @@ public class CondominioResourceTest {
 
     @Before
     public void initTest() {
-        condominio = new Condominio();
-        condominio.setRazaoSocial(DEFAULT_RAZAO_SOCIAL);
-        condominio.setCnpj(DEFAULT_CNPJ);
-        condominio.setAtivo(DEFAULT_ATIVO);
-        condominio.setDataCadastro(DEFAULT_DATA_CADASTRO);
-        condominio.setDisposicao(DEFAULT_DISPOSICAO);
-        condominio.setNumero(DEFAULT_NUMERO);
-        condominio.setComplemento(DEFAULT_COMPLEMENTO);
+        condominioDTO = new CondominioDTO();
+        condominioDTO.setId(null);
+        condominioDTO.setRazaoSocial(DEFAULT_RAZAO_SOCIAL);
+        condominioDTO.setCnpj(DEFAULT_CNPJ);
+        condominioDTO.setDisposicao(DEFAULT_DISPOSICAO);
+        condominioDTO.setCondominioCep(123);
+        condominioDTO.setCondominioLogradouro("Logradouro Condominio");
+        condominioDTO.setCondominioBairro("Bairro Condominio");
+        condominioDTO.setCondominioCidade("Cidade Condominio");
+        condominioDTO.setCondominioUf(Uf.SP);
+        condominioDTO.setCondominioNumero(DEFAULT_NUMERO);
+        condominioDTO.setCondominioComplemento(DEFAULT_COMPLEMENTO);
+        condominioDTO.setResponsavelNome("Responsavel");
+        condominioDTO.setResponsavelCpf("123");
+        condominioDTO.setResponsavelSexo(Sexo.M);
+        condominioDTO.setResponsavelDataNascimento(new DateTime());
+        condominioDTO.setResponsavelSenha("123");
+        condominioDTO.setResponsavelEmail("@responsavel.com.br");
+        condominioDTO.setResponsavelCep(123);
+        condominioDTO.setResponsavelLogradouro("Logradouro Responsavel");
+        condominioDTO.setResponsavelBairro("Bairro Responsavel");
+        condominioDTO.setResponsavelCidade("Cidade Responsavel");
+        condominioDTO.setResponsavelUf(Uf.SP);
+        condominioDTO.setResponsavelNumero(DEFAULT_NUMERO);
+        condominioDTO.setResponsavelComplemento(DEFAULT_COMPLEMENTO);
     }
 
     @Test
@@ -111,9 +134,9 @@ public class CondominioResourceTest {
         // Create the Condominio
 
         restCondominioMockMvc.perform(post("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(condominioDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Condominio in the database
         List<Condominio> condominios = condominioRepository.findAll();
@@ -122,7 +145,6 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getRazaoSocial()).isEqualTo(DEFAULT_RAZAO_SOCIAL);
         assertThat(testCondominio.getCnpj()).isEqualTo(DEFAULT_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(DEFAULT_ATIVO);
-        assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_CADASTRO);
         assertThat(testCondominio.getDisposicao()).isEqualTo(DEFAULT_DISPOSICAO);
         assertThat(testCondominio.getNumero()).isEqualTo(DEFAULT_NUMERO);
         assertThat(testCondominio.getComplemento()).isEqualTo(DEFAULT_COMPLEMENTO);
@@ -130,111 +152,37 @@ public class CondominioResourceTest {
 
     @Test
     @Transactional
-    public void checkRazaoSocialIsRequired() throws Exception {
-        int databaseSizeBeforeTest = condominioRepository.findAll().size();
-        // set the field null
-        condominio.setRazaoSocial(null);
-
-        // Create the Condominio, which fails.
-
-        restCondominioMockMvc.perform(post("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isBadRequest());
-
-        List<Condominio> condominios = condominioRepository.findAll();
-        assertThat(condominios).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCnpjIsRequired() throws Exception {
-        int databaseSizeBeforeTest = condominioRepository.findAll().size();
-        // set the field null
-        condominio.setCnpj(null);
-
-        // Create the Condominio, which fails.
-
-        restCondominioMockMvc.perform(post("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isBadRequest());
-
-        List<Condominio> condominios = condominioRepository.findAll();
-        assertThat(condominios).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkDataCadastroIsRequired() throws Exception {
-        int databaseSizeBeforeTest = condominioRepository.findAll().size();
-        // set the field null
-        condominio.setDataCadastro(null);
-
-        // Create the Condominio, which fails.
-
-        restCondominioMockMvc.perform(post("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isBadRequest());
-
-        List<Condominio> condominios = condominioRepository.findAll();
-        assertThat(condominios).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkNumeroIsRequired() throws Exception {
-        int databaseSizeBeforeTest = condominioRepository.findAll().size();
-        // set the field null
-        condominio.setNumero(null);
-
-        // Create the Condominio, which fails.
-
-        restCondominioMockMvc.perform(post("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isBadRequest());
-
-        List<Condominio> condominios = condominioRepository.findAll();
-        assertThat(condominios).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllCondominios() throws Exception {
         // Initialize the database
-        condominioRepository.saveAndFlush(condominio);
+        condominioService.save(condominioDTO);
 
         // Get all the condominios
         restCondominioMockMvc.perform(get("/api/condominios"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(condominio.getId().intValue())))
-                .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL.toString())))
-                .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].dataCadastro").value(hasItem(DEFAULT_DATA_CADASTRO_STR)))
-                .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
-                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(condominioDTO.getId().intValue())))
+            .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL.toString())))
+            .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ.toString())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].disposicao").value(hasItem(DEFAULT_DISPOSICAO.toString())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+            .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
     }
 
     @Test
     @Transactional
     public void getCondominio() throws Exception {
         // Initialize the database
-        condominioRepository.saveAndFlush(condominio);
+        condominioService.save(condominioDTO);
 
-        // Get the condominio
-        restCondominioMockMvc.perform(get("/api/condominios/{id}", condominio.getId()))
+        // Get the condominioDTO
+        restCondominioMockMvc.perform(get("/api/condominios/{id}", condominioDTO.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.id").value(condominio.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(condominioDTO.getId().intValue()))
             .andExpect(jsonPath("$.razaoSocial").value(DEFAULT_RAZAO_SOCIAL.toString()))
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ.toString()))
             .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
-            .andExpect(jsonPath("$.dataCadastro").value(DEFAULT_DATA_CADASTRO_STR))
             .andExpect(jsonPath("$.disposicao").value(DEFAULT_DISPOSICAO.toString()))
             .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
             .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()));
@@ -243,33 +191,31 @@ public class CondominioResourceTest {
     @Test
     @Transactional
     public void getNonExistingCondominio() throws Exception {
-        // Get the condominio
+        // Get the condominioDTO
         restCondominioMockMvc.perform(get("/api/condominios/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
     @Transactional
     public void updateCondominio() throws Exception {
         // Initialize the database
-        condominioRepository.saveAndFlush(condominio);
+        Condominio condominio = condominioService.save(condominioDTO);
+        condominioDTO.setId(condominio.getId());
 
-		int databaseSizeBeforeUpdate = condominioRepository.findAll().size();
+        int databaseSizeBeforeUpdate = condominioRepository.findAll().size();
 
-        // Update the condominio
-        condominio.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
-        condominio.setCnpj(UPDATED_CNPJ);
-        condominio.setAtivo(UPDATED_ATIVO);
-        condominio.setDataCadastro(UPDATED_DATA_CADASTRO);
-        condominio.setDisposicao(UPDATED_DISPOSICAO);
-        condominio.setNumero(UPDATED_NUMERO);
-        condominio.setComplemento(UPDATED_COMPLEMENTO);
-        
+        // Update the condominioDTO
+        condominioDTO.setRazaoSocial(UPDATED_RAZAO_SOCIAL);
+        condominioDTO.setCnpj(UPDATED_CNPJ);
+        condominioDTO.setDisposicao(UPDATED_DISPOSICAO);
+        condominioDTO.setCondominioNumero(UPDATED_NUMERO);
+        condominioDTO.setCondominioComplemento(UPDATED_COMPLEMENTO);
 
         restCondominioMockMvc.perform(put("/api/condominios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(condominio)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(condominioDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Condominio in the database
         List<Condominio> condominios = condominioRepository.findAll();
@@ -278,7 +224,6 @@ public class CondominioResourceTest {
         assertThat(testCondominio.getRazaoSocial()).isEqualTo(UPDATED_RAZAO_SOCIAL);
         assertThat(testCondominio.getCnpj()).isEqualTo(UPDATED_CNPJ);
         assertThat(testCondominio.getAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testCondominio.getDataCadastro().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_CADASTRO);
         assertThat(testCondominio.getDisposicao()).isEqualTo(UPDATED_DISPOSICAO);
         assertThat(testCondominio.getNumero()).isEqualTo(UPDATED_NUMERO);
         assertThat(testCondominio.getComplemento()).isEqualTo(UPDATED_COMPLEMENTO);
@@ -288,14 +233,14 @@ public class CondominioResourceTest {
     @Transactional
     public void deleteCondominio() throws Exception {
         // Initialize the database
-        condominioRepository.saveAndFlush(condominio);
+        condominioService.save(condominioDTO);
 
-		int databaseSizeBeforeDelete = condominioRepository.findAll().size();
+        int databaseSizeBeforeDelete = condominioRepository.findAll().size();
 
-        // Get the condominio
-        restCondominioMockMvc.perform(delete("/api/condominios/{id}", condominio.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+        // Get the condominioDTO
+        restCondominioMockMvc.perform(delete("/api/condominios/{id}", condominioDTO.getId())
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Condominio> condominios = condominioRepository.findAll();

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('tmcApp').controller('PrestadorServicoDialogController',
-    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep', 'TelefonePrestadorServico', 'CompetenciaPrestador',
-        function($scope, $http, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep, TelefonePrestadorServico, CompetenciaPrestador) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'PrestadorServico', 'Cep', 'TelefonePrestadorServico', 'CompetenciaPrestador',
+        function($scope, $stateParams, $modalInstance, $q, entity, PrestadorServico, Cep, TelefonePrestadorServico, CompetenciaPrestador) {
 
         $scope.prestadorServico = entity;
         $scope.ceps = Cep.query({filter: 'prestadorservico-is-null'});
@@ -45,19 +45,5 @@ angular.module('tmcApp').controller('PrestadorServicoDialogController',
 
         $scope.clear = function() {
             $modalInstance.dismiss('cancel');
-        };
-
-        $scope.buscaCep = function (cep) {
-            if (cep != null) {
-                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep;
-                var response = $http.get(url);
-                response.success(function(resultado) {
-                    $scope.prestadorServico.cep.logradouro = resultado.logradouro;
-                    $scope.prestadorServico.cep.bairro = resultado.bairro;
-                    $scope.prestadorServico.cep.cidade = resultado.cidade;
-                    $scope.prestadorServico.cep.uf = resultado.uf;
-                    return false;
-                });
-            }
         };
 }]);

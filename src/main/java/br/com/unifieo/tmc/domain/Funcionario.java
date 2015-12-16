@@ -118,6 +118,7 @@ public class Funcionario implements Serializable {
     }
 
     public Funcionario(CondominioDTO condominioDTO, Condominio condominioSave) {
+        this.id = null;
         this.nome = condominioDTO.getResponsavelNome();
         this.cpf = String.valueOf(condominioDTO.getResponsavelCpf());
         this.sexo = condominioDTO.getResponsavelSexo();
@@ -134,6 +135,7 @@ public class Funcionario implements Serializable {
     }
 
     public Funcionario(FuncionarioDTO funcionarioDTO) {
+        this.id = funcionarioDTO.getId();
         this.nome = funcionarioDTO.getNome();
         this.cpf = String.valueOf(funcionarioDTO.getCpf());
         this.sexo = funcionarioDTO.getSexo();

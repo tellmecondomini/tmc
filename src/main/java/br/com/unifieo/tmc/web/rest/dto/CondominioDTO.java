@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;

@@ -29,6 +29,8 @@ public class FuncionarioService {
     public Funcionario save(FuncionarioDTO funcionarioDTO) {
         Funcionario funcionario = new Funcionario(funcionarioDTO);
         cepRepository.save(funcionario.getCep());
-        return this.funcionarioRepository.save(funcionario);
+        Funcionario funcionarioSaved = funcionarioRepository.save(funcionario);
+        funcionarioDTO.setId(funcionarioSaved.getId());
+        return funcionarioSaved;
     }
 }

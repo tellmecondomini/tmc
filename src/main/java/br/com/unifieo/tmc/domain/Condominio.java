@@ -83,6 +83,7 @@ public class Condominio implements Serializable {
     }
 
     public Condominio(CondominioDTO condominioDto) {
+        this.id = condominioDto.getId();
         this.razaoSocial = condominioDto.getRazaoSocial();
         this.cnpj = condominioDto.getCnpj();
         this.ativo = true;

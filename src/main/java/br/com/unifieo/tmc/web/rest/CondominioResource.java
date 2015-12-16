@@ -61,16 +61,16 @@ public class CondominioResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> updateCondominio(@RequestBody Condominio condominio) throws URISyntaxException {
+    public ResponseEntity<Condominio> updateCondominio(@RequestBody CondominioDTO condominioDTO) throws URISyntaxException {
 
-        log.debug("REST request to update Condominio : {}", condominio);
-        if (condominio.getId() == null)
-            return null; // createCondominio(condominio);
+        log.debug("REST request to update Condominio : {}", condominioDTO);
+        if (condominioDTO.getId() == null)
+            return createCondominio(condominioDTO);
 
-        Condominio result = condominioRepository.save(condominio);
+        Condominio result = condominioService.save(condominioDTO);
 
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("condominio", condominio.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("condominio", condominioDTO.getId().toString()))
             .body(result);
     }
 
@@ -110,7 +110,7 @@ public class CondominioResource {
     @Timed
     public ResponseEntity<Void> deleteCondominio(@PathVariable Long id) {
         log.debug("REST request to delete Condominio : {}", id);
-        condominioRepository.delete(id);
+        condominioService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("condominio", id.toString())).build();
     }
 }

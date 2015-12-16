@@ -4,6 +4,7 @@ import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Dependencia;
 import br.com.unifieo.tmc.repository.DependenciaRepository;
 
+import br.com.unifieo.tmc.service.DependenciaService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +45,7 @@ public class DependenciaResourceTest {
     private static final String DEFAULT_NOME = "SAMPLE_TEXT";
     private static final String UPDATED_NOME = "UPDATED_TEXT";
 
-    private static final Boolean DEFAULT_DISPONIVEL = false;
+    private static final Boolean DEFAULT_DISPONIVEL = true;
     private static final Boolean UPDATED_DISPONIVEL = true;
 
     private static final Integer DEFAULT_CAPACIDADE = 1;
@@ -57,6 +58,9 @@ public class DependenciaResourceTest {
 
     @Inject
     private DependenciaRepository dependenciaRepository;
+
+    @Inject
+    private DependenciaService dependenciaService;
 
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -73,6 +77,7 @@ public class DependenciaResourceTest {
         MockitoAnnotations.initMocks(this);
         DependenciaResource dependenciaResource = new DependenciaResource();
         ReflectionTestUtils.setField(dependenciaResource, "dependenciaRepository", dependenciaRepository);
+        ReflectionTestUtils.setField(dependenciaResource, "dependenciaService", dependenciaService);
         this.restDependenciaMockMvc = MockMvcBuilders.standaloneSetup(dependenciaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -223,7 +228,7 @@ public class DependenciaResourceTest {
         dependencia.setCapacidade(UPDATED_CAPACIDADE);
         dependencia.setCustoAdicional(UPDATED_CUSTO_ADICIONAL);
         dependencia.setRegraUso(UPDATED_REGRA_USO);
-        
+
 
         restDependenciaMockMvc.perform(put("/api/dependencias")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

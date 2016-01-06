@@ -1,7 +1,10 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.CondominioRepository;
+import br.com.unifieo.tmc.repository.UserRepository;
+import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -16,8 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing Condominio.
@@ -33,6 +35,9 @@ public class CondominioResource {
 
     @Inject
     private CondominioService condominioService;
+
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /condominios -> Create a new condominioDTO.
@@ -75,15 +80,16 @@ public class CondominioResource {
     }
 
     /**
-     * GET  /condominios -> get all the condominios.
+     * GET  /condominios -> obter apenas o condominio cadastrado junto ao usuário logado.
      */
     @RequestMapping(value = "/condominios",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Condominio> getAllCondominios() {
-        log.debug("REST request to get all Condominios");
-        return condominioRepository.findAll();
+        log.debug("REST obter apenas o condominio cadastrado junto ao usuário logado");
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
+        return Arrays.asList(user.getCondominio());
     }
 
     /**

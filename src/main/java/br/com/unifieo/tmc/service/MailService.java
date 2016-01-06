@@ -81,7 +81,27 @@ public class MailService {
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("activationEmail", context);
         String subject = messageSource.getMessage("email.activation.title", null, locale);
-        sendEmail(user.getEmail(), subject, content, false, true);
+        this.sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    @Async
+    public void sendNewUserEmail(User user, String baseUrl) {
+        log.debug("Sending activation e-mail to '{}'", user.getEmail());
+
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("user", user);
+        context.setVariable("baseUrl", baseUrl);
+
+        String content = templateEngine.process("confirmRegistrationEmail", context);
+        String subject = messageSource.getMessage("email.activation.title", null, locale);
+
+        this.sendEmail(user.getEmail(), subject, content, false, true);
+
+        content = templateEngine.process("newUser", context);
+        subject = messageSource.getMessage("email.new.user", null, locale);
+
+        this.sendEmail(env.getProperty("mail.from"), subject, content, false, true);
     }
 
     @Async
@@ -93,6 +113,6 @@ public class MailService {
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("passwordResetEmail", context);
         String subject = messageSource.getMessage("email.reset.title", null, locale);
-        sendEmail(user.getEmail(), subject, content, false, true);
+        this.sendEmail(user.getEmail(), subject, content, false, true);
     }
 }

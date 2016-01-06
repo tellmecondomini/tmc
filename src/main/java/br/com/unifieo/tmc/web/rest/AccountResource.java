@@ -66,13 +66,13 @@ public class AccountResource {
                 .orElseGet(() -> condominioRepository.findOneByRazaoSocial(userDTO.getCondominio())
                     .map(condominio -> new ResponseEntity<>("condominio já cadastrado", HttpStatus.BAD_REQUEST))
                     .orElseGet(() -> {
+
                         User user = userService.createUserAndPreCondominio(userDTO);
-                        String baseUrl = request.getScheme() +     // "http"
-                            "://" +                                // "://"
-                            request.getServerName() +              // "myhost"
-                            ":" +                                  // ":"
-                            request.getServerPort();               // "80"
-                        mailService.sendActivationEmail(user, baseUrl);
+
+                        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+
+                        mailService.sendNewUserEmail(user, baseUrl);
+
                         return new ResponseEntity<>(HttpStatus.CREATED);
                     })
                 ));
@@ -85,10 +85,17 @@ public class AccountResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
+    public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key, HttpServletRequest request) {
         return Optional.ofNullable(userService.activateRegistration(key))
-            .map(user -> new ResponseEntity<String>(HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+            .map(user -> {
+
+                String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+
+                mailService.sendActivationEmail(user.get(), baseUrl);
+
+                return new ResponseEntity<String>(HttpStatus.OK);
+
+            }).orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**

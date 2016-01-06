@@ -7,7 +7,7 @@
             "entities": {
                 "main": "Entidades",
                 "endereco": "Endereco",
-                "funcionario": "Funcionario",
+                "funcionario": "Funcionarios",
                 "condominio": "Condomínio",
                 "morador": "Morador",
                 "imovel": "Imóvel",
@@ -30,8 +30,7 @@
                 "assunto": "Assunto",
                 "topico": "Topico",
                 "comentario": "Comentario",
-                "prestadorServico": "Prestador de Serviços",
-                "prestadorServico": "PrestadorServico",
+                "prestadorServico": "Prestadores de Serviços",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

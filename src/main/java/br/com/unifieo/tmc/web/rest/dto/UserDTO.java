@@ -19,9 +19,7 @@ public class UserDTO {
     public static final int PASSWORD_MIN_LENGTH = 5;
     public static final int PASSWORD_MAX_LENGTH = 100;
 
-    @Pattern(regexp = "^[a-z0-9]*$")
     @NotNull
-    @Size(min = 1, max = 100)
     private String condominio;
 
     @Pattern(regexp = "^[a-z0-9]*$")
@@ -46,7 +44,7 @@ public class UserDTO {
     private boolean activated = false;
 
     @Size(min = 2, max = 5)
-    private String langKey;
+    private final String langKey = "pt-br";
 
     private Set<String> authorities;
 
@@ -55,13 +53,11 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getCondominio(), user.getLogin(), null, user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getLangKey(),
-            user.getAuthorities().stream().map(Authority::getName)
-                .collect(Collectors.toSet()));
+            user.getEmail(), user.getActivated(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 
     public UserDTO(String condominio, String login, String password, String firstName, String lastName,
-            String email, boolean activated, String langKey, Set<String> authorities) {
+                   String email, boolean activated, Set<String> authorities) {
 
         this.condominio = condominio;
         this.login = login;
@@ -70,12 +66,11 @@ public class UserDTO {
         this.lastName = lastName;
         this.email = email;
         this.activated = activated;
-        this.langKey = langKey;
         this.authorities = authorities;
     }
 
     public UserDTO(Condominio condominio, String login, String password, String firstName, String lastName,
-                   String email, boolean activated, String langKey, Set<String> authorities) {
+                   String email, boolean activated, Set<String> authorities) {
 
         this.condominio = condominio == null ? "" : condominio.getRazaoSocial();
         this.login = login;
@@ -84,7 +79,6 @@ public class UserDTO {
         this.lastName = lastName;
         this.email = email;
         this.activated = activated;
-        this.langKey = langKey;
         this.authorities = authorities;
     }
 
@@ -127,14 +121,14 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-        "login='" + login + '\'' +
-        ", password='" + password + '\'' +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        ", activated=" + activated +
-        ", langKey='" + langKey + '\'' +
-        ", authorities=" + authorities +
-        '}';
+            "login='" + login + '\'' +
+            ", password='" + password + '\'' +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", email='" + email + '\'' +
+            ", activated=" + activated +
+            ", langKey='" + langKey + '\'' +
+            ", authorities=" + authorities +
+            '}';
     }
 }

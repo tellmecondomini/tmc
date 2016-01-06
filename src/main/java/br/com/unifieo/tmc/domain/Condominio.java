@@ -1,24 +1,23 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Disposicao;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Disposicao;
+import java.util.Set;
 
 /**
  * A Condominio.
@@ -58,7 +57,7 @@ public class Condominio implements Serializable {
     @Column(name = "complemento")
     private String complemento;
 
-    @OneToOne
+    @ManyToOne
     private Cep cep;
 
     @OneToMany(mappedBy = "condominio")

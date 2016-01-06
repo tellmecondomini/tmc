@@ -38,9 +38,10 @@
             </column>
             <column name="complemento" type="varchar(255)"/>
             <column name="cep_id" type="bigint">
-                <constraints unique="true"/>
+                <constraints unique="false"/>
             </column>
         </createTable>
+
         <dropDefaultValue tableName="CONDOMINIO" columnName="data_cadastro" columnDataType="datetime"/>
 
         <addForeignKeyConstraint baseColumnNames="cep_id"

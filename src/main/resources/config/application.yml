@@ -21,8 +21,7 @@ mail:
     protocol: smtp
     tls: false
     auth: false
-    from: tmc@localhost
-
+    from: tellmecondominium@gmail.com
 
 spring:
     mvc:

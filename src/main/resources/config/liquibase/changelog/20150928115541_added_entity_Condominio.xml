@@ -19,22 +19,22 @@
     -->
     <changeSet id="20150928115541" author="jhipster">
         <createTable tableName="CONDOMINIO">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="razao_social" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="cnpj" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true"/>
             </column>
             <column name="ativo" type="bit"/>
             <column name="data_cadastro" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="true"/>
             </column>
             <column name="disposicao" type="varchar(255)"/>
             <column name="numero" type="integer">
-                <constraints nullable="false" />
+                <constraints nullable="true"/>
             </column>
             <column name="complemento" type="varchar(255)"/>
             <column name="cep_id" type="bigint">
@@ -43,7 +43,6 @@
         </createTable>
         <dropDefaultValue tableName="CONDOMINIO" columnName="data_cadastro" columnDataType="datetime"/>
 
-        
         <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="CONDOMINIO"
                                  constraintName="fk_condominio_cep_id"

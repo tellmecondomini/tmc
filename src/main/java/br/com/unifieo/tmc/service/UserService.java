@@ -1,12 +1,14 @@
 package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Authority;
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.AuthorityRepository;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;
 import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.util.RandomUtil;
+import br.com.unifieo.tmc.web.rest.dto.UserDTO;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
@@ -36,6 +38,9 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private CondominioService condominioService;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -107,6 +112,36 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+        return newUser;
+    }
+
+    public User createUserAndPreCondominio(UserDTO userDTO) {
+
+        User newUser = new User();
+
+        Authority authority = authorityRepository.findOne("ROLE_USER");
+        HashSet<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+        newUser.setAuthorities(authorities);
+
+        String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+        newUser.setPassword(encryptedPassword);
+
+        newUser.setLogin(userDTO.getLogin());
+        newUser.setFirstName(userDTO.getFirstName());
+        newUser.setLastName(userDTO.getLastName());
+        newUser.setEmail(userDTO.getEmail());
+        newUser.setLangKey(userDTO.getLangKey());
+        newUser.setActivated(false);
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
+
+        Condominio condominio = condominioService.save(userDTO.getCondominio());
+        newUser.setCondominio(condominio);
+
+        userRepository.save(newUser);
+
+        log.debug("Created Information for User: {}", newUser);
+
         return newUser;
     }
 

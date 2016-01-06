@@ -44,6 +44,10 @@ public class CondominioService {
         return condominio;
     }
 
+    public Condominio save(String razaoSocial) {
+        return condominioRepository.save(new Condominio(razaoSocial));
+    }
+
     public void delete(Long id) {
         Condominio condominio = condominioRepository.findOne(id);
         Funcionario funcionario = funcionarioRepository.findOneByCondominioAndResponsavel(condominio, true);

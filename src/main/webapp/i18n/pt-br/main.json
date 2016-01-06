@@ -14,6 +14,10 @@
             "contact": "contate @java_hipster on Twitter"
         },
         "like": "Se você gosta do JHipster, não se esqueça de avaliar no",
-        "github": "Github"
+        "github": "Github",
+        "has-login": "Se você já tiver um cadastro, ",
+        "click-here": "clique aqui",
+        "else": " caso contrario, ",
+        "signup": "se registre aqui"
     }
 }

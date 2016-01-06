@@ -50,8 +50,9 @@
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp"/>
+            <column name="condominio_id" type="bigint" />
         </createTable>
-        
+
         <createIndex indexName="idx_user_login"
             tableName="JHI_USER"
             unique="true">
@@ -63,7 +64,7 @@
             unique="true">
             <column name="email" type="varchar(100)"/>
         </createIndex>
-        
+
         <createTable tableName="JHI_AUTHORITY">
             <column name="name" type="varchar(50)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -130,7 +131,7 @@
                   file="config/liquibase/users_authorities.csv"
                   separator=";"
                   tableName="JHI_USER_AUTHORITY"/>
-                  
+
         <createTable tableName="JHI_PERSISTENT_AUDIT_EVENT">
             <column name="event_id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -172,5 +173,5 @@
                                  referencedColumnNames="event_id"
                                  referencedTableName="JHI_PERSISTENT_AUDIT_EVENT"/>
     </changeSet>
-    
+
 </databaseChangeLog>

@@ -1,6 +1,7 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
 import br.com.unifieo.tmc.domain.Authority;
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.User;
 import org.hibernate.validator.constraints.Email;
 
@@ -17,6 +18,11 @@ public class UserDTO {
 
     public static final int PASSWORD_MIN_LENGTH = 5;
     public static final int PASSWORD_MAX_LENGTH = 100;
+
+    @Pattern(regexp = "^[a-z0-9]*$")
+    @NotNull
+    @Size(min = 1, max = 100)
+    private String condominio;
 
     @Pattern(regexp = "^[a-z0-9]*$")
     @NotNull
@@ -48,15 +54,30 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this(user.getLogin(), null, user.getFirstName(), user.getLastName(),
+        this(user.getCondominio(), user.getLogin(), null, user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
-    public UserDTO(String login, String password, String firstName, String lastName,
+    public UserDTO(String condominio, String login, String password, String firstName, String lastName,
             String email, boolean activated, String langKey, Set<String> authorities) {
 
+        this.condominio = condominio;
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.activated = activated;
+        this.langKey = langKey;
+        this.authorities = authorities;
+    }
+
+    public UserDTO(Condominio condominio, String login, String password, String firstName, String lastName,
+                   String email, boolean activated, String langKey, Set<String> authorities) {
+
+        this.condominio = condominio == null ? "" : condominio.getRazaoSocial();
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -97,6 +118,10 @@ public class UserDTO {
 
     public Set<String> getAuthorities() {
         return authorities;
+    }
+
+    public String getCondominio() {
+        return condominio;
     }
 
     @Override

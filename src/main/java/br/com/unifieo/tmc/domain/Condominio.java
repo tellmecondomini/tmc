@@ -36,14 +36,12 @@ public class Condominio implements Serializable {
     @Column(name = "razao_social", nullable = false)
     private String razaoSocial;
 
-    @NotNull
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -54,7 +52,6 @@ public class Condominio implements Serializable {
     @Column(name = "disposicao")
     private Disposicao disposicao;
 
-    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
 
@@ -92,6 +89,10 @@ public class Condominio implements Serializable {
         this.numero = condominioDto.getCondominioNumero();
         this.complemento = condominioDto.getCondominioComplemento();
         this.cep = new Cep(condominioDto.getCondominioLogradouro(), condominioDto.getCondominioBairro(), condominioDto.getCondominioCidade(), condominioDto.getCondominioUf(), condominioDto.getCondominioCep());
+    }
+
+    public Condominio(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
     }
 
     public Long getId() {

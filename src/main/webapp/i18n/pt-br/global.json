@@ -65,7 +65,9 @@
             "confirmpassword": "Confirmação de nova senha",
             "confirmpassword.placeholder": "Confirme a nova senha",
             "email": "E-mail",
-            "email.placeholder": "Seu e-mail"
+            "email.placeholder": "Seu e-mail",
+            "condominio": "Condomínio",
+            "condominio.placeholder": "Nome do condomínio"
         },
         "messages": {
             "info": {

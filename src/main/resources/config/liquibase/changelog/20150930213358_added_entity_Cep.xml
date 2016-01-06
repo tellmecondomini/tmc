@@ -26,10 +26,10 @@
             <column name="bairro" type="varchar(255)"/>
             <column name="cidade" type="varchar(255)"/>
             <column name="uf" type="varchar(255)"/>
-            <column name="cep" type="integer">
+            <column name="cep" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

@@ -93,11 +93,11 @@ public class CondominioResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Condominio> getCondominio(@PathVariable Long id) {
+    public ResponseEntity<CondominioDTO> getCondominio(@PathVariable Long id) {
         log.debug("REST request to get Condominio : {}", id);
         return Optional
             .ofNullable(condominioRepository.findOne(id))
-            .map(condominio -> new ResponseEntity<>(condominio, HttpStatus.OK))
+            .map(condominio -> new ResponseEntity<>(new CondominioDTO(condominio), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

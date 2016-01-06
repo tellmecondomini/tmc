@@ -40,8 +40,11 @@ angular.module('tmcApp')
                 razaoSocial: null,
                 cnpj: null,
                 disposicao: null,
+                dataCadastro: null,
+                ativo: null,
 
                 /* Cep Condominio */
+                condominioCepId: null,
                 condominioCep: null,
                 condominioLogradouro: null,
                 condominioBairro: null,

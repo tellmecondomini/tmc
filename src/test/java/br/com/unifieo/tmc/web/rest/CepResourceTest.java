@@ -50,8 +50,8 @@ public class CepResourceTest {
     private static final Uf DEFAULT_UF = Uf.AC;
     private static final Uf UPDATED_UF = Uf.AL;
 
-    private static final Integer DEFAULT_CEP = 1;
-    private static final Integer UPDATED_CEP = 2;
+    private static final String DEFAULT_CEP = "1";
+    private static final String UPDATED_CEP = "2";
 
     @Inject
     private CepRepository cepRepository;

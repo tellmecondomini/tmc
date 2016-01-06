@@ -36,12 +36,12 @@ public class Cep implements Serializable {
 
     @NotNull
     @Column(name = "cep", nullable = false)
-    private Integer cep;
+    private String cep;
 
     public Cep() {
     }
 
-    public Cep(String logradouro, String bairro, String cidade, Uf uf, Integer cep) {
+    public Cep(String logradouro, String bairro, String cidade, Uf uf, String cep) {
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -89,11 +89,11 @@ public class Cep implements Serializable {
         this.uf = uf;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

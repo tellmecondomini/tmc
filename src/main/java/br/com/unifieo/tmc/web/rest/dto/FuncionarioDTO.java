@@ -18,7 +18,7 @@ public class FuncionarioDTO {
 
     // cep funcionario
 
-    private Integer cep;
+    private String cep;
     private String logradouro;
     private String bairro;
     private String cidade;
@@ -102,11 +102,11 @@ public class FuncionarioDTO {
         this.responsavel = responsavel;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

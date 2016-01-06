@@ -104,7 +104,7 @@ public class CondominioResourceTest {
         condominioDTO.setRazaoSocial(DEFAULT_RAZAO_SOCIAL);
         condominioDTO.setCnpj(DEFAULT_CNPJ);
         condominioDTO.setDisposicao(DEFAULT_DISPOSICAO);
-        condominioDTO.setCondominioCep(123);
+        condominioDTO.setCondominioCep("123");
         condominioDTO.setCondominioLogradouro("Logradouro Condominio");
         condominioDTO.setCondominioBairro("Bairro Condominio");
         condominioDTO.setCondominioCidade("Cidade Condominio");
@@ -117,7 +117,7 @@ public class CondominioResourceTest {
         condominioDTO.setResponsavelDataNascimento(new DateTime());
         condominioDTO.setResponsavelSenha("123");
         condominioDTO.setResponsavelEmail("@responsavel.com.br");
-        condominioDTO.setResponsavelCep(123);
+        condominioDTO.setResponsavelCep("123");
         condominioDTO.setResponsavelLogradouro("Logradouro Responsavel");
         condominioDTO.setResponsavelBairro("Bairro Responsavel");
         condominioDTO.setResponsavelCidade("Cidade Responsavel");

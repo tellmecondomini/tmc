@@ -118,7 +118,7 @@ public class FuncionarioResourceTest {
         funcionarioDTO.setNumero(DEFAULT_NUMERO);
         funcionarioDTO.setComplemento(DEFAULT_COMPLEMENTO);
         funcionarioDTO.setResponsavel(DEFAULT_RESPONSAVEL);
-        funcionarioDTO.setCep(123);
+        funcionarioDTO.setCep("123");
         funcionarioDTO.setLogradouro("Logradouro ");
         funcionarioDTO.setBairro("Bairro ");
         funcionarioDTO.setCidade("Cidade ");

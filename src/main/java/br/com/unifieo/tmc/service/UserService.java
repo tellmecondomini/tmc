@@ -4,6 +4,7 @@ import br.com.unifieo.tmc.domain.Authority;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.AuthorityRepository;
+import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;
 import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.security.SecurityUtils;
@@ -40,7 +41,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Inject
-    private CondominioService condominioService;
+    private CondominioRepository condominioRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -134,9 +135,10 @@ public class UserService {
         newUser.setActivated(false);
         newUser.setActivationKey(RandomUtil.generateActivationKey());
 
-        Condominio condominio = condominioService.save(userDTO.getCondominio());
-        newUser.setCondominio(condominio);
+        Condominio condominio = new Condominio(userDTO.getCondominio());
+        condominioRepository.save(condominio);
 
+        newUser.setCondominio(condominio);
         userRepository.save(newUser);
 
         log.debug("Created Information for User: {}", newUser);

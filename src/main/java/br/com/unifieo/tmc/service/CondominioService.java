@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.service;
 
+import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.CepRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -33,19 +35,14 @@ public class CondominioService {
 
     public Condominio save(CondominioDTO condominioDto) {
         Condominio condominio = new Condominio(condominioDto);
-        cepRepository.save(condominio.getCep());
+
+        Cep cep = Optional.ofNullable(cepRepository.findOneByCep(condominioDto.getCondominioCep()))
+            .orElseGet(() -> cepRepository.save(condominio.getCep()));
+
+        condominio.setCep(cep);
         Condominio condominioSaved = condominioRepository.save(condominio);
         condominioDto.setId(condominioSaved.getId());
-        Funcionario funcionario = new Funcionario(condominioDto, condominio);
-        funcionario.setResponsavel(true);
-        cepRepository.save(funcionario.getCep());
-        funcionarioRepository.save(funcionario);
-        condominioDto.setId(condominio.getId());
         return condominio;
-    }
-
-    public Condominio save(String razaoSocial) {
-        return condominioRepository.save(new Condominio(razaoSocial));
     }
 
     public void delete(Long id) {

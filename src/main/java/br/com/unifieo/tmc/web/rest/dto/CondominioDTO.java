@@ -1,10 +1,13 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
+import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
+
+import java.util.Optional;
 
 public class CondominioDTO {
 
@@ -12,10 +15,13 @@ public class CondominioDTO {
     private String razaoSocial;
     private String cnpj;
     private Disposicao disposicao;
+    private DateTime dataCadastro;
+    private boolean ativo;
 
     // Cep Condominio
 
-    private Integer condominioCep;
+    private Long condominioCepId;
+    private String condominioCep;
     private String condominioLogradouro;
     private String condominioBairro;
     private String condominioCidade;
@@ -34,7 +40,7 @@ public class CondominioDTO {
 
     // Cep responsavel
 
-    private Integer responsavelCep;
+    private String responsavelCep;
     private String responsavelLogradouro;
     private String responsavelBairro;
     private String responsavelCidade;
@@ -43,7 +49,26 @@ public class CondominioDTO {
     private String responsavelComplemento;
 
     public CondominioDTO() {
+    }
 
+    public CondominioDTO(Condominio condominio) {
+        this.id = condominio.getId();
+        this.razaoSocial = condominio.getRazaoSocial();
+        this.cnpj = condominio.getCnpj();
+        this.disposicao = condominio.getDisposicao();
+        this.dataCadastro = condominio.getDataCadastro();
+        this.ativo = condominio.getAtivo();
+        this.condominioNumero = condominio.getNumero();
+        this.condominioComplemento = condominio.getComplemento();
+        Cep cep = condominio.getCep();
+        if (cep != null) {
+            this.condominioCepId = cep.getId();
+            this.condominioCep = cep.getCep();
+            this.condominioLogradouro = cep.getLogradouro();
+            this.condominioBairro = cep.getBairro();
+            this.condominioCidade = cep.getCidade();
+            this.condominioUf = cep.getUf();
+        }
     }
 
     public Long getId() {
@@ -78,11 +103,11 @@ public class CondominioDTO {
         this.disposicao = disposicao;
     }
 
-    public Integer getCondominioCep() {
+    public String getCondominioCep() {
         return condominioCep;
     }
 
-    public void setCondominioCep(Integer condominioCep) {
+    public void setCondominioCep(String condominioCep) {
         this.condominioCep = condominioCep;
     }
 
@@ -182,11 +207,11 @@ public class CondominioDTO {
         this.responsavelSenha = responsavelSenha;
     }
 
-    public Integer getResponsavelCep() {
+    public String getResponsavelCep() {
         return responsavelCep;
     }
 
-    public void setResponsavelCep(Integer responsavelCep) {
+    public void setResponsavelCep(String responsavelCep) {
         this.responsavelCep = responsavelCep;
     }
 
@@ -238,6 +263,29 @@ public class CondominioDTO {
         this.responsavelComplemento = responsavelComplemento;
     }
 
+    public DateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(DateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Long getCondominioCepId() {
+        return condominioCepId;
+    }
+
+    public void setCondominioCepId(Long condominioCepId) {
+        this.condominioCepId = condominioCepId;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
     @Override
     public boolean equals(Object o) {

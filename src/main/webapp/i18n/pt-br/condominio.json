@@ -1,10 +1,11 @@
 {
     "tmcApp": {
         "condominio" : {
+            "updated": "Condomínio atualizado com sucesso",
             "home": {
-                "title": "Condomínios",
+                "title": "Condomínio",
                 "createLabel": "Novo Condomínio",
-                "createOrEditLabel": "Criar ou editar um Condomínio"
+                "createOrEditLabel": "Edição"
             },
             "delete": {
                 "question": "Você tem certeza que deseja deletar o Condomínio {{ id }}?"

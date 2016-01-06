@@ -7,7 +7,10 @@ angular.module('tmcApp')
         $scope.doNotMatch = null;
         $scope.errorUserExists = null;
         $scope.registerAccount = {};
-        $timeout(function (){angular.element('[ng-model="registerAccount.login"]').focus();});
+
+        $timeout(function () {
+            angular.element('[ng-model="registerAccount.condominio"]').focus();
+        });
 
         $scope.register = function () {
             if ($scope.registerAccount.password !== $scope.confirmPassword) {

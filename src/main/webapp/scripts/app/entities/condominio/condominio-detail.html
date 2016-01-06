@@ -1,6 +1,6 @@
-
 <div>
-    <h2><span translate="tmcApp.condominio.detail.title">Condominio</span> {{condominio.id}}</h2>
+    <h2><span translate="tmcApp.condominio.detail.title">Condominio</span> {{condominio.razaoSocial}}</h2>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -31,7 +31,7 @@
                     <span translate="tmcApp.condominio.ativo">Ativo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{condominio.ativo}}</span>
+                    <span class="form-control-static">{{condominio.ativo ? 'Sim' : 'Não'}}</span>
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <span translate="tmcApp.condominio.dataCadastro">DataCadastro</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{condominio.dataCadastro}}</span>
+                    <span class="form-control-static">{{condominio.dataCadastro | date: 'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <span translate="tmcApp.condominio.disposicao">Disposicao</span>
                 </td>
                 <td>
-                    <span class="form-control-static" translate="{{'tmcApp.Disposicao.' + condominio.disposicao}}">{{condominio.disposicao}}</span>
+                    <span class="form-control-static">{{condominio.disposicao}}</span>
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     <span translate="tmcApp.condominio.numero">Numero</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{condominio.numero}}</span>
+                    <span class="form-control-static">{{condominio.condominioNumero}}</span>
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                     <span translate="tmcApp.condominio.complemento">Complemento</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{condominio.complemento}}</span>
+                    <span class="form-control-static">{{condominio.condominioComplemento}}</span>
                 </td>
             </tr>
             <tr>
@@ -71,7 +71,8 @@
                     <span translate="tmcApp.condominio.cep">cep</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="cep.detail({id:condominio.cep.id})">{{condominio.cep.id}}</a>
+                    <a class="form-control-static"
+                       ui-sref="cep.detail({id:condominio.condominioCepId})">{{condominio.condominioCepId}}</a>
                 </td>
             </tr>
             </tbody>

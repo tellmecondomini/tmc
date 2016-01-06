@@ -77,6 +77,13 @@ public class Condominio implements Serializable {
     private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
 
     public Condominio() {
+        this.dataCadastro = new DateTime();
+        this.ativo = true;
+    }
+
+    public Condominio(String razaoSocial) {
+        this();
+        this.razaoSocial = razaoSocial;
     }
 
     public Condominio(CondominioDTO condominioDto) {
@@ -89,10 +96,6 @@ public class Condominio implements Serializable {
         this.numero = condominioDto.getCondominioNumero();
         this.complemento = condominioDto.getCondominioComplemento();
         this.cep = new Cep(condominioDto.getCondominioLogradouro(), condominioDto.getCondominioBairro(), condominioDto.getCondominioCidade(), condominioDto.getCondominioUf(), condominioDto.getCondominioCep());
-    }
-
-    public Condominio(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
     }
 
     public Long getId() {
@@ -202,7 +205,7 @@ public class Condominio implements Serializable {
 
         Condominio condominio = (Condominio) o;
 
-        if ( ! Objects.equals(id, condominio.id)) return false;
+        if (!Objects.equals(id, condominio.id)) return false;
 
         return true;
     }
@@ -215,14 +218,14 @@ public class Condominio implements Serializable {
     @Override
     public String toString() {
         return "Condominio{" +
-                "id=" + id +
-                ", razaoSocial='" + razaoSocial + "'" +
-                ", cnpj='" + cnpj + "'" +
-                ", ativo='" + ativo + "'" +
-                ", dataCadastro='" + dataCadastro + "'" +
-                ", disposicao='" + disposicao + "'" +
-                ", numero='" + numero + "'" +
-                ", complemento='" + complemento + "'" +
-                '}';
+            "id=" + id +
+            ", razaoSocial='" + razaoSocial + "'" +
+            ", cnpj='" + cnpj + "'" +
+            ", ativo='" + ativo + "'" +
+            ", dataCadastro='" + dataCadastro + "'" +
+            ", disposicao='" + disposicao + "'" +
+            ", numero='" + numero + "'" +
+            ", complemento='" + complemento + "'" +
+            '}';
     }
 }

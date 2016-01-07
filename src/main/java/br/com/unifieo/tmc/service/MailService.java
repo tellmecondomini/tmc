@@ -80,27 +80,27 @@ public class MailService {
         context.setVariable("user", user);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("activationEmail", context);
-        String subject = messageSource.getMessage("email.activation.title", null, locale);
+        String subject = "TMC - Ativação de Cadastro";
         this.sendEmail(user.getEmail(), subject, content, false, true);
     }
 
     @Async
     public void sendNewUserEmail(User user, String baseUrl) {
-        log.debug("Sending activation e-mail to '{}'", user.getEmail());
+        log.debug("E-mail de confirmação de cadastro e aviso aos gestores");
 
         Locale locale = Locale.forLanguageTag(user.getLangKey());
+
         Context context = new Context(locale);
         context.setVariable("user", user);
         context.setVariable("baseUrl", baseUrl);
 
         String content = templateEngine.process("confirmRegistrationEmail", context);
-        String subject = messageSource.getMessage("email.activation.title", null, locale);
-
+        String subject = "TMC - Cadastro efetuado";
         this.sendEmail(user.getEmail(), subject, content, false, true);
 
+        // E-mail de aviso aos gestores sobre um novo condominio cadastrado
         content = templateEngine.process("newUser", context);
-        subject = messageSource.getMessage("email.new.user", null, locale);
-
+        subject = "TMC - Novo Usuário";
         this.sendEmail(env.getProperty("mail.from"), subject, content, false, true);
     }
 
@@ -112,7 +112,7 @@ public class MailService {
         context.setVariable("user", user);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("passwordResetEmail", context);
-        String subject = messageSource.getMessage("email.reset.title", null, locale);
+        String subject = "TMC - Alteração de Senha";
         this.sendEmail(user.getEmail(), subject, content, false, true);
     }
 }

@@ -1,30 +1,27 @@
 {
     "reset": {
         "request": {
-            "title": "Reset your password",
+            "title": "Nova Senha",
             "form": {
-                "button": "Reset password"
+                "button": "Nova Senha"
             },
             "messages": {
-                "info": "Enter the e-mail address you used to register",
-                "success": "Check your e-mails for details on how to reset your password.",
-                "notfound": "<strong>E-Mail address isn't registered!</strong> Please check and try again"
-
+                "info": "Informe seu e-mail de cadastro.",
+                "success": "Verifique seu e-mail para mais detalhes de como cadastrar uma senha nova.",
+                "notfound": "<strong>Endereço de e-mail não encontrado!</strong> Verifique e tente novamente."
             }
-
         },
-        "finish" : {
-            "title": "Reset password",
+        "finish": {
+            "title": "Nova Senha",
             "form": {
-                "button": "Validate new password"
+                "button": "Validar nova senha"
             },
             "messages": {
-                "info": "Choose a new password",
-                "success": "<strong>Your password has been reset.</strong> Please <a class=\"alert-link\" href=\"#/login\">authenticate</a>.",
-                "keymissing": "The reset key is missing.",
-                "error": "Your password couldn't be reset. Remember a password request is only valid for 24 hours."
+                "info": "Escolha uma nova senha",
+                "success": "<strong>Sua senha foi alterada com sucesso.</strong> Para entrar, <a class=\"alert-link\" href=\"#/login\">clique aqui</a>.",
+                "keymissing": "Chave de acesso não encontrada.",
+                "error": "Sua senha não pode ser recadastrada. Lembre-se de um pedido de palavra-chave só é válido por 24 horas."
             }
         }
     }
-
 }

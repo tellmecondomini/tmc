@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.activation.title}">JHipster activation</title>
+        <title>Tell Me Condominium</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
-        </p>
-        <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
+        <p th:text="${user.login}"></p>
+        <p>
+            Seu cadastro foi ativado com sucesso!
         </p>
         <p>
-            <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
-               th:text="|${user.login}|">Activation Link</a>
+            Para entrar no sistema, <a th:href="@{|${baseUrl}/#/login|}">clique aqui.</a>
         </p>
         <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
-            <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
+            Att,
+            <p>
+                <em>Equipe Tell Me Condominium.</em>
+            </p>
         </p>
     </body>
 </html>

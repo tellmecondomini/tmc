@@ -18,7 +18,6 @@ angular.module('tmcApp')
                 }).catch(function (response) {
                     $scope.success = null;
                     $scope.error = 'ERROR';
-
                 });
             }
 

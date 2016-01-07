@@ -1,6 +1,6 @@
-
 <div>
     <h2><span translate="tmcApp.cep.detail.title">Cep</span> {{cep.id}}</h2>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -47,7 +47,7 @@
                     <span translate="tmcApp.cep.cep">Cep</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{cep.cep}}</span>
+                    <span class="form-control-static">{{cep.cep | cep}}</span>
                 </td>
             </tr>
             </tbody>

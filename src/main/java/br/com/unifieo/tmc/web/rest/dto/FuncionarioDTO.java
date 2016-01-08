@@ -1,5 +1,7 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
+import br.com.unifieo.tmc.domain.Cep;
+import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
@@ -11,13 +13,12 @@ public class FuncionarioDTO {
     private String cpf;
     private Sexo sexo;
     private DateTime dataNascimento;
+    private DateTime dataCadastro;
     private String email;
     private String senha;
     private Boolean ativo;
-    private Boolean responsavel;
 
-    // cep funcionario
-
+    private Long cepId;
     private String cep;
     private String logradouro;
     private String bairro;
@@ -26,8 +27,34 @@ public class FuncionarioDTO {
     private Integer numero;
     private String complemento;
 
+    private Long condominioId;
+
     public FuncionarioDTO() {
 
+    }
+
+    public FuncionarioDTO(Funcionario funcionario) {
+        this.id = funcionario.getId();
+        this.nome = funcionario.getNome();
+        this.cpf = String.valueOf(funcionario.getCpf());
+        this.sexo = funcionario.getSexo();
+        this.dataNascimento = new DateTime(funcionario.getDataNascimento());
+        this.dataCadastro = new DateTime(funcionario.getDataCadastro());
+        this.email = funcionario.getEmail();
+        this.senha = funcionario.getSenha();
+        this.ativo = true;
+        this.numero = funcionario.getNumero();
+        this.complemento = funcionario.getComplemento();
+        this.condominioId = funcionario.getCondominio().getId();
+        Cep cep = funcionario.getCep();
+        if (cep != null) {
+            this.cepId = cep.getId();
+            this.cep = cep.getCep();
+            this.logradouro = cep.getLogradouro();
+            this.bairro = cep.getBairro();
+            this.cidade = cep.getCidade();
+            this.uf = cep.getUf();
+        }
     }
 
     public Long getId() {
@@ -70,6 +97,14 @@ public class FuncionarioDTO {
         this.dataNascimento = dataNascimento;
     }
 
+    public DateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(DateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -94,12 +129,12 @@ public class FuncionarioDTO {
         this.ativo = ativo;
     }
 
-    public Boolean getResponsavel() {
-        return responsavel;
+    public Long getCepId() {
+        return cepId;
     }
 
-    public void setResponsavel(Boolean responsavel) {
-        this.responsavel = responsavel;
+    public void setCepId(Long cepId) {
+        this.cepId = cepId;
     }
 
     public String getCep() {
@@ -158,6 +193,14 @@ public class FuncionarioDTO {
         this.complemento = complemento;
     }
 
+    public Long getCondominioId() {
+        return condominioId;
+    }
+
+    public void setCondominioId(Long condominioId) {
+        this.condominioId = condominioId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -165,45 +208,13 @@ public class FuncionarioDTO {
 
         FuncionarioDTO that = (FuncionarioDTO) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
-        if (cpf != null ? !cpf.equals(that.cpf) : that.cpf != null) return false;
-        if (sexo != that.sexo) return false;
-        if (dataNascimento != null ? !dataNascimento.equals(that.dataNascimento) : that.dataNascimento != null)
-            return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (senha != null ? !senha.equals(that.senha) : that.senha != null) return false;
-        if (ativo != null ? !ativo.equals(that.ativo) : that.ativo != null) return false;
-        if (responsavel != null ? !responsavel.equals(that.responsavel) : that.responsavel != null) return false;
-        if (cep != null ? !cep.equals(that.cep) : that.cep != null) return false;
-        if (logradouro != null ? !logradouro.equals(that.logradouro) : that.logradouro != null) return false;
-        if (bairro != null ? !bairro.equals(that.bairro) : that.bairro != null) return false;
-        if (cidade != null ? !cidade.equals(that.cidade) : that.cidade != null) return false;
-        if (uf != that.uf) return false;
-        if (numero != null ? !numero.equals(that.numero) : that.numero != null) return false;
-        return !(complemento != null ? !complemento.equals(that.complemento) : that.complemento != null);
+        return !(id != null ? !id.equals(that.id) : that.id != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
-        result = 31 * result + (sexo != null ? sexo.hashCode() : 0);
-        result = 31 * result + (dataNascimento != null ? dataNascimento.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (senha != null ? senha.hashCode() : 0);
-        result = 31 * result + (ativo != null ? ativo.hashCode() : 0);
-        result = 31 * result + (responsavel != null ? responsavel.hashCode() : 0);
-        result = 31 * result + (cep != null ? cep.hashCode() : 0);
-        result = 31 * result + (logradouro != null ? logradouro.hashCode() : 0);
-        result = 31 * result + (bairro != null ? bairro.hashCode() : 0);
-        result = 31 * result + (cidade != null ? cidade.hashCode() : 0);
-        result = 31 * result + (uf != null ? uf.hashCode() : 0);
-        result = 31 * result + (numero != null ? numero.hashCode() : 0);
-        result = 31 * result + (complemento != null ? complemento.hashCode() : 0);
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
@@ -217,7 +228,6 @@ public class FuncionarioDTO {
             ", email='" + email + '\'' +
             ", senha='" + senha + '\'' +
             ", ativo=" + ativo +
-            ", responsavel=" + responsavel +
             ", cep=" + cep +
             ", logradouro='" + logradouro + '\'' +
             ", bairro='" + bairro + '\'' +

@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span translate="tmcApp.funcionario.detail.title">Funcionario</span> {{funcionario.id}}</h2>
+    <h2><span translate="tmcApp.funcionario.detail.title">Funcionario</span> {{funcionario.nome}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -23,7 +23,7 @@
                     <span translate="tmcApp.funcionario.cpf">Cpf</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{funcionario.cpf}}</span>
+                    <span class="form-control-static">{{funcionario.cpf | cpf}}</span>
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <span translate="tmcApp.funcionario.dataNascimento">DataNascimento</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{funcionario.dataNascimento}}</span>
+                    <span class="form-control-static">{{funcionario.dataNascimento | date: 'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>
@@ -48,14 +48,6 @@
                 </td>
                 <td>
                     <span class="form-control-static">{{funcionario.email}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.funcionario.senha">Senha</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{funcionario.senha}}</span>
                 </td>
             </tr>
             <tr>
@@ -71,7 +63,7 @@
                     <span translate="tmcApp.funcionario.dataCadastro">DataCadastro</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{funcionario.dataCadastro}}</span>
+                    <span class="form-control-static">{{funcionario.dataCadastro | date: 'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>
@@ -92,18 +84,10 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.funcionario.responsavel">Responsavel</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{funcionario.responsavel}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <span translate="tmcApp.funcionario.cep">cep</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="cep.detail({id:funcionario.cep.id})">{{funcionario.cep.id}}</a>
+                    <a class="form-control-static" ui-sref="cep.detail({id:funcionario.cepId})">{{funcionario.cepId}}</a>
                 </td>
             </tr>
             <tr>
@@ -111,7 +95,7 @@
                     <span translate="tmcApp.funcionario.condominio">condominio</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominio.id})">{{funcionario.condominio.id}}</a>
+                    <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominioId})">{{funcionario.condominioId}}</a>
                 </td>
             </tr>
             </tbody>

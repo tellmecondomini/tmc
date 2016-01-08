@@ -2,15 +2,18 @@
     "tmcApp": {
         "funcionario" : {
             "home": {
-                "title": "Funcionarios",
-                "createLabel": "Criar um novo Funcionario",
-                "createOrEditLabel": "Criar ou editar um Funcionario"
+                "title": "Funcionários",
+                "createLabel": "Novo",
+                "createOrEditLabel": "Criar ou editar um Funcionário"
             },
+            "created": "Novo funcionário {{ param }} criado com sucesso",
+            "updated": "Funcionário {{ param }} atualizado com sucesso",
+            "deleted": "Funcionário removido com sucesso",
             "delete": {
-                "question": "Você tem certeza que deseja deletar o Funcionario {{ id }}?"
+                "question": "Tem certeza que deseja remover este Funcionário?"
             },
             "detail": {
-                "title": "Funcionario"
+                "title": "Funcionário"
             },
             "nome": "Nome",
             "cpf": "Cpf",
@@ -25,7 +28,7 @@
             "responsavel": "Responsavel",
             "cep": "Cep",
             "condominio": "Condominio",
-            "telefoneFuncionario": "TelefoneFuncionario",
+            "telefoneFuncionário": "TelefoneFuncionário",
             "comentario": "Comentario",
             "numero": "Número",
             "complemento": "Complemento"

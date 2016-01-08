@@ -117,7 +117,6 @@ public class FuncionarioResourceTest {
         funcionarioDTO.setAtivo(DEFAULT_ATIVO);
         funcionarioDTO.setNumero(DEFAULT_NUMERO);
         funcionarioDTO.setComplemento(DEFAULT_COMPLEMENTO);
-        funcionarioDTO.setResponsavel(DEFAULT_RESPONSAVEL);
         funcionarioDTO.setCep("123");
         funcionarioDTO.setLogradouro("Logradouro ");
         funcionarioDTO.setBairro("Bairro ");
@@ -228,7 +227,6 @@ public class FuncionarioResourceTest {
         funcionarioDTO.setAtivo(UPDATED_ATIVO);
         funcionarioDTO.setNumero(UPDATED_NUMERO);
         funcionarioDTO.setComplemento(UPDATED_COMPLEMENTO);
-        funcionarioDTO.setResponsavel(UPDATED_RESPONSAVEL);
 
         restFuncionarioMockMvc.perform(put("/api/funcionarios")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

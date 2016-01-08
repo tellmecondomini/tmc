@@ -139,7 +139,7 @@ public class UserService {
         User userSaved = userRepository.save(newUser);
 
         Condominio condominio = new Condominio(userDTO.getCondominio());
-        condominioRepository.save(condominio);
+        condominio = condominioRepository.save(condominio);
 
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(userSaved.getLogin());

@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('FuncionarioController', function ($scope, Funcionario) {
         $scope.funcionarios = [];
-        $scope.loadAll = function() {
-            Funcionario.query(function(result) {
-               $scope.funcionarios = result;
+        $scope.loadAll = function () {
+            Funcionario.query(function (result) {
+                $scope.funcionarios = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Funcionario.get({id: id}, function(result) {
+            Funcionario.get({id: id}, function (result) {
                 $scope.funcionario = result;
                 $('#deleteFuncionarioConfirmation').modal('show');
             });
@@ -40,13 +40,16 @@ angular.module('tmcApp')
                 dataNascimento: null,
                 email: null,
                 senha: null,
+                ativo: null,
+                cepId: null,
                 cep: null,
                 logradouro: null,
                 bairro: null,
                 cidade: null,
                 uf: null,
                 numero: null,
-                complemento: null
+                complemento: null,
+                condominioId: null
             };
         };
     });

@@ -59,18 +59,4 @@ angular.module('tmcApp').controller('CondominioDialogController',
                 });
             }
         };
-
-        $scope.buscaCepResponsavel = function (cep) {
-            if (cep != null) {
-                var url = "http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep;
-                var response = $http.get(url);
-                response.success(function(resultado) {
-                    $scope.condominio.responsavelLogradouro = resultado.logradouro;
-                    $scope.condominio.responsavelBairro = resultado.bairro;
-                    $scope.condominio.responsavelCidade = resultado.cidade;
-                    $scope.condominio.responsavelUf = resultado.uf;
-                    return false;
-                });
-            }
-        };
 }]);

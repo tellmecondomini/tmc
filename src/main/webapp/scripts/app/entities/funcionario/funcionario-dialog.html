@@ -1,12 +1,12 @@
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myFuncionarioLabel" translate="tmcApp.funcionario.home.createOrEditLabel">Create or
-            edit a Funcionario</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myFuncionarioLabel" translate="tmcApp.funcionario.home.title">Funcionario</h4>
     </div>
+
     <div class="modal-body">
+
         <jh-alert-error></jh-alert-error>
 
         <div class="container">
@@ -20,8 +20,8 @@
                                required>
 
                         <div ng-show="editForm.nome.$invalid">
-                            <p class="help-block"
-                               ng-show="editForm.nome.$error.required" translate="entity.validation.required">
+                            <p class="help-block" ng-show="editForm.nome.$error.required"
+                               translate="entity.validation.required">
                                 This field is required.
                             </p>
                         </div>
@@ -35,11 +35,12 @@
                         <label translate="tmcApp.funcionario.cpf" for="field_cpf">Cpf</label>
                         <input type="text" class="form-control" name="cpf" id="field_cpf"
                                ng-model="funcionario.cpf"
+                               ui-mask="999.999.999-99"
                                required>
 
                         <div ng-show="editForm.cpf.$invalid">
-                            <p class="help-block"
-                               ng-show="editForm.cpf.$error.required" translate="entity.validation.required">
+                            <p class="help-block" ng-show="editForm.cpf.$error.required"
+                               translate="entity.validation.required">
                                 This field is required.
                             </p>
                         </div>
@@ -102,7 +103,8 @@
                         <label translate="tmcApp.funcionario.senha" for="field_senha">Senha</label>
                         <input type="password" class="form-control" name="senha" id="field_senha"
                                ng-model="funcionario.senha"
-                               required>
+                               required
+                               disabled>
 
                         <div ng-show="editForm.senha.$invalid">
                             <p class="help-block"
@@ -119,6 +121,7 @@
                     <label translate="tmcApp.cep.cep" for="field_responsavel_cep">Cep</label>
                     <input type="text" class="form-control" name="cep" id="field_responsavel_cep"
                            ng-model="funcionario.cep"
+                           ui-mask="99999-999"
                            ng-blur="buscaCep(funcionario.cep)" required>
 
                     <div ng-show="editForm.cep.$invalid">
@@ -139,26 +142,12 @@
                     <label translate="tmcApp.cep.logradouro" for="field_responsavel_logradouro">Logradouro</label>
                     <input type="text" class="form-control" name="logradouro" id="field_responsavel_logradouro"
                            ng-model="funcionario.logradouro" disabled>
-
-                    <div ng-show="editForm.logradouro.$invalid">
-                        <p class="help-block" ng-show="editForm.logradouro.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.cep.bairro" for="field_responsavel_bairro">Bairro</label>
                     <input type="text" class="form-control" name="bairro" id="field_responsavel_bairro"
                            ng-model="funcionario.bairro" disabled>
-
-                    <div ng-show="editForm.bairro.$invalid">
-                        <p class="help-block" ng-show="editForm.bairro.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
                 </div>
             </div>
 
@@ -167,57 +156,33 @@
                     <label translate="tmcApp.cep.cidade" for="field_responsavel_cidade">Cidade</label>
                     <input type="text" class="form-control" name="cidade" id="field_responsavel_cidade"
                            ng-model="funcionario.cidade" disabled>
-
-                    <div ng-show="editForm.cidade.$invalid">
-                        <p class="help-block" ng-show="editForm.cidade.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.cep.uf" for="field_responsavel_uf">Uf</label>
                     <input type="text" class="form-control" name="uf" id="field_responsavel_uf"
                            ng-model="funcionario.uf" disabled>
-
-                    <div ng-show="editForm.uf.$invalid">
-                        <p class="help-block" ng-show="editForm.uf.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.funcionario.numero" for="field_responsavel_numero">Número</label>
                     <input type="number" class="form-control" name="numero" id="field_responsavel_numero"
-                           ng-model="funcionario.numero" required>
-
-                    <div ng-show="editForm.numero.$invalid">
-                        <p class="help-block" ng-show="editForm.numero.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
+                           ng-model="funcionario.numero">
                 </div>
                 <div class="form-group col-md-4">
-                    <label translate="tmcApp.funcionario.complemento" for="field_responsavel_complemento">Complemento</label>
+                    <label translate="tmcApp.funcionario.complemento"
+                           for="field_responsavel_complemento">Complemento</label>
                     <input type="text" class="form-control" name="bairro" id="field_responsavel_complemento"
                            ng-model="funcionario.complemento">
-
-                    <div ng-show="editForm.complemento.$invalid">
-                        <p class="help-block" ng-show="editForm.complemento.$error.required"
-                           translate="entity.validation.required">
-                            This field is required.
-                        </p>
-                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
@@ -227,4 +192,5 @@
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
         </button>
     </div>
+
 </form>

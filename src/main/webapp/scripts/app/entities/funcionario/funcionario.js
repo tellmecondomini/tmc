@@ -44,8 +44,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('sexo');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Funcionario', function($stateParams, Funcionario) {
-                        return Funcionario.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Funcionario', function ($stateParams, Funcionario) {
+                        return Funcionario.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -55,7 +55,7 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/funcionario/funcionario-dialog.html',
                         controller: 'FuncionarioDialogController',
@@ -70,19 +70,22 @@ angular.module('tmcApp')
                                     dataNascimento: null,
                                     email: null,
                                     senha: null,
+                                    ativo: null,
+                                    cepId: null,
                                     cep: null,
                                     logradouro: null,
                                     bairro: null,
                                     cidade: null,
                                     uf: null,
                                     numero: null,
-                                    complemento: null
+                                    complemento: null,
+                                    condominioId: null
                                 };
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('funcionario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('funcionario', null, {reload: true});
+                    }, function () {
                         $state.go('funcionario');
                     })
                 }]
@@ -93,19 +96,19 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/funcionario/funcionario-dialog.html',
                         controller: 'FuncionarioDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Funcionario', function(Funcionario) {
-                                return Funcionario.get({id : $stateParams.id});
+                            entity: ['Funcionario', function (Funcionario) {
+                                return Funcionario.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('funcionario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('funcionario', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

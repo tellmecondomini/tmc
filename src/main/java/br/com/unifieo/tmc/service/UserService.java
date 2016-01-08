@@ -5,6 +5,7 @@ import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.*;
+import br.com.unifieo.tmc.security.AuthoritiesConstants;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.util.RandomUtil;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
@@ -91,6 +92,7 @@ public class UserService {
             });
     }
 
+    @Deprecated
     public User createUserInformation(String login, String password, String firstName, String lastName, String email,
                                       String langKey) {
 
@@ -120,7 +122,7 @@ public class UserService {
 
         User newUser = new User();
 
-        Authority authority = authorityRepository.findOne("ROLE_USER");
+        Authority authority = authorityRepository.findOne(AuthoritiesConstants.ADMIN_CONDOMINIO);
         HashSet<Authority> authorities = new HashSet<>();
         authorities.add(authority);
         newUser.setAuthorities(authorities);

@@ -7,9 +7,7 @@ public final class AuthoritiesConstants {
 
     public static final String ADMIN = "ROLE_ADMIN";
 
-    public static final String USER = "ROLE_USER";
-
-    public static final String ANONYMOUS = "ROLE_ANONYMOUS";
+    public static final String ADMIN_CONDOMINIO = "ROLE_ADMIN_CONDOMINIO";
 
     public static final String FUNCIONARIO = "ROLE_FUNCIONARIO";
 

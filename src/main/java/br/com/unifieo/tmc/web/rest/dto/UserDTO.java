@@ -52,7 +52,7 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this(user.getCondominio(), user.getLogin(), null, user.getFirstName(), user.getLastName(),
+        this("", user.getLogin(), null, user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 

@@ -26,14 +26,14 @@
                 <constraints nullable="false" />
             </column>
             <column name="cpf" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="sexo" type="varchar(255)"/>
             <column name="data_nascimento" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="email" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true" />
             </column>
             <column name="senha" type="varchar(255)">
                 <constraints nullable="false" />
@@ -43,12 +43,12 @@
                 <constraints nullable="false" />
             </column>
             <column name="numero" type="integer">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="complemento" type="varchar(255)"/>
             <column name="responsavel" type="bit"/>
             <column name="cep_id" type="bigint">
-                <constraints unique="true"/>
+                <constraints unique="false"/>
             </column>
             <column name="condominio_id" type="bigint"/>
         </createTable>
@@ -56,7 +56,7 @@
 
         <dropDefaultValue tableName="FUNCIONARIO" columnName="data_cadastro" columnDataType="datetime"/>
 
-        
+
         <addForeignKeyConstraint baseColumnNames="cep_id"
                                  baseTableName="FUNCIONARIO"
                                  constraintName="fk_funcionario_cep_id"

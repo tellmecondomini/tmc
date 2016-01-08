@@ -1,6 +1,8 @@
 package br.com.unifieo.tmc.service;
 
+import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
+import br.com.unifieo.tmc.web.rest.dto.UserDTO;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,13 +87,14 @@ public class MailService {
     }
 
     @Async
-    public void sendNewUserEmail(User user, String baseUrl) {
+    public void sendNewUserEmail(User user, Funcionario funcionario, String baseUrl) {
         log.debug("E-mail de confirmação de cadastro e aviso aos gestores");
 
         Locale locale = Locale.forLanguageTag(user.getLangKey());
 
         Context context = new Context(locale);
         context.setVariable("user", user);
+        context.setVariable("condominio", funcionario.getCondominio());
         context.setVariable("baseUrl", baseUrl);
 
         String content = templateEngine.process("confirmRegistrationEmail", context);

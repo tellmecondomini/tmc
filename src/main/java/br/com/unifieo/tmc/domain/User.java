@@ -72,9 +72,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private DateTime resetDate = null;
 
-    @OneToOne
-    private Condominio condominio;
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -95,14 +92,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Condominio getCondominio() {
-        return this.condominio;
-    }
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
     }
 
     public String getLogin() {

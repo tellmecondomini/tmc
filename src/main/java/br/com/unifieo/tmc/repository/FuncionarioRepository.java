@@ -12,4 +12,6 @@ import java.util.List;
 public interface FuncionarioRepository extends JpaRepository<Funcionario,Long> {
 
     Funcionario findOneByCondominioAndResponsavel(Condominio condominio, boolean responsavel);
+
+    Funcionario findOneByEmail(String email);
 }

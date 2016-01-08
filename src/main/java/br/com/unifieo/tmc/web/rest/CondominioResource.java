@@ -1,8 +1,10 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.CondominioRepository;
+import br.com.unifieo.tmc.repository.FuncionarioRepository;
 import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.CondominioService;
@@ -38,6 +40,9 @@ public class CondominioResource {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private FuncionarioRepository funcionarioRepository;
 
     /**
      * POST  /condominios -> Create a new condominioDTO.
@@ -89,7 +94,8 @@ public class CondominioResource {
     public List<Condominio> getAllCondominios() {
         log.debug("REST obter apenas o condominio cadastrado junto ao usuário logado");
         User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
-        return Arrays.asList(user.getCondominio());
+        Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
+        return Arrays.asList(funcionario.getCondominio());
     }
 
     /**

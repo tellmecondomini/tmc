@@ -37,7 +37,6 @@ public class Funcionario implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotNull
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
@@ -45,7 +44,6 @@ public class Funcionario implements Serializable {
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -70,7 +68,6 @@ public class Funcionario implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     private DateTime dataCadastro;
 
-    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
 
@@ -80,7 +77,7 @@ public class Funcionario implements Serializable {
     @Column(name = "responsavel")
     private Boolean responsavel;
 
-    @OneToOne
+    @ManyToOne
     private Cep cep;
 
     @ManyToOne
@@ -97,6 +94,7 @@ public class Funcionario implements Serializable {
     private Set<Comentario> comentarios = new HashSet<>();
 
     public Funcionario() {
+        this.dataCadastro = new DateTime();
     }
 
     public Funcionario(String nome, String cpf, Sexo sexo, DateTime dataNascimento, String email,

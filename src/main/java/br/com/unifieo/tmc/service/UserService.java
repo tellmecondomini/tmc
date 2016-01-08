@@ -2,11 +2,9 @@ package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Authority;
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
-import br.com.unifieo.tmc.repository.AuthorityRepository;
-import br.com.unifieo.tmc.repository.CondominioRepository;
-import br.com.unifieo.tmc.repository.PersistentTokenRepository;
-import br.com.unifieo.tmc.repository.UserRepository;
+import br.com.unifieo.tmc.repository.*;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.util.RandomUtil;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
@@ -42,6 +40,9 @@ public class UserService {
 
     @Inject
     private CondominioRepository condominioRepository;
+
+    @Inject
+    private FuncionarioRepository funcionarioRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -115,7 +116,7 @@ public class UserService {
         return newUser;
     }
 
-    public User createUserAndPreCondominio(UserDTO userDTO) {
+    public User createUserAndFuncionarioAndPreCondominio(UserDTO userDTO) {
 
         User newUser = new User();
 
@@ -135,11 +136,18 @@ public class UserService {
         newUser.setActivated(false);
         newUser.setActivationKey(RandomUtil.generateActivationKey());
 
+        User userSaved = userRepository.save(newUser);
+
         Condominio condominio = new Condominio(userDTO.getCondominio());
         condominioRepository.save(condominio);
 
-        newUser.setCondominio(condominio);
-        userRepository.save(newUser);
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome(userSaved.getLogin());
+        funcionario.setEmail(userSaved.getEmail());
+        funcionario.setSenha(userSaved.getPassword());
+        funcionario.setAtivo(true);
+        funcionario.setCondominio(condominio);
+        funcionarioRepository.save(funcionario);
 
         log.debug("Created Information for User: {}", newUser);
 

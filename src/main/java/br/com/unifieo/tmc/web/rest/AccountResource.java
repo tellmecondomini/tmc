@@ -1,8 +1,10 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.PersistentToken;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.CondominioRepository;
+import br.com.unifieo.tmc.repository.FuncionarioRepository;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;
 import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.security.SecurityUtils;
@@ -43,6 +45,9 @@ public class AccountResource {
     private CondominioRepository condominioRepository;
 
     @Inject
+    private FuncionarioRepository funcionarioRepository;
+
+    @Inject
     private UserService userService;
 
     @Inject
@@ -67,11 +72,13 @@ public class AccountResource {
                     .map(condominio -> new ResponseEntity<>("condominio já cadastrado", HttpStatus.BAD_REQUEST))
                     .orElseGet(() -> {
 
-                        User user = userService.createUserAndPreCondominio(userDTO);
+                        User user = userService.createUserAndFuncionarioAndPreCondominio(userDTO);
 
                         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 
-                        mailService.sendNewUserEmail(user, baseUrl);
+                        Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
+
+                        mailService.sendNewUserEmail(user, funcionario, baseUrl);
 
                         return new ResponseEntity<>(HttpStatus.CREATED);
                     })

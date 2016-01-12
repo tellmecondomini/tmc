@@ -16,7 +16,7 @@ angular.module('tmcApp')
             }).then(function () {
                 $scope.authenticationError = false;
                 if ($rootScope.previousStateName === 'register') {
-                    $state.go('/#/');
+                    $state.go('/');
                 } else {
                     $rootScope.back();
                 }

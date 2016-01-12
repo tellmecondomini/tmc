@@ -68,11 +68,6 @@ public class Condominio implements Serializable {
     @OneToMany(mappedBy = "condominio")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Dependencia> dependencias = new HashSet<>();
-
-    @OneToMany(mappedBy = "condominio")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
 
     public Condominio() {
@@ -175,14 +170,6 @@ public class Condominio implements Serializable {
 
     public void setFuncionarios(Set<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
-    }
-
-    public Set<Dependencia> getDependencias() {
-        return dependencias;
-    }
-
-    public void setDependencias(Set<Dependencia> dependencias) {
-        this.dependencias = dependencias;
     }
 
     public Set<TelefoneCondominio> getTelefoneCondominios() {

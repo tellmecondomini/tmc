@@ -29,7 +29,7 @@
                     </a>
                     <ul id="entities" class="dropdown-menu">
 
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="condominio">
                                 <span translate="global.menu.entities.condominio">condominio</span>
                             </a>
@@ -47,7 +47,7 @@
                             </a>
                         </li>-->
 
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="funcionario">
                                 <span translate="global.menu.entities.funcionario">funcionario</span>
                             </a>
@@ -59,13 +59,14 @@
                             </a>
                         </li>-->
 
-                        <!--<li ui-sref-active="active">
+                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="morador">
                                 <span translate="global.menu.entities.morador">morador</span>
                             </a>
-                        </li>-->
+                        </li>
 
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO,ROLE_MORADOR">
                             <a ui-sref="prestadorServico">
                                 <span translate="global.menu.entities.prestadorServico">prestadorServico</span>
                             </a>

@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/condominios',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.condominio.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/condominio/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.condominio.detail.title'
                 },
                 views: {
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 parent: 'condominio',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
@@ -113,7 +113,7 @@ angular.module('tmcApp')
                 parent: 'condominio',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({

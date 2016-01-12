@@ -2,25 +2,25 @@
     "tmcApp": {
         "prestadorServico" : {
             "home": {
-                "title": "PrestadorServicos",
-                "createLabel": "Create a new PrestadorServico",
-                "createOrEditLabel": "Create or edit a PrestadorServico"
+                "title": "Prestadores de Serviços",
+                "createLabel": "Novo",
+                "createOrEditLabel": "Novo"
             },
             "delete": {
-                "question": "Are you sure you want to delete PrestadorServico {{ id }}?"
+                "question": "Tem certeza que deseja remover o prestador de serviços {{ id }}?"
             },
             "detail": {
-                "title": "PrestadorServico"
+                "title": "Prestador de Serviços"
             },
             "nome": "Nome",
             "email": "Email",
             "documento": "Documento",
             "pessoa": "Pessoa",
-            "numero": "Numero",
+            "numero": "Número",
             "complemento": "Complemento",
             "cep": "Cep",
-            "telefonePrestadorServico": "TelefonePrestadorServico",
-            "competenciaPrestador": "CompetenciaPrestador"
+            "telefonePrestadorServico": "Telefone",
+            "competenciaPrestador": "Competencia"
         }
     }
 }

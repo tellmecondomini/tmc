@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/prestadorServicos',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                     pageTitle: 'tmcApp.prestadorServico.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/prestadorServico/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                     pageTitle: 'tmcApp.prestadorServico.detail.title'
                 },
                 views: {
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 parent: 'prestadorServico',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
@@ -76,7 +76,7 @@ angular.module('tmcApp')
                 parent: 'prestadorServico',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({

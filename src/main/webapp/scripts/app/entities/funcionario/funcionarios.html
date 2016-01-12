@@ -57,7 +57,7 @@
                 <td><a ui-sref="funcionario.detail({id:funcionario.id})">{{funcionario.id}}</a></td>
                 <td>{{funcionario.nome}}</td>
                 <td>{{funcionario.cpf | cpf}}</td>
-                <td>{{funcionario.ativo}}</td>
+                <td>{{funcionario.ativo ? 'Sim' : 'Não'}}</td>
                 <td>{{funcionario.dataCadastro | date: 'dd/MM/yyyy'}}</td>
                 <td>
                     <button type="submit"

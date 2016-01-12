@@ -52,7 +52,7 @@
                 <tr ng-repeat="morador in moradors">
                     <td><a ui-sref="morador.detail({id:morador.id})">{{morador.id}}</a></td>
                     <td>{{morador.nome}}</td>
-                    <td>{{morador.ativo}}</td>
+                    <td>{{morador.ativo ? 'Sim' : 'Não'}}</td>
                     <td>{{morador.bloqueiaAgendamento}}</td>
                     <td translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</td>
                     <td>

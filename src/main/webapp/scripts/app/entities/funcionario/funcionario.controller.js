@@ -49,7 +49,8 @@ angular.module('tmcApp')
                 uf: null,
                 numero: null,
                 complemento: null,
-                condominioId: null
+                condominioId: null,
+                condominioRazaoSocial: null
             };
         };
     });

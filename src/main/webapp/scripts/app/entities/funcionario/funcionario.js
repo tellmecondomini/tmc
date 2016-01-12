@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/funcionarios',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.funcionario.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/funcionario/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.funcionario.detail.title'
                 },
                 views: {
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 parent: 'funcionario',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
@@ -79,7 +79,8 @@ angular.module('tmcApp')
                                     uf: null,
                                     numero: null,
                                     complemento: null,
-                                    condominioId: null
+                                    condominioId: null,
+                                    condominioRazaoSocial: null
                                 };
                             }
                         }
@@ -94,7 +95,7 @@ angular.module('tmcApp')
                 parent: 'funcionario',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({

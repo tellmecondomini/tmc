@@ -1,6 +1,6 @@
-
 <div>
     <h2><span translate="tmcApp.funcionario.detail.title">Funcionario</span> {{funcionario.nome}}</h2>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -55,7 +55,7 @@
                     <span translate="tmcApp.funcionario.ativo">Ativo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{funcionario.ativo}}</span>
+                    <span class="form-control-static">{{funcionario.ativo ? 'Sim' : 'Não'}}</span>
                 </td>
             </tr>
             <tr>
@@ -87,7 +87,8 @@
                     <span translate="tmcApp.funcionario.cep">cep</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="cep.detail({id:funcionario.cepId})">{{funcionario.cepId}}</a>
+                    <a class="form-control-static" ui-sref="cep.detail({id:funcionario.cepId})">{{funcionario.cep |
+                        cep}}</a>
                 </td>
             </tr>
             <tr>
@@ -95,7 +96,7 @@
                     <span translate="tmcApp.funcionario.condominio">condominio</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominioId})">{{funcionario.condominioId}}</a>
+                    <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominioId})">{{funcionario.condominioRazaoSocial}}</a>
                 </td>
             </tr>
             </tbody>

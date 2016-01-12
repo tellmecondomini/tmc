@@ -3,8 +3,8 @@
         "morador" : {
             "home": {
                 "title": "Moradores",
-                "createLabel": "Criar novo morador",
-                "createOrEditLabel": "Criar ou editar um morador"
+                "createLabel": "Novo",
+                "createOrEditLabel": "Novo"
             },
             "delete": {
                 "question": "Você tem certeza que deseja remover o Morador {{ id }}?"
@@ -17,15 +17,15 @@
             "sexo": "Sexo",
             "email": "Email",
             "senha": "Senha",
-            "dataNascimento": "Data de Nascimento",
+            "dataNascimento": "Data de nascimento",
             "ativo": "Ativo",
-            "bloqueiaAgendamento": "Bloqueia Agendamento",
+            "bloqueiaAgendamento": "Bloqueia agendamento",
             "tipo": "Tipo",
             "imovel": "Imovel",
-            "telefoneMorador": "Telefone do Morador",
-            "ocorrencia": "Ocorrencia",
+            "telefoneMorador": "Telefone",
+            "ocorrencia": "Ocorrência",
             "agenda": "Agenda",
-            "comentario": "Comentario"
+            "comentario": "Comentário"
         }
     }
 }

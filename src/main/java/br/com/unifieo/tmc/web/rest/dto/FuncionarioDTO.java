@@ -28,6 +28,7 @@ public class FuncionarioDTO {
     private String complemento;
 
     private Long condominioId;
+    private String condominioRazaoSocial;
 
     public FuncionarioDTO() {
 
@@ -46,6 +47,7 @@ public class FuncionarioDTO {
         this.numero = funcionario.getNumero();
         this.complemento = funcionario.getComplemento();
         this.condominioId = funcionario.getCondominio().getId();
+        this.condominioRazaoSocial = funcionario.getCondominio().getRazaoSocial();
         Cep cep = funcionario.getCep();
         if (cep != null) {
             this.cepId = cep.getId();
@@ -199,6 +201,14 @@ public class FuncionarioDTO {
 
     public void setCondominioId(Long condominioId) {
         this.condominioId = condominioId;
+    }
+
+    public String getCondominioRazaoSocial() {
+        return condominioRazaoSocial;
+    }
+
+    public void setCondominioRazaoSocial(String condominioRazaoSocial) {
+        this.condominioRazaoSocial = condominioRazaoSocial;
     }
 
     @Override

@@ -32,7 +32,6 @@
             <column name="data_cadastro" type="timestamp">
                 <constraints nullable="true"/>
             </column>
-            <column name="disposicao" type="varchar(255)"/>
             <column name="numero" type="integer">
                 <constraints nullable="true"/>
             </column>

@@ -41,16 +41,7 @@
             <column name="ativo" type="bit"/>
             <column name="bloqueia_agendamento" type="bit"/>
             <column name="tipo" type="varchar(255)"/>
-            <column name="imovel_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="MORADOR" columnName="data_nascimento" columnDataType="datetime"/>
-
-        
-        <addForeignKeyConstraint baseColumnNames="imovel_id"
-                                 baseTableName="MORADOR"
-                                 constraintName="fk_morador_imovel_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="IMOVEL"/>
-
     </changeSet>
 </databaseChangeLog>

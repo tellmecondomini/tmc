@@ -10,7 +10,6 @@
     <include file="classpath:config/liquibase/changelog/20151008223131_added_entity_TelefoneCondominio.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928114651_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142439_added_entity_TelefoneFuncionario.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20150928232012_added_entity_Imovel.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928222637_added_entity_Morador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151004142552_added_entity_TelefoneMorador.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151007212144_added_entity_CompetenciaPrestador.xml" relativeToChangelogFile="false"/>
@@ -21,11 +20,6 @@
     <include file="classpath:config/liquibase/changelog/20151005212348_added_entity_OcorrenciaPrioridade.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151005213345_added_entity_OcorrenciaTipo.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150928233759_added_entity_Ocorrencia.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005220705_added_entity_Dependencia.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151005220418_added_entity_DisponibilidadeDependencia.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151007220545_added_entity_Agenda.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151007220945_added_entity_Convidado.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151007221559_added_entity_Dependente.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151012161438_added_entity_Assunto.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151012162056_added_entity_Topico.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151012162823_added_entity_Comentario.xml" relativeToChangelogFile="false"/>

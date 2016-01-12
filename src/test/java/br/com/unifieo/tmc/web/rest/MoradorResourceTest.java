@@ -112,7 +112,6 @@ public class MoradorResourceTest {
         morador.setSenha(DEFAULT_SENHA);
         morador.setDataNascimento(DEFAULT_DATA_NASCIMENTO);
         morador.setAtivo(DEFAULT_ATIVO);
-        morador.setBloqueiaAgendamento(DEFAULT_BLOQUEIA_AGENDAMENTO);
         morador.setTipo(DEFAULT_TIPO);
     }
 
@@ -139,7 +138,6 @@ public class MoradorResourceTest {
         assertThat(testMorador.getSenha()).isEqualTo(DEFAULT_SENHA);
         assertThat(testMorador.getDataNascimento().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(DEFAULT_ATIVO);
-        assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(DEFAULT_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTipo()).isEqualTo(DEFAULT_TIPO);
     }
 
@@ -301,7 +299,6 @@ public class MoradorResourceTest {
         morador.setSenha(UPDATED_SENHA);
         morador.setDataNascimento(UPDATED_DATA_NASCIMENTO);
         morador.setAtivo(UPDATED_ATIVO);
-        morador.setBloqueiaAgendamento(UPDATED_BLOQUEIA_AGENDAMENTO);
         morador.setTipo(UPDATED_TIPO);
 
 
@@ -321,7 +318,6 @@ public class MoradorResourceTest {
         assertThat(testMorador.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testMorador.getDataNascimento().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testMorador.getBloqueiaAgendamento()).isEqualTo(UPDATED_BLOQUEIA_AGENDAMENTO);
         assertThat(testMorador.getTipo()).isEqualTo(UPDATED_TIPO);
     }
 

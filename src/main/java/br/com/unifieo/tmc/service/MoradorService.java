@@ -24,7 +24,6 @@ public class MoradorService {
 
     public Morador save(Morador morador) {
         morador.setAtivo(true);
-        morador.setBloqueiaAgendamento(false);
         return this.moradorRepository.save(morador);
     }
 }

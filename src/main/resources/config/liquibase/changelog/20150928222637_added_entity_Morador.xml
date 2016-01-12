@@ -39,7 +39,6 @@
                 <constraints nullable="false" />
             </column>
             <column name="ativo" type="bit"/>
-            <column name="bloqueia_agendamento" type="bit"/>
             <column name="tipo" type="varchar(255)"/>
         </createTable>
         <dropDefaultValue tableName="MORADOR" columnName="data_nascimento" columnDataType="datetime"/>

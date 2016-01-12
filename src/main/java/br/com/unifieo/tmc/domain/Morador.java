@@ -63,9 +63,6 @@ public class Morador implements Serializable {
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @Column(name = "bloqueia_agendamento")
-    private Boolean bloqueiaAgendamento;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoMorador tipo;
@@ -74,11 +71,6 @@ public class Morador implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneMorador> telefoneMoradors = new HashSet<>();
-
-    @OneToMany(mappedBy = "morador")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Ocorrencia> ocorrencias = new HashSet<>();
 
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
@@ -149,14 +141,6 @@ public class Morador implements Serializable {
         this.ativo = ativo;
     }
 
-    public Boolean getBloqueiaAgendamento() {
-        return bloqueiaAgendamento;
-    }
-
-    public void setBloqueiaAgendamento(Boolean bloqueiaAgendamento) {
-        this.bloqueiaAgendamento = bloqueiaAgendamento;
-    }
-
     public TipoMorador getTipo() {
         return tipo;
     }
@@ -171,14 +155,6 @@ public class Morador implements Serializable {
 
     public void setTelefoneMoradors(Set<TelefoneMorador> telefoneMoradors) {
         this.telefoneMoradors = telefoneMoradors;
-    }
-
-    public Set<Ocorrencia> getOcorrencias() {
-        return ocorrencias;
-    }
-
-    public void setOcorrencias(Set<Ocorrencia> ocorrencias) {
-        this.ocorrencias = ocorrencias;
     }
 
     public Set<Comentario> getComentarios() {
@@ -221,7 +197,6 @@ public class Morador implements Serializable {
                 ", senha='" + senha + "'" +
                 ", dataNascimento='" + dataNascimento + "'" +
                 ", ativo='" + ativo + "'" +
-                ", bloqueiaAgendamento='" + bloqueiaAgendamento + "'" +
                 ", tipo='" + tipo + "'" +
                 '}';
     }

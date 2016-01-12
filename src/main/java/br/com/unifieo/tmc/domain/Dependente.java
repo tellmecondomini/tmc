@@ -22,15 +22,12 @@ public class Dependente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
-    
+
     @Column(name = "documento")
     private String documento;
-
-    @ManyToOne
-    private Convidado convidado;
 
     public Long getId() {
         return id;
@@ -54,14 +51,6 @@ public class Dependente implements Serializable {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-
-    public Convidado getConvidado() {
-        return convidado;
-    }
-
-    public void setConvidado(Convidado convidado) {
-        this.convidado = convidado;
     }
 
     @Override

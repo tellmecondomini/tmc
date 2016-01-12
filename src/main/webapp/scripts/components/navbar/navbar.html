@@ -11,20 +11,20 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
+
                 <li ui-sref-active="active">
                     <a ui-sref="home">
                         <span class="glyphicon glyphicon-home"></span>
                         <span translate="global.menu.home">Home</span>
                     </a>
                 </li>
+
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
-                                    <span class="glyphicon glyphicon-th-list"></span>
-                        <span class="hidden-tablet" translate="global.menu.entities.main">
-                                        Entities
-                                    </span>
-                        <b class="caret"></b>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="hidden-tablet" translate="global.menu.entities.main">Entities</span>
+                            <b class="caret"></b>
                         </span>
                     </a>
                     <ul id="entities" class="dropdown-menu">
@@ -74,14 +74,32 @@
 
                     </ul>
                 </li>
+
+                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            <span class="hidden-tablet">
+                                Forum
+                            </span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul id="forum" class="dropdown-menu">
+                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_ADMIN_CONDOMINIO">
+                            <a ui-sref="assunto">
+                                <span translate="global.menu.entities.assunto">assuntos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
-                                    <span class="glyphicon glyphicon-user"></span>
-                        <span class="hidden-tablet" translate="global.menu.account.main">
-                                        Account
-                                    </span>
-                        <b class="caret"></b>
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="hidden-tablet" translate="global.menu.account.main">Account</span>
+                            <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
@@ -106,13 +124,14 @@
                             <span translate="global.menu.account.register">Register</span></a></li>
                     </ul>
                 </li>
+
                 <li ng-class="{active: $state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN"
                     class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>
-                        <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>
-                        <b class="caret"></b>
+                            <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>
+                            <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
@@ -139,6 +158,7 @@
                             <span translate="global.menu.admin.database">Database</span></a></li>
                     </ul>
                 </li>
+
             </ul>
         </div>
     </div>

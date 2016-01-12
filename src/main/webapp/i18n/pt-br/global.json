@@ -27,9 +27,9 @@
                 "convidado": "Convidado",
                 "dependente": "Dependente",
                 "telefoneCondominio": "TelefoneCondominio",
-                "assunto": "Assunto",
-                "topico": "Topico",
-                "comentario": "Comentario",
+                "assunto": "Assuntos",
+                "topico": "Tópicos",
+                "comentario": "Comentários",
                 "prestadorServico": "Prestadores de Serviços",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },

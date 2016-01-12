@@ -23,9 +23,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descricao" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true" />
             </column>
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

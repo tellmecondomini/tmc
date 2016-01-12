@@ -20,8 +20,8 @@ public class CompetenciaPrestador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
-    @Column(name = "descricao", nullable = false)
+    @NotNull
+    @Column(name = "descricao", nullable = false, unique = true)
     private String descricao;
 
     public Long getId() {

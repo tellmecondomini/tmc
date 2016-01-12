@@ -17,6 +17,7 @@ public class FuncionarioDTO {
     private String email;
     private String senha;
     private Boolean ativo;
+    private Boolean responsavel;
 
     private Long cepId;
     private String cep;
@@ -46,6 +47,7 @@ public class FuncionarioDTO {
         this.ativo = true;
         this.numero = funcionario.getNumero();
         this.complemento = funcionario.getComplemento();
+        this.responsavel = funcionario.getResponsavel();
         this.condominioId = funcionario.getCondominio().getId();
         this.condominioRazaoSocial = funcionario.getCondominio().getRazaoSocial();
         Cep cep = funcionario.getCep();
@@ -209,6 +211,14 @@ public class FuncionarioDTO {
 
     public void setCondominioRazaoSocial(String condominioRazaoSocial) {
         this.condominioRazaoSocial = condominioRazaoSocial;
+    }
+
+    public Boolean getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Boolean responsavel) {
+        this.responsavel = responsavel;
     }
 
     @Override

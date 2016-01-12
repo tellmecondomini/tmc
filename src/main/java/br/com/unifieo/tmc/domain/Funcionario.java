@@ -95,6 +95,7 @@ public class Funcionario implements Serializable {
 
     public Funcionario() {
         this.dataCadastro = new DateTime();
+        this.responsavel = false;
     }
 
     public Funcionario(String nome, String cpf, Sexo sexo, DateTime dataNascimento, String email,
@@ -127,7 +128,7 @@ public class Funcionario implements Serializable {
         this.dataCadastro = new DateTime(new Date());
         this.numero = condominioDTO.getResponsavelNumero();
         this.complemento = condominioDTO.getResponsavelComplemento();
-        this.responsavel = true;
+        this.responsavel = false;
         this.cep = new Cep(condominioDTO.getResponsavelLogradouro(), condominioDTO.getResponsavelBairro(), condominioDTO.getResponsavelCidade(), condominioDTO.getResponsavelUf(), condominioDTO.getResponsavelCep());
         this.condominio = condominioSave;
     }
@@ -144,7 +145,7 @@ public class Funcionario implements Serializable {
         this.dataCadastro = new DateTime(new Date());
         this.numero = funcionarioDTO.getNumero();
         this.complemento = funcionarioDTO.getComplemento();
-        this.responsavel = false;
+        this.responsavel = funcionarioDTO.getResponsavel();
         this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf(), funcionarioDTO.getCep());
     }
 

@@ -149,6 +149,7 @@ public class UserService {
         funcionario.setSenha(userSaved.getPassword());
         funcionario.setAtivo(true);
         funcionario.setCondominio(condominio);
+        funcionario.setResponsavel(true);
         funcionarioRepository.save(funcionario);
 
         log.debug("Created Information for User: {}", newUser);

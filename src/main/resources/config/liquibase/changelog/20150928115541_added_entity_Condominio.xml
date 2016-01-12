@@ -35,6 +35,7 @@
             <column name="numero" type="integer">
                 <constraints nullable="true"/>
             </column>
+            <column name="disposicao" type="varchar(255)"/>
             <column name="complemento" type="varchar(255)"/>
             <column name="cep_id" type="bigint">
                 <constraints unique="false"/>

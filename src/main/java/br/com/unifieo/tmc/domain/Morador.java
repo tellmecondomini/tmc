@@ -70,9 +70,6 @@ public class Morador implements Serializable {
     @Column(name = "tipo")
     private TipoMorador tipo;
 
-    @ManyToOne
-    private Imovel imovel;
-
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -166,14 +163,6 @@ public class Morador implements Serializable {
 
     public void setTipo(TipoMorador tipo) {
         this.tipo = tipo;
-    }
-
-    public Imovel getImovel() {
-        return imovel;
-    }
-
-    public void setImovel(Imovel imovel) {
-        this.imovel = imovel;
     }
 
     public Set<TelefoneMorador> getTelefoneMoradors() {

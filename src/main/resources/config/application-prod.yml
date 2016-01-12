@@ -9,7 +9,7 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/tmc
+        url: jdbc:mysql://localhost:3306/tmc?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8
         databaseName: tmc
         serverName: Localhost
         username: root

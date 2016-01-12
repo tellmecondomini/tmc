@@ -5,11 +5,11 @@
         "menu": {
             "home": "Início",
             "entities": {
-                "main": "Entidades",
+                "main": "Cadastros",
                 "endereco": "Endereco",
                 "funcionario": "Funcionarios",
                 "condominio": "Condomínio",
-                "morador": "Morador",
+                "morador": "Moradores",
                 "imovel": "Imóvel",
                 "ocorrencia": "Ocorrência",
                 "cep": "Cep",

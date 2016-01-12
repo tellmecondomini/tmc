@@ -43,8 +43,6 @@
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.morador.nome">Nome</th>
                     <th translate="tmcApp.morador.ativo">Ativo</th>
-                    <th translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</th>
-                    <th translate="tmcApp.morador.tipo">Tipo</th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,11 +51,6 @@
                     <td><a ui-sref="morador.detail({id:morador.id})">{{morador.id}}</a></td>
                     <td>{{morador.nome}}</td>
                     <td>{{morador.ativo ? 'Sim' : 'Não'}}</td>
-                    <td>{{morador.bloqueiaAgendamento}}</td>
-                    <td translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</td>
-                    <td>
-                        <a ui-sref="imovel.detail({id:morador.imovel.id})">{{morador.imovel.id}}</a>
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="morador.detail({id:morador.id})"

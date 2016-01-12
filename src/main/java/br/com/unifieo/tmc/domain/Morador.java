@@ -33,39 +33,39 @@ public class Morador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotNull        
+    @NotNull
     @Column(name = "cpf", nullable = false)
     private String cpf;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @NotNull        
+    @NotNull
     @Column(name = "email", nullable = false)
     private String email;
 
-    @NotNull        
+    @NotNull
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_nascimento", nullable = false)
     private DateTime dataNascimento;
-    
+
     @Column(name = "ativo")
     private Boolean ativo;
-    
+
     @Column(name = "bloqueia_agendamento")
     private Boolean bloqueiaAgendamento;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoMorador tipo;
@@ -82,11 +82,6 @@ public class Morador implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Ocorrencia> ocorrencias = new HashSet<>();
-
-    @OneToMany(mappedBy = "morador")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Agenda> agendas = new HashSet<>();
 
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
@@ -195,14 +190,6 @@ public class Morador implements Serializable {
 
     public void setOcorrencias(Set<Ocorrencia> ocorrencias) {
         this.ocorrencias = ocorrencias;
-    }
-
-    public Set<Agenda> getAgendas() {
-        return agendas;
-    }
-
-    public void setAgendas(Set<Agenda> agendas) {
-        this.agendas = agendas;
     }
 
     public Set<Comentario> getComentarios() {

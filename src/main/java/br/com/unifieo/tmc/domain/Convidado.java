@@ -23,18 +23,15 @@ public class Convidado implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
-    
+
     @Column(name = "cpf")
     private String cpf;
-    
+
     @Column(name = "email")
     private String email;
-
-    @ManyToOne
-    private Agenda agenda;
 
     @OneToMany(mappedBy = "convidado")
     @JsonIgnore
@@ -71,14 +68,6 @@ public class Convidado implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Agenda getAgenda() {
-        return agenda;
-    }
-
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
     }
 
     public Set<Dependente> getDependentes() {

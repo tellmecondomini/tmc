@@ -67,6 +67,9 @@ public class Morador implements Serializable {
     @Column(name = "tipo")
     private TipoMorador tipo;
 
+    @ManyToOne
+    private Condominio condominio;
+
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -165,6 +168,14 @@ public class Morador implements Serializable {
         this.comentarios = comentarios;
     }
 
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -176,7 +187,7 @@ public class Morador implements Serializable {
 
         Morador morador = (Morador) o;
 
-        if ( ! Objects.equals(id, morador.id)) return false;
+        if (!Objects.equals(id, morador.id)) return false;
 
         return true;
     }
@@ -189,15 +200,15 @@ public class Morador implements Serializable {
     @Override
     public String toString() {
         return "Morador{" +
-                "id=" + id +
-                ", nome='" + nome + "'" +
-                ", cpf='" + cpf + "'" +
-                ", sexo='" + sexo + "'" +
-                ", email='" + email + "'" +
-                ", senha='" + senha + "'" +
-                ", dataNascimento='" + dataNascimento + "'" +
-                ", ativo='" + ativo + "'" +
-                ", tipo='" + tipo + "'" +
-                '}';
+            "id=" + id +
+            ", nome='" + nome + "'" +
+            ", cpf='" + cpf + "'" +
+            ", sexo='" + sexo + "'" +
+            ", email='" + email + "'" +
+            ", senha='" + senha + "'" +
+            ", dataNascimento='" + dataNascimento + "'" +
+            ", ativo='" + ativo + "'" +
+            ", tipo='" + tipo + "'" +
+            '}';
     }
 }

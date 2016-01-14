@@ -1,9 +1,6 @@
 package br.com.unifieo.tmc.service;
 
-import br.com.unifieo.tmc.domain.Authority;
-import br.com.unifieo.tmc.domain.Condominio;
-import br.com.unifieo.tmc.domain.Funcionario;
-import br.com.unifieo.tmc.domain.User;
+import br.com.unifieo.tmc.domain.*;
 import br.com.unifieo.tmc.repository.*;
 import br.com.unifieo.tmc.security.AuthoritiesConstants;
 import br.com.unifieo.tmc.security.SecurityUtils;
@@ -44,6 +41,9 @@ public class UserService {
 
     @Inject
     private FuncionarioRepository funcionarioRepository;
+
+    @Inject
+    private MoradorRepository moradorRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -234,5 +234,26 @@ public class UserService {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
         }
+    }
+
+    /**
+     * Obtem o usuário corrente.
+     *
+     * @return
+     */
+    public UserDTO getUserDTO() {
+
+        UserDTO user = new UserDTO(this.getUserWithAuthorities());
+
+        Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
+        if (funcionario == null) {
+            Morador morador = moradorRepository.findOneByEmail(user.getEmail());
+            if (morador != null)
+                user.setCondominio(morador.getCondominio().getRazaoSocial());
+        } else {
+            user.setCondominio(funcionario.getCondominio().getRazaoSocial());
+        }
+
+        return user;
     }
 }

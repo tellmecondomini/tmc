@@ -19,28 +19,37 @@
     -->
     <changeSet id="20150928222637" author="jhipster">
         <createTable tableName="MORADOR">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nome" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="cpf" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="sexo" type="varchar(255)"/>
             <column name="email" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="senha" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="data_nascimento" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="ativo" type="bit"/>
             <column name="tipo" type="varchar(255)"/>
+            <column name="condominio_id" type="bigint"/>
         </createTable>
+
         <dropDefaultValue tableName="MORADOR" columnName="data_nascimento" columnDataType="datetime"/>
+
+        <addForeignKeyConstraint baseColumnNames="condominio_id"
+                                 baseTableName="MORADOR"
+                                 constraintName="fk_morador_condominio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CONDOMINIO"/>
+
     </changeSet>
 </databaseChangeLog>

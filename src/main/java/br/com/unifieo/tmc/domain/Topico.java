@@ -29,17 +29,17 @@ public class Topico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "conteudo", nullable = false)
     private String conteudo;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data", nullable = false)
     private DateTime data;
-    
+
     @Column(name = "aprovado")
     private Boolean aprovado;
 

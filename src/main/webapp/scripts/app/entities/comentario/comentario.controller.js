@@ -2,16 +2,19 @@
 
 angular.module('tmcApp')
     .controller('ComentarioController', function ($scope, Comentario) {
+
         $scope.comentarios = [];
-        $scope.loadAll = function() {
-            Comentario.query(function(result) {
-               $scope.comentarios = result;
+
+        $scope.loadAll = function () {
+            Comentario.query(function (result) {
+                $scope.comentarios = result;
             });
         };
+
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Comentario.get({id: id}, function(result) {
+            Comentario.get({id: id}, function (result) {
                 $scope.comentario = result;
                 $('#deleteComentarioConfirmation').modal('show');
             });

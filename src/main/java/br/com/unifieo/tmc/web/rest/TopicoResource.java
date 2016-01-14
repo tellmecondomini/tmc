@@ -1,5 +1,8 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.domain.Comentario;
+import br.com.unifieo.tmc.repository.ComentarioRepository;
+import br.com.unifieo.tmc.service.TopicoService;
 import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.TopicoRepository;
@@ -18,6 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Topico.
@@ -31,22 +35,28 @@ public class TopicoResource {
     @Inject
     private TopicoRepository topicoRepository;
 
+    @Inject
+    private TopicoService topicoService;
+
+    @Inject
+    private ComentarioRepository comentarioRepository;
+
     /**
      * POST  /topicos -> Create a new topico.
      */
     @RequestMapping(value = "/topicos",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Topico> createTopico(@Valid @RequestBody Topico topico) throws URISyntaxException {
+    public ResponseEntity<Topico> createTopico(@RequestBody Topico topico) throws URISyntaxException {
         log.debug("REST request to save Topico : {}", topico);
         if (topico.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new topico cannot already have an ID").body(null);
         }
-        Topico result = topicoRepository.save(topico);
+        Topico result = topicoService.save(topico);
         return ResponseEntity.created(new URI("/api/topicos/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("topico", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("topico", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -63,28 +73,37 @@ public class TopicoResource {
         }
         Topico result = topicoRepository.save(topico);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /topicos -> get all the topicos.
      */
     @RequestMapping(value = "/topicos",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Topico> getAllTopicos() {
         log.debug("REST request to get all Topicos");
-        return topicoRepository.findAll();
+        return topicoRepository.findAll().stream().sorted((t1, t2) -> t2.getData().compareTo(t1.getData())).collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/{id}/comentarios",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Comentario> getComentariosByTopico(@PathVariable Long id) {
+        Topico topico = this.topicoRepository.findOne(id);
+        return comentarioRepository.findAllByTopico(topico).stream().sorted((c1, c2) -> c2.getData().compareTo(c1.getData())).collect(Collectors.toList());
     }
 
     /**
      * GET  /topicos/:id -> get the "id" topico.
      */
     @RequestMapping(value = "/topicos/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Topico> getTopico(@PathVariable Long id) {
         log.debug("REST request to get Topico : {}", id);
@@ -99,8 +118,8 @@ public class TopicoResource {
      * DELETE  /topicos/:id -> delete the "id" topico.
      */
     @RequestMapping(value = "/topicos/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteTopico(@PathVariable Long id) {
         log.debug("REST request to delete Topico : {}", id);

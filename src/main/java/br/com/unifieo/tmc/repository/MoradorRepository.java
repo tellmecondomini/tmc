@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface MoradorRepository extends JpaRepository<Morador,Long> {
 
+    Morador findOneByEmail(String email);
 }

@@ -1,0 +1,55 @@
+<div>
+
+    <div class="container">
+
+        <div class="well pre-scrollable">
+
+            <div ng-repeat="comentario in comentarios">
+
+                <dl class="dl-horizontal">
+                    <dt>{{comentario.funcionario.nome ? comentario.funcionario.nome : comentario.morador.nome}}</dt>
+                    <dd class="ellipsis-text">{{comentario.conteudo}}</dd>
+                    <dd>
+                        <small><cite>Escrito em {{comentario.data | date:'dd/MM/yyyy - HH:mm:ss'}}</cite></small>
+                    </dd>
+                </dl>
+
+                <hr/>
+
+            </div>
+
+        </div>
+        <small>{{comentarios.size}}</small>
+
+        <footer>
+
+            <div class="row">
+
+                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+                    <div class="form-group col-md-10">
+                        <textarea class="form-control" rows="3" ng-model="comentario.conteudo"/>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;<span> Enviar</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <button type="submit" ui-sref="topico" class="btn btn-info">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Voltar</span>
+            </button>
+
+            <br/>
+
+        </footer>
+
+    </div>
+
+
+</div>

@@ -12,6 +12,10 @@ angular.module('tmcApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'findByTopico': {
+                method: 'GET',
+                isArray: true
+            }
         });
     });

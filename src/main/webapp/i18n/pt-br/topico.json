@@ -1,22 +1,25 @@
 {
     "tmcApp": {
-        "topico" : {
+        "topico": {
             "home": {
-                "title": "Topicos",
-                "createLabel": "Create a new Topico",
-                "createOrEditLabel": "Create or edit a Topico"
+                "title": "Tópicos",
+                "createLabel": "Novo",
+                "createOrEditLabel": "Tópico"
             },
+            "created": "Novo tópico criado com sucesso",
+            "updated": "Tópico atualizado com sucesso",
+            "deleted": "Tópico removido com sucesso",
             "delete": {
-                "question": "Are you sure you want to delete Topico {{ id }}?"
+                "question": "Tem certeza que deseja remover o Tópico nº {{ id }}?"
             },
             "detail": {
-                "title": "Topico"
+                "title": "Tópico"
             },
-            "conteudo": "Conteudo",
+            "conteudo": "Conteúdo",
             "data": "Data",
             "aprovado": "Aprovado",
             "assunto": "Assunto",
-            "comentario": "Comentario"
+            "comentario": "Comentário"
         }
     }
 }

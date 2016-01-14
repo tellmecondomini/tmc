@@ -1,12 +1,13 @@
 package br.com.unifieo.tmc.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Comentario;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
+import br.com.unifieo.tmc.repository.TopicoRepository;
+import br.com.unifieo.tmc.service.ComentarioService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,22 +32,26 @@ public class ComentarioResource {
     @Inject
     private ComentarioRepository comentarioRepository;
 
+    @Inject
+    private TopicoRepository topicoRepository;
+
+    @Inject
+    private ComentarioService comentarioService;
+
     /**
      * POST  /comentarios -> Create a new comentario.
      */
     @RequestMapping(value = "/comentarios",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Comentario> createComentario(@Valid @RequestBody Comentario comentario) throws URISyntaxException {
+    public ResponseEntity<Comentario> createComentario(@RequestBody Comentario comentario) throws URISyntaxException {
         log.debug("REST request to save Comentario : {}", comentario);
         if (comentario.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new comentario cannot already have an ID").body(null);
         }
-        Comentario result = comentarioRepository.save(comentario);
-        return ResponseEntity.created(new URI("/api/comentarios/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("comentario", result.getId().toString()))
-                .body(result);
+        Comentario result = comentarioService.save(comentario);
+        return ResponseEntity.ok().body(result);
     }
 
     /**
@@ -63,16 +68,16 @@ public class ComentarioResource {
         }
         Comentario result = comentarioRepository.save(comentario);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("comentario", comentario.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("comentario", comentario.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /comentarios -> get all the comentarios.
      */
     @RequestMapping(value = "/comentarios",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Comentario> getAllComentarios() {
         log.debug("REST request to get all Comentarios");
@@ -83,8 +88,8 @@ public class ComentarioResource {
      * GET  /comentarios/:id -> get the "id" comentario.
      */
     @RequestMapping(value = "/comentarios/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Comentario> getComentario(@PathVariable Long id) {
         log.debug("REST request to get Comentario : {}", id);
@@ -99,8 +104,8 @@ public class ComentarioResource {
      * DELETE  /comentarios/:id -> delete the "id" comentario.
      */
     @RequestMapping(value = "/comentarios/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteComentario(@PathVariable Long id) {
         log.debug("REST request to delete Comentario : {}", id);

@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/comentarios',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.comentario.home.title'
                 },
                 views: {
@@ -28,7 +28,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/comentario/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.comentario.detail.title'
                 },
                 views: {
@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('comentario');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Comentario', function($stateParams, Comentario) {
-                        return Comentario.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Comentario', function ($stateParams, Comentario) {
+                        return Comentario.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -51,9 +51,9 @@ angular.module('tmcApp')
                 parent: 'comentario',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/comentario/comentario-dialog.html',
                         controller: 'ComentarioDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {conteudo: null, data: null, ativo: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('comentario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('comentario', null, {reload: true});
+                    }, function () {
                         $state.go('comentario');
                     })
                 }]
@@ -74,21 +74,21 @@ angular.module('tmcApp')
                 parent: 'comentario',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/comentario/comentario-dialog.html',
                         controller: 'ComentarioDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Comentario', function(Comentario) {
-                                return Comentario.get({id : $stateParams.id});
+                            entity: ['Comentario', function (Comentario) {
+                                return Comentario.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('comentario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('comentario', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

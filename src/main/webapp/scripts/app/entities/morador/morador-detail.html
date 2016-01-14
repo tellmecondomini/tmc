@@ -23,7 +23,7 @@
                     <span translate="tmcApp.morador.cpf">Cpf</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{morador.cpf}}</span>
+                    <span class="form-control-static">{{morador.cpf | cpf}}</span>
                 </td>
             </tr>
             <tr>
@@ -63,15 +63,7 @@
                     <span translate="tmcApp.morador.ativo">Ativo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{morador.ativo}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.morador.bloqueiaAgendamento">BloqueiaAgendamento</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{morador.bloqueiaAgendamento}}</span>
+                    <span class="form-control-static">{{morador.ativo ? 'Sim' : 'Não'}}</span>
                 </td>
             </tr>
             <tr>
@@ -80,14 +72,6 @@
                 </td>
                 <td>
                     <span class="form-control-static" translate="{{'tmcApp.TipoMorador.' + morador.tipo}}">{{morador.tipo}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.morador.imovel">imovel</span>
-                </td>
-                <td>
-                    <a class="form-control-static" ui-sref="imovel.detail({id:morador.imovel.id})">{{morador.imovel.id}}</a>
                 </td>
             </tr>
             </tbody>

@@ -1,17 +1,24 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoController', function ($scope, Topico) {
+    .controller('TopicoController', function ($scope, Topico, Principal) {
+
+        Principal.identity().then(function (account) {
+            $scope.account = account;
+        });
+
         $scope.topicos = [];
-        $scope.loadAll = function() {
-            Topico.query(function(result) {
-               $scope.topicos = result;
+
+        $scope.loadAll = function () {
+            Topico.query(function (result) {
+                $scope.topicos = result;
             });
         };
+
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Topico.get({id: id}, function(result) {
+            Topico.get({id: id}, function (result) {
                 $scope.topico = result;
                 $('#deleteTopicoConfirmation').modal('show');
             });

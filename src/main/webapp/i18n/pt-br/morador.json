@@ -6,6 +6,9 @@
                 "createLabel": "Novo",
                 "createOrEditLabel": "Novo"
             },
+            "created": "Novo morador criado com sucesso",
+            "updated": "Morador atualizado com sucesso",
+            "deleted": "Morador removido com sucesso",
             "delete": {
                 "question": "Você tem certeza que deseja remover o Morador {{ id }}?"
             },

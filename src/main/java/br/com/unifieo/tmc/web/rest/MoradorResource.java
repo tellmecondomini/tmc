@@ -46,11 +46,10 @@ public class MoradorResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Morador> createMorador(@Valid @RequestBody Morador morador) throws URISyntaxException {
+    public ResponseEntity<Morador> createMorador(@RequestBody Morador morador) throws URISyntaxException {
         log.debug("REST request to save Morador : {}", morador);
-        if (morador.getId() != null) {
+        if (morador.getId() != null)
             return ResponseEntity.badRequest().header("Failure", "A new morador cannot already have an ID").body(null);
-        }
         Morador result = moradorService.save(morador);
         return ResponseEntity.created(new URI("/api/moradors/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("morador", result.getId().toString()))
@@ -64,11 +63,10 @@ public class MoradorResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Morador> updateMorador(@Valid @RequestBody Morador morador) throws URISyntaxException {
+    public ResponseEntity<Morador> updateMorador(@RequestBody Morador morador) throws URISyntaxException {
         log.debug("REST request to update Morador : {}", morador);
-        if (morador.getId() == null) {
+        if (morador.getId() == null)
             return createMorador(morador);
-        }
         Morador result = moradorRepository.save(morador);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("morador", morador.getId().toString()))
@@ -130,5 +128,17 @@ public class MoradorResource {
         return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/moradors/condominio/{id}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Morador> createMoradorByCondominio(@RequestBody Morador morador, Long condominioId) throws URISyntaxException {
+        if (morador.getId() != null)
+            return ResponseEntity.badRequest().header("Failure", "A new morador cannot already have an ID").body(null);
+        Morador result = moradorService.save(morador);
+        return ResponseEntity.created(new URI("/api/moradors/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("morador", result.getId().toString()))
+            .body(result);
+    }
 
 }

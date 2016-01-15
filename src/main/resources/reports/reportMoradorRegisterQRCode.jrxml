@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2016-01-15T11:19:05 -->
+<!-- 2016-01-15T11:54:26 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportMoradorRegisterQRCode" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f716371-5ee2-4f1a-b69a-5ad6cb8a9fae">
 	<parameter name="URL_REGISTER" class="java.lang.String"/>
 	<parameter name="CONDOMINIO" class="java.lang.String"/>
@@ -57,7 +57,7 @@
 Caso seu aparelho não possua este mecanismo, pode-se utilizar também a URL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="50" width="555" height="30" uuid="5ee3aa18-cba5-4ab4-81b2-aaa25940a1c4"/>
+				<reportElement x="0" y="50" width="555" height="30" forecolor="#3300FF" uuid="5ee3aa18-cba5-4ab4-81b2-aaa25940a1c4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{URL_REGISTER}]]></textFieldExpression>
 			</textField>

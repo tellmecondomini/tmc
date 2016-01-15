@@ -94,15 +94,8 @@ public class AccountResource {
     @Timed
     public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key, HttpServletRequest request) {
         return Optional.ofNullable(userService.activateRegistration(key))
-            .map(user -> {
-
-                String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-
-                mailService.sendActivationEmail(user.get(), baseUrl);
-
-                return new ResponseEntity<String>(HttpStatus.OK);
-
-            }).orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+            .map(user -> new ResponseEntity<String>(HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**

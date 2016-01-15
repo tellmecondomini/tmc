@@ -6,7 +6,7 @@
     </head>
     <body>
         <h3>
-            Novo usuário cadastrado:
+            Muito obrigado por se registrar em nosso sistema!
         </h3>
         <ul>
             <li>
@@ -20,7 +20,13 @@
             </li>
         </ul>
         <p>
-            <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">Ativar</a>
+            Para ativar seu cadastro, <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">clique-aqui</a>
+        </p>
+        <p>
+            Att,
+        <p>
+            <em>Equipe Tell Me Condominium.</em>
+        </p>
         </p>
     </body>
 </html>

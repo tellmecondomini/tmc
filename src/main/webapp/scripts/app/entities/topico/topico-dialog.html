@@ -25,9 +25,15 @@
         <div class="form-group">
             <label translate="tmcApp.topico.assunto" for="field_assunto">assunto</label>
             <select class="form-control" id="field_assunto" name="assunto" ng-model="topico.assunto"
-                    ng-options="assunto as assunto.descricao for assunto in assuntos track by assunto.id">
+                    ng-options="assunto as assunto.descricao for assunto in assuntos track by assunto.id" required>
                 <option value=""></option>
             </select>
+            <div ng-show="editForm.conteudo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
 
     </div>

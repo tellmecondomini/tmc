@@ -75,6 +75,7 @@ public class MailService {
     }
 
     @Async
+    @Deprecated
     public void sendActivationEmail(User user, String baseUrl) {
         log.debug("Sending activation e-mail to '{}'", user.getEmail());
         Locale locale = Locale.forLanguageTag(user.getLangKey());
@@ -97,14 +98,9 @@ public class MailService {
         context.setVariable("condominio", funcionario.getCondominio());
         context.setVariable("baseUrl", baseUrl);
 
-        String content = templateEngine.process("confirmRegistrationEmail", context);
+        String content = templateEngine.process("newUser", context);
         String subject = "TMC - Cadastro efetuado";
         this.sendEmail(user.getEmail(), subject, content, false, true);
-
-        // E-mail de aviso aos gestores sobre um novo condominio cadastrado
-        content = templateEngine.process("newUser", context);
-        subject = "TMC - Novo Usuário";
-        this.sendEmail(env.getProperty("mail.from"), subject, content, false, true);
     }
 
     @Async

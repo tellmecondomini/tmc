@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/moradors',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.morador.home.title'
                 },
                 views: {
@@ -30,7 +30,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/morador/{id}',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.morador.detail.title'
                 },
                 views: {
@@ -46,8 +46,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('tipoMorador');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Morador', function($stateParams, Morador) {
-                        return Morador.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Morador', function ($stateParams, Morador) {
+                        return Morador.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -55,21 +55,32 @@ angular.module('tmcApp')
                 parent: 'morador',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/morador/morador-dialog.html',
                         controller: 'MoradorDialogController',
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, tipo: null, id: null};
+                                return {
+                                    nome: null,
+                                    cpf: null,
+                                    sexo: null,
+                                    email: null,
+                                    senha: null,
+                                    dataNascimento: null,
+                                    ativo: null,
+                                    bloqueiaAgendamento: null,
+                                    tipo: null,
+                                    id: null
+                                };
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('morador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('morador', null, {reload: true});
+                    }, function () {
                         $state.go('morador');
                     })
                 }]
@@ -78,21 +89,21 @@ angular.module('tmcApp')
                 parent: 'morador',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/morador/morador-dialog.html',
                         controller: 'MoradorDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Morador', function(Morador) {
-                                return Morador.get({id : $stateParams.id});
+                            entity: ['Morador', function (Morador) {
+                                return Morador.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('morador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('morador', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

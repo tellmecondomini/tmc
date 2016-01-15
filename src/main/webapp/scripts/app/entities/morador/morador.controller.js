@@ -1,17 +1,20 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MoradorController', function ($scope, Morador) {
+    .controller('MoradorController', function ($scope, $http, Morador) {
+
         $scope.moradors = [];
-        $scope.loadAll = function() {
-            Morador.query(function(result) {
-               $scope.moradors = result;
+
+        $scope.loadAll = function () {
+            Morador.query(function (result) {
+                $scope.moradors = result;
             });
         };
+
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Morador.get({id: id}, function(result) {
+            Morador.get({id: id}, function (result) {
                 $scope.morador = result;
                 $('#deleteMoradorConfirmation').modal('show');
             });
@@ -32,6 +35,25 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.morador = {nome: null, cpf: null, sexo: null, email: null, senha: null, dataNascimento: null, ativo: null, bloqueiaAgendamento: null, tipo: null, id: null};
+            $scope.morador = {
+                nome: null,
+                cpf: null,
+                sexo: null,
+                email: null,
+                senha: null,
+                dataNascimento: null,
+                ativo: null,
+                bloqueiaAgendamento: null,
+                tipo: null,
+                id: null
+            };
+        };
+
+        $scope.printRegisterCode = function () {
+            var response = $http.get('api/moradors/print');
+            response.success(function (report) {
+                window.open(report.url, '_blank');
+                return false;
+            });
         };
     });

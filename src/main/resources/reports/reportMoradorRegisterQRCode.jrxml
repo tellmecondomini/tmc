@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-01-15T11:19:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportMoradorRegisterQRCode" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f716371-5ee2-4f1a-b69a-5ad6cb8a9fae">
+	<parameter name="URL_REGISTER" class="java.lang.String"/>
+	<parameter name="CONDOMINIO" class="java.lang.String"/>
+	<parameter name="TMC_LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="152" y="10" width="250" height="117" uuid="4c957635-8031-49e8-b856-ac0d68efa88d"/>
+				<imageExpression><![CDATA[$P{TMC_LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="59" width="555" height="30" uuid="8eafd224-2df3-4dc7-b41c-7b3d9e09a461"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Se cadastrem em nosso sistema utilizando o QR-Code a baixo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="10" width="555" height="30" uuid="e91dd516-9b7c-49b7-8297-27a2bbe75ca1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CONDOMINIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="414" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="10" y="10" width="535" height="390" uuid="c70e6ba2-0ee5-47e8-a2e2-55e4c9bd6315"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+     new com.google.zxing.qrcode.QRCodeWriter().encode(
+         $P{URL_REGISTER},
+         com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="30" uuid="e020cf7b-1d17-4f3b-9f4f-8c3d02d69fb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[É necessário que o morador tenha o aplicativo de leitura de QR-Code instalado em seu Smartphone
+Caso seu aparelho não possua este mecanismo, pode-se utilizar também a URL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="50" width="555" height="30" uuid="5ee3aa18-cba5-4ab4-81b2-aaa25940a1c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{URL_REGISTER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

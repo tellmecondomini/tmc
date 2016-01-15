@@ -53,4 +53,8 @@ public class CondominioService {
         funcionarioRepository.save(funcionario);
         condominioRepository.delete(id);
     }
+
+    public Condominio findOneByRazaoSocial(String razaoSocial) {
+        return condominioRepository.findOneByRazaoSocial(razaoSocial).get();
+    }
 }

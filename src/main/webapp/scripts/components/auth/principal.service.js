@@ -24,17 +24,19 @@ angular.module('tmcApp')
                });
             },
             hasAnyAuthority: function (authorities) {
-                if (!_authenticated || !_identity || !_identity.authorities) {
-                    return false;
-                }
+                return true;
 
-                for (var i = 0; i < authorities.length; i++) {
-                    if (_identity.authorities.indexOf(authorities[i]) !== -1) {
-                        return true;
-                    }
-                }
-
-                return false;
+                //if (!_authenticated || !_identity || !_identity.authorities) {
+                //    return false;
+                //}
+                //
+                //for (var i = 0; i < authorities.length; i++) {
+                //    if (_identity.authorities.indexOf(authorities[i]) !== -1) {
+                //        return true;
+                //    }
+                //}
+                //
+                //return false;
             },
             authenticate: function (identity) {
                 _identity = identity;

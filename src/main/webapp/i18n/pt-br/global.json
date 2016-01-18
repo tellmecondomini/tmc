@@ -61,16 +61,16 @@
             "language": "Idioma"
         },
         "form": {
-            "username": "Usuário",
-            "username.placeholder": "Seu usuário",
-            "newpassword": "Nova senha",
-            "newpassword.placeholder": "Nova senha",
-            "confirmpassword": "Confirmação de nova senha",
-            "confirmpassword.placeholder": "Confirme a nova senha",
+            "username": "Nome",
+            "username.placeholder": "Primeiro nome",
+            "newpassword": "Senha",
+            "newpassword.placeholder": "Senha",
+            "confirmpassword": "Confirmação de senha",
+            "confirmpassword.placeholder": "Confirme a senha",
             "email": "E-mail",
             "email.placeholder": "Seu e-mail",
             "condominio": "Condomínio",
-            "condominio.placeholder": "Nome do condomínio"
+            "condominio.placeholder": "Razão Social do condomínio"
         },
         "messages": {
             "info": {

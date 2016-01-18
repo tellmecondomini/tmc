@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('tmcApp').controller('FuncionarioDialogController',
-    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario', 'Comentario',
-        function ($scope, $http, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario, Comentario) {
+    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario',
+        function ($scope, $http, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario) {
 
             $scope.funcionario = entity;
+
             $scope.ceps = Cep.query({filter: 'funcionario-is-null'});
+
             $q.all([$scope.funcionario.$promise, $scope.ceps.$promise]).then(function () {
                 if (!$scope.funcionario.cep.id) {
                     return $q.reject();
@@ -14,9 +16,11 @@ angular.module('tmcApp').controller('FuncionarioDialogController',
             }).then(function (cep) {
                 $scope.ceps.push(cep);
             });
+
             $scope.condominios = Condominio.query();
+
             $scope.telefonefuncionarios = TelefoneFuncionario.query();
-            $scope.comentarios = Comentario.query();
+
             $scope.load = function (id) {
                 Funcionario.get({id: id}, function (result) {
                     $scope.funcionario = result;

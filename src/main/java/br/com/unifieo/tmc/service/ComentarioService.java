@@ -38,7 +38,7 @@ public class ComentarioService {
     }
 
     public Comentario save(Comentario comentario) {
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
+        User user = userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).get();
         Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
         if (funcionario == null) {
             Morador morador = moradorRepository.findOneByEmail(user.getEmail());

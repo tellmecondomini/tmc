@@ -93,8 +93,8 @@ public class CondominioResource {
     @Timed
     public List<Condominio> getAllCondominios() {
         log.debug("REST obter apenas o condominio cadastrado junto ao usuário logado");
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
-        if ("admin".equals(user.getLogin()))
+        User user = userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).get();
+        if ("tellmecondominium@gmail.com".equals(user.getEmail()))
             return condominioRepository.findAll();
         Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
         return Arrays.asList(funcionario.getCondominio());

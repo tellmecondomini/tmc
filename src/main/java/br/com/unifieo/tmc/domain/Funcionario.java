@@ -84,8 +84,7 @@ public class Funcionario implements Serializable {
     @ManyToOne
     private Condominio condominio;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "FUNCIONARIO_CATEGORIA",
         joinColumns = @JoinColumn(name = "funcionarios_id"),

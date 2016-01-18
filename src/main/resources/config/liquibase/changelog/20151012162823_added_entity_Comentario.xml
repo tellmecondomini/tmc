@@ -26,6 +26,7 @@
             <column name="conteudo" type="varchar(240)">
                 <constraints nullable="false"/>
             </column>
+            <column name="ativo" type="bit"/>
             <column name="data" type="timestamp">
                 <constraints nullable="false"/>
             </column>

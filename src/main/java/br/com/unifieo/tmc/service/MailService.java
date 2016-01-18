@@ -75,19 +75,6 @@ public class MailService {
     }
 
     @Async
-    @Deprecated
-    public void sendActivationEmail(User user, String baseUrl) {
-        log.debug("Sending activation e-mail to '{}'", user.getEmail());
-        Locale locale = Locale.forLanguageTag(user.getLangKey());
-        Context context = new Context(locale);
-        context.setVariable("user", user);
-        context.setVariable("baseUrl", baseUrl);
-        String content = templateEngine.process("activationEmail", context);
-        String subject = "TMC - Ativação de Cadastro";
-        this.sendEmail(user.getEmail(), subject, content, false, true);
-    }
-
-    @Async
     public void sendNewUserEmail(User user, Funcionario funcionario, String baseUrl) {
         log.debug("E-mail de confirmação de cadastro e aviso aos gestores");
 

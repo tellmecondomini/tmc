@@ -83,7 +83,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-8">
                     <div class="form-group">
                         <label translate="tmcApp.funcionario.email" for="field_email">Email</label>
                         <input type="text" class="form-control" name="email" id="field_email"
@@ -93,21 +93,6 @@
                         <div ng-show="editForm.email.$invalid">
                             <p class="help-block"
                                ng-show="editForm.email.$error.required" translate="entity.validation.required">
-                                This field is required.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <div class="form-group">
-                        <label translate="tmcApp.funcionario.senha" for="field_senha">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="field_senha"
-                               ng-model="funcionario.senha"
-                               required>
-
-                        <div ng-show="editForm.senha.$invalid">
-                            <p class="help-block"
-                               ng-show="editForm.senha.$error.required" translate="entity.validation.required">
                                 This field is required.
                             </p>
                         </div>

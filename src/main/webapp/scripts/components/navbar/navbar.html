@@ -20,6 +20,7 @@
                 </li>
 
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
@@ -27,6 +28,7 @@
                             <b class="caret"></b>
                         </span>
                     </a>
+
                     <ul id="entities" class="dropdown-menu">
 
                         <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
@@ -35,29 +37,11 @@
                             </a>
                         </li>
 
-                        <!--<li ui-sref-active="active">
-                            <a ui-sref="dependencia">
-                                <span translate="global.menu.entities.dependencia">dependencia</span>
-                            </a>
-                        </li>-->
-
-                        <!--<li ui-sref-active="active">
-                            <a ui-sref="disponibilidadeDependencia">
-                                <span translate="global.menu.entities.disponibilidadeDependencia">disponibilidadeDependencia</span>
-                            </a>
-                        </li>-->
-
                         <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="funcionario">
                                 <span translate="global.menu.entities.funcionario">funcionario</span>
                             </a>
                         </li>
-
-                        <!--<li ui-sref-active="active">
-                            <a ui-sref="imovel">
-                                <span translate="global.menu.entities.imovel">imovel</span>
-                            </a>
-                        </li>-->
 
                         <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="morador">
@@ -119,7 +103,6 @@
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span
                             class="glyphicon glyphicon-log-in"></span>
                             <span translate="global.menu.account.login">Authenticate</span></a></li>
-
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span
                             class="glyphicon glyphicon-plus-sign"></span>
                             <span translate="global.menu.account.register">Register</span></a></li>

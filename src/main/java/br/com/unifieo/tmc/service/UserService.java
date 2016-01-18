@@ -100,7 +100,6 @@ public class UserService {
         Authority authority = authorityRepository.findOne("ROLE_USER");
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setLogin(login);
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(firstName);
@@ -130,7 +129,6 @@ public class UserService {
         String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
         newUser.setPassword(encryptedPassword);
 
-        newUser.setLogin(userDTO.getLogin());
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
@@ -144,7 +142,7 @@ public class UserService {
         condominio = condominioRepository.save(condominio);
 
         Funcionario funcionario = new Funcionario();
-        funcionario.setNome(userSaved.getLogin());
+        funcionario.setNome(userSaved.getFirstName());
         funcionario.setEmail(userSaved.getEmail());
         funcionario.setSenha(userSaved.getPassword());
         funcionario.setAtivo(true);
@@ -158,28 +156,58 @@ public class UserService {
     }
 
     public void updateUserInformation(String firstName, String lastName, String email, String langKey) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
+        userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
             u.setFirstName(firstName);
             u.setLastName(lastName);
             u.setEmail(email);
             u.setLangKey(langKey);
-            userRepository.save(u);
+
+            User userSaved = userRepository.save(u);
+
+            Funcionario funcionario = funcionarioRepository.findOneByEmail(userSaved.getEmail());
+            if (funcionario == null) {
+                Morador morador = moradorRepository.findOneByEmail(userSaved.getEmail());
+                if (morador != null) {
+                    morador.setNome(firstName + " " + lastName);
+                    morador.setEmail(email);
+                    moradorRepository.save(morador);
+                }
+            } else {
+                funcionario.setNome(firstName + " " + lastName);
+                funcionario.setEmail(email);
+                funcionarioRepository.save(funcionario);
+            }
+
             log.debug("Changed Information for User: {}", u);
         });
     }
 
     public void changePassword(String password) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
+        userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);
-            userRepository.save(u);
+
+            User userSaved = userRepository.save(u);
+
+            Funcionario funcionario = funcionarioRepository.findOneByEmail(userSaved.getEmail());
+            if (funcionario == null) {
+                Morador morador = moradorRepository.findOneByEmail(userSaved.getEmail());
+                if (morador != null) {
+                    morador.setSenha(encryptedPassword);
+                    moradorRepository.save(morador);
+                }
+            } else {
+                funcionario.setSenha(encryptedPassword);
+                funcionarioRepository.save(funcionario);
+            }
+
             log.debug("Changed password for User: {}", u);
         });
     }
 
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
-        return userRepository.findOneByLogin(login).map(u -> {
+        return userRepository.findOneByEmail(login).map(u -> {
             u.getAuthorities().size();
             return u;
         });
@@ -195,7 +223,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUserWithAuthorities() {
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
+        User user = userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).get();
         user.getAuthorities().size(); // eagerly load the association
         return user;
     }
@@ -231,7 +259,7 @@ public class UserService {
         DateTime now = new DateTime();
         List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minusDays(3));
         for (User user : users) {
-            log.debug("Deleting not activated user {}", user.getLogin());
+            log.debug("Deleting not activated user {}", user.getFirstName());
             userRepository.delete(user);
         }
     }

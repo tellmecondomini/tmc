@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('FuncionarioController', function ($scope, Funcionario) {
+    .controller('FuncionarioController', function ($scope, Funcionario, Principal) {
+
+        Principal.identity(true).then(function (account) {
+            $scope.settingsAccount = account;
+        });
+
         $scope.funcionarios = [];
+
         $scope.loadAll = function () {
             Funcionario.query(function (result) {
                 $scope.funcionarios = result;
             });
         };
+
         $scope.loadAll();
 
         $scope.delete = function (id) {

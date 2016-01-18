@@ -64,25 +64,23 @@ public class AccountResource {
         produces = MediaType.TEXT_PLAIN_VALUE)
     @Timed
     public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
-        return userRepository.findOneByLogin(userDTO.getLogin())
-            .map(user -> new ResponseEntity<>("login already in use", HttpStatus.BAD_REQUEST))
-            .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
-                .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
-                .orElseGet(() -> condominioRepository.findOneByRazaoSocial(userDTO.getCondominio())
-                    .map(condominio -> new ResponseEntity<>("condominio já cadastrado", HttpStatus.BAD_REQUEST))
-                    .orElseGet(() -> {
+        return userRepository.findOneByEmail(userDTO.getEmail())
+            .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
+            .orElseGet(() -> condominioRepository.findOneByRazaoSocial(userDTO.getCondominio())
+                .map(condominio -> new ResponseEntity<>("condominio já cadastrado", HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
 
-                        User user = userService.createUserAndFuncionarioAndPreCondominio(userDTO);
+                    User user = userService.createUserAndFuncionarioAndPreCondominio(userDTO);
 
-                        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+                    String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 
-                        Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
+                    Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
 
-                        mailService.sendNewUserEmail(user, funcionario, baseUrl);
+                    mailService.sendNewUserEmail(user, funcionario, baseUrl);
 
-                        return new ResponseEntity<>(HttpStatus.CREATED);
-                    })
-                ));
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                })
+            );
     }
 
     /**
@@ -132,11 +130,10 @@ public class AccountResource {
     @Timed
     public ResponseEntity<String> saveAccount(@RequestBody UserDTO userDTO) {
         return userRepository
-            .findOneByLogin(userDTO.getLogin())
-            .filter(u -> u.getLogin().equals(SecurityUtils.getCurrentLogin()))
+            .findOneByEmail(userDTO.getEmail())
+            .filter(u -> u.getEmail().equals(SecurityUtils.getCurrentLogin()))
             .map(u -> {
-                userService.updateUserInformation(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                    userDTO.getLangKey());
+                userService.updateUserInformation(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
                 return new ResponseEntity<String>(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
@@ -165,7 +162,7 @@ public class AccountResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<PersistentToken>> getCurrentSessions() {
-        return userRepository.findOneByLogin(SecurityUtils.getCurrentLogin())
+        return userRepository.findOneByEmail(SecurityUtils.getCurrentLogin())
             .map(user -> new ResponseEntity<>(
                 persistentTokenRepository.findByUser(user),
                 HttpStatus.OK))
@@ -190,7 +187,7 @@ public class AccountResource {
     @Timed
     public void invalidateSession(@PathVariable String series) throws UnsupportedEncodingException {
         String decodedSeries = URLDecoder.decode(series, "UTF-8");
-        userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
+        userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
             persistentTokenRepository.findByUser(u).stream()
                 .filter(persistentToken -> StringUtils.equals(persistentToken.getSeries(), decodedSeries))
                 .findAny().ifPresent(t -> persistentTokenRepository.delete(decodedSeries));

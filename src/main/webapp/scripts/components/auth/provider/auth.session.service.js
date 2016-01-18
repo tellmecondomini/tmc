@@ -3,8 +3,8 @@
 angular.module('tmcApp')
     .factory('AuthServerProvider', function loginService($http, localStorageService, $window) {
         return {
-            login: function(credentials) {
-                var data = 'j_username=' + encodeURIComponent(credentials.username) +
+            login: function (credentials) {
+                var data = 'j_username=' + encodeURIComponent(credentials.email) +
                     '&j_password=' + encodeURIComponent(credentials.password) +
                     '&remember-me=' + credentials.rememberMe + '&submit=Login';
                 return $http.post('api/authentication', data, {
@@ -15,7 +15,7 @@ angular.module('tmcApp')
                     return response;
                 });
             },
-            logout: function() {
+            logout: function () {
                 // logout from the server
                 $http.post('api/logout').success(function (response) {
                     localStorageService.clearAll();

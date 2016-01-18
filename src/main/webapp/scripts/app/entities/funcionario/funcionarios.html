@@ -73,6 +73,7 @@
                     </button>
                     <button type="submit"
                             ng-click="delete(funcionario.id)"
+                            ng-show="funcionario.email != settingsAccount.email"
                             class="btn btn-danger btn-sm">
                         <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
                         translate="entity.action.delete"> Delete</span>

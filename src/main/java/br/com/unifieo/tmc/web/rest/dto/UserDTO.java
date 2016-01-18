@@ -22,11 +22,6 @@ public class UserDTO {
     @NotNull
     private String condominio;
 
-    @Pattern(regexp = "^[a-z0-9]*$")
-    @NotNull
-    @Size(min = 1, max = 50)
-    private String login;
-
     @NotNull
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
@@ -52,15 +47,14 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this("", user.getLogin(), null, user.getFirstName(), user.getLastName(),
+        this("", null, user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 
-    public UserDTO(String condominio, String login, String password, String firstName, String lastName,
+    public UserDTO(String condominio, String password, String firstName, String lastName,
                    String email, boolean activated, Set<String> authorities) {
 
         this.condominio = condominio;
-        this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,11 +63,10 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
-    public UserDTO(Condominio condominio, String login, String password, String firstName, String lastName,
+    public UserDTO(Condominio condominio, String password, String firstName, String lastName,
                    String email, boolean activated, Set<String> authorities) {
 
         this.condominio = condominio == null ? "" : condominio.getRazaoSocial();
-        this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -84,10 +77,6 @@ public class UserDTO {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public String getFirstName() {
@@ -122,10 +111,6 @@ public class UserDTO {
         this.condominio = condominio;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -153,11 +138,10 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
+            "email='" + email + '\'' +
             ", password='" + password + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", authorities=" + authorities +

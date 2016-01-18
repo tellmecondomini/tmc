@@ -20,21 +20,19 @@
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
     <changeSet id="00000000000001" author="jhipster">
+
         <createTable tableName="JHI_USER">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="login" type="varchar(50)">
-                <constraints unique="true" nullable="false"/>
+            <column name="email" type="varchar(100)">
+                <constraints unique="true"/>
             </column>
             <column name="PASSWORD" type="varchar(60)"/>
             <column name="first_name" type="varchar(50)"/>
             <column name="last_name" type="varchar(50)"/>
-            <column name="email" type="varchar(100)">
-                <constraints unique="true"/>
-            </column>
             <column name="activated" type="boolean" valueBoolean="false">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="lang_key" type="varchar(5)"/>
             <column name="activation_key" type="varchar(20)"/>
@@ -52,15 +50,9 @@
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
 
-        <createIndex indexName="idx_user_login"
-            tableName="JHI_USER"
-            unique="true">
-            <column name="login" type="varchar(50)"/>
-        </createIndex>
-
         <createIndex indexName="idx_user_email"
-            tableName="JHI_USER"
-            unique="true">
+                     tableName="JHI_USER"
+                     unique="true">
             <column name="email" type="varchar(100)"/>
         </createIndex>
 
@@ -87,7 +79,7 @@
             </column>
             <column name="user_id" type="bigint"/>
             <column name="token_value" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="token_date" type="date"/>
             <column name="ip_address" type="varchar(39)"/>
@@ -132,11 +124,11 @@
                   tableName="JHI_USER_AUTHORITY"/>
 
         <createTable tableName="JHI_PERSISTENT_AUDIT_EVENT">
-            <column name="event_id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="principal" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="event_date" type="timestamp"/>
             <column name="event_type" type="varchar(255)"/>

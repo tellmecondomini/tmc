@@ -38,8 +38,7 @@ public class Assunto implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Topico> topicos = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "ASSUNTO_CATEGORIA",
         joinColumns = @JoinColumn(name = "assuntos_id"),

@@ -11,15 +11,6 @@
                 <strong>Registration failed!</strong> Please try again later.
             </div>
 
-            <div class="alert alert-danger" ng-show="errorCondominioExists"
-                 translate="register.messages.error.condominioexists">
-                <strong>Login name already registered!</strong> Please choose another one.
-            </div>
-
-            <div class="alert alert-danger" ng-show="errorUserExists" translate="register.messages.error.userexists">
-                <strong>Login name already registered!</strong> Please choose another one.
-            </div>
-
             <div class="alert alert-danger" ng-show="errorEmailExists" translate="register.messages.error.emailexists">
                 <strong>E-mail is already in use!</strong> Please choose another one.
             </div>
@@ -42,8 +33,7 @@
                     <label for="login" translate="global.form.username">Login</label>
                     <input type="text" class="form-control" id="login" name="login"
                            placeholder="{{'global.form.username.placeholder' | translate}}"
-                           ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-z0-9]*$/"
-                           required>
+                           ng-model="registerAccount.firstName" ng-minlength=1 ng-maxlength=50 required>
 
                     <div ng-show="form.login.$dirty && form.login.$invalid">
                         <p class="help-block"
@@ -59,11 +49,6 @@
                         <p class="help-block"
                            ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength">
                             Your login cannot be longer than 50 characters.
-                        </p>
-
-                        <p class="help-block"
-                           ng-show="form.login.$error.pattern" translate="register.messages.validate.login.pattern">
-                            Your login can only contain lower-case letters and digits.
                         </p>
                     </div>
                 </div>

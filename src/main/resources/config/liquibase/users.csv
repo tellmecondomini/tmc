@@ -1,2 +1,2 @@
-id;login;PASSWORD;first_name;last_name;email;activated;lang_key;created_by
-1;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;Administrator;tellmecondominium@gmail.com;true;pt-br;system
+id;email;PASSWORD;first_name;last_name;activated;lang_key;created_by
+1;tellmecondominium@gmail.com;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;Administrator;true;pt-br;system

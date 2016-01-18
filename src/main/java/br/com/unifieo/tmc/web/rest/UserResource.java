@@ -102,7 +102,6 @@ public class UserResource {
         return Optional.of(userRepository
             .findOne(managedUserDTO.getId()))
             .map(user -> {
-                user.setLogin(managedUserDTO.getLogin());
                 user.setFirstName(managedUserDTO.getFirstName());
                 user.setLastName(managedUserDTO.getLastName());
                 user.setEmail(managedUserDTO.getEmail());
@@ -114,7 +113,7 @@ public class UserResource {
                     authority -> authorities.add(authorityRepository.findOne(authority))
                 );
                 return ResponseEntity.ok()
-                    .headers(HeaderUtil.createEntityUpdateAlert("user", managedUserDTO.getLogin()))
+                    .headers(HeaderUtil.createEntityUpdateAlert("user", managedUserDTO.getFirstName()))
                     .body(new ManagedUserDTO(userRepository
                         .findOne(managedUserDTO.getId())));
             })

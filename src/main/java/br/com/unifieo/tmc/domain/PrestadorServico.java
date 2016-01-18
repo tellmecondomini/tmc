@@ -1,17 +1,18 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Pessoa;
+import java.util.Set;
 
 /**
  * A PrestadorServico.
@@ -25,38 +26,42 @@ public class PrestadorServico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull        
+    @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
-    
+
     @Column(name = "email")
     private String email;
 
-    @NotNull        
-    @Column(name = "documento", nullable = false)
-    private String documento;
-    
     @Enumerated(EnumType.STRING)
-    @Column(name = "pessoa")
-    private Pessoa pessoa;
+    @Column(name = "tipo")
+    private Tipo tipo;
 
-    @NotNull        
+    @NotNull
     @Column(name = "numero", nullable = false)
     private Integer numero;
-    
+
     @Column(name = "complemento")
     private String complemento;
 
-    @OneToOne
+    @ManyToOne
     private Cep cep;
+
+    @ManyToOne
+    private Morador morador;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "PRESTADOR_SERVICO_COMPETENCIA",
+        joinColumns = @JoinColumn(name = "prestadores_id"),
+        inverseJoinColumns = @JoinColumn(name = "competencias_id"))
+    private Set<CompetenciaPrestador> competencias = new HashSet<>();
 
     @OneToMany(mappedBy = "prestadorServico")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();
-
-    @OneToOne
-    private CompetenciaPrestador competenciaPrestador;
 
     public Long getId() {
         return id;
@@ -82,20 +87,13 @@ public class PrestadorServico implements Serializable {
         this.email = email;
     }
 
-    public String getDocumento() {
-        return documento;
+
+    public Tipo getTipo() {
+        return tipo;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getNumero() {
@@ -130,12 +128,20 @@ public class PrestadorServico implements Serializable {
         this.telefonePrestadorServicos = telefonePrestadorServicos;
     }
 
-    public CompetenciaPrestador getCompetenciaPrestador() {
-        return competenciaPrestador;
+    public Set<CompetenciaPrestador> getCompetencias() {
+        return competencias;
     }
 
-    public void setCompetenciaPrestador(CompetenciaPrestador competenciaPrestador) {
-        this.competenciaPrestador = competenciaPrestador;
+    public void setCompetencias(Set<CompetenciaPrestador> competencias) {
+        this.competencias = competencias;
+    }
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
     }
 
     @Override
@@ -149,7 +155,7 @@ public class PrestadorServico implements Serializable {
 
         PrestadorServico prestadorServico = (PrestadorServico) o;
 
-        if ( ! Objects.equals(id, prestadorServico.id)) return false;
+        if (!Objects.equals(id, prestadorServico.id)) return false;
 
         return true;
     }
@@ -162,13 +168,12 @@ public class PrestadorServico implements Serializable {
     @Override
     public String toString() {
         return "PrestadorServico{" +
-                "id=" + id +
-                ", nome='" + nome + "'" +
-                ", email='" + email + "'" +
-                ", documento='" + documento + "'" +
-                ", pessoa='" + pessoa + "'" +
-                ", numero='" + numero + "'" +
-                ", complemento='" + complemento + "'" +
-                '}';
+            "id=" + id +
+            ", nome='" + nome + "'" +
+            ", email='" + email + "'" +
+            ", tipo='" + tipo + "'" +
+            ", numero='" + numero + "'" +
+            ", complemento='" + complemento + "'" +
+            '}';
     }
 }

@@ -18,27 +18,65 @@
         Added the entity Topico.
     -->
     <changeSet id="20151012162056" author="jhipster">
+
         <createTable tableName="TOPICO">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="titulo" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="conteudo" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="data" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="aprovado" type="bit"/>
+            <column name="data_inicio" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="data_fim" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="data_fechamento" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="status_topico" type="varchar(255)"/>
+            <column name="prioridade" type="bit"/>
             <column name="assunto_id" type="bigint"/>
+            <column name="morador_id" type="bigint"/>
+            <column name="funcionario_id" type="bigint"/>
+            <column name="categoria_id" type="bigint"/>
         </createTable>
-        <dropDefaultValue tableName="TOPICO" columnName="data" columnDataType="datetime"/>
 
-        
+        <dropDefaultValue tableName="TOPICO" columnName="data" columnDataType="datetime"/>
+        <dropDefaultValue tableName="TOPICO" columnName="data_inicio" columnDataType="datetime"/>
+        <dropDefaultValue tableName="TOPICO" columnName="data_fim" columnDataType="datetime"/>
+        <dropDefaultValue tableName="TOPICO" columnName="data_fechamento" columnDataType="datetime"/>
+
         <addForeignKeyConstraint baseColumnNames="assunto_id"
                                  baseTableName="TOPICO"
                                  constraintName="fk_topico_assunto_id"
                                  referencedColumnNames="id"
                                  referencedTableName="ASSUNTO"/>
+
+        <addForeignKeyConstraint baseColumnNames="morador_id"
+                                 baseTableName="TOPICO"
+                                 constraintName="fk_topico_morador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MORADOR"/>
+
+        <addForeignKeyConstraint baseColumnNames="funcionario_id"
+                                 baseTableName="TOPICO"
+                                 constraintName="fk_topico_funcionario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="FUNCIONARIO"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="TOPICO"
+                                 constraintName="fk_topico_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CATEGORIA"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -3,6 +3,8 @@ package br.com.unifieo.tmc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -25,13 +27,24 @@ public class Assunto implements Serializable {
 
     @NotNull
     @Size(min = 5, max = 100)
-    @Column(name = "descricao", length = 100, nullable = false)
+    @Column(name = "descricao", length = 100, nullable = false, unique = true)
     private String descricao;
+
+    @ManyToOne
+    private Condominio condominio;
 
     @OneToMany(mappedBy = "assunto")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Topico> topicos = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "ASSUNTO_CATEGORIA",
+        joinColumns = @JoinColumn(name = "assuntos_id"),
+        inverseJoinColumns = @JoinColumn(name = "categorias_id"))
+    private Set<Categoria> categorias = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -57,6 +70,22 @@ public class Assunto implements Serializable {
         this.topicos = topicos;
     }
 
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -68,7 +97,7 @@ public class Assunto implements Serializable {
 
         Assunto assunto = (Assunto) o;
 
-        if ( ! Objects.equals(id, assunto.id)) return false;
+        if (!Objects.equals(id, assunto.id)) return false;
 
         return true;
     }
@@ -81,8 +110,8 @@ public class Assunto implements Serializable {
     @Override
     public String toString() {
         return "Assunto{" +
-                "id=" + id +
-                ", descricao='" + descricao + "'" +
-                '}';
+            "id=" + id +
+            ", descricao='" + descricao + "'" +
+            '}';
     }
 }

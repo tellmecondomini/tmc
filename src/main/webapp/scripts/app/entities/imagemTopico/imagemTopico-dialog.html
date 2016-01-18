@@ -1,0 +1,50 @@
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myImagemTopicoLabel" translate="tmcApp.imagemTopico.home.createOrEditLabel">Create
+            or edit a ImagemTopico</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   ng-model="imagemTopico.id" readonly>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="setImagem($file, imagemTopico)" ngf-pattern="'image/*'">
+            <label translate="tmcApp.imagemTopico.imagem" for="field_imagem">Imagem</label>
+            <div>
+                <img data-ng-src="{{'data:image/*;base64,' + imagemTopico.imagem}}" style="max-height: 100px;" ng-if="imagemTopico.imagem"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{byteSize(imagemTopico.imagem)}}</span>
+                    <button ng-click="imagemTopico.imagem=null" ng-if="imagemTopico.imagem" class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block" ngf-change="setImagem($file, imagemTopico)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="imagem" id="field_imagem" ng-model="imagemTopico.imagem">
+        </div>
+
+        <div class="form-group">
+            <label translate="tmcApp.imagemTopico.topico" for="field_topico">topico</label>
+            <select class="form-control" id="field_topico" name="topico" ng-model="imagemTopico.topico"
+                    ng-options="topico as topico.id for topico in topicos track by topico.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

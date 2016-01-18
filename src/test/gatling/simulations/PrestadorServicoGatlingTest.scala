@@ -67,7 +67,7 @@ class PrestadorServicoGatlingTest extends Simulation {
             .exec(http("Create new prestadorServico")
             .post("/api/prestadorServicos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "documento":"SAMPLE_TEXT", "pessoa":null, "numero":"0", "complemento":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nome":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "documento":"SAMPLE_TEXT", "tipo":null, "numero":"0", "complemento":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_prestadorServico_url")))
             .pause(10)

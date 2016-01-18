@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAvaliaCompetenciaLabel" translate="tmcApp.avaliaCompetencia.home.createOrEditLabel">Create or edit a AvaliaCompetencia</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="avaliaCompetencia.id" readonly>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.nota" for="field_nota">Nota</label>
+            <input type="number" class="form-control" name="nota" id="field_nota"
+                    ng-model="avaliaCompetencia.nota"
+                    >
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.mensagem" for="field_mensagem">Mensagem</label>
+            <input type="text" class="form-control" name="mensagem" id="field_mensagem"
+                    ng-model="avaliaCompetencia.mensagem"
+                    >
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.ativo" for="field_ativo">Ativo</label>
+            <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
+                    ng-model="avaliaCompetencia.ativo"
+                    >
+        </div>
+
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.morador" for="field_morador">morador</label>
+            <select class="form-control" id="field_morador" name="morador" ng-model="avaliaCompetencia.morador" ng-options="morador as morador.id for morador in moradors track by morador.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.prestadorServico" for="field_prestadorServico">prestadorServico</label>
+            <select class="form-control" id="field_prestadorServico" name="prestadorServico" ng-model="avaliaCompetencia.prestadorServico" ng-options="prestadorServico as prestadorServico.id for prestadorServico in prestadorservicos track by prestadorServico.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="tmcApp.avaliaCompetencia.competenciaPrestador" for="field_competenciaPrestador">competenciaPrestador</label>
+            <select class="form-control" id="field_competenciaPrestador" name="competenciaPrestador" ng-model="avaliaCompetencia.competenciaPrestador" ng-options="competenciaPrestador as competenciaPrestador.id for competenciaPrestador in competenciaprestadors track by competenciaPrestador.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

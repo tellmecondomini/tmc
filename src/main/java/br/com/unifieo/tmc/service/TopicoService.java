@@ -25,7 +25,6 @@ public class TopicoService {
 
     public Topico save(Topico topico) {
         topico.setData(new DateTime());
-        topico.setAprovado(false);
         Topico topicoSaved = this.topicoRepository.save(topico);
         return topicoSaved;
     }

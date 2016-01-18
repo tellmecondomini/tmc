@@ -1,0 +1,26 @@
+{
+    "tmcApp": {
+        "avaliaCompetencia" : {
+            "home": {
+                "title": "AvaliaCompetencias",
+                "createLabel": "Create a new AvaliaCompetencia",
+                "createOrEditLabel": "Create or edit a AvaliaCompetencia"
+            },
+            "created": "A new AvaliaCompetencia is created with identifier {{ param }}",
+            "updated": "A AvaliaCompetencia is updated with identifier {{ param }}",
+            "deleted": "A AvaliaCompetencia is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete AvaliaCompetencia {{ id }}?"
+            },
+            "detail": {
+                "title": "AvaliaCompetencia"
+            },
+            "nota": "Nota",
+            "mensagem": "Mensagem",
+            "ativo": "Ativo",
+            "morador": "Morador",
+            "prestadorServico": "PrestadorServico",
+            "competenciaPrestador": "CompetenciaPrestador"
+        }
+    }
+}

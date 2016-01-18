@@ -73,6 +73,11 @@ public class Morador implements Serializable {
     @OneToMany(mappedBy = "morador")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PrestadorServico> prestadoresServicos = new HashSet<>();
+
+    @OneToMany(mappedBy = "morador")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneMorador> telefoneMoradors = new HashSet<>();
 
     @OneToMany(mappedBy = "morador")
@@ -174,6 +179,14 @@ public class Morador implements Serializable {
 
     public void setCondominio(Condominio condominio) {
         this.condominio = condominio;
+    }
+
+    public Set<PrestadorServico> getPrestadoresServicos() {
+        return prestadoresServicos;
+    }
+
+    public void setPrestadoresServicos(Set<PrestadorServico> prestadoresServicos) {
+        this.prestadoresServicos = prestadoresServicos;
     }
 
     @Override

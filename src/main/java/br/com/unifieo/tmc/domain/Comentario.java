@@ -29,19 +29,19 @@ public class Comentario implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 240)        
+    @Size(min = 1, max = 240)
     @Column(name = "conteudo", length = 240, nullable = false)
     private String conteudo;
 
-    @NotNull        
+    @Column(name = "ativo")
+    private Boolean ativo;
+
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data", nullable = false)
     private DateTime data;
-    
-    @Column(name = "ativo")
-    private Boolean ativo;
 
     @ManyToOne
     private Topico topico;
@@ -119,7 +119,7 @@ public class Comentario implements Serializable {
 
         Comentario comentario = (Comentario) o;
 
-        if ( ! Objects.equals(id, comentario.id)) return false;
+        if (!Objects.equals(id, comentario.id)) return false;
 
         return true;
     }
@@ -132,10 +132,9 @@ public class Comentario implements Serializable {
     @Override
     public String toString() {
         return "Comentario{" +
-                "id=" + id +
-                ", conteudo='" + conteudo + "'" +
-                ", data='" + data + "'" +
-                ", ativo='" + ativo + "'" +
-                '}';
+            "id=" + id +
+            ", conteudo='" + conteudo + "'" +
+            ", data='" + data + "'" +
+            '}';
     }
 }

@@ -1,21 +1,21 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Topico.
@@ -30,6 +30,10 @@ public class Topico implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "titulo", nullable = false)
+    private String titulo;
+
+    @NotNull
     @Column(name = "conteudo", nullable = false)
     private String conteudo;
 
@@ -40,16 +44,55 @@ public class Topico implements Serializable {
     @Column(name = "data", nullable = false)
     private DateTime data;
 
-    @Column(name = "aprovado")
-    private Boolean aprovado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_comentario")
+    private StatusTopico statusTopico;
+
+    @NotNull
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
+    @Column(name = "data_fechamento", nullable = false)
+    private DateTime dataFechamento;
+
+    @Column(name = "prioritario")
+    private Boolean prioritario;
+
+    @NotNull
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
+    @Column(name = "data_inicio", nullable = false)
+    private DateTime dataInicio;
+
+    @NotNull
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
+    @Column(name = "data_fim", nullable = false)
+    private DateTime dataFim;
 
     @ManyToOne
     private Assunto assunto;
+
+    @ManyToOne
+    private Categoria categoria;
+
+    @ManyToOne
+    private Morador morador;
+
+    @ManyToOne
+    private Funcionario funcionario;
 
     @OneToMany(mappedBy = "topico")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "topico")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ImagemTopico> imagens = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -75,12 +118,20 @@ public class Topico implements Serializable {
         this.data = data;
     }
 
-    public Boolean getAprovado() {
-        return aprovado;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setAprovado(Boolean aprovado) {
-        this.aprovado = aprovado;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public StatusTopico getStatusTopico() {
+        return statusTopico;
+    }
+
+    public void setStatusTopico(StatusTopico statusTopico) {
+        this.statusTopico = statusTopico;
     }
 
     public Assunto getAssunto() {
@@ -99,6 +150,70 @@ public class Topico implements Serializable {
         this.comentarios = comentarios;
     }
 
+    public DateTime getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public void setDataFechamento(DateTime dataFechamento) {
+        this.dataFechamento = dataFechamento;
+    }
+
+    public Boolean getPrioritario() {
+        return prioritario;
+    }
+
+    public void setPrioritario(Boolean prioritario) {
+        this.prioritario = prioritario;
+    }
+
+    public DateTime getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(DateTime dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public DateTime getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(DateTime dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Set<ImagemTopico> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(Set<ImagemTopico> imagens) {
+        this.imagens = imagens;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -110,7 +225,7 @@ public class Topico implements Serializable {
 
         Topico topico = (Topico) o;
 
-        if ( ! Objects.equals(id, topico.id)) return false;
+        if (!Objects.equals(id, topico.id)) return false;
 
         return true;
     }
@@ -123,10 +238,9 @@ public class Topico implements Serializable {
     @Override
     public String toString() {
         return "Topico{" +
-                "id=" + id +
-                ", conteudo='" + conteudo + "'" +
-                ", data='" + data + "'" +
-                ", aprovado='" + aprovado + "'" +
-                '}';
+            "id=" + id +
+            ", conteudo='" + conteudo + "'" +
+            ", data='" + data + "'" +
+            '}';
     }
 }

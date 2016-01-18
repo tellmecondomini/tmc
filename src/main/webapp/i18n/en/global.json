@@ -32,6 +32,10 @@
                 "topico": "Topico",
                 "comentario": "Comentario",
                 "prestadorServico": "PrestadorServico",
+                "categoria": "Categoria",
+                "imagemTopico": "ImagemTopico",
+                "avaliaCompetencia": "AvaliaCompetencia",
+                "solicitaRemocaoComentario": "SolicitaRemocaoComentario",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -18,24 +18,25 @@
         Added the entity Comentario.
     -->
     <changeSet id="20151012162823" author="jhipster">
+
         <createTable tableName="COMENTARIO">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="conteudo" type="varchar(240)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="data" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="ativo" type="bit"/>
+            <column name="status_comentario" type="varchar(255)"/>
             <column name="topico_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>
             <column name="funcionario_id" type="bigint"/>
         </createTable>
+
         <dropDefaultValue tableName="COMENTARIO" columnName="data" columnDataType="datetime"/>
 
-        
         <addForeignKeyConstraint baseColumnNames="topico_id"
                                  baseTableName="COMENTARIO"
                                  constraintName="fk_comentario_topico_id"

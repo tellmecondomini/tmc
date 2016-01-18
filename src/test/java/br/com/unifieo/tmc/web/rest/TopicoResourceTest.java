@@ -85,7 +85,6 @@ public class TopicoResourceTest {
         topico = new Topico();
         topico.setConteudo(DEFAULT_CONTEUDO);
         topico.setData(DEFAULT_DATA);
-        topico.setAprovado(DEFAULT_APROVADO);
     }
 
     @Test
@@ -106,7 +105,6 @@ public class TopicoResourceTest {
         Topico testTopico = topicos.get(topicos.size() - 1);
         assertThat(testTopico.getConteudo()).isEqualTo(DEFAULT_CONTEUDO);
         assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA);
-        assertThat(testTopico.getAprovado()).isEqualTo(DEFAULT_APROVADO);
     }
 
     @Test
@@ -196,8 +194,6 @@ public class TopicoResourceTest {
         // Update the topico
         topico.setConteudo(UPDATED_CONTEUDO);
         topico.setData(UPDATED_DATA);
-        topico.setAprovado(UPDATED_APROVADO);
-        
 
         restTopicoMockMvc.perform(put("/api/topicos")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -210,7 +206,6 @@ public class TopicoResourceTest {
         Topico testTopico = topicos.get(topicos.size() - 1);
         assertThat(testTopico.getConteudo()).isEqualTo(UPDATED_CONTEUDO);
         assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA);
-        assertThat(testTopico.getAprovado()).isEqualTo(UPDATED_APROVADO);
     }
 
     @Test

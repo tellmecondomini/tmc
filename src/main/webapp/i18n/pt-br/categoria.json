@@ -1,0 +1,19 @@
+{
+    "tmcApp": {
+        "categoria" : {
+            "home": {
+                "title": "Categorias",
+                "createLabel": "Create a new Categoria",
+                "createOrEditLabel": "Create or edit a Categoria"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Categoria {{ id }}?"
+            },
+            "detail": {
+                "title": "Categoria"
+            },
+            "descricao": "Descricao",
+            "funcionario": "Funcionario"
+        }
+    }
+}

@@ -11,7 +11,7 @@ spring:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://localhost:3306/tmc?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8
         databaseName: tmc
-        serverName: Localhost
+        serverName: localhost
         username: root
         password: techne
         cachePrepStmts: true

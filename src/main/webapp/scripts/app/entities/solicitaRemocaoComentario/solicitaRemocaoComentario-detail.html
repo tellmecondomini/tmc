@@ -1,0 +1,70 @@
+
+<div>
+    <h2><span translate="tmcApp.solicitaRemocaoComentario.detail.title">SolicitaRemocaoComentario</span> {{solicitaRemocaoComentario.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.data">Data</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{solicitaRemocaoComentario.data}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.motivo">Motivo</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{solicitaRemocaoComentario.motivo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.dataAtendimento">DataAtendimento</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{solicitaRemocaoComentario.dataAtendimento}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.observacao">Observacao</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{solicitaRemocaoComentario.observacao}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.comentario">comentario</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.solicitaRemocaoComentario.morador">morador</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="morador.detail({id:solicitaRemocaoComentario.morador.id})">{{solicitaRemocaoComentario.morador.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

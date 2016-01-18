@@ -18,14 +18,16 @@
         Added the entity CompetenciaPrestador.
     -->
     <changeSet id="20151007212144" author="jhipster">
+
         <createTable tableName="COMPETENCIA_PRESTADOR">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descricao" type="varchar(255)">
-                <constraints nullable="false" unique="true" />
+                <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
 
     </changeSet>
+
 </databaseChangeLog>

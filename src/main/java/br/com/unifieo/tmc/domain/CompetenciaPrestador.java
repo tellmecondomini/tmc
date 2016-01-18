@@ -4,7 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -51,7 +51,7 @@ public class CompetenciaPrestador implements Serializable {
 
         CompetenciaPrestador competenciaPrestador = (CompetenciaPrestador) o;
 
-        if ( ! Objects.equals(id, competenciaPrestador.id)) return false;
+        if (!Objects.equals(id, competenciaPrestador.id)) return false;
 
         return true;
     }
@@ -64,8 +64,8 @@ public class CompetenciaPrestador implements Serializable {
     @Override
     public String toString() {
         return "CompetenciaPrestador{" +
-                "id=" + id +
-                ", descricao='" + descricao + "'" +
-                '}';
+            "id=" + id +
+            ", descricao='" + descricao + "'" +
+            '}';
     }
 }

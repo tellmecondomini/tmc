@@ -1,0 +1,22 @@
+{
+    "tmcApp": {
+        "imagemTopico" : {
+            "home": {
+                "title": "ImagemTopicos",
+                "createLabel": "Create a new ImagemTopico",
+                "createOrEditLabel": "Create or edit a ImagemTopico"
+            },
+            "created": "A new ImagemTopico is created with identifier {{ param }}",
+            "updated": "A ImagemTopico is updated with identifier {{ param }}",
+            "deleted": "A ImagemTopico is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete ImagemTopico {{ id }}?"
+            },
+            "detail": {
+                "title": "ImagemTopico"
+            },
+            "imagem": "Imagem",
+            "topico": "Topico"
+        }
+    }
+}

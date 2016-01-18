@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.PrestadorServico;
+import br.com.unifieo.tmc.domain.enumeration.Tipo;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
 
 import org.junit.Before;
@@ -29,8 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import br.com.unifieo.tmc.domain.enumeration.Pessoa;
-
 /**
  * Test class for the PrestadorServicoResource REST controller.
  *
@@ -49,8 +48,8 @@ public class PrestadorServicoResourceTest {
     private static final String DEFAULT_DOCUMENTO = "SAMPLE_TEXT";
     private static final String UPDATED_DOCUMENTO = "UPDATED_TEXT";
 
-    private static final Pessoa DEFAULT_PESSOA = Pessoa.FISICA;
-    private static final Pessoa UPDATED_PESSOA = Pessoa.JURIDICA;
+    private static final Tipo DEFAULT_TIPO = Tipo.FISICA;
+    private static final Tipo UPDATED_TIPO = Tipo.JURIDICA;
 
     private static final Integer DEFAULT_NUMERO = 1;
     private static final Integer UPDATED_NUMERO = 2;
@@ -85,8 +84,7 @@ public class PrestadorServicoResourceTest {
         prestadorServico = new PrestadorServico();
         prestadorServico.setNome(DEFAULT_NOME);
         prestadorServico.setEmail(DEFAULT_EMAIL);
-        prestadorServico.setDocumento(DEFAULT_DOCUMENTO);
-        prestadorServico.setPessoa(DEFAULT_PESSOA);
+        prestadorServico.setTipo(DEFAULT_TIPO);
         prestadorServico.setNumero(DEFAULT_NUMERO);
         prestadorServico.setComplemento(DEFAULT_COMPLEMENTO);
     }
@@ -109,8 +107,7 @@ public class PrestadorServicoResourceTest {
         PrestadorServico testPrestadorServico = prestadorServicos.get(prestadorServicos.size() - 1);
         assertThat(testPrestadorServico.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testPrestadorServico.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testPrestadorServico.getDocumento()).isEqualTo(DEFAULT_DOCUMENTO);
-        assertThat(testPrestadorServico.getPessoa()).isEqualTo(DEFAULT_PESSOA);
+        assertThat(testPrestadorServico.getTipo()).isEqualTo(DEFAULT_TIPO);
         assertThat(testPrestadorServico.getNumero()).isEqualTo(DEFAULT_NUMERO);
         assertThat(testPrestadorServico.getComplemento()).isEqualTo(DEFAULT_COMPLEMENTO);
     }
@@ -138,7 +135,6 @@ public class PrestadorServicoResourceTest {
     public void checkDocumentoIsRequired() throws Exception {
         int databaseSizeBeforeTest = prestadorServicoRepository.findAll().size();
         // set the field null
-        prestadorServico.setDocumento(null);
 
         // Create the PrestadorServico, which fails.
 
@@ -183,7 +179,7 @@ public class PrestadorServicoResourceTest {
                 .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())))
-                .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_PESSOA.toString())))
+                .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_TIPO.toString())))
                 .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
                 .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
     }
@@ -202,7 +198,7 @@ public class PrestadorServicoResourceTest {
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.documento").value(DEFAULT_DOCUMENTO.toString()))
-            .andExpect(jsonPath("$.pessoa").value(DEFAULT_PESSOA.toString()))
+            .andExpect(jsonPath("$.pessoa").value(DEFAULT_TIPO.toString()))
             .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
             .andExpect(jsonPath("$.complemento").value(DEFAULT_COMPLEMENTO.toString()));
     }
@@ -226,11 +222,10 @@ public class PrestadorServicoResourceTest {
         // Update the prestadorServico
         prestadorServico.setNome(UPDATED_NOME);
         prestadorServico.setEmail(UPDATED_EMAIL);
-        prestadorServico.setDocumento(UPDATED_DOCUMENTO);
-        prestadorServico.setPessoa(UPDATED_PESSOA);
+        prestadorServico.setTipo(UPDATED_TIPO);
         prestadorServico.setNumero(UPDATED_NUMERO);
         prestadorServico.setComplemento(UPDATED_COMPLEMENTO);
-        
+
 
         restPrestadorServicoMockMvc.perform(put("/api/prestadorServicos")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -243,8 +238,7 @@ public class PrestadorServicoResourceTest {
         PrestadorServico testPrestadorServico = prestadorServicos.get(prestadorServicos.size() - 1);
         assertThat(testPrestadorServico.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testPrestadorServico.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testPrestadorServico.getDocumento()).isEqualTo(UPDATED_DOCUMENTO);
-        assertThat(testPrestadorServico.getPessoa()).isEqualTo(UPDATED_PESSOA);
+        assertThat(testPrestadorServico.getTipo()).isEqualTo(UPDATED_TIPO);
         assertThat(testPrestadorServico.getNumero()).isEqualTo(UPDATED_NUMERO);
         assertThat(testPrestadorServico.getComplemento()).isEqualTo(UPDATED_COMPLEMENTO);
     }

@@ -75,6 +75,11 @@ public class Condominio implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
 
+    @OneToMany(mappedBy = "condominio")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Assunto> assuntos = new HashSet<>();
+
     public Condominio() {
         this.dataCadastro = new DateTime();
         this.ativo = true;
@@ -191,6 +196,14 @@ public class Condominio implements Serializable {
 
     public void setMoradores(Set<Morador> moradores) {
         this.moradores = moradores;
+    }
+
+    public Set<Assunto> getAssuntos() {
+        return assuntos;
+    }
+
+    public void setAssuntos(Set<Assunto> assuntos) {
+        this.assuntos = assuntos;
     }
 
     @Override

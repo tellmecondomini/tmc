@@ -8,12 +8,13 @@ import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -82,6 +83,14 @@ public class Funcionario implements Serializable {
 
     @ManyToOne
     private Condominio condominio;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "FUNCIONARIO_CATEGORIA",
+        joinColumns = @JoinColumn(name = "funcionarios_id"),
+        inverseJoinColumns = @JoinColumn(name = "categorias_id"))
+    private Set<Categoria> categorias = new HashSet<>();
 
     @OneToMany(mappedBy = "funcionario")
     @JsonIgnore
@@ -275,6 +284,14 @@ public class Funcionario implements Serializable {
 
     public void setComentarios(Set<Comentario> comentarios) {
         this.comentarios = comentarios;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     @Override

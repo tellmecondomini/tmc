@@ -73,7 +73,6 @@ public class MoradorResourceTest {
     private static final Boolean UPDATED_BLOQUEIA_AGENDAMENTO = true;
 
     private static final TipoMorador DEFAULT_TIPO = TipoMorador.PROPRIETARIO;
-    private static final TipoMorador UPDATED_TIPO = TipoMorador.MORADOR;
 
     @Inject
     private MoradorRepository moradorRepository;
@@ -299,8 +298,6 @@ public class MoradorResourceTest {
         morador.setSenha(UPDATED_SENHA);
         morador.setDataNascimento(UPDATED_DATA_NASCIMENTO);
         morador.setAtivo(UPDATED_ATIVO);
-        morador.setTipo(UPDATED_TIPO);
-
 
         restMoradorMockMvc.perform(put("/api/moradors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -318,7 +315,6 @@ public class MoradorResourceTest {
         assertThat(testMorador.getSenha()).isEqualTo(UPDATED_SENHA);
         assertThat(testMorador.getDataNascimento().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA_NASCIMENTO);
         assertThat(testMorador.getAtivo()).isEqualTo(UPDATED_ATIVO);
-        assertThat(testMorador.getTipo()).isEqualTo(UPDATED_TIPO);
     }
 
     @Test

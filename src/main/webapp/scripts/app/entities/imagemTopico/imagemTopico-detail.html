@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span translate="tmcApp.imagemTopico.detail.title">ImagemTopico</span> {{imagemTopico.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="tmcApp.imagemTopico.imagem">Imagem</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:image/*;base64,' + imagemTopico.imagem}}" style="max-width: 100%;" ng-if="imagemTopico.imagem"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="tmcApp.imagemTopico.topico">topico</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="topico.detail({id:imagemTopico.topico.id})">{{imagemTopico.topico.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

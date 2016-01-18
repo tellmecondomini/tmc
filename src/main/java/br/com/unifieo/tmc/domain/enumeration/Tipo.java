@@ -1,8 +1,8 @@
 package br.com.unifieo.tmc.domain.enumeration;
 
 /**
- * The Pessoa enumeration.
+ * The Tipo enumeration.
  */
-public enum Pessoa {
+public enum Tipo {
     FISICA, JURIDICA
 }

@@ -2,7 +2,6 @@ package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.CepRepository;
-import br.com.unifieo.tmc.repository.CompetenciaPrestadorRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,19 +18,15 @@ public class PrestadorServicoService {
 
     private final PrestadorServicoRepository prestadorServicoRepository;
     private final CepRepository cepRepository;
-    private final CompetenciaPrestadorRepository competenciaPrestadorRepository;
 
     @Inject
-    public PrestadorServicoService(PrestadorServicoRepository prestadorServicoRepository, CepRepository cepRepository,
-                                   CompetenciaPrestadorRepository competenciaPrestadorRepository) {
+    public PrestadorServicoService(PrestadorServicoRepository prestadorServicoRepository, CepRepository cepRepository) {
         this.prestadorServicoRepository = prestadorServicoRepository;
         this.cepRepository = cepRepository;
-        this.competenciaPrestadorRepository = competenciaPrestadorRepository;
     }
 
     public PrestadorServico save(PrestadorServico prestadorServico) {
         cepRepository.save(prestadorServico.getCep());
-        competenciaPrestadorRepository.save(prestadorServico.getCompetenciaPrestador());
         return prestadorServicoRepository.save(prestadorServico);
     }
 }

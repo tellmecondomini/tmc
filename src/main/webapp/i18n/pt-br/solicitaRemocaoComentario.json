@@ -1,0 +1,23 @@
+{
+    "tmcApp": {
+        "solicitaRemocaoComentario" : {
+            "home": {
+                "title": "SolicitaRemocaoComentarios",
+                "createLabel": "Create a new SolicitaRemocaoComentario",
+                "createOrEditLabel": "Create or edit a SolicitaRemocaoComentario"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete SolicitaRemocaoComentario {{ id }}?"
+            },
+            "detail": {
+                "title": "SolicitaRemocaoComentario"
+            },
+            "data": "Data",
+            "motivo": "Motivo",
+            "dataAtendimento": "DataAtendimento",
+            "observacao": "Observacao",
+            "comentario": "Comentario",
+            "morador": "Morador"
+        }
+    }
+}

@@ -18,14 +18,43 @@
         Added the entity Assunto.
     -->
     <changeSet id="20151012161438" author="jhipster">
+
         <createTable tableName="ASSUNTO">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descricao" type="varchar(100)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="condominio_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="ASSUNTO_CATEGORIA">
+            <column name="assuntos_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categorias_id" type="bigint">
+                <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="condominio_id"
+                                 baseTableName="ASSUNTO"
+                                 constraintName="fk_assunto_condominio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CONDOMINIO"/>
+
+        <addForeignKeyConstraint baseColumnNames="assuntos_id"
+                                 baseTableName="ASSUNTO_CATEGORIA"
+                                 constraintName="fk_assunto_categoria_assunto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ASSUNTO"/>
+
+        <addForeignKeyConstraint baseColumnNames="categorias_id"
+                                 baseTableName="ASSUNTO_CATEGORIA"
+                                 constraintName="fk_assunto_categoria_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CATEGORIA"/>
 
     </changeSet>
 </databaseChangeLog>

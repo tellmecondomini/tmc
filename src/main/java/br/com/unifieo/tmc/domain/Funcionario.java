@@ -8,18 +8,17 @@ import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.google.common.collect.Sets;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.*;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A Funcionario.
@@ -83,7 +82,8 @@ public class Funcionario implements Serializable {
     @ManyToOne
     private Condominio condominio;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "FUNCIONARIO_CATEGORIA",
         joinColumns = @JoinColumn(name = "funcionarios_id"),
@@ -126,6 +126,7 @@ public class Funcionario implements Serializable {
         this.responsavel = responsavel;
         this.cep = cep;
         this.condominio = condominio;
+        this.categorias = Collections.EMPTY_SET;
     }
 
     public Funcionario(CondominioDTO condominioDTO, Condominio condominioSave) {
@@ -143,6 +144,7 @@ public class Funcionario implements Serializable {
         this.responsavel = false;
         this.cep = new Cep(condominioDTO.getResponsavelLogradouro(), condominioDTO.getResponsavelBairro(), condominioDTO.getResponsavelCidade(), condominioDTO.getResponsavelUf(), condominioDTO.getResponsavelCep());
         this.condominio = condominioSave;
+        this.categorias = Collections.EMPTY_SET;
     }
 
     public Funcionario(FuncionarioDTO funcionarioDTO) {
@@ -159,6 +161,7 @@ public class Funcionario implements Serializable {
         this.complemento = funcionarioDTO.getComplemento();
         this.responsavel = funcionarioDTO.getResponsavel();
         this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf(), funcionarioDTO.getCep());
+        this.categorias = Sets.newHashSet(funcionarioDTO.getCategorias());
     }
 
     public Long getId() {

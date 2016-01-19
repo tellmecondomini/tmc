@@ -99,6 +99,16 @@
                     <a class="form-control-static" ui-sref="condominio.detail({id:funcionario.condominioId})">{{funcionario.condominioRazaoSocial}}</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span>Categorias</span>
+                </td>
+                <td>
+                    <div ng-repeat="categoria in funcionario.categorias">
+                        <span class="form-control-static">{{categoria.descricao}}</span>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

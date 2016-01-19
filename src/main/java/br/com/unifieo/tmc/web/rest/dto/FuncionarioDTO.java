@@ -1,10 +1,14 @@
 package br.com.unifieo.tmc.web.rest.dto;
 
+import br.com.unifieo.tmc.domain.Categoria;
 import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
+
+import java.util.Collections;
+import java.util.Set;
 
 public class FuncionarioDTO {
 
@@ -31,8 +35,9 @@ public class FuncionarioDTO {
     private Long condominioId;
     private String condominioRazaoSocial;
 
-    public FuncionarioDTO() {
+    private Set<Categoria> categorias = Collections.EMPTY_SET;
 
+    public FuncionarioDTO() {
     }
 
     public FuncionarioDTO(Funcionario funcionario) {
@@ -59,6 +64,9 @@ public class FuncionarioDTO {
             this.cidade = cep.getCidade();
             this.uf = cep.getUf();
         }
+        Set<Categoria> categorias = funcionario.getCategorias();
+        if (categorias != null)
+            this.categorias = categorias;
     }
 
     public Long getId() {
@@ -219,6 +227,14 @@ public class FuncionarioDTO {
 
     public void setResponsavel(Boolean responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     @Override

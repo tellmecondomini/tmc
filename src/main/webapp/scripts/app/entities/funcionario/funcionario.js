@@ -80,7 +80,8 @@ angular.module('tmcApp')
                                     numero: null,
                                     complemento: null,
                                     condominioId: null,
-                                    condominioRazaoSocial: null
+                                    condominioRazaoSocial: null,
+                                    categorias: []
                                 };
                             }
                         }

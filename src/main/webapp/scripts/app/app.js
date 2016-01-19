@@ -12,7 +12,8 @@ angular.module('tmcApp', [
     'ngCacheBuster',
     'ngFileUpload',
     'infinite-scroll',
-    'ui.mask'
+    'ui.mask',
+    'checklist-model'
     ])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {

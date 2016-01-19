@@ -3,17 +3,15 @@ package br.com.unifieo.tmc.web.rest;
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.ImagemTopico;
 import br.com.unifieo.tmc.repository.ImagemTopicoRepository;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -27,6 +25,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -140,7 +139,7 @@ public class ImagemTopicoResourceTest {
 
         // Update the imagemTopico
         imagemTopico.setImagem(UPDATED_IMAGEM);
-        
+
 
         restImagemTopicoMockMvc.perform(put("/api/imagemTopicos")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

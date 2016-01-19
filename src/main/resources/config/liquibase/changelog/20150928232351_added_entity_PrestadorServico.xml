@@ -27,9 +27,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="varchar(255)"/>
-            <column name="documento" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
             <column name="tipo" type="varchar(255)"/>
             <column name="numero" type="integer">
                 <constraints nullable="false"/>
@@ -37,6 +34,9 @@
             <column name="complemento" type="varchar(255)"/>
             <column name="cep_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>
+            <column name="sexo" type="varchar(255)"/>
+            <column name="site" type="varchar(255)"/>
+            <column name="condominio_id" type="bigint"/>
         </createTable>
 
         <createTable tableName="PRESTADOR_COMPETENCIA">
@@ -53,6 +53,12 @@
                                  constraintName="fk_prestador_cep_id"
                                  referencedColumnNames="id"
                                  referencedTableName="CEP"/>
+
+        <addForeignKeyConstraint baseColumnNames="condominio_id"
+                                 baseTableName="PRESTADOR_SERVICO"
+                                 constraintName="fk_prestador_condominio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CONDOMINIO"/>
 
         <addForeignKeyConstraint baseColumnNames="morador_id"
                                  baseTableName="PRESTADOR_SERVICO"

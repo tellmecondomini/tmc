@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('CondominioController', function ($scope, Condominio) {
+    .controller('CondominioController', function ($scope, Condominio, Principal) {
+
+        Principal.identity(true).then(function (account) {
+            $scope.settingsAccount = account;
+        });
 
         $scope.condominios = [];
 

@@ -8,13 +8,12 @@ import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -100,6 +99,11 @@ public class Funcionario implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<SolicitaRemocaoComentario> solicitaRemocaoComentarios = new HashSet<>();
 
     public Funcionario() {
         this.dataCadastro = new DateTime();
@@ -291,6 +295,14 @@ public class Funcionario implements Serializable {
 
     public void setCategorias(Set<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    public Set<SolicitaRemocaoComentario> getSolicitaRemocaoComentarios() {
+        return solicitaRemocaoComentarios;
+    }
+
+    public void setSolicitaRemocaoComentarios(Set<SolicitaRemocaoComentario> solicitaRemocaoComentarios) {
+        this.solicitaRemocaoComentarios = solicitaRemocaoComentarios;
     }
 
     @Override

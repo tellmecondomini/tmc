@@ -19,7 +19,6 @@ import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Service class for managing users.
@@ -66,17 +65,21 @@ public class UserService {
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
         log.debug("Reset user password for reset key {}", key);
-
         return userRepository.findOneByResetKey(key)
-            .filter(user -> {
-                DateTime oneDayAgo = DateTime.now().minusHours(24);
-                return user.getResetDate().isAfter(oneDayAgo.toInstant().getMillis());
-            })
+//            .filter(user -> {
+//                DateTime oneDayAgo = DateTime.now().minusHours(24);
+//                return user.getResetDate().isAfter(oneDayAgo.toInstant().getMillis());
+//            })
             .map(user -> {
-                user.setPassword(passwordEncoder.encode(newPassword));
+                String password = passwordEncoder.encode(newPassword);
+
+                user.setPassword(password);
                 user.setResetKey(null);
                 user.setResetDate(null);
                 userRepository.save(user);
+
+                this.doChagePasswordForFuncionarioAndMorador(password, user.getEmail());
+
                 return user;
             });
     }
@@ -92,38 +95,15 @@ public class UserService {
             });
     }
 
-    @Deprecated
-    public User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey) {
-
-        User newUser = new User();
-        Authority authority = authorityRepository.findOne("ROLE_USER");
-        Set<Authority> authorities = new HashSet<>();
-        String encryptedPassword = passwordEncoder.encode(password);
-        // new user gets initially a generated password
-        newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setLangKey(langKey);
-        // new user is not active
-        newUser.setActivated(false);
-        // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
-        authorities.add(authority);
-        newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
-        return newUser;
-    }
-
     public User createUserAndFuncionarioAndPreCondominio(UserDTO userDTO) {
 
         User newUser = new User();
 
-        Authority authority = authorityRepository.findOne(AuthoritiesConstants.ADMIN_CONDOMINIO);
+        Authority autAdminCondominio = authorityRepository.findOne(AuthoritiesConstants.ADMIN_CONDOMINIO);
+
         HashSet<Authority> authorities = new HashSet<>();
-        authorities.add(authority);
+        authorities.add(autAdminCondominio);
+
         newUser.setAuthorities(authorities);
 
         String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
@@ -184,25 +164,32 @@ public class UserService {
 
     public void changePassword(String password) {
         userRepository.findOneByEmail(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
+
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);
 
             User userSaved = userRepository.save(u);
 
-            Funcionario funcionario = funcionarioRepository.findOneByEmail(userSaved.getEmail());
-            if (funcionario == null) {
-                Morador morador = moradorRepository.findOneByEmail(userSaved.getEmail());
-                if (morador != null) {
-                    morador.setSenha(encryptedPassword);
-                    moradorRepository.save(morador);
-                }
-            } else {
-                funcionario.setSenha(encryptedPassword);
-                funcionarioRepository.save(funcionario);
-            }
+            this.doChagePasswordForFuncionarioAndMorador(encryptedPassword, userSaved.getEmail());
 
             log.debug("Changed password for User: {}", u);
         });
+    }
+
+    private void doChagePasswordForFuncionarioAndMorador(String encryptedPassword, String email) {
+        Funcionario funcionario = funcionarioRepository.findOneByEmail(email);
+        if (funcionario == null) {
+            Morador morador = moradorRepository.findOneByEmail(email);
+            if (morador != null) {
+                morador.setSenha(encryptedPassword);
+                morador.setAtivo(true);
+                moradorRepository.save(morador);
+            }
+        } else {
+            funcionario.setSenha(encryptedPassword);
+            funcionario.setAtivo(true);
+            funcionarioRepository.save(funcionario);
+        }
     }
 
     @Transactional(readOnly = true)

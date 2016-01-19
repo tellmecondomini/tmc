@@ -4,9 +4,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -20,15 +19,19 @@ public class AvaliaCompetencia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(name = "nota")
     private Integer nota;
-    
+
     @Column(name = "mensagem")
     private String mensagem;
-    
+
     @Column(name = "ativo")
     private Boolean ativo;
+
+    @NotNull
+    @Column(name = "data", nullable = false)
+    private Integer data;
 
     @ManyToOne
     private Morador morador;
@@ -93,6 +96,14 @@ public class AvaliaCompetencia implements Serializable {
 
     public void setCompetenciaPrestador(CompetenciaPrestador competenciaPrestador) {
         this.competenciaPrestador = competenciaPrestador;
+    }
+
+    public Integer getData() {
+        return data;
+    }
+
+    public void setData(Integer data) {
+        this.data = data;
     }
 
     @Override

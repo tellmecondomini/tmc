@@ -30,7 +30,6 @@
             <column name="data" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="status_comentario" type="varchar(255)"/>
             <column name="topico_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>
             <column name="funcionario_id" type="bigint"/>

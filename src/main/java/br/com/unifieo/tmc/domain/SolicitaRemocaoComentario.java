@@ -1,9 +1,9 @@
 package br.com.unifieo.tmc.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -11,8 +11,6 @@ import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,24 +24,30 @@ public class SolicitaRemocaoComentario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data")
     private DateTime data;
-    
+
     @Column(name = "motivo")
     private String motivo;
-    
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_atendimento")
     private DateTime dataAtendimento;
-    
+
     @Column(name = "observacao")
     private String observacao;
+
+    @Column(name="aprova")
+    private Boolean aprovado;
+
+    @ManyToOne
+    private Funcionario funcionario;
 
     @OneToOne
     private Comentario comentario;
@@ -105,6 +109,22 @@ public class SolicitaRemocaoComentario implements Serializable {
 
     public void setMorador(Morador morador) {
         this.morador = morador;
+    }
+
+    public Boolean getAprovado() {
+        return aprovado;
+    }
+
+    public void setAprovado(Boolean aprovado) {
+        this.aprovado = aprovado;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     @Override

@@ -2,21 +2,24 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Funcionario;
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
-
 import br.com.unifieo.tmc.service.FuncionarioService;
 import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -26,17 +29,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
 
 /**
  * Test class for the FuncionarioResource REST controller.
@@ -157,7 +155,7 @@ public class FuncionarioResourceTest {
     @Transactional
     public void getAllFuncionarios() throws Exception {
         // Initialize the database
-        Funcionario funcionario = funcionarioService.save(funcionarioDTO);
+        Funcionario funcionario = funcionarioService.save(funcionarioDTO, "");
         funcionarioDTO.setId(funcionario.getId());
 
         // Get all the funcionarios
@@ -181,7 +179,7 @@ public class FuncionarioResourceTest {
     @Transactional
     public void getFuncionario() throws Exception {
         // Initialize the database
-        funcionarioService.save(funcionarioDTO);
+        funcionarioService.save(funcionarioDTO, "");
 
         // Get the funcionarioDTO
         restFuncionarioMockMvc.perform(get("/api/funcionarios/{id}", funcionarioDTO.getId()))
@@ -212,7 +210,7 @@ public class FuncionarioResourceTest {
     @Transactional
     public void updateFuncionario() throws Exception {
         // Initialize the database
-        Funcionario funcionario = funcionarioService.save(funcionarioDTO);
+        Funcionario funcionario = funcionarioService.save(funcionarioDTO, "");
         funcionarioDTO.setId(funcionario.getId());
 
         int databaseSizeBeforeUpdate = funcionarioRepository.findAll().size();
@@ -253,7 +251,7 @@ public class FuncionarioResourceTest {
     @Transactional
     public void deleteFuncionario() throws Exception {
         // Initialize the database
-        funcionarioService.save(funcionarioDTO);
+        funcionarioService.save(funcionarioDTO, "");
 
 		int databaseSizeBeforeDelete = funcionarioRepository.findAll().size();
 

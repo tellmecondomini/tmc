@@ -1,15 +1,14 @@
 package br.com.unifieo.tmc.web.rest;
 
-import br.com.unifieo.tmc.service.MoradorService;
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.repository.MoradorRepository;
+import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

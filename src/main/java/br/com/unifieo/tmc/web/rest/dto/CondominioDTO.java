@@ -7,8 +7,6 @@ import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
 
-import java.util.Optional;
-
 public class CondominioDTO {
 
     private Long id;

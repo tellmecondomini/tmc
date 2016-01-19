@@ -62,13 +62,15 @@
                     </button>
                     <button type="submit"
                             ui-sref="morador.edit({id:morador.id})"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1 || morador.email == settingsAccount.email)">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
                         translate="entity.action.edit"> Edit</span>
                     </button>
                     <button type="submit"
                             ng-click="delete(morador.id)"
-                            class="btn btn-danger btn-sm">
+                            class="btn btn-danger btn-sm"
+                            ng-show="['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1">
                         <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
                         translate="entity.action.delete"> Delete</span>
                     </button>

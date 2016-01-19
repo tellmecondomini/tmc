@@ -4,9 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="funcionario.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span
-                    translate="tmcApp.funcionario.home.createLabel">Create a new Funcionario</span>
+                <button class="btn btn-primary" ui-sref="funcionario.new" ng-show="['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.funcionario.home.createLabel">Create a new Funcionario</span>
                 </button>
             </div>
         </div>
@@ -47,7 +46,6 @@
                 <th translate="global.field.id">ID</th>
                 <th translate="tmcApp.funcionario.nome">Nome</th>
                 <th translate="tmcApp.funcionario.cpf">Cpf</th>
-                <th translate="tmcApp.funcionario.ativo">Ativo</th>
                 <th translate="tmcApp.funcionario.dataCadastro">DataCadastro</th>
                 <th></th>
             </tr>
@@ -57,7 +55,6 @@
                 <td><a ui-sref="funcionario.detail({id:funcionario.id})">{{funcionario.id}}</a></td>
                 <td>{{funcionario.nome}}</td>
                 <td>{{funcionario.cpf | cpf}}</td>
-                <td>{{funcionario.ativo ? 'Sim' : 'Não'}}</td>
                 <td>{{funcionario.dataCadastro | date: 'dd/MM/yyyy'}}</td>
                 <td>
                     <button type="submit"
@@ -67,20 +64,20 @@
                     </button>
                     <button type="submit"
                             ui-sref="funcionario.edit({id:funcionario.id})"
-                            class="btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
-                        translate="entity.action.edit"> Edit</span>
+                            class="btn btn-primary btn-sm"
+                            ng-show="['ROLE_FUNCIONARIO','ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1 && funcionario.email == settingsAccount.email">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                     </button>
                     <button type="submit"
                             ng-click="delete(funcionario.id)"
-                            ng-show="funcionario.email != settingsAccount.email"
+                            ng-show="funcionario.email != settingsAccount.email && ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1"
                             class="btn btn-danger btn-sm">
-                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
-                        translate="entity.action.delete"> Delete</span>
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
+
     </div>
 </div>

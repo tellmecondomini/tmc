@@ -2,7 +2,6 @@ package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
-import br.com.unifieo.tmc.web.rest.dto.UserDTO;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,5 +99,16 @@ public class MailService {
         String content = templateEngine.process("passwordResetEmail", context);
         String subject = "TMC - Alteração de Senha";
         this.sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    public void sendNewFuncionarioEmail(Funcionario funcionario, User user, String baseUrl) {
+        log.debug("Novo funcionario criado '{}'", funcionario.getNome());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("user", user);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("newFuncionarioEmail", context);
+        String subject = "TMC - Novo Funcionario";
+        this.sendEmail(funcionario.getEmail(), subject, content, false, true);
     }
 }

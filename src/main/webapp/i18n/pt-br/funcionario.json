@@ -4,7 +4,7 @@
             "home": {
                 "title": "Funcionários",
                 "createLabel": "Novo",
-                "createOrEditLabel": "Criar ou editar um Funcionário"
+                "createOrEditLabel": "Funcionário"
             },
             "created": "Novo funcionário {{ param }} criado com sucesso",
             "updated": "Funcionário {{ param }} atualizado com sucesso",

@@ -1,25 +1,23 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
+import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
-import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import br.com.unifieo.tmc.domain.enumeration.Sexo;
-
-import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
+import java.util.Set;
 
 /**
  * A Morador.

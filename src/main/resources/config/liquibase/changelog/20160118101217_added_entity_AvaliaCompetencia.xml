@@ -26,6 +26,9 @@
             <column name="nota" type="integer"/>
             <column name="mensagem" type="varchar(255)"/>
             <column name="ativo" type="bit"/>
+            <column name="data" type="integer">
+                <constraints nullable="false"/>
+            </column>
             <column name="morador_id" type="bigint"/>
             <column name="prestador_servico_id" type="bigint"/>
             <column name="competencia_prestador_id" type="bigint"/>

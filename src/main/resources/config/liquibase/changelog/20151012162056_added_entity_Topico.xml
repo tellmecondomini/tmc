@@ -41,11 +41,13 @@
             <column name="data_fechamento" type="timestamp">
                 <constraints nullable="true"/>
             </column>
+            <column name="mensagem_aprovacao" type="varchar(255)"/>
             <column name="status_topico" type="varchar(255)"/>
             <column name="prioridade" type="bit"/>
             <column name="assunto_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>
             <column name="funcionario_id" type="bigint"/>
+            <column name="funcionario_aprovacao_id" type="bigint"/>
             <column name="categoria_id" type="bigint"/>
         </createTable>
 
@@ -69,6 +71,12 @@
         <addForeignKeyConstraint baseColumnNames="funcionario_id"
                                  baseTableName="TOPICO"
                                  constraintName="fk_topico_funcionario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="FUNCIONARIO"/>
+
+        <addForeignKeyConstraint baseColumnNames="funcionario_aprovacao_id"
+                                 baseTableName="TOPICO"
+                                 constraintName="fk_topico_funcionario_aprovacao_id"
                                  referencedColumnNames="id"
                                  referencedTableName="FUNCIONARIO"/>
 

@@ -72,6 +72,9 @@ public class Topico implements Serializable {
     @Column(name = "data_fim", nullable = false)
     private DateTime dataFim;
 
+    @Column(name="mensagem_aprovacao")
+    private String mensagemAprovacao;
+
     @ManyToOne
     private Assunto assunto;
 
@@ -83,6 +86,9 @@ public class Topico implements Serializable {
 
     @ManyToOne
     private Funcionario funcionario;
+
+    @ManyToOne
+    private Funcionario funcionarioAprovacao;
 
     @OneToMany(mappedBy = "topico")
     @JsonIgnore
@@ -212,6 +218,22 @@ public class Topico implements Serializable {
 
     public void setImagens(Set<ImagemTopico> imagens) {
         this.imagens = imagens;
+    }
+
+    public String getMensagemAprovacao() {
+        return mensagemAprovacao;
+    }
+
+    public void setMensagemAprovacao(String mensagemAprovacao) {
+        this.mensagemAprovacao = mensagemAprovacao;
+    }
+
+    public Funcionario getFuncionarioAprovacao() {
+        return funcionarioAprovacao;
+    }
+
+    public void setFuncionarioAprovacao(Funcionario funcionarioAprovacao) {
+        this.funcionarioAprovacao = funcionarioAprovacao;
     }
 
     @Override

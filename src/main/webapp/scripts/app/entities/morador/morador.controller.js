@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MoradorController', function ($scope, $http, Morador) {
+    .controller('MoradorController', function ($scope, $http, Morador, Principal) {
+
+        Principal.identity(true).then(function (account) {
+            $scope.settingsAccount = account;
+        });
 
         $scope.moradors = [];
 

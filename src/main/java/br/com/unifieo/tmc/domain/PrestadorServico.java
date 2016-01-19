@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
@@ -36,6 +37,16 @@ public class PrestadorServico implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private Tipo tipo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sexo")
+    private Sexo sexo;
+
+    @Column(name="site")
+    private String site;
+
+    @ManyToOne
+    private Condominio condominio;
 
     @NotNull
     @Column(name = "numero", nullable = false)
@@ -142,6 +153,30 @@ public class PrestadorServico implements Serializable {
 
     public void setMorador(Morador morador) {
         this.morador = morador;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
     }
 
     @Override

@@ -7,7 +7,6 @@ import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

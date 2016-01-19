@@ -1,12 +1,11 @@
 package br.com.unifieo.tmc.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import br.com.unifieo.tmc.domain.CompetenciaPrestador;
 import br.com.unifieo.tmc.repository.CompetenciaPrestadorRepository;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

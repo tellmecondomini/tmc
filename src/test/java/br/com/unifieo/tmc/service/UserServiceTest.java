@@ -5,7 +5,6 @@ import br.com.unifieo.tmc.domain.PersistentToken;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.PersistentTokenRepository;
 import br.com.unifieo.tmc.repository.UserRepository;
-import br.com.unifieo.tmc.service.util.RandomUtil;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.Test;

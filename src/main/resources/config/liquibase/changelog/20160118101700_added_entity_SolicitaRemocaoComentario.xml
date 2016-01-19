@@ -31,6 +31,8 @@
                 <constraints unique="true"/>
             </column>
             <column name="morador_id" type="bigint"/>
+            <column name="aprovado" type="bit"/>
+            <column name="funcionario_id" type="bigint"/>
         </createTable>
 
         <dropDefaultValue tableName="SOLICITA_REMOCAO_COMENTARIO" columnName="data" columnDataType="datetime"/>
@@ -49,6 +51,12 @@
                                  constraintName="fk_solicitaremocaocomentario_morador_id"
                                  referencedColumnNames="id"
                                  referencedTableName="MORADOR"/>
+
+        <addForeignKeyConstraint baseColumnNames="funcionario_id"
+                                 baseTableName="SOLICITA_REMOCAO_COMENTARIO"
+                                 constraintName="fk_solicitaremocaocomentario_funcionario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="FUNCIONARIO"/>
 
     </changeSet>
 </databaseChangeLog>

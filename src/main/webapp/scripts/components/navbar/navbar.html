@@ -77,6 +77,12 @@
                             </a>
                         </li>
                         <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
+                            <a ui-sref="categoria">
+                                <span>Categorias</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active"
                             has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO,ROLE_MORADOR">
                             <a ui-sref="topico">
                                 <span translate="global.menu.entities.topico">topicos</span>

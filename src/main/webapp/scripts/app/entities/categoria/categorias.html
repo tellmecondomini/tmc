@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="categoria.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.categoria.home.createLabel">Create a new Categoria</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Novo</span>
                 </button>
             </div>
         </div>
@@ -42,7 +42,6 @@
                 <tr>
                     <th translate="global.field.id">ID</th>
                     <th translate="tmcApp.categoria.descricao">Descricao</th>
-                    <th translate="tmcApp.categoria.funcionario">funcionario</th>
                     <th></th>
                 </tr>
             </thead>
@@ -50,11 +49,6 @@
                 <tr ng-repeat="categoria in categorias">
                     <td><a ui-sref="categoria.detail({id:categoria.id})">{{categoria.id}}</a></td>
                     <td>{{categoria.descricao}}</td>
-                    <td>
-                        <span ng-repeat="funcionario in categoria.funcionarios">
-                            <a class="form-control-static" ui-sref="funcionario.detail({id: {{funcionario.id}}})">{{funcionario.id}}</a>{{$last ? '' : ', '}}
-                        <span>
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="categoria.detail({id:categoria.id})"

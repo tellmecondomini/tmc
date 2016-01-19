@@ -18,16 +18,6 @@
                     <span class="form-control-static">{{categoria.descricao}}</span>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.categoria.funcionario">funcionario</span>
-                </td>
-                <td>
-                    <span ng-repeat="funcionario in categoria.funcionarios">
-                        <a class="form-control-static" ui-sref="funcionario.detail({id: {{funcionario.id}}})">{{funcionario.id}}</a>{{$last ? '' : ', '}}
-                    <span>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>

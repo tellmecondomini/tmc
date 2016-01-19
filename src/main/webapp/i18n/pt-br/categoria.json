@@ -3,16 +3,19 @@
         "categoria" : {
             "home": {
                 "title": "Categorias",
-                "createLabel": "Create a new Categoria",
-                "createOrEditLabel": "Create or edit a Categoria"
+                "createLabel": "Categoria",
+                "createOrEditLabel": "Categoria"
             },
+            "created": "Categoria criada com sucesso",
+            "updated": "Categoria atualizada com sucesso",
+            "deleted": "Categoria removida com sucesso",
             "delete": {
-                "question": "Are you sure you want to delete Categoria {{ id }}?"
+                "question": "Deseja realmente remover a Categoria nº {{ id }}?"
             },
             "detail": {
                 "title": "Categoria"
             },
-            "descricao": "Descricao",
+            "descricao": "Descrição",
             "funcionario": "Funcionario"
         }
     }

@@ -64,7 +64,7 @@ public class PrestadorServico implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "PRESTADOR_SERVICO_COMPETENCIA",
+    @JoinTable(name = "PRESTADOR_COMPETENCIA",
         joinColumns = @JoinColumn(name = "prestadores_id"),
         inverseJoinColumns = @JoinColumn(name = "competencias_id"))
     private Set<CompetenciaPrestador> competencias = new HashSet<>();

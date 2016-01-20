@@ -1,4 +1,3 @@
-
 <div>
     <h2><span translate="tmcApp.prestadorServico.detail.title">PrestadorServico</span> {{prestadorServico.id}}</h2>
     <div class="table-responsive">
@@ -24,14 +23,6 @@
                 </td>
                 <td>
                     <span class="form-control-static">{{prestadorServico.email}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.prestadorServico.documento">Documento</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{prestadorServico.documento}}</span>
                 </td>
             </tr>
             <tr>
@@ -63,7 +54,7 @@
                     <span translate="tmcApp.prestadorServico.cep">cep</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.id}}</a>
+                    <a class="form-control-static" ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.cep | cep}}</a>
                 </td>
             </tr>
             <tr>
@@ -71,7 +62,9 @@
                     <span translate="tmcApp.prestadorServico.competenciaPrestador">competenciaPrestador</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="competenciaPrestador.detail({id:prestadorServico.competenciaPrestador.id})">{{prestadorServico.competenciaPrestador.id}}</a>
+                    <div ng-repeat="competencia in prestadorServico.competencias">
+                        <span class="form-control-static">{{competencia.descricao}}</span>
+                    </div>
                 </td>
             </tr>
             </tbody>

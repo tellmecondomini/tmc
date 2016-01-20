@@ -6,8 +6,11 @@
                 "createLabel": "Novo",
                 "createOrEditLabel": "Novo"
             },
+            "created": "Novo prestador de serviço criado com sucesso",
+            "updated": "Prestador de serviço atualizado com sucesso",
+            "deleted": "Prestador de serviço removido com sucesso",
             "delete": {
-                "question": "Tem certeza que deseja remover o prestador de serviços {{ id }}?"
+                "question": "Tem certeza que deseja remover o prestador de serviço nº {{ id }}?"
             },
             "detail": {
                 "title": "Prestador de Serviços"
@@ -15,12 +18,12 @@
             "nome": "Nome",
             "email": "Email",
             "documento": "Documento",
-            "pessoa": "Pessoa",
+            "tipo": "Pessoa",
             "numero": "Número",
             "complemento": "Complemento",
             "cep": "Cep",
             "telefonePrestadorServico": "Telefone",
-            "competenciaPrestador": "Competencia"
+            "competenciaPrestador": "Competências"
         }
     }
 }

@@ -2,17 +2,20 @@
     "tmcApp": {
         "competenciaPrestador" : {
             "home": {
-                "title": "CompetenciaPrestadors",
-                "createLabel": "Create a new CompetenciaPrestador",
-                "createOrEditLabel": "Create or edit a CompetenciaPrestador"
+                "title": "Competencia (Prestador de Serviço)",
+                "createLabel": "Competencia (Prestador de Serviço)",
+                "createOrEditLabel": "Competencia (Prestador de Serviço)"
             },
+            "created": "Nova competência criada com sucesso",
+            "updated": "Competência atualizada com sucesso",
+            "deleted": "Competência removida com sucesso",
             "delete": {
-                "question": "Are you sure you want to delete CompetenciaPrestador {{ id }}?"
+                "question": "Tem certeza que deseja remover a Competência nº {{ id }}?"
             },
             "detail": {
-                "title": "CompetenciaPrestador"
+                "title": "Competencia (Prestador de Serviço)"
             },
-            "descricao": "Descricao"
+            "descricao": "Descrição"
         }
     }
 }

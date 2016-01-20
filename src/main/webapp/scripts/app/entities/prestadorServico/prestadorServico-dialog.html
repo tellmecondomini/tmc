@@ -6,8 +6,11 @@
         <h4 class="modal-title" id="myPrestadorServicoLabel" translate="tmcApp.prestadorServico.home.createOrEditLabel">
             Create or edit a PrestadorServico</h4>
     </div>
+
     <div class="modal-body">
+
         <jh-alert-error></jh-alert-error>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.nome" for="field_nome">Nome</label>
             <input type="text" class="form-control" name="nome" id="field_nome"
@@ -20,12 +23,13 @@
                 </p>
             </div>
         </div>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.email" for="field_email">Email</label>
             <input type="text" class="form-control" name="email" id="field_email"
-                   ng-model="prestadorServico.email"
-            >
+                   ng-model="prestadorServico.email">
         </div>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.tipo" for="field_pessoa">Pessoa</label>
             <select class="form-control" name="tipo" ng-model="prestadorServico.tipo" id="field_pessoa">
@@ -33,19 +37,7 @@
                 <option value="JURIDICA" translate="tmcApp.Pessoa.JURIDICA">JURIDICA</option>
             </select>
         </div>
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.documento" for="field_documento">Documento</label>
-            <input type="text" class="form-control" name="documento" id="field_documento"
-                   ng-model="prestadorServico.documento"
-                   ui-mask="{{prestadorServico.tipo == 'FISICA' ? '999.999.999-99' : '99.999.999/9999-99'}}"
-                   required>
-            <div ng-show="editForm.documento.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.documento.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.numero" for="field_numero">Numero</label>
             <input type="number" class="form-control" name="numero" id="field_numero"
@@ -62,11 +54,11 @@
                 </p>
             </div>
         </div>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.complemento" for="field_complemento">Complemento</label>
             <input type="text" class="form-control" name="complemento" id="field_complemento"
-                   ng-model="prestadorServico.complemento"
-            >
+                   ng-model="prestadorServico.complemento">
         </div>
 
         <div class="form-group">
@@ -76,14 +68,17 @@
                 <option value=""></option>
             </select>
         </div>
+
         <div class="form-group">
             <label translate="tmcApp.prestadorServico.competenciaPrestador" for="field_competenciaPrestador">competenciaPrestador</label>
-            <select class="form-control" id="field_competenciaPrestador" name="competenciaPrestador"
-                    ng-model="prestadorServico.competenciaPrestador"
-                    ng-options="competenciaPrestador as competenciaPrestador.id for competenciaPrestador in competenciaprestadors | orderBy:'id' track by competenciaPrestador.id">
-                <option value=""></option>
-            </select>
+            <div class="well">
+                <div id="field_competenciaPrestador" ng-repeat="competenciaPrestador in competenciaprestadors">
+                    <input type="checkbox" data-checklist-model="prestadorServico.competencias"
+                           data-checklist-value="competenciaPrestador"> {{competenciaPrestador.descricao}} <br/>
+                </div>
+            </div>
         </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

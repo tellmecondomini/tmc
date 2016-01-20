@@ -1,16 +1,16 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Funcionario;
+import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.domain.PersistentToken;
 import br.com.unifieo.tmc.domain.User;
-import br.com.unifieo.tmc.repository.CondominioRepository;
-import br.com.unifieo.tmc.repository.FuncionarioRepository;
-import br.com.unifieo.tmc.repository.PersistentTokenRepository;
-import br.com.unifieo.tmc.repository.UserRepository;
+import br.com.unifieo.tmc.repository.*;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.MailService;
+import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.KeyAndPasswordDTO;
+import br.com.unifieo.tmc.web.rest.dto.MoradorDTO;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
 import com.codahale.metrics.annotation.Timed;
 import org.apache.commons.lang.StringUtils;
@@ -48,6 +48,12 @@ public class AccountResource {
     private FuncionarioRepository funcionarioRepository;
 
     @Inject
+    private MoradorRepository moradorRepository;
+
+    @Inject
+    private MoradorService moradorService;
+
+    @Inject
     private UserService userService;
 
     @Inject
@@ -83,6 +89,29 @@ public class AccountResource {
             );
     }
 
+    @RequestMapping(value = "/register/morador",
+        method = RequestMethod.POST,
+        produces = MediaType.TEXT_PLAIN_VALUE)
+    @Timed
+    public ResponseEntity<?> createMorador(@RequestBody MoradorDTO moradorDTO, HttpServletRequest request) {
+
+        Morador byEmail = moradorRepository.findOneByEmail(moradorDTO.getEmail());
+        if (byEmail != null)
+            return new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST);
+
+        userRepository.findOneByEmail(moradorDTO.getEmail()).map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST));
+
+        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+
+        try {
+            Morador morador = new Morador(moradorDTO);
+            moradorService.save(morador, moradorDTO.getCondominioId(), baseUrl);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     /**
      * GET  /activate -> activate the registered user.
      */
@@ -90,7 +119,7 @@ public class AccountResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key, HttpServletRequest request) {
+    public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
         return Optional.ofNullable(userService.activateRegistration(key))
             .map(user -> new ResponseEntity<String>(HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tell Me Condominium</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h3>
+    Você acaba de ser registrado com sucesso em nosso sistema!
+</h3>
+<ul>
+    <li>
+        <span th:text="${user.firstName}" />
+    </li>
+    <li>
+        <span th:text="${user.email}" />
+    </li>
+</ul>
+<p>
+    Para finalizar seu cadastro, <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}">Clique-aqui</a> e cadastre sua nova senha de acesso.
+</p>
+<p>
+    Att,
+<p>
+    <em>Equipe Tell Me Condominium.</em>
+</p>
+</p>
+</body>
+</html>

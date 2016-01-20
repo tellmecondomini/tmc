@@ -45,7 +45,6 @@
             <tr>
                 <th translate="global.field.id">ID</th>
                 <th translate="tmcApp.morador.nome">Nome</th>
-                <th translate="tmcApp.morador.ativo">Ativo</th>
                 <th></th>
             </tr>
             </thead>
@@ -53,7 +52,6 @@
             <tr ng-repeat="morador in moradors">
                 <td><a ui-sref="morador.detail({id:morador.id})">{{morador.id}}</a></td>
                 <td>{{morador.nome}}</td>
-                <td>{{morador.ativo ? 'Sim' : 'Não'}}</td>
                 <td>
                     <button type="submit"
                             ui-sref="morador.detail({id:morador.id})"

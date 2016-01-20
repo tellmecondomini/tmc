@@ -1,0 +1,118 @@
+<div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <h1>Morador</h1>
+
+            <div class="alert alert-success" ng-show="success" translate="register.messages.success">
+                <strong>Registration saved!</strong> Please check your email for confirmation.
+            </div>
+
+            <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">
+                <strong>Registration failed!</strong> Please try again later.
+            </div>
+
+            <div class="alert alert-danger" ng-show="errorEmailExists" translate="register.messages.error.emailexists">
+                <strong>E-mail is already in use!</strong> Please choose another one.
+            </div>
+
+            <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
+                The password and its confirmation do not match!
+            </div>
+
+            <form ng-show="!success" name="editForm" role="form" novalidate ng-submit="register()" show-validation>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           ng-model="morador.nome"
+                           required>
+                    <div ng-show="editForm.nome.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.nome.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           ng-model="morador.email"
+                           required>
+
+                    <div ng-show="editForm.email.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.email.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.cpf" for="field_cpf">Cpf</label>
+                    <input type="text" class="form-control" name="cpf" id="field_cpf"
+                           ng-model="morador.cpf"
+                           ui-mask="999.999.999-99"
+                           required>
+
+                    <div ng-show="editForm.cpf.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.cpf.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.dataNascimento"
+                           for="field_dataNascimento">DataNascimento</label>
+                    <input type="date" class="form-control" name="dataNascimento"
+                           id="field_dataNascimento"
+                           ng-model="morador.dataNascimento" ng-model-options="{timezone: 'UTC'}"
+                           required>
+
+                    <div ng-show="editForm.dataNascimento.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.dataNascimento.$error.required"
+                           translate="entity.validation.required">
+                            This field is required.
+                        </p>
+
+                        <p class="help-block"
+                           ng-show="editForm.dataNascimento.$error.datetimelocal"
+                           translate="entity.validation.datetimelocal">
+                            This field should be a date and time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.sexo" for="field_sexo">Sexo</label>
+                    <select class="form-control" name="sexo" ng-model="morador.sexo" id="field_sexo">
+                        <option value="M" translate="tmcApp.Sexo.M">M</option>
+                        <option value="F" translate="tmcApp.Sexo.F">F</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
+                    <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
+                        <option value="PROPRIETARIO">PROPRIETARIO</option>
+                        <option value="LOCATARIO">LOCATARIO</option>
+                        <option value="DEPENDENTE">DEPENDENTE</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;<span
+                        translate="entity.action.save">Save</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .factory('Auth', function Auth($rootScope, $state, $q, $translate, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
+    .factory('Auth', function Auth($rootScope, $state, $q, $translate, Principal, AuthServerProvider, Account, Register, RegisterMorador, Activate, Password, PasswordResetInit, PasswordResetFinish) {
         return {
             login: function (credentials, callback) {
                 var cb = callback || angular.noop;
@@ -59,12 +59,26 @@ angular.module('tmcApp')
                         }
                     });
             },
+
             createAccount: function (account, callback) {
                 var cb = callback || angular.noop;
 
                 return Register.save(account,
                     function () {
                         return cb(account);
+                    },
+                    function (err) {
+                        this.logout();
+                        return cb(err);
+                    }.bind(this)).$promise;
+            },
+
+            createMorador: function (morador, callback) {
+                var cb = callback || angular.noop;
+
+                return RegisterMorador.save(morador,
+                    function () {
+                        return cb(morador);
                     },
                     function (err) {
                         this.logout();

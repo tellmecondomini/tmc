@@ -17,7 +17,7 @@
                         <label translate="tmcApp.funcionario.nome" for="field_nome">Nome</label>
                         <input type="text" class="form-control" name="nome" id="field_nome"
                                ng-model="funcionario.nome"
-                               required>
+                               required ng-disabled="funcionario.id != null">
 
                         <div ng-show="editForm.nome.$invalid">
                             <p class="help-block" ng-show="editForm.nome.$error.required"
@@ -88,7 +88,7 @@
                         <label translate="tmcApp.funcionario.email" for="field_email">Email</label>
                         <input type="text" class="form-control" name="email" id="field_email"
                                ng-model="funcionario.email"
-                               required>
+                               required ng-disabled="funcionario.id != null">
 
                         <div ng-show="editForm.email.$invalid">
                             <p class="help-block"
@@ -183,7 +183,7 @@
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
             translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
         </button>
     </div>

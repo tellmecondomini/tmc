@@ -4,6 +4,7 @@ import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
+import br.com.unifieo.tmc.web.rest.dto.MoradorDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -82,6 +83,20 @@ public class Morador implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
+
+    public Morador() {
+    }
+
+    public Morador(MoradorDTO moradorDTO) {
+        this.nome = moradorDTO.getNome();
+        this.cpf = moradorDTO.getCpf();
+        this.sexo = moradorDTO.getSexo();
+        this.email = moradorDTO.getEmail();
+        this.senha = moradorDTO.getSenha();
+        this.dataNascimento = moradorDTO.getDataNascimento();
+        this.ativo = moradorDTO.getAtivo();
+        this.tipo = moradorDTO.getTipo();
+    }
 
     public Long getId() {
         return id;

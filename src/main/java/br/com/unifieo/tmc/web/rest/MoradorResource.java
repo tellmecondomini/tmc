@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -37,23 +36,6 @@ public class MoradorResource {
     private MoradorService moradorService;
 
     /**
-     * POST  /moradors -> Create a new morador.
-     */
-    @RequestMapping(value = "/moradors",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Morador> createMorador(@RequestBody Morador morador) throws URISyntaxException {
-        log.debug("REST request to save Morador : {}", morador);
-        if (morador.getId() != null)
-            return ResponseEntity.badRequest().header("Failure", "A new morador cannot already have an ID").body(null);
-        Morador result = moradorService.save(morador);
-        return ResponseEntity.created(new URI("/api/moradors/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("morador", result.getId().toString()))
-            .body(result);
-    }
-
-    /**
      * PUT  /moradors -> Updates an existing morador.
      */
     @RequestMapping(value = "/moradors",
@@ -62,8 +44,6 @@ public class MoradorResource {
     @Timed
     public ResponseEntity<Morador> updateMorador(@RequestBody Morador morador) throws URISyntaxException {
         log.debug("REST request to update Morador : {}", morador);
-        if (morador.getId() == null)
-            return createMorador(morador);
         Morador result = moradorRepository.save(morador);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("morador", morador.getId().toString()))
@@ -116,26 +96,11 @@ public class MoradorResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<String> printRegisterCode(HttpServletRequest request) {
-
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-
         String url = moradorService.getUrlRegisterCode(baseUrl);
         JsonObject json = new JsonObject();
         json.addProperty("url", url);
         return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/moradors/condominio/{id}",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Morador> createMoradorByCondominio(@RequestBody Morador morador, Long condominioId) throws URISyntaxException {
-        if (morador.getId() != null)
-            return ResponseEntity.badRequest().header("Failure", "A new morador cannot already have an ID").body(null);
-        Morador result = moradorService.save(morador);
-        return ResponseEntity.created(new URI("/api/moradors/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("morador", result.getId().toString()))
-            .body(result);
     }
 
 }

@@ -24,7 +24,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nota" type="integer"/>
-            <column name="mensagem" type="varchar(255)"/>
+            <column name="mensagem" type="varchar(2000)"/>
             <column name="ativo" type="bit"/>
             <column name="data" type="integer">
                 <constraints nullable="false"/>

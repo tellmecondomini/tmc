@@ -24,9 +24,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="data" type="timestamp"/>
-            <column name="motivo" type="varchar(255)"/>
+            <column name="motivo" type="varchar(500)"/>
             <column name="data_atendimento" type="timestamp"/>
-            <column name="observacao" type="varchar(255)"/>
+            <column name="observacao" type="varchar(500)"/>
             <column name="comentario_id" type="bigint">
                 <constraints unique="true"/>
             </column>

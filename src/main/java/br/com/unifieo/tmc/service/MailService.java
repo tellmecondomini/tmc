@@ -1,11 +1,11 @@
 package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Funcionario;
+import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.domain.User;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -38,9 +38,6 @@ public class MailService {
     private JavaMailSenderImpl javaMailSender;
 
     @Inject
-    private MessageSource messageSource;
-
-    @Inject
     private SpringTemplateEngine templateEngine;
 
     /**
@@ -56,7 +53,7 @@ public class MailService {
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send e-mail[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
-                isMultipart, isHtml, to, subject, content);
+            isMultipart, isHtml, to, subject, content);
 
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -110,5 +107,16 @@ public class MailService {
         String content = templateEngine.process("newFuncionarioEmail", context);
         String subject = "TMC - Novo Funcionario";
         this.sendEmail(funcionario.getEmail(), subject, content, false, true);
+    }
+
+    public void sendNewMoradorEmail(Morador morador, User user, String baseUrl) {
+        log.debug("Novo morador criado '{}'", morador.getNome());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("user", user);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("newMoradorEmail", context);
+        String subject = "TMC - Novo Morador";
+        this.sendEmail(morador.getEmail(), subject, content, false, true);
     }
 }

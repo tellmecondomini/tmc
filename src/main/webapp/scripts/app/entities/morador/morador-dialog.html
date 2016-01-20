@@ -18,7 +18,8 @@
                         <label translate="tmcApp.morador.nome" for="field_nome">Nome</label>
                         <input type="text" class="form-control" name="nome" id="field_nome"
                                ng-model="morador.nome"
-                               required>
+                               required
+                               disabled>
 
                         <div ng-show="editForm.nome.$invalid">
                             <p class="help-block"
@@ -87,10 +88,9 @@
                     <div class="form-group">
                         <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
                         <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
-                            <option value="PROPRIETARIO" translate="tmcApp.TipoMorador.PROPRIETARIO">PROPRIETARIO
-                            </option>
-                            <option value="MORADOR" translate="tmcApp.TipoMorador.MORADOR">MORADOR</option>
-                            <option value="LOCATARIO" translate="tmcApp.TipoMorador.LOCATARIO">LOCATARIO</option>
+                            <option value="PROPRIETARIO">PROPRIETARIO</option>
+                            <option value="LOCATARIO">LOCATARIO</option>
+                            <option value="DEPENDENTE">DEPENDENTE</option>
                         </select>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                         <label translate="tmcApp.morador.email" for="field_email">Email</label>
                         <input type="text" class="form-control" name="email" id="field_email"
                                ng-model="morador.email"
-                               required>
+                               required disabled>
 
                         <div ng-show="editForm.email.$invalid">
                             <p class="help-block"

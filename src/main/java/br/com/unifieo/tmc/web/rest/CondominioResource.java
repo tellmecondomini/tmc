@@ -117,10 +117,11 @@ public class CondominioResource {
     @Timed
     public ResponseEntity<CondominioDTO> getCondominio(@PathVariable Long id) {
         log.debug("REST request to get Condominio : {}", id);
-        return Optional
+        ResponseEntity<CondominioDTO> responseEntity = Optional
             .ofNullable(condominioRepository.findOne(id))
             .map(condominio -> new ResponseEntity<>(new CondominioDTO(condominio), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return responseEntity;
     }
 
     /**

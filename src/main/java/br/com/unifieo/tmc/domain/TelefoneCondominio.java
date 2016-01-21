@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A TelefoneCondominio.
@@ -22,10 +21,18 @@ public class TelefoneCondominio implements Serializable {
 
     @NotNull
     @Column(name = "numero", nullable = false)
-    private Integer numero;
+    private Long numero;
 
     @ManyToOne
     private Condominio condominio;
+
+    public TelefoneCondominio() {
+    }
+
+    public TelefoneCondominio(Condominio condominio, Long numero) {
+        this.condominio = condominio;
+        this.numero = numero;
+    }
 
     public Long getId() {
         return id;
@@ -35,11 +42,11 @@ public class TelefoneCondominio implements Serializable {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
@@ -53,30 +60,30 @@ public class TelefoneCondominio implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        TelefoneCondominio telefoneCondominio = (TelefoneCondominio) o;
+        TelefoneCondominio that = (TelefoneCondominio) o;
 
-        if ( ! Objects.equals(id, telefoneCondominio.id)) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (numero != null ? !numero.equals(that.numero) : that.numero != null) return false;
+        return condominio != null ? condominio.equals(that.condominio) : that.condominio == null;
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (numero != null ? numero.hashCode() : 0);
+        result = 31 * result + (condominio != null ? condominio.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "TelefoneCondominio{" +
-                "id=" + id +
-                ", numero='" + numero + "'" +
-                '}';
+            "id=" + id +
+            ", numero='" + numero + "'" +
+            '}';
     }
 }

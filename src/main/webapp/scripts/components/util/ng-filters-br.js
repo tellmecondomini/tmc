@@ -34,13 +34,13 @@ angular.module('tmcApp')
         };
     })
 
-    .filter('realbrasileiro', function () {
+    .filter('real', function () {
         return function (input) {
             return 'R$ ' + formatReal(input);
         };
     })
 
-    .filter('tel', function () {
+    .filter('telefone', function () {
         return function (input) {
             var str = input + '';
             str = str.replace(/\D/g, '');

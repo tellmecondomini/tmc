@@ -6,6 +6,7 @@ import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
+import br.com.unifieo.tmc.repository.TelefoneCondominioRepository;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,24 +25,32 @@ public class CondominioService {
     private final CondominioRepository condominioRepository;
     private final CepRepository cepRepository;
     private final FuncionarioRepository funcionarioRepository;
+    private final TelefoneCondominioRepository telefoneCondominioRepository;
 
     @Inject
-    public CondominioService(CondominioRepository condominioRepository, CepRepository cepRepository, FuncionarioRepository funcionarioRepository) {
+    public CondominioService(CondominioRepository condominioRepository, CepRepository cepRepository,
+                             FuncionarioRepository funcionarioRepository,
+                             TelefoneCondominioRepository telefoneCondominioRepository) {
         this.condominioRepository = condominioRepository;
         this.cepRepository = cepRepository;
         this.funcionarioRepository = funcionarioRepository;
+        this.telefoneCondominioRepository = telefoneCondominioRepository;
     }
 
     public Condominio save(CondominioDTO condominioDto) {
+
         Condominio condominio = new Condominio(condominioDto);
 
         Cep cep = Optional.ofNullable(cepRepository.findOneByCep(condominioDto.getCondominioCep()))
             .orElseGet(() -> cepRepository.save(condominio.getCep()));
 
         condominio.setCep(cep);
+
         Condominio condominioSaved = condominioRepository.save(condominio);
-        condominioDto.setId(condominioSaved.getId());
-        return condominio;
+
+        telefoneCondominioRepository.save(condominio.getTelefoneCondominios());
+
+        return condominioRepository.findOne(condominioSaved.getId());
     }
 
     public void delete(Long id) {

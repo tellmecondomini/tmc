@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A TelefonePrestadorServico.
@@ -22,10 +21,19 @@ public class TelefonePrestadorServico implements Serializable {
 
     @NotNull
     @Column(name = "numero", nullable = false)
-    private Integer numero;
+    private Long numero;
 
     @ManyToOne
     private PrestadorServico prestadorServico;
+
+    public TelefonePrestadorServico() {
+
+    }
+
+    public TelefonePrestadorServico(Long numero, PrestadorServico prestadorServico) {
+        this.numero = numero;
+        this.prestadorServico = prestadorServico;
+    }
 
     public Long getId() {
         return id;
@@ -35,11 +43,11 @@ public class TelefonePrestadorServico implements Serializable {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
@@ -53,30 +61,30 @@ public class TelefonePrestadorServico implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        TelefonePrestadorServico telefonePrestadorServico = (TelefonePrestadorServico) o;
+        TelefonePrestadorServico that = (TelefonePrestadorServico) o;
 
-        if ( ! Objects.equals(id, telefonePrestadorServico.id)) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (numero != null ? !numero.equals(that.numero) : that.numero != null) return false;
+        return prestadorServico != null ? prestadorServico.equals(that.prestadorServico) : that.prestadorServico == null;
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (numero != null ? numero.hashCode() : 0);
+        result = 31 * result + (prestadorServico != null ? prestadorServico.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "TelefonePrestadorServico{" +
-                "id=" + id +
-                ", numero='" + numero + "'" +
-                '}';
+            "id=" + id +
+            ", numero='" + numero + "'" +
+            '}';
     }
 }

@@ -41,8 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TelefonePrestadorServicoResourceTest {
 
 
-    private static final Integer DEFAULT_NUMERO = 1;
-    private static final Integer UPDATED_NUMERO = 2;
+    private static final Long DEFAULT_NUMERO = 1L;
+    private static final Long UPDATED_NUMERO = 2L;
 
     @Inject
     private TelefonePrestadorServicoRepository telefonePrestadorServicoRepository;

@@ -70,7 +70,8 @@ public class Condominio implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Morador> moradores = new HashSet<>();
 
-    @OneToMany(mappedBy = "condominio")
+    // @Transient
+    @OneToMany(mappedBy = "condominio", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneCondominio> telefoneCondominios = new HashSet<>();
@@ -105,6 +106,9 @@ public class Condominio implements Serializable {
         this.numero = condominioDto.getCondominioNumero();
         this.complemento = condominioDto.getCondominioComplemento();
         this.cep = new Cep(condominioDto.getCondominioLogradouro(), condominioDto.getCondominioBairro(), condominioDto.getCondominioCidade(), condominioDto.getCondominioUf(), condominioDto.getCondominioCep());
+        this.telefoneCondominios = new HashSet<>(2);
+        this.telefoneCondominios.add(condominioDto.getTelefone1());
+        this.telefoneCondominios.add(condominioDto.getTelefone2());
     }
 
     public Long getId() {

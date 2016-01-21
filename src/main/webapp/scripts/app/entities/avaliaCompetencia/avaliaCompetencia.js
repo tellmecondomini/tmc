@@ -5,9 +5,9 @@ angular.module('tmcApp')
         $stateProvider
             .state('avaliaCompetencia', {
                 parent: 'entity',
-                url: '/avaliaCompetencias',
+                url: '/avaliaCompetencia',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                     pageTitle: 'tmcApp.avaliaCompetencia.home.title'
                 },
                 views: {
@@ -28,7 +28,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/avaliaCompetencia/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                     pageTitle: 'tmcApp.avaliaCompetencia.detail.title'
                 },
                 views: {
@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('avaliaCompetencia');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'AvaliaCompetencia', function($stateParams, AvaliaCompetencia) {
-                        return AvaliaCompetencia.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'AvaliaCompetencia', function ($stateParams, AvaliaCompetencia) {
+                        return AvaliaCompetencia.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -51,9 +51,9 @@ angular.module('tmcApp')
                 parent: 'avaliaCompetencia',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/avaliaCompetencia/avaliaCompetencia-dialog.html',
                         controller: 'AvaliaCompetenciaDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {nota: null, mensagem: null, ativo: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('avaliaCompetencia', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('avaliaCompetencia', null, {reload: true});
+                    }, function () {
                         $state.go('avaliaCompetencia');
                     })
                 }]
@@ -74,21 +74,21 @@ angular.module('tmcApp')
                 parent: 'avaliaCompetencia',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/avaliaCompetencia/avaliaCompetencia-dialog.html',
                         controller: 'AvaliaCompetenciaDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['AvaliaCompetencia', function(AvaliaCompetencia) {
-                                return AvaliaCompetencia.get({id : $stateParams.id});
+                            entity: ['AvaliaCompetencia', function (AvaliaCompetencia) {
+                                return AvaliaCompetencia.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('avaliaCompetencia', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('avaliaCompetencia', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

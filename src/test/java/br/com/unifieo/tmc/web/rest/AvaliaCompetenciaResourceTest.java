@@ -40,7 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class AvaliaCompetenciaResourceTest {
 
-
     private static final Integer DEFAULT_NOTA = 1;
     private static final Integer UPDATED_NOTA = 2;
     private static final String DEFAULT_MENSAGEM = "SAMPLE_TEXT";
@@ -87,7 +86,7 @@ public class AvaliaCompetenciaResourceTest {
 
         // Create the AvaliaCompetencia
 
-        restAvaliaCompetenciaMockMvc.perform(post("/api/avaliaCompetencias")
+        restAvaliaCompetenciaMockMvc.perform(post("/api/avaliacoes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
                 .andExpect(status().isCreated());
@@ -107,8 +106,8 @@ public class AvaliaCompetenciaResourceTest {
         // Initialize the database
         avaliaCompetenciaRepository.saveAndFlush(avaliaCompetencia);
 
-        // Get all the avaliaCompetencias
-        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliaCompetencias"))
+        // Get all the avaliacoes
+        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliacoes"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(avaliaCompetencia.getId().intValue())))
@@ -124,7 +123,7 @@ public class AvaliaCompetenciaResourceTest {
         avaliaCompetenciaRepository.saveAndFlush(avaliaCompetencia);
 
         // Get the avaliaCompetencia
-        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliaCompetencias/{id}", avaliaCompetencia.getId()))
+        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliacoes/{id}", avaliaCompetencia.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(avaliaCompetencia.getId().intValue()))
@@ -137,7 +136,7 @@ public class AvaliaCompetenciaResourceTest {
     @Transactional
     public void getNonExistingAvaliaCompetencia() throws Exception {
         // Get the avaliaCompetencia
-        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliaCompetencias/{id}", Long.MAX_VALUE))
+        restAvaliaCompetenciaMockMvc.perform(get("/api/avaliacoes/{id}", Long.MAX_VALUE))
                 .andExpect(status().isNotFound());
     }
 
@@ -155,7 +154,7 @@ public class AvaliaCompetenciaResourceTest {
         avaliaCompetencia.setAtivo(UPDATED_ATIVO);
 
 
-        restAvaliaCompetenciaMockMvc.perform(put("/api/avaliaCompetencias")
+        restAvaliaCompetenciaMockMvc.perform(put("/api/avaliacoes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
                 .andExpect(status().isOk());
@@ -178,7 +177,7 @@ public class AvaliaCompetenciaResourceTest {
 		int databaseSizeBeforeDelete = avaliaCompetenciaRepository.findAll().size();
 
         // Get the avaliaCompetencia
-        restAvaliaCompetenciaMockMvc.perform(delete("/api/avaliaCompetencias/{id}", avaliaCompetencia.getId())
+        restAvaliaCompetenciaMockMvc.perform(delete("/api/avaliacoes/{id}", avaliaCompetencia.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 

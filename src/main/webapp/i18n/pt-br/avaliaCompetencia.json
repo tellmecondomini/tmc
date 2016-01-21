@@ -2,22 +2,22 @@
     "tmcApp": {
         "avaliaCompetencia" : {
             "home": {
-                "title": "AvaliaCompetencias",
-                "createLabel": "Create a new AvaliaCompetencia",
-                "createOrEditLabel": "Create or edit a AvaliaCompetencia"
+                "title": "Avaliações de Prestadores de Serviço",
+                "createLabel": "Avaliação",
+                "createOrEditLabel": "Avaliação"
             },
             "delete": {
                 "question": "Are you sure you want to delete AvaliaCompetencia {{ id }}?"
             },
             "detail": {
-                "title": "AvaliaCompetencia"
+                "title": "Avaliação"
             },
             "nota": "Nota",
             "mensagem": "Mensagem",
             "ativo": "Ativo",
             "morador": "Morador",
-            "prestadorServico": "PrestadorServico",
-            "competenciaPrestador": "CompetenciaPrestador"
+            "prestadorServico": "Prestador de Servico",
+            "competenciaPrestador": "Competência"
         }
     }
 }

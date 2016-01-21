@@ -1,6 +1,8 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.AvaliaCompetencia;
+import br.com.unifieo.tmc.domain.CompetenciaPrestador;
+import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.AvaliaCompetenciaRepository;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -30,11 +32,11 @@ public class AvaliaCompetenciaResource {
     private AvaliaCompetenciaRepository avaliaCompetenciaRepository;
 
     /**
-     * POST  /avaliaCompetencias -> Create a new avaliaCompetencia.
+     * POST  /avaliacoes -> Create a new avaliaCompetencia.
      */
     @RequestMapping(value = "/avaliaCompetencias",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AvaliaCompetencia> createAvaliaCompetencia(@RequestBody AvaliaCompetencia avaliaCompetencia) throws URISyntaxException {
         log.debug("REST request to save AvaliaCompetencia : {}", avaliaCompetencia);
@@ -42,13 +44,13 @@ public class AvaliaCompetenciaResource {
             return ResponseEntity.badRequest().header("Failure", "A new avaliaCompetencia cannot already have an ID").body(null);
         }
         AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
-        return ResponseEntity.created(new URI("/api/avaliaCompetencias/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("avaliaCompetencia", result.getId().toString()))
-                .body(result);
+        return ResponseEntity.created(new URI("/api/avaliacoes/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("avaliaCompetencia", result.getId().toString()))
+            .body(result);
     }
 
     /**
-     * PUT  /avaliaCompetencias -> Updates an existing avaliaCompetencia.
+     * PUT  /avaliacoes -> Updates an existing avaliaCompetencia.
      */
     @RequestMapping(value = "/avaliaCompetencias",
         method = RequestMethod.PUT,
@@ -61,16 +63,16 @@ public class AvaliaCompetenciaResource {
         }
         AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("avaliaCompetencia", avaliaCompetencia.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("avaliaCompetencia", avaliaCompetencia.getId().toString()))
+            .body(result);
     }
 
     /**
-     * GET  /avaliaCompetencias -> get all the avaliaCompetencias.
+     * GET  /avaliacoes -> get all the avaliacoes.
      */
     @RequestMapping(value = "/avaliaCompetencias",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<AvaliaCompetencia> getAllAvaliaCompetencias() {
         log.debug("REST request to get all AvaliaCompetencias");
@@ -78,11 +80,11 @@ public class AvaliaCompetenciaResource {
     }
 
     /**
-     * GET  /avaliaCompetencias/:id -> get the "id" avaliaCompetencia.
+     * GET  /avaliacoes/:id -> get the "id" avaliaCompetencia.
      */
     @RequestMapping(value = "/avaliaCompetencias/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AvaliaCompetencia> getAvaliaCompetencia(@PathVariable Long id) {
         log.debug("REST request to get AvaliaCompetencia : {}", id);
@@ -93,12 +95,22 @@ public class AvaliaCompetenciaResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @RequestMapping(value = "/avaliaCompetencias/{prestadorServico}/{competenciaPrestador}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Integer getNota(@PathVariable PrestadorServico prestadorServico,
+                           @PathVariable CompetenciaPrestador competenciaPrestador) {
+
+        return 15;
+    }
+
     /**
-     * DELETE  /avaliaCompetencias/:id -> delete the "id" avaliaCompetencia.
+     * DELETE  /avaliacoes/:id -> delete the "id" avaliaCompetencia.
      */
     @RequestMapping(value = "/avaliaCompetencias/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteAvaliaCompetencia(@PathVariable Long id) {
         log.debug("REST request to delete AvaliaCompetencia : {}", id);

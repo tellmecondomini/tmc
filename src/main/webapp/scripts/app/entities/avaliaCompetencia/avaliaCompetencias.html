@@ -1,88 +1,48 @@
 <div>
     <h2 translate="tmcApp.avaliaCompetencia.home.title">AvaliaCompetencias</h2>
-    <jh-alert></jh-alert>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="avaliaCompetencia.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.avaliaCompetencia.home.createLabel">Create a new AvaliaCompetencia</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="deleteAvaliaCompetenciaConfirmation">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="deleteForm" ng-submit="confirmDelete(avaliaCompetencia.id)">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p translate="tmcApp.avaliaCompetencia.delete.question" translate-values="{id: '{{avaliaCompetencia.id}}'}">Are you sure you want to delete this AvaliaCompetencia?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
-                        </button>
-                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <jh-alert></jh-alert>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.avaliaCompetencia.nota">Nota</th>
-                    <th translate="tmcApp.avaliaCompetencia.mensagem">Mensagem</th>
-                    <th translate="tmcApp.avaliaCompetencia.ativo">Ativo</th>
-                    <th translate="tmcApp.avaliaCompetencia.morador">morador</th>
-                    <th translate="tmcApp.avaliaCompetencia.prestadorServico">prestadorServico</th>
-                    <th translate="tmcApp.avaliaCompetencia.competenciaPrestador">competenciaPrestador</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Prestador</th>
+                <th>Competências</th>
+                <th>Nota</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="avaliaCompetencia in avaliaCompetencias">
-                    <td><a ui-sref="avaliaCompetencia.detail({id:avaliaCompetencia.id})">{{avaliaCompetencia.id}}</a></td>
-                    <td>{{avaliaCompetencia.nota}}</td>
-                    <td>{{avaliaCompetencia.mensagem}}</td>
-                    <td>{{avaliaCompetencia.ativo}}</td>
-                    <td>
-                        <a ui-sref="morador.detail({id:avaliaCompetencia.morador.id})">{{avaliaCompetencia.morador.id}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="prestadorServico.detail({id:avaliaCompetencia.prestadorServico.id})">{{avaliaCompetencia.prestadorServico.id}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="competenciaPrestador.detail({id:avaliaCompetencia.competenciaPrestador.id})">{{avaliaCompetencia.competenciaPrestador.id}}</a>
-                    </td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="avaliaCompetencia.detail({id:avaliaCompetencia.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="avaliaCompetencia.edit({id:avaliaCompetencia.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                        </button>
-                        <button type="submit"
-                                ng-click="delete(avaliaCompetencia.id)"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                        </button>
-                    </td>
-                </tr>
+            <tr ng-repeat="avaliacao in avaliacoes">
+
+                <td>
+                    <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{avaliacao.prestador.nome}}</a>
+                </td>
+
+                <td>
+                    <div ng-repeat="competencia in avaliacao.competencias">
+                        <span class="form-control-static">{{competencia.descricao}}</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div ng-repeat="competencia in avaliacao.competencias">
+                        <rating ng-model="competencia.nota" max="max" readonly="isReadonly" on-hover="hoveringOver(value)"
+                                on-leave="overStar = null" aria-labelledby="default-rating"/>
+                    </div>
+                </td>
+
+                <td>
+                    <button type="submit"
+                            ui-sref="avaliaCompetencia.edit({id:avaliaCompetencia.id})"
+                            class="btn btn-primary btn-sm"
+                            ng-click="onRatingReadOnly()">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Avaliar</span>
+                    </button>
+                </td>
+
+            </tr>
             </tbody>
         </table>
     </div>

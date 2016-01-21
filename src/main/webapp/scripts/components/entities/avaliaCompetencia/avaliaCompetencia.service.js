@@ -2,7 +2,7 @@
 
 angular.module('tmcApp')
     .factory('AvaliaCompetencia', function ($resource, DateUtils) {
-        return $resource('api/avaliaCompetencias/:id', {}, {
+        return $resource('api/avaliacoes/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

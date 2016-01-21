@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,6 +42,19 @@ public class AvaliaCompetencia implements Serializable {
 
     @ManyToOne
     private CompetenciaPrestador competenciaPrestador;
+
+    public AvaliaCompetencia() {
+        this.nota = 0;
+        this.ativo = false;
+        this.data = new Long(new DateTime().toDate().getTime()).intValue();
+    }
+
+    public AvaliaCompetencia(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador, Morador morador) {
+        this();
+        this.prestadorServico = prestadorServico;
+        this.competenciaPrestador = competenciaPrestador;
+        this.morador = morador;
+    }
 
     public Long getId() {
         return id;
@@ -117,7 +131,7 @@ public class AvaliaCompetencia implements Serializable {
 
         AvaliaCompetencia avaliaCompetencia = (AvaliaCompetencia) o;
 
-        if ( ! Objects.equals(id, avaliaCompetencia.id)) return false;
+        if (!Objects.equals(id, avaliaCompetencia.id)) return false;
 
         return true;
     }
@@ -130,10 +144,10 @@ public class AvaliaCompetencia implements Serializable {
     @Override
     public String toString() {
         return "AvaliaCompetencia{" +
-                "id=" + id +
-                ", nota='" + nota + "'" +
-                ", mensagem='" + mensagem + "'" +
-                ", ativo='" + ativo + "'" +
-                '}';
+            "id=" + id +
+            ", nota='" + nota + "'" +
+            ", mensagem='" + mensagem + "'" +
+            ", ativo='" + ativo + "'" +
+            '}';
     }
 }

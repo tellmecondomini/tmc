@@ -1,31 +1,27 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('AvaliaCompetenciaController', function ($scope, $http, AvaliaCompetencia, PrestadorServico) {
+    .controller('AvaliaCompetenciaController', function ($scope, $http, AvaliaCompetencia, PrestadorServico, NotaAvaliacao, Principal) {
 
-        $scope.rate = 0;
+        Principal.identity(true).then(function (account) {
+            $scope.settingsAccount = account;
+        });
+
         $scope.max = 5;
-        $scope.isReadonly = true;
 
         $scope.hoveringOver = function (value) {
             $scope.overStar = value;
             $scope.percent = 100 * (value / $scope.max);
         };
 
-        $scope.onRatingReadOnly = function () {
-            $scope.isReadonly = !$scope.isReadonly;
-        };
-
-        var getNota = function (prestador, competencia) {
-            //var params = {
-            //    prestadorServico: prestador,
-            //    competenciaPrestador: competencia
-            //};
-            //var response = $http.get('api/avaliaCompetencias/:prestadorServico:competenciaPrestador', params);
-            //response.success(function (nota) {
-            //    return nota;
-            //});
-            return 3;
+        $scope.getAvaliacao = function (prestador, competencia) {
+            var promise = NotaAvaliacao.get({
+                idPrestador: prestador.id,
+                idCompetencia: competencia.id
+            }, function (result) {
+                return result;
+            });
+            return promise;
         };
 
         $scope.avaliacoes = [];
@@ -39,7 +35,7 @@ angular.module('tmcApp')
                             var competencia = {
                                 id: competencia.id,
                                 descricao: competencia.descricao,
-                                nota: getNota(prestador, competencia)
+                                avaliacao: $scope.getAvaliacao(prestador, competencia)
                             };
                             this.push(competencia);
                         }, competencias);
@@ -50,7 +46,6 @@ angular.module('tmcApp')
                         };
 
                         this.push(avaliacao);
-
                     }, $scope.avaliacoes);
                 }
             });

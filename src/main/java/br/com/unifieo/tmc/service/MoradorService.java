@@ -143,4 +143,9 @@ public class MoradorService {
     public String getUrlRegisterCode(String baseUrl) {
         return this.getPdfUrl(baseUrl, "reports/reportMoradorRegisterQRCode.jasper");
     }
+
+    public Morador getCurrentMorador() {
+        User user = userService.getUserWithAuthorities();
+        return moradorRepository.findOneByEmail(user.getEmail());
+    }
 }

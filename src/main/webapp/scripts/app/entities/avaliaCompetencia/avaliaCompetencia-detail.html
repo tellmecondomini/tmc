@@ -31,7 +31,7 @@
                     <span translate="tmcApp.avaliaCompetencia.ativo">Ativo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{avaliaCompetencia.ativo}}</span>
+                    <span class="form-control-static">{{avaliaCompetencia.ativo ? 'Sim' : 'Não'}}</span>
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <span translate="tmcApp.avaliaCompetencia.morador">morador</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="morador.detail({id:avaliaCompetencia.morador.id})">{{avaliaCompetencia.morador.id}}</a>
+                    <a class="form-control-static" ui-sref="morador.detail({id:avaliaCompetencia.morador.id})">{{avaliaCompetencia.morador.nome}}</a>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <span translate="tmcApp.avaliaCompetencia.prestadorServico">prestadorServico</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="prestadorServico.detail({id:avaliaCompetencia.prestadorServico.id})">{{avaliaCompetencia.prestadorServico.id}}</a>
+                    <a class="form-control-static" ui-sref="prestadorServico.detail({id:avaliaCompetencia.prestadorServico.id})">{{avaliaCompetencia.prestadorServico.nome}}</a>
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     <span translate="tmcApp.avaliaCompetencia.competenciaPrestador">competenciaPrestador</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="competenciaPrestador.detail({id:avaliaCompetencia.competenciaPrestador.id})">{{avaliaCompetencia.competenciaPrestador.id}}</a>
+                    <a class="form-control-static" ui-sref="competenciaPrestador.detail({id:avaliaCompetencia.competenciaPrestador.id})">{{avaliaCompetencia.competenciaPrestador.descricao}}</a>
                 </td>
             </tr>
             </tbody>

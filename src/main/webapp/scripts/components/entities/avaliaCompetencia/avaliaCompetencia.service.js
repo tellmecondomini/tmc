@@ -2,8 +2,8 @@
 
 angular.module('tmcApp')
     .factory('AvaliaCompetencia', function ($resource, DateUtils) {
-        return $resource('api/avaliacoes/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+        return $resource('api/avaliaCompetencias/:id', {}, {
+            'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -11,6 +11,17 @@ angular.module('tmcApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
+        });
+    })
+    .factory('NotaAvaliacao', function ($resource) {
+        return $resource('api/avaliaCompetencias/nota/:idPrestador/:idCompetencia', {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
         });
     });

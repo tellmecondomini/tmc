@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/avaliaCompetencia',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.avaliaCompetencia.home.title'
                 },
                 views: {
@@ -26,9 +26,9 @@ angular.module('tmcApp')
             })
             .state('avaliaCompetencia.detail', {
                 parent: 'entity',
-                url: '/avaliaCompetencia/{id}',
+                url: '/avaliaCompetencia/{idPrestador}/{idCompetencia}',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.avaliaCompetencia.detail.title'
                 },
                 views: {
@@ -42,8 +42,11 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('avaliaCompetencia');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'AvaliaCompetencia', function ($stateParams, AvaliaCompetencia) {
-                        return AvaliaCompetencia.get({id: $stateParams.id});
+                    entity: ['$stateParams', 'NotaAvaliacao', function ($stateParams, NotaAvaliacao) {
+                        return NotaAvaliacao.get({
+                            idPrestador: $stateParams.idPrestador,
+                            idCompetencia: $stateParams.idCompetencia
+                        });
                     }]
                 }
             })
@@ -51,7 +54,7 @@ angular.module('tmcApp')
                 parent: 'avaliaCompetencia',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
@@ -72,9 +75,9 @@ angular.module('tmcApp')
             })
             .state('avaliaCompetencia.edit', {
                 parent: 'avaliaCompetencia',
-                url: '/{id}/edit',
+                url: '/{idPrestador}/{idCompetencia}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
@@ -82,8 +85,11 @@ angular.module('tmcApp')
                         controller: 'AvaliaCompetenciaDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['AvaliaCompetencia', function (AvaliaCompetencia) {
-                                return AvaliaCompetencia.get({id: $stateParams.id});
+                            entity: ['NotaAvaliacao', function (NotaAvaliacao) {
+                                return NotaAvaliacao.get({
+                                    idPrestador: $stateParams.idPrestador,
+                                    idCompetencia: $stateParams.idCompetencia
+                                });
                             }]
                         }
                     }).result.then(function (result) {

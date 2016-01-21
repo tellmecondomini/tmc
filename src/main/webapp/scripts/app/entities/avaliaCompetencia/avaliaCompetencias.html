@@ -10,7 +10,6 @@
                 <th>Prestador</th>
                 <th>Competências</th>
                 <th>Nota</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -28,18 +27,13 @@
 
                 <td>
                     <div ng-repeat="competencia in avaliacao.competencias">
-                        <rating ng-model="competencia.nota" max="max" readonly="isReadonly" on-hover="hoveringOver(value)"
+                        <rating ng-model="competencia.avaliacao.nota" max="max" readonly="true"
+                                on-hover="hoveringOver(value)"
                                 on-leave="overStar = null" aria-labelledby="default-rating"/>
+                        <a ui-sref="avaliaCompetencia.edit({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})"
+                           ng-show="(['ROLE_MORADOR'].indexOf(settingsAccount.authorities[0]) > -1 || avaliacao.morador.email == settingsAccount.email)"> Avaliar</a>
+                        <a ng-hide="competencia.avaliacao.id == null" ui-sref="avaliaCompetencia.detail({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})"> Detalhes</a>
                     </div>
-                </td>
-
-                <td>
-                    <button type="submit"
-                            ui-sref="avaliaCompetencia.edit({id:avaliaCompetencia.id})"
-                            class="btn btn-primary btn-sm"
-                            ng-click="onRatingReadOnly()">
-                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Avaliar</span>
-                    </button>
                 </td>
 
             </tr>

@@ -6,6 +6,9 @@
                 "createLabel": "Avaliação",
                 "createOrEditLabel": "Avaliação"
             },
+            "created": "Avaliação criada com sucesso",
+            "updated": "Avaliação atualizada com sucesso",
+            "deleted": "Avaliação removida com sucesso",
             "delete": {
                 "question": "Are you sure you want to delete AvaliaCompetencia {{ id }}?"
             },

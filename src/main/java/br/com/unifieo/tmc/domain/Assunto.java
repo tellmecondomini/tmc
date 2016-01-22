@@ -47,6 +47,10 @@ public class Assunto implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "categorias_id"))
     private Set<Categoria> categorias = new HashSet<>();
 
+    public Assunto() {
+
+    }
+
     public Long getId() {
         return id;
     }

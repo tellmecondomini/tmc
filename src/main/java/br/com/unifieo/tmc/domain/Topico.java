@@ -45,7 +45,7 @@ public class Topico implements Serializable {
     private DateTime data;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_comentario")
+    @Column(name = "status_topico")
     private StatusTopico statusTopico;
 
     @NotNull

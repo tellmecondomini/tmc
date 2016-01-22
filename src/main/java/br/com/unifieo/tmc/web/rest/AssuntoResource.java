@@ -1,7 +1,9 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Assunto;
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.repository.AssuntoRepository;
+import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -30,6 +32,9 @@ public class AssuntoResource {
     @Inject
     private AssuntoRepository assuntoRepository;
 
+    @Inject
+    private CondominioService condominioService;
+
     /**
      * POST  /assuntos -> Create a new assunto.
      */
@@ -42,6 +47,8 @@ public class AssuntoResource {
         if (assunto.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new assunto cannot already have an ID").body(null);
         }
+        Condominio condominio = condominioService.getCurrentCondominio();
+        assunto.setCondominio(condominio);
         Assunto result = assuntoRepository.save(assunto);
         return ResponseEntity.created(new URI("/api/assuntos/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("assunto", result.getId().toString()))

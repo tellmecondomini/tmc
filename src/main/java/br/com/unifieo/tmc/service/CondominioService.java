@@ -26,15 +26,17 @@ public class CondominioService {
     private final CepRepository cepRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final TelefoneCondominioRepository telefoneCondominioRepository;
+    private final UserService userService;
 
     @Inject
     public CondominioService(CondominioRepository condominioRepository, CepRepository cepRepository,
                              FuncionarioRepository funcionarioRepository,
-                             TelefoneCondominioRepository telefoneCondominioRepository) {
+                             TelefoneCondominioRepository telefoneCondominioRepository, UserService userService) {
         this.condominioRepository = condominioRepository;
         this.cepRepository = cepRepository;
         this.funcionarioRepository = funcionarioRepository;
         this.telefoneCondominioRepository = telefoneCondominioRepository;
+        this.userService = userService;
     }
 
     public Condominio save(CondominioDTO condominioDto) {
@@ -64,5 +66,10 @@ public class CondominioService {
 
     public Condominio findOneByRazaoSocial(String razaoSocial) {
         return condominioRepository.findOneByRazaoSocial(razaoSocial).get();
+    }
+
+    public Condominio getCurrentCondominio() {
+        String razaoSocial = userService.getUserDTO().getCondominio();
+        return this.findOneByRazaoSocial(razaoSocial);
     }
 }

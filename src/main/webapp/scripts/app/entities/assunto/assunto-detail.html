@@ -1,4 +1,3 @@
-
 <div>
     <h2><span translate="tmcApp.assunto.detail.title">Assunto</span> {{assunto.id}}</h2>
     <div class="table-responsive">
@@ -18,10 +17,19 @@
                     <span class="form-control-static">{{assunto.descricao}}</span>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span>Categorias</span>
+                </td>
+                <td>
+                    <div ng-repeat="categoria in assunto.categorias">
+                        <span class="form-control-static">{{categoria.descricao}}</span>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
-
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

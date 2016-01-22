@@ -2,6 +2,7 @@
 
 angular.module('tmcApp')
     .controller('AssuntoController', function ($scope, Assunto) {
+
         $scope.assuntos = [];
         $scope.loadAll = function() {
             Assunto.query(function(result) {

@@ -70,7 +70,7 @@ public class TopicoResource {
         if (topico.getId() == null) {
             return createTopico(topico);
         }
-        Topico result = topicoRepository.save(topico);
+        Topico result = topicoService.save(topico);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
             .body(result);

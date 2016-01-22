@@ -69,6 +69,8 @@ angular.module('tmcApp')
                                     disposicao: null,
                                     dataCadastro: null,
                                     ativo: null,
+                                    telefone1: null,
+                                    telefone2: null,
 
                                     // Cep Condominio
 

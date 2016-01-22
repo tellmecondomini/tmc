@@ -45,10 +45,9 @@ public class Topico implements Serializable {
     private DateTime data;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_comentario")
+    @Column(name = "status_topico")
     private StatusTopico statusTopico;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -58,21 +57,23 @@ public class Topico implements Serializable {
     @Column(name = "prioritario")
     private Boolean prioritario;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_inicio", nullable = false)
     private DateTime dataInicio;
 
-    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "data_fim", nullable = false)
     private DateTime dataFim;
 
-    @Column(name="mensagem_aprovacao")
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
+
+    @Column(name = "mensagem_aprovacao")
     private String mensagemAprovacao;
 
     @ManyToOne
@@ -95,10 +96,11 @@ public class Topico implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
 
-    @OneToMany(mappedBy = "topico")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ImagemTopico> imagens = new HashSet<>();
+    public Topico() {
+        this.statusTopico = StatusTopico.AGUARDANDO_APROVACAO;
+        this.prioritario = false;
+        this.data = new DateTime();
+    }
 
     public Long getId() {
         return id;
@@ -212,12 +214,12 @@ public class Topico implements Serializable {
         this.categoria = categoria;
     }
 
-    public Set<ImagemTopico> getImagens() {
-        return imagens;
+    public byte[] getImagem() {
+        return imagem;
     }
 
-    public void setImagens(Set<ImagemTopico> imagens) {
-        this.imagens = imagens;
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
     public String getMensagemAprovacao() {

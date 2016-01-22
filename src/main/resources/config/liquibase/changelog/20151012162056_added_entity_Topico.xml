@@ -43,7 +43,8 @@
             </column>
             <column name="mensagem_aprovacao" type="varchar(500)"/>
             <column name="status_topico" type="varchar(255)"/>
-            <column name="prioridade" type="bit"/>
+            <column name="prioritario" type="bit"/>
+            <column name="imagem" type="blob"/>
             <column name="assunto_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>
             <column name="funcionario_id" type="bigint"/>

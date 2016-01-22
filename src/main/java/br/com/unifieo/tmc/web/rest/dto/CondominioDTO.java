@@ -2,10 +2,13 @@ package br.com.unifieo.tmc.web.rest.dto;
 
 import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.TelefoneCondominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
+
+import java.util.ArrayList;
 
 public class CondominioDTO {
 
@@ -15,6 +18,8 @@ public class CondominioDTO {
     private Disposicao disposicao;
     private DateTime dataCadastro;
     private boolean ativo;
+    private TelefoneCondominio telefone1;
+    private TelefoneCondominio telefone2;
 
     // Cep Condominio
 
@@ -66,6 +71,17 @@ public class CondominioDTO {
             this.condominioBairro = cep.getBairro();
             this.condominioCidade = cep.getCidade();
             this.condominioUf = cep.getUf();
+        }
+        this.telefone1 = new TelefoneCondominio(condominio, 0L);
+        this.telefone2 = new TelefoneCondominio(condominio, 0L);
+        ArrayList<TelefoneCondominio> telefoneCondominios = new ArrayList<>(condominio.getTelefoneCondominios());
+        if (telefoneCondominios.size() > 0) {
+            TelefoneCondominio telefoneCondominio = telefoneCondominios.get(0);
+            if (telefoneCondominio != null)
+                this.telefone1 = telefoneCondominio;
+            telefoneCondominio = telefoneCondominios.get(1);
+            if (telefoneCondominio != null)
+                this.telefone2 = telefoneCondominio;
         }
     }
 
@@ -283,6 +299,22 @@ public class CondominioDTO {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public TelefoneCondominio getTelefone1() {
+        return telefone1;
+    }
+
+    public void setTelefone1(TelefoneCondominio telefone1) {
+        this.telefone1 = telefone1;
+    }
+
+    public TelefoneCondominio getTelefone2() {
+        return telefone2;
+    }
+
+    public void setTelefone2(TelefoneCondominio telefone2) {
+        this.telefone2 = telefone2;
     }
 
     @Override

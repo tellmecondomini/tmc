@@ -22,12 +22,12 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="numero" type="integer">
+            <column name="numero" type="bigint">
                 <constraints nullable="false" />
             </column>
             <column name="morador_id" type="bigint"/>
         </createTable>
-        
+
         <addForeignKeyConstraint baseColumnNames="morador_id"
                                  baseTableName="TELEFONE_MORADOR"
                                  constraintName="fk_telefonemorador_morador_id"

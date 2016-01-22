@@ -2,6 +2,21 @@
 
     <div class="container">
 
+        <p class="lead text-primary">Forum {{account.condominio}} - Comentários</p>
+
+        <p class="text-success"><strong>{{topico.titulo}}</strong></p>
+
+        <div class="row">
+            <div class="form-group col-md-10">
+                <em>
+                    <small>{{topico.conteudo}}</small>
+                </em>
+            </div>
+            <div class="form-group col-md-2">
+                <small class="text-danger">Comentarios: {{comentarios.length}}</small>
+            </div>
+        </div>
+
         <div class="well pre-scrollable">
 
             <div ng-repeat="comentario in comentarios">
@@ -19,7 +34,6 @@
             </div>
 
         </div>
-        <small>{{comentarios.size}}</small>
 
         <footer>
 

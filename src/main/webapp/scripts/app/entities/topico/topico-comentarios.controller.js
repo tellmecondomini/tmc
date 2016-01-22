@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, entity, Topico, Assunto, Comentario, TopicoComentarios) {
+    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, entity, Topico, Assunto, Comentario, TopicoComentarios, Principal) {
+
+        Principal.identity().then(function (account) {
+            $scope.account = account;
+        });
 
         $scope.topico = entity;
 

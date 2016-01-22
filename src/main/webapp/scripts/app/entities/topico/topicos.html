@@ -1,10 +1,10 @@
 <div>
 
-    <h2>Forum {{account.condominio}}</h2>
-
-    <jh-alert></jh-alert>
-
     <div class="container">
+
+        <jh-alert></jh-alert>
+
+        <p class="lead text-primary">Forum {{account.condominio}} - Tópicos</p>
 
         <div class="row">
             <div class="col-md-4">
@@ -16,15 +16,50 @@
 
         <br/>
 
-        <div ng-repeat="topico in topicos">
+        <p class="lead text-warning">Prioritários</p>
 
-            <blockquote>
-                <p>
-                    <strong><a ui-sref="topico.comentarios({id:topico.id})">{{topico.conteudo}}</a></strong>
-                    <footer>Aberto em {{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</footer>
-                </p>
-            </blockquote>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Conteudo</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="topico in prioritarios" class="warning">
+                    <td><strong><a ui-sref="topico.comentarios({id:topico.id})">{{topico.titulo}}</a></strong></td>
+                    <td><small>{{topico.conteudo}}</small></td>
+                    <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
+                    <td><small>{{topico.statusTopico}}</small></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <hr/>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Conteudo</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="topico in topicos">
+                    <td><strong><a ui-sref="topico.comentarios({id:topico.id})">{{topico.titulo}}</a></strong></td>
+                    <td><small>{{topico.conteudo}}</small></td>
+                    <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
+                    <td><small>{{topico.statusTopico}}</small></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

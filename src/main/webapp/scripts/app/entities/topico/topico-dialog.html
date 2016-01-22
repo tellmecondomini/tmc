@@ -10,6 +10,50 @@
         <jh-alert-error></jh-alert-error>
 
         <div class="form-group">
+            <label translate="tmcApp.topico.assunto" for="field_assunto">assunto</label>
+            <select class="form-control" id="field_assunto" name="assunto" ng-model="topico.assunto"
+                    ng-options="assunto as assunto.descricao for assunto in assuntos track by assunto.id"
+                    ng-change="onSelectFirstCategoria()"
+                    required>
+                <option value=""></option>
+            </select>
+            <div ng-show="editForm.conteudo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_categoria">Categoria</label>
+            <div class="well">
+                <div id="field_categoria" ng-repeat="categoria in topico.assunto.categorias">
+                    <input type="radio" ng-model="topico.categoria" ng-value="categoria"> {{categoria.descricao}} <br/>
+                </div>
+            </div>
+            <div ng-show="editForm.conteudo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_titulo">Título</label>
+            <input type="text" class="form-control" name="titulo" id="field_titulo"
+                   ng-model="topico.titulo"
+                   required>
+            <div ng-show="editForm.conteudo.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label translate="tmcApp.topico.conteudo" for="field_conteudo">Conteudo</label>
             <input type="text" class="form-control" name="conteudo" id="field_conteudo"
                    ng-model="topico.conteudo"
@@ -22,18 +66,27 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label translate="tmcApp.topico.assunto" for="field_assunto">assunto</label>
-            <select class="form-control" id="field_assunto" name="assunto" ng-model="topico.assunto"
-                    ng-options="assunto as assunto.descricao for assunto in assuntos track by assunto.id" required>
-                <option value=""></option>
-            </select>
-            <div ng-show="editForm.conteudo.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
+        <div class="form-group" ngf-drop ngf-change="setImagem($file)" ngf-pattern="'image/*'">
+            <label for="field_imagem">Imagem</label>
+            <div>
+                <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;" ng-if="topico.imagem"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{byteSize()}}</span>
+                    <button ng-click="topico.imagem=null" ng-if="topico.imagem" class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block" ngf-change="setImagem($file)" accept="image/*">
+                    Add
+                </button>
             </div>
+            <input type="hidden" class="form-control" name="imagem" id="field_imagem" ng-model="topico.imagem">
+        </div>
+
+        <div class="form-group">
+            <label for="field_prioritario">Prioritario</label>
+            <input type="checkbox" class="form-control" name="conteudo" id="field_prioritario"
+                   ng-model="topico.prioritario">
         </div>
 
     </div>

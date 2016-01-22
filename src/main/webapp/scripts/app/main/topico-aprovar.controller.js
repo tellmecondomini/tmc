@@ -12,7 +12,7 @@ angular.module('tmcApp')
 
         $scope.save = function () {
             TopicoAprovacao.updateAprovacao({
-                idTopico: $scope.topico.id,
+                id: $scope.topico.id,
                 status: 'APROVADO',
                 mensagem: $scope.topico.mensagemAprovacao
             }, function (result) {

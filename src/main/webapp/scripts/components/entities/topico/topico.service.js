@@ -17,6 +17,12 @@ angular.module('tmcApp')
     })
     .factory('TopicoAprovacao', function ($resource) {
         return $resource('api/aprovacao/:id/:status/:mensagem', {}, {
-            'updateAprovacao': {method: 'POST'}
+            'updateAprovacao': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
         });
     });

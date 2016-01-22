@@ -86,7 +86,7 @@ public class TopicoResource {
      * PUT  /topicos -> Updates an existing topico.
      */
     @RequestMapping(value = "/aprovacao/{id}/{status}/{mensagem}",
-        method = RequestMethod.POST,
+        method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Topico> updateAprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,

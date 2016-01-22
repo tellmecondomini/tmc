@@ -267,4 +267,17 @@ public class Topico implements Serializable {
             ", data='" + data + "'" +
             '}';
     }
+
+    /**
+     * Obtem o email de envio correto de acordo com quem abriu o tópico.
+     *
+     * @return
+     */
+    public String getEmail() {
+        if (this.funcionario == null)
+            return this.morador.getEmail();
+        else
+            return this.funcionario.getEmail();
+    }
+
 }

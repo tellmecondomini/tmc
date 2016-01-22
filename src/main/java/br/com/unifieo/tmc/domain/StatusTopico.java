@@ -1,8 +1,5 @@
 package br.com.unifieo.tmc.domain;
 
-/**
- * Created by Arthemus on 16/01/2016.
- */
 public enum StatusTopico {
 
     AGUARDANDO_APROVACAO("Aguardando aprovação"),

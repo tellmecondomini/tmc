@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tell Me Condominium</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h3>
+            O tópico <strong><span th:text="${topico.titulo}" /></strong> foi <i>reprovado</i> pelo administrador do sistema!
+        </h3>
+        <ul>
+            <li>
+                <span th:text="${topico.assunto}" />
+            </li>
+            <li>
+                <span th:text="${topico.categoria}" />
+            </li>
+            <li>
+                <span th:text="${topico.conteudo}" />
+            </li>
+            <li>
+                <span th:text="${topico.mensagemAprovacao}" />
+            </li>
+        </ul>
+        <p>
+            Acesse o sistema, <a th:href="@{|${baseUrl}/#/login|}">clicando aqui</a>
+        </p>
+        <p>
+            Att,
+        <p>
+            <em>Equipe Tell Me Condominium.</em>
+        </p>
+        </p>
+    </body>
+</html>

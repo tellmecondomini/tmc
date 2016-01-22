@@ -1,2 +1,47 @@
 <div ng-cloak>
+
+    <div class="container">
+
+        <!-- Tópicos a serem aprovados -->
+        <p class="lead text-primary">Tópicos a serem aprovados</p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Conteudo</th>
+                    <th>Data</th>
+                    <th>Morador/Funcionário</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="topico in topicos" class="danger">
+                    <td><strong>
+                        <small>{{topico.titulo}}</a></small>
+                    </strong></td>
+                    <td>
+                        <small>{{topico.conteudo}}</small>
+                    </td>
+                    <td>
+                        <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
+                    </td>
+                    <td><strong>
+                        <small>{{topico.funcionario.nome || topico.morador.nome}}</small>
+                    </strong></td>
+                    <td>
+                        <button class="btn btn-success" ui-sref="home.topico({id:topico.id})">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr/>
+
+
+    </div>
+
 </div>

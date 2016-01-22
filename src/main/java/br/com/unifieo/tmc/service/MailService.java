@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.service;
 
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.Morador;
+import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.domain.User;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
@@ -39,6 +40,9 @@ public class MailService {
 
     @Inject
     private SpringTemplateEngine templateEngine;
+
+    @Inject
+    private UserService userService;
 
     /**
      * System default email address that sends the e-mails.
@@ -119,4 +123,29 @@ public class MailService {
         String subject = "TMC - Novo Morador";
         this.sendEmail(morador.getEmail(), subject, content, false, true);
     }
+
+    public void topicoAprovado(Topico topico, String baseUrl) {
+        log.debug("Novo tópico aprovado '{}'", topico.getTitulo());
+        User user = userService.getUserWithAuthorities();
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("topico", topico);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("topicoAprovado", context);
+        String subject = "TMC - Topico Aprovado";
+        this.sendEmail(topico.getEmail(), subject, content, false, true);
+    }
+
+    public void topicoReprovado(Topico topico, String baseUrl) {
+        log.debug("Tópico reprovado '{}'", topico.getTitulo());
+        User user = userService.getUserWithAuthorities();
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("topico", topico);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("topicoReprovado", context);
+        String subject = "TMC - Topico Reprovado";
+        this.sendEmail(topico.getEmail(), subject, content, false, true);
+    }
+
 }

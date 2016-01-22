@@ -1,9 +1,11 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
+import br.com.unifieo.tmc.domain.StatusTopico;
 import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
 import br.com.unifieo.tmc.repository.TopicoRepository;
+import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.TopicoService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,6 +42,9 @@ public class TopicoResource {
 
     @Inject
     private ComentarioRepository comentarioRepository;
+
+    @Inject
+    private MailService mailService;
 
     /**
      * POST  /topicos -> Create a new topico.
@@ -70,6 +76,42 @@ public class TopicoResource {
         if (topico.getId() == null) {
             return createTopico(topico);
         }
+        Topico result = topicoService.save(topico);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * PUT  /topicos -> Updates an existing topico.
+     */
+    @RequestMapping(value = "/aprovacao/{id}/{status}/{mensagem}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Topico> updateAprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
+                                                  HttpServletRequest request) throws URISyntaxException {
+
+        Topico topico = topicoRepository.findOne(id);
+
+        log.debug("REST request to update Topico : {}", topico);
+
+        String baseUrl = request.getScheme() +
+            "://" +
+            request.getServerName() +
+            ":" +
+            request.getServerPort();
+
+        if ("APROVADO".equals(status)) {
+            topico.setStatusTopico(StatusTopico.ABERTO);
+            mailService.topicoAprovado(topico, baseUrl);
+        } else {
+            topico.setStatusTopico(StatusTopico.REPROVADO);
+            mailService.topicoReprovado(topico, baseUrl);
+        }
+
+        topico.setMensagemAprovacao(mensagem);
+
         Topico result = topicoService.save(topico);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))

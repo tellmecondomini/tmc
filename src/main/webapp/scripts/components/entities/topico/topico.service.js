@@ -3,7 +3,7 @@
 angular.module('tmcApp')
     .factory('Topico', function ($resource, DateUtils) {
         return $resource('api/topicos/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -12,6 +12,11 @@ angular.module('tmcApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
+        });
+    })
+    .factory('TopicoAprovacao', function ($resource) {
+        return $resource('api/aprovacao/:id/:status/:mensagem', {}, {
+            'updateAprovacao': {method: 'POST'}
         });
     });

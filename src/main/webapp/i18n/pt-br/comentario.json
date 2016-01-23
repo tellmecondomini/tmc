@@ -6,8 +6,9 @@
                 "createLabel": "Create a new Comentario",
                 "createOrEditLabel": "Create or edit a Comentario"
             },
+            "deleted": "Solicitação de remoção de comentário enviada com sucesso",
             "delete": {
-                "question": "Are you sure you want to delete Comentario {{ id }}?"
+                "question": "Uma solicitação de remoção de comentario sera enviada ao administrador, confirma essa operação?"
             },
             "detail": {
                 "title": "Comentario"

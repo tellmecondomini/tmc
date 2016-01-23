@@ -25,9 +25,9 @@ angular.module('tmcApp')
             TopicoComentarios.query({id: id}, function (result) {
                 $scope.comentarios = result;
             });
-            //$timeout(function () {
-            //    $scope.load();
-            //}, 5000);
+            $timeout(function () {
+                $scope.load();
+            }, 10000);
         };
 
         $scope.load();
@@ -64,5 +64,21 @@ angular.module('tmcApp')
         $rootScope.$on('tmcApp:topicoUpdate', function (event, result) {
             $scope.topico = result;
         });
+
+        $scope.delete = function (id) {
+            Comentario.get({id: id}, function (result) {
+                $scope.comentario = result;
+                $('#deleteComentarioConfirmation').modal('show');
+            });
+        };
+
+        $scope.confirmDelete = function (id) {
+            Comentario.delete({id: id},
+                function () {
+                    $scope.load();
+                    $('#deleteComentarioConfirmation').modal('hide');
+                    $scope.clear();
+                });
+        };
 
     });

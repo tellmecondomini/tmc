@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label translate="tmcApp.condominio.cnpj" for="field_cnpj">Cnpj</label>
+                    <label for="field_cnpj">CNPJ</label>
                     <input type="text" class="form-control" name="cnpj" id="field_cnpj" ng-model="condominio.cnpj"
                            ui-mask="99.999.999/9999-99"
                            required>
@@ -64,9 +64,9 @@
                     <label translate="tmcApp.condominio.disposicao" for="field_disposicao">Disposicao</label>
                     <select class="form-control" name="disposicao" ng-model="condominio.disposicao"
                             id="field_disposicao" required>
-                        <option value="VERTICAL" translate="tmcApp.Disposicao.VERTICAL">VERTICAL</option>
-                        <option value="HORIZONTAL" translate="tmcApp.Disposicao.HORIZONTAL">HORIZONTAL</option>
-                        <option value="HIBRIDO" translate="tmcApp.Disposicao.HIBRIDO">HIBRIDO</option>
+                        <option value="VERTICAL">Vertical</option>
+                        <option value="HORIZONTAL">Horizontal</option>
+                        <option value="HIBRIDO">Híbrido</option>
                     </select>
 
                     <div ng-show="editForm.cnpj.$invalid">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label translate="tmcApp.cep.cep" for="field_cep">Cep</label>
+                    <label for="field_cep">CEP</label>
                     <input type="text" class="form-control" name="cep" id="field_cep"
                            ng-model="condominio.condominioCep"
                            ui-mask="99999-999"

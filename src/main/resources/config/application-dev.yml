@@ -13,7 +13,7 @@ spring:
         databaseName: tmc
         serverName: localhost
         username: root
-        password: techne
+        password: 
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048

@@ -31,7 +31,10 @@
                     <dt>{{comentario.funcionario.nome ? comentario.funcionario.nome : comentario.morador.nome}}</dt>
                     <dd class="ellipsis-text">{{comentario.conteudo}}</dd>
                     <dd>
-                        <small><cite>Escrito em {{comentario.data | date:'dd/MM/yyyy - HH:mm:ss'}}</cite></small>
+                        <div class="col-md-0">
+                            <small><cite>Escrito em {{comentario.data | date:'dd/MM/yyyy - HH:mm:ss'}}</cite></small>
+                            <small> - <a ui-sref=""><span class="glyphicon glyphicon-floppy-remove"></span></a></small>
+                        </div>
                     </dd>
                 </dl>
 

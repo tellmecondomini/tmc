@@ -40,6 +40,11 @@
         </div>
     </div>
 
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+        <input type="search" class="form-control" id="search" placeholder="Nome, Competência..." ng-model="searchText">
+    </div>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -51,7 +56,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="prestadorServico in prestadorServicos">
+            <tr ng-repeat="prestadorServico in prestadorServicos | filter:searchText">
                 <td><a ui-sref="prestadorServico.detail({id:prestadorServico.id})">{{prestadorServico.id}}</a></td>
                 <td>{{prestadorServico.nome}}</td>
                 <td>

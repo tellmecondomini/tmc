@@ -8,14 +8,10 @@ angular.module('tmcApp')
         });
 
         $scope.topicos = [];
-        $scope.prioritarios = [];
         $scope.loadAll = function () {
             Topico.query(function (result) {
                 angular.forEach(result, function (topico) {
-                    if (topico.prioritario)
-                        $scope.prioritarios.push(topico);
-                    else
-                        $scope.topicos.push(topico);
+                    $scope.topicos.push(topico);
                 });
             });
         };

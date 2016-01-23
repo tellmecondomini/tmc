@@ -11,6 +11,7 @@ import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.TopicoService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -45,9 +46,6 @@ public class TopicoResource {
 
     @Inject
     private ComentarioRepository comentarioRepository;
-
-    @Inject
-    private MailService mailService;
 
     @Inject
     private CondominioService condominioService;
@@ -93,7 +91,7 @@ public class TopicoResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Topico> aprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
-                                                  HttpServletRequest request) throws URISyntaxException {
+                                            HttpServletRequest request) throws URISyntaxException {
         return getUpdateStatusTopico(id, status, mensagem, request);
     }
 
@@ -102,14 +100,14 @@ public class TopicoResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Topico> reprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
-                                            HttpServletRequest request) throws URISyntaxException {
+                                             HttpServletRequest request) throws URISyntaxException {
         return getUpdateStatusTopico(id, status, mensagem, request);
     }
 
     private ResponseEntity<Topico> getUpdateStatusTopico(Long id, String status, String mensagem, HttpServletRequest request) {
         Topico topico = topicoRepository.findOne(id);
 
-        log.debug("REST request to update Topico : {}", topico);
+        log.debug("REST atualiza status do Topico : {}", topico);
 
         String baseUrl = request.getScheme() +
             "://" +
@@ -117,19 +115,35 @@ public class TopicoResource {
             ":" +
             request.getServerPort();
 
-        topico.setMensagemAprovacao(mensagem);
-        if ("ABERTO".equals(status)) {
-            topico.setStatusTopico(StatusTopico.ABERTO);
-            mailService.topicoAprovado(topico, baseUrl);
-        } else {
-            topico.setStatusTopico(StatusTopico.REPROVADO);
-            mailService.topicoReprovado(topico, baseUrl);
-        }
+        Topico topicoSaved = topicoService.getAprovacaoTopico(topico, status, mensagem, baseUrl);
 
-        Topico result = topicoService.save(topico);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
-            .body(result);
+            .body(topicoSaved);
+    }
+
+    @RequestMapping(value = "/topico/encerra/{id}/{solucao}/{observacao}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Topico> encerra(@PathVariable Long id, @PathVariable String solucao, @PathVariable String observacao,
+                                          HttpServletRequest request) throws URISyntaxException {
+
+        Topico topico = topicoRepository.findOne(id);
+
+        log.debug("REST encerramento de um Topico : {}", topico);
+
+        String baseUrl = request.getScheme() +
+            "://" +
+            request.getServerName() +
+            ":" +
+            request.getServerPort();
+
+        Topico topicoSaved = topicoService.getEncerramentoTopico(topico, solucao, observacao, baseUrl);
+
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))
+            .body(topicoSaved);
     }
 
     /**
@@ -147,11 +161,11 @@ public class TopicoResource {
         ArrayList<Topico> topicos = new ArrayList<>(Short.MAX_VALUE);
         List<Topico> allTopicos = topicoRepository.findAll();
         allTopicos.stream().forEach(topico -> {
-            if(topico.getMorador() == null) {
-                if(topico.getFuncionario().getCondominio().equals(condominio))
+            if (topico.getMorador() == null) {
+                if (topico.getFuncionario().getCondominio().equals(condominio))
                     topicos.add(topico);
             } else {
-                if(topico.getMorador().getCondominio().equals(condominio))
+                if (topico.getMorador().getCondominio().equals(condominio))
                     topicos.add(topico);
             }
         });

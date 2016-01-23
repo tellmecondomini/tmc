@@ -36,4 +36,15 @@ angular.module('tmcApp')
                 }
             }
         });
+    })
+    .factory('TopicoEncerra', function ($resource) {
+        return $resource('api/topico/encerra/:id/:solucao/:observacao', {}, {
+            'execute': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
     });

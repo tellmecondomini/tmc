@@ -2,15 +2,13 @@ package br.com.unifieo.tmc.domain;
 
 public enum StatusTopico {
 
-    AGUARDANDO_APROVACAO("Aguardando aprovação"),
+    AGUARDANDO_APROVACAO("Aguardando Aprovação"),
 
     ABERTO("Aberto"),
 
-    ENCERRADO("Encerrado"),
+    ENCERRADO_COM_SUCESSO("Encerrado com Sucesso"),
 
-    ENCERRADO_COM_SOLUCAO("Encerrado com solução"),
-
-    ENCERRADO_SEM_SOLUCAO("Encerrado sem solução"),
+    ENCERRADO_SEM_SUCESSO("Encerrado sem Sucesso"),
 
     REPROVADO("Reprovado");
 

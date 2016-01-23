@@ -1,9 +1,6 @@
 package br.com.unifieo.tmc.service;
 
-import br.com.unifieo.tmc.domain.Funcionario;
-import br.com.unifieo.tmc.domain.Morador;
-import br.com.unifieo.tmc.domain.Topico;
-import br.com.unifieo.tmc.domain.User;
+import br.com.unifieo.tmc.domain.*;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,8 +55,6 @@ public class MailService {
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send e-mail[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
-
-        // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
@@ -77,14 +72,11 @@ public class MailService {
     @Async
     public void sendNewUserEmail(User user, Funcionario funcionario, String baseUrl) {
         log.debug("E-mail de confirmação de cadastro e aviso aos gestores");
-
         Locale locale = Locale.forLanguageTag(user.getLangKey());
-
         Context context = new Context(locale);
         context.setVariable("user", user);
         context.setVariable("condominio", funcionario.getCondominio());
         context.setVariable("baseUrl", baseUrl);
-
         String content = templateEngine.process("newUser", context);
         String subject = "TMC - Cadastro efetuado";
         this.sendEmail(user.getEmail(), subject, content, false, true);
@@ -124,7 +116,7 @@ public class MailService {
         this.sendEmail(morador.getEmail(), subject, content, false, true);
     }
 
-    public void topicoAprovado(Topico topico, String baseUrl) {
+    public void sendTopicoAprovado(Topico topico, String baseUrl) {
         log.debug("Novo tópico aprovado '{}'", topico.getTitulo());
         User user = userService.getUserWithAuthorities();
         Locale locale = Locale.forLanguageTag(user.getLangKey());
@@ -136,7 +128,7 @@ public class MailService {
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
 
-    public void topicoReprovado(Topico topico, String baseUrl) {
+    public void sendTopicoReprovado(Topico topico, String baseUrl) {
         log.debug("Tópico reprovado '{}'", topico.getTitulo());
         User user = userService.getUserWithAuthorities();
         Locale locale = Locale.forLanguageTag(user.getLangKey());
@@ -148,4 +140,16 @@ public class MailService {
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
 
+    public void sendEncerramentoTopico(Topico topico, Comentario comentario, String baseUrl) {
+        log.debug("Tópico encerrado '{}'", topico.getTitulo());
+        User user = userService.getUserWithAuthorities();
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("topico", topico);
+        context.setVariable("comentario", comentario);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("topicoEncerrado", context);
+        String subject = "TMC - Topico Encerrado";
+        this.sendEmail(topico.getEmail(), subject, content, false, true);
+    }
 }

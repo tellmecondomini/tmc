@@ -16,8 +16,6 @@
 
         <br/>
 
-        <p class="lead text-warning text-center">Prioritários</p>
-
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
@@ -30,37 +28,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="topico in prioritarios" class="warning">
-                    <td><strong>{{topico.titulo}}</strong></td>
-                    <td><small>{{topico.conteudo}}</small></td>
-                    <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
-                    <td><small>{{topico.statusTopico}}</small></td>
-                    <td><small><a ui-sref="topico.comentarios({id:topico.id})" ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SOLUCAO','ENCERRADO_SEM_SOLUCAO'].indexOf(topico.statusTopico) > -1)">Comentários</a></small></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <hr/>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Titulo</th>
-                    <th>Conteudo</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="topico in topicos">
-                    <td><strong>{{topico.titulo}}</strong></td>
-                    <td><small>{{topico.conteudo}}</small></td>
-                    <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
-                    <td><small>{{topico.statusTopico}}</small></td>
-                    <td><small><a ui-sref="topico.comentarios({id:topico.id})" ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SOLUCAO','ENCERRADO_SEM_SOLUCAO'].indexOf(topico.statusTopico) > -1)">Comentários</a></small></td>
+                <tr ng-repeat="topico in topicos" ng-class="{'warning': topico.prioritario}">
+                    <td><strong> {{topico.titulo}}</strong>
+                        <p ng-show="topico.prioritario">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <small><i> Leitura recomendada</i></small>
+                        </p>
+                    </td>
+                    <td>
+                        <small>{{topico.conteudo}}</small>
+                    </td>
+                    <td>
+                        <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
+                    </td>
+                    <td>
+                        <small>{{topico.statusTopico}}</small>
+                    </td>
+                    <td>
+                        <small><a ui-sref="topico.comentarios({id:topico.id})"
+                                  ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SOLUCAO','ENCERRADO_SEM_SOLUCAO'].indexOf(topico.statusTopico) > -1)">Comentários</a>
+                        </small>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -44,10 +44,13 @@ public class TopicoService {
         Funcionario funcionario = funcionarioRepository.findOneByEmail(user.getEmail());
         if (funcionario == null) {
             Morador morador = moradorRepository.findOneByEmail(user.getEmail());
-            if (morador != null)
+            if (morador != null) {
                 topico.setMorador(morador);
+                topico.setStatusTopico(StatusTopico.AGUARDANDO_APROVACAO);
+            }
         } else {
             topico.setFuncionario(funcionario);
+            topico.setStatusTopico(StatusTopico.ABERTO);
         }
 
         topico.setData(new DateTime());

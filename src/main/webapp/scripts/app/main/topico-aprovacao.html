@@ -11,30 +11,43 @@
 
         <div class="form-group">
             <p>
-                Assunto: <spam class="text-success">{{topico.assunto.descricao}}</spam>
+                Assunto:
+                <spam class="text-success">{{topico.assunto.descricao}}</spam>
             </p>
             <p>
-                Categoria: <spam class="text-success">{{topico.categoria.descricao}}</spam>
+                Categoria:
+                <spam class="text-success">{{topico.categoria.descricao}}</spam>
             </p>
             <p>
-               Título: <spam class="text-success">{{topico.titulo}}</spam>
+                Título:
+                <spam class="text-success">{{topico.titulo}}</spam>
             </p>
             <p>
-                Conteudo: <spam class="text-success">{{topico.descricao}}</spam>
+                Conteudo:
+                <spam class="text-success">{{topico.descricao}}</spam>
             </p>
-            <label for="field_mensagem">Mensagem</label>
-            <input type="text" class="form-control" name="descricao" id="field_mensagem"
-                   ng-model="topico.mensagemAprovacao"
-                   required>
+            <div class="form-group">
+                <label for="field_mensagem">Mensagem</label>
+                <input type="text" class="form-control" name="descricao" id="field_mensagem"
+                       ng-model="topico.mensagemAprovacao"
+                       required>
+                <div ng-show="editForm.descricao.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
+                        This field is required.
+                    </p>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-success">
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-success">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Aprovar</span>
         </button>
     </div>

@@ -144,5 +144,28 @@ angular.module('tmcApp')
                         $state.go('^');
                     })
                 }]
+            })
+            .state('comentario.remove', {
+                parent: 'topico.comentarios',
+                url: 'topico/{id}/encerrar',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'Topico', function ($stateParams, $state, $modal, Topico) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/topico/topico-encerra.html',
+                        controller: 'TopicoEncerraController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Topico', function (Topico) {
+                                return Topico.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('topico', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
             });
     });

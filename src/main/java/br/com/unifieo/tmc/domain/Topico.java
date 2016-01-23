@@ -96,12 +96,6 @@ public class Topico implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comentario> comentarios = new HashSet<>();
 
-    public Topico() {
-        this.statusTopico = StatusTopico.AGUARDANDO_APROVACAO;
-        this.recomendado = false;
-        this.data = new DateTime();
-    }
-
     public Long getId() {
         return id;
     }

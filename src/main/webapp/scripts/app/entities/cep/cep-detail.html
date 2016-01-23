@@ -1,5 +1,5 @@
 <div>
-    <h2><span translate="tmcApp.cep.detail.title">Cep</span> {{cep.cep | cep}}</h2>
+    <h2><span>CEP</span> {{cep.cep | cep}}</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -10,6 +10,14 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <td>
+                    <span>CEP</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{cep.cep | cep}}</span>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <span translate="tmcApp.cep.logradouro">Logradouro</span>
@@ -36,18 +44,10 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.cep.uf">Uf</span>
+                    <span>UF</span>
                 </td>
                 <td>
                     <span class="form-control-static" translate="{{'tmcApp.Uf.' + cep.uf}}">{{cep.uf}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.cep.cep">Cep</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{cep.cep | cep}}</span>
                 </td>
             </tr>
             </tbody>

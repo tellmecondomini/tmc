@@ -1,0 +1,1 @@
+INSERT INTO CATEGORIA (DESCRICAO) VALUES ('Administração'), ('Segurança'), ('Portaria'), ('Manutenção'), ('Avisos'); COMMIT;

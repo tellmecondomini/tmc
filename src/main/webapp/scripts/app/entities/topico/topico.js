@@ -122,8 +122,8 @@ angular.module('tmcApp')
                     }]
                 }
             })
-            .state('topico.encerra', {
-                parent: 'topico',
+            .state('topico.encerrar', {
+                parent: 'topico.comentarios',
                 url: 'topico/{id}/encerrar',
                 data: {
                     authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],

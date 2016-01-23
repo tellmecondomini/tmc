@@ -7,7 +7,7 @@ angular.module('tmcApp')
 
         $scope.observacao = '';
 
-        $scope.solucao = '';
+        $scope.solucao = 'SIM';
 
         Principal.identity().then(function (account) {
             $scope.account = account;

@@ -2,7 +2,7 @@
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myTopicoLabel">Aprovação de Tópico</h4>
+        <h4 class="modal-title" id="myTopicoLabel">Encerramento de Tópico</h4>
     </div>
 
     <div class="modal-body">
@@ -11,31 +11,47 @@
 
         <div class="form-group">
             <p>
-                Assunto: <spam class="text-success">{{topico.assunto.descricao}}</spam>
+                <label>Assunto:</label>
+                <spam class="text-info">{{topico.assunto.descricao}}</spam>
             </p>
             <p>
-                Categoria: <spam class="text-success">{{topico.categoria.descricao}}</spam>
+                <label>Categoria:</label>
+                <spam class="text-info">{{topico.categoria.descricao}}</spam>
             </p>
             <p>
-               Título: <spam class="text-success">{{topico.titulo}}</spam>
+                <label>Título:</label>
+                <spam class="text-info">{{topico.titulo}}</spam>
             </p>
             <p>
-                Conteudo: <spam class="text-success">{{topico.conteudo}}</spam>
+                <label>Conteudo:</label>
+                <spam class="text-info">{{topico.conteudo}}</spam>
             </p>
-            <label for="field_mensagem">Mensagem</label>
-            <input type="text" class="form-control" name="conteudo" id="field_mensagem"
-                   ng-model="topico.mensagemAprovacao"
-                   required>
+            <div class="well">
+                <label>Teve solução?</label>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="SIM" value="SIM" ng-model="solucao"> Sim
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="NAO" value="NAO" ng-model="solucao"> Não
+                    </label>
+                </div>
+            </div>
+            <label for="field_mensagem">Observação</label>
+            <input type="text" class="form-control" name="conteudo" id="field_mensagem" ng-model="observacao" required>
         </div>
 
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-success">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Aprovar</span>
+        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-info">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Encerrar</span>
         </button>
     </div>
 

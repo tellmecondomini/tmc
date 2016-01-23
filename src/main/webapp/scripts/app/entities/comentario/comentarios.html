@@ -41,7 +41,7 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.comentario.conteudo">Conteudo</th>
+                    <th translate="tmcApp.comentario.descricao">Conteudo</th>
                     <th translate="tmcApp.comentario.data">Data</th>
                     <th translate="tmcApp.comentario.ativo">Ativo</th>
                     <th translate="tmcApp.comentario.topico">topico</th>
@@ -53,11 +53,11 @@
             <tbody>
                 <tr ng-repeat="comentario in comentarios">
                     <td><a ui-sref="comentario.detail({id:comentario.id})">{{comentario.id}}</a></td>
-                    <td>{{comentario.conteudo}}</td>
+                    <td>{{comentario.descricao}}</td>
                     <td>{{comentario.data}}</td>
                     <td>{{comentario.ativo}}</td>
                     <td>
-                        <a ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.conteudo}}</a>
+                        <a ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.descricao}}</a>
                     </td>
                     <td>
                         <a ui-sref="morador.detail({id:comentario.morador.id})">{{comentario.morador.nome}}</a>

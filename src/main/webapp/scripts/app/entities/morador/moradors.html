@@ -3,7 +3,7 @@
     <jh-alert></jh-alert>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(settingsAccount.authorities[0]) > -1)">
                 <button class="btn btn-primary" ng-click="printRegisterCode()">
                     <span class="glyphicon glyphicon-print"></span> Imprimir QR-Code
                 </button>

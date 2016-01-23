@@ -26,7 +26,7 @@
             <column name="titulo" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="conteudo" type="varchar(2000)">
+            <column name="descricao" type="varchar(2000)">
                 <constraints nullable="false"/>
             </column>
             <column name="data" type="timestamp">
@@ -43,7 +43,7 @@
             </column>
             <column name="mensagem_aprovacao" type="varchar(500)"/>
             <column name="status_topico" type="varchar(255)"/>
-            <column name="prioritario" type="bit"/>
+            <column name="recomendado" type="bit"/>
             <column name="imagem" type="blob"/>
             <column name="assunto_id" type="bigint"/>
             <column name="morador_id" type="bigint"/>

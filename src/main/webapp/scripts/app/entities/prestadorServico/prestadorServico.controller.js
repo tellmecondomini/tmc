@@ -1,17 +1,22 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('PrestadorServicoController', function ($scope, PrestadorServico) {
+    .controller('PrestadorServicoController', function ($scope, PrestadorServico, Principal) {
+
+        Principal.identity(true).then(function (account) {
+            $scope.settingsAccount = account;
+        });
+
         $scope.prestadorServicos = [];
-        $scope.loadAll = function() {
-            PrestadorServico.query(function(result) {
-               $scope.prestadorServicos = result;
+        $scope.loadAll = function () {
+            PrestadorServico.query(function (result) {
+                $scope.prestadorServicos = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            PrestadorServico.get({id: id}, function(result) {
+            PrestadorServico.get({id: id}, function (result) {
                 $scope.prestadorServico = result;
                 $('#deletePrestadorServicoConfirmation').modal('show');
             });
@@ -32,6 +37,14 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.prestadorServico = {nome: null, email: null, documento: null, pessoa: null, numero: null, complemento: null, id: null};
+            $scope.prestadorServico = {
+                nome: null,
+                email: null,
+                documento: null,
+                pessoa: null,
+                numero: null,
+                complemento: null,
+                id: null
+            };
         };
     });

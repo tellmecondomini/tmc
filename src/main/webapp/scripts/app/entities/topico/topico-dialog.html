@@ -17,9 +17,9 @@
                     required>
                 <option value=""></option>
             </select>
-            <div ng-show="editForm.conteudo.$invalid">
+            <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -32,9 +32,9 @@
                     <input type="radio" ng-model="topico.categoria" ng-value="categoria"> {{categoria.descricao}} <br/>
                 </div>
             </div>
-            <div ng-show="editForm.conteudo.$invalid">
+            <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -45,22 +45,22 @@
             <input type="text" class="form-control" name="titulo" id="field_titulo"
                    ng-model="topico.titulo"
                    required>
-            <div ng-show="editForm.conteudo.$invalid">
+            <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
         </div>
 
         <div class="form-group">
-            <label translate="tmcApp.topico.conteudo" for="field_conteudo">Conteudo</label>
-            <input type="text" class="form-control" name="conteudo" id="field_conteudo"
-                   ng-model="topico.conteudo"
-                   required>
-            <div ng-show="editForm.conteudo.$invalid">
+            <label for="field_descricao">Descrição</label>
+            <textarea class="form-control" name="descricao" id="field_descricao"
+                      ng-model="topico.descricao"
+                      required/>
+            <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                   ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -69,24 +69,29 @@
         <div class="form-group" ngf-drop ngf-change="setImagem($file)" ngf-pattern="'image/*'">
             <label for="field_imagem">Imagem</label>
             <div>
-                <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;" ng-if="topico.imagem"/>
+                <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;"
+                     ng-if="topico.imagem"/>
                 <div class="help-block clearfix">
                     <span class="pull-left">{{byteSize()}}</span>
-                    <button ng-click="topico.imagem=null" ng-if="topico.imagem" class="btn btn-default btn-xs pull-right">
+                    <button ng-click="topico.imagem=null" ng-if="topico.imagem"
+                            class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
-                <button type="file" ngf-select class="btn btn-default btn-block" ngf-change="setImagem($file)" accept="image/*">
-                    Add
+                <button type="file" ngf-select class="btn btn-info btn-block" ngf-change="setImagem($file)"
+                        accept="image/*">
+                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                    Carregar Imagem
                 </button>
             </div>
             <input type="hidden" class="form-control" name="imagem" id="field_imagem" ng-model="topico.imagem">
         </div>
 
-        <div class="form-group">
-            <label for="field_prioritario">Prioritario</label>
-            <input type="checkbox" class="form-control" name="conteudo" id="field_prioritario"
-                   ng-model="topico.prioritario">
+        <div class="form-group"
+             ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
+            <label for="field_recomendado">Recomendado</label>
+            <input type="checkbox" class="form-control" name="descricao" id="field_recomendado"
+                   ng-model="topico.recomendado">
         </div>
 
     </div>

@@ -82,7 +82,7 @@ public class TopicoResourceTest {
     @Before
     public void initTest() {
         topico = new Topico();
-        topico.setConteudo(DEFAULT_CONTEUDO);
+        topico.setDescricao(DEFAULT_CONTEUDO);
         topico.setData(DEFAULT_DATA);
     }
 
@@ -102,7 +102,7 @@ public class TopicoResourceTest {
         List<Topico> topicos = topicoRepository.findAll();
         assertThat(topicos).hasSize(databaseSizeBeforeCreate + 1);
         Topico testTopico = topicos.get(topicos.size() - 1);
-        assertThat(testTopico.getConteudo()).isEqualTo(DEFAULT_CONTEUDO);
+        assertThat(testTopico.getDescricao()).isEqualTo(DEFAULT_CONTEUDO);
         assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_DATA);
     }
 
@@ -111,7 +111,7 @@ public class TopicoResourceTest {
     public void checkConteudoIsRequired() throws Exception {
         int databaseSizeBeforeTest = topicoRepository.findAll().size();
         // set the field null
-        topico.setConteudo(null);
+        topico.setDescricao(null);
 
         // Create the Topico, which fails.
 
@@ -191,7 +191,7 @@ public class TopicoResourceTest {
 		int databaseSizeBeforeUpdate = topicoRepository.findAll().size();
 
         // Update the topico
-        topico.setConteudo(UPDATED_CONTEUDO);
+        topico.setDescricao(UPDATED_CONTEUDO);
         topico.setData(UPDATED_DATA);
 
         restTopicoMockMvc.perform(put("/api/topicos")
@@ -203,7 +203,7 @@ public class TopicoResourceTest {
         List<Topico> topicos = topicoRepository.findAll();
         assertThat(topicos).hasSize(databaseSizeBeforeUpdate);
         Topico testTopico = topicos.get(topicos.size() - 1);
-        assertThat(testTopico.getConteudo()).isEqualTo(UPDATED_CONTEUDO);
+        assertThat(testTopico.getDescricao()).isEqualTo(UPDATED_CONTEUDO);
         assertThat(testTopico.getData().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_DATA);
     }
 

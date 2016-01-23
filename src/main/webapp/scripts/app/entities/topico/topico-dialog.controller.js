@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('tmcApp').controller('TopicoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Topico', 'Assunto', 'Comentario',
-        function ($scope, $stateParams, $modalInstance, entity, Topico, Assunto, Comentario) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Topico', 'Assunto', 'Comentario', 'Principal',
+        function ($scope, $stateParams, $modalInstance, entity, Topico, Assunto, Comentario, Principal) {
+
+            Principal.identity().then(function (account) {
+                $scope.account = account;
+                $scope.isAuthenticated = Principal.isAuthenticated;
+            });
 
             $scope.topico = entity;
 

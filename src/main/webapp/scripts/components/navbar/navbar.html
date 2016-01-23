@@ -54,7 +54,8 @@
                             </a>
                         </li>
 
-                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
+                        <li ui-sref-active="active"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
                             <a ui-sref="morador">
                                 <span translate="global.menu.entities.morador">morador</span>
                             </a>
@@ -82,13 +83,15 @@
                     </a>
                     <ul id="forum" class="dropdown-menu">
                         <li ui-sref-active="active"
-                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_ADMIN_CONDOMINIO">
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_ADMIN_CONDOMINIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
                             <a ui-sref="assunto">
                                 <span translate="global.menu.entities.assunto">assuntos</span>
                             </a>
                         </li>
                         <li ui-sref-active="active"
-                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
                             <a ui-sref="categoria">
                                 <span>Categorias</span>
                             </a>
@@ -111,18 +114,26 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span
-                            class="glyphicon glyphicon-wrench"></span>
-                            <span translate="global.menu.account.settings">Settings</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span
-                            class="glyphicon glyphicon-lock"></span>
-                            <span translate="global.menu.account.password">Password</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span
-                            class="glyphicon glyphicon-log-in"></span>
-                            <span translate="global.menu.account.login">Authenticate</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span
-                            class="glyphicon glyphicon-plus-sign"></span>
-                            <span translate="global.menu.account.register">Register</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="true">
+                            <a ui-sref="settings">
+                                <span>Perfil</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-switch-when="true">
+                            <a ui-sref="password">
+                                <span translate="global.menu.account.password">Password</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-switch-when="false">
+                            <a ui-sref="login">
+                                <span translate="global.menu.account.login">Authenticate</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-switch-when="false">
+                            <a ui-sref="register">
+                                <span translate="global.menu.account.register">Register</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

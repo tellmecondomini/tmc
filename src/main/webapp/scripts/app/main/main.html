@@ -21,7 +21,7 @@
                         <small>{{topico.titulo}}</a></small>
                     </strong></td>
                     <td>
-                        <small>{{topico.conteudo}}</small>
+                        <small>{{topico.descricao | limitTo: 20}}...</small>
                     </td>
                     <td>
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>

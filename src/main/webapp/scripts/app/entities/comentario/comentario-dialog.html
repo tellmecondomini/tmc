@@ -14,21 +14,21 @@
                     ng-model="comentario.id" readonly>
         </div>
         <div class="form-group">
-            <label translate="tmcApp.comentario.conteudo" for="field_conteudo">Conteudo</label>
-            <input type="text" class="form-control" name="conteudo" id="field_conteudo"
-                    ng-model="comentario.conteudo"
+            <label translate="tmcApp.comentario.descricao" for="field_conteudo">Conteudo</label>
+            <input type="text" class="form-control" name="descricao" id="field_conteudo"
+                    ng-model="comentario.descricao"
                     required ng-minlength="1" ng-maxlength="240">
-            <div ng-show="editForm.conteudo.$invalid">
+            <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.conteudo.$error.required" translate="entity.validation.required">
+                    ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.conteudo.$error.minlength" translate="entity.validation.minlength" translate-value-min="1">
+                    ng-show="editForm.descricao.$error.minlength" translate="entity.validation.minlength" translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.conteudo.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="240">
+                    ng-show="editForm.descricao.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="240">
                     This field cannot be longer than 240 characters.
                 </p>
             </div>
@@ -58,7 +58,7 @@
 
         <div class="form-group">
             <label translate="tmcApp.comentario.topico" for="field_topico">topico</label>
-            <select class="form-control" id="field_topico" name="topico" ng-model="comentario.topico" ng-options="topico as topico.conteudo for topico in topicos track by topico.id">
+            <select class="form-control" id="field_topico" name="topico" ng-model="comentario.topico" ng-options="topico as topico.descricao for topico in topicos track by topico.id">
                 <option value=""></option>
             </select>
         </div>

@@ -13,11 +13,9 @@ import org.joda.time.DateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * A Topico.
@@ -36,8 +34,8 @@ public class Topico implements Serializable {
     private String titulo;
 
     @NotNull
-    @Column(name = "conteudo", nullable = false)
-    private String conteudo;
+    @Column(name = "descricao", nullable = false)
+    private String descricao;
 
     @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -56,8 +54,8 @@ public class Topico implements Serializable {
     @Column(name = "data_fechamento", nullable = false)
     private DateTime dataFechamento;
 
-    @Column(name = "prioritario")
-    private Boolean prioritario;
+    @Column(name = "recomendado")
+    private Boolean recomendado;
 
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
@@ -100,7 +98,7 @@ public class Topico implements Serializable {
 
     public Topico() {
         this.statusTopico = StatusTopico.AGUARDANDO_APROVACAO;
-        this.prioritario = false;
+        this.recomendado = false;
         this.data = new DateTime();
     }
 
@@ -112,12 +110,12 @@ public class Topico implements Serializable {
         this.id = id;
     }
 
-    public String getConteudo() {
-        return conteudo;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public DateTime getData() {
@@ -168,12 +166,12 @@ public class Topico implements Serializable {
         this.dataFechamento = dataFechamento;
     }
 
-    public Boolean getPrioritario() {
-        return prioritario;
+    public Boolean getRecomendado() {
+        return recomendado;
     }
 
-    public void setPrioritario(Boolean prioritario) {
-        this.prioritario = prioritario;
+    public void setRecomendado(Boolean recomendado) {
+        this.recomendado = recomendado;
     }
 
     public DateTime getDataInicio() {
@@ -265,7 +263,7 @@ public class Topico implements Serializable {
     public String toString() {
         return "Topico{" +
             "id=" + id +
-            ", conteudo='" + conteudo + "'" +
+            ", descricao='" + descricao + "'" +
             ", data='" + data + "'" +
             '}';
     }

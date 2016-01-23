@@ -1,6 +1,8 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.PrestadorServico;
+import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -30,6 +32,9 @@ public class PrestadorServicoResource {
     @Inject
     private PrestadorServicoRepository prestadorServicoRepository;
 
+    @Inject
+    private CepRepository cepRepository;
+
     /**
      * POST  /prestadorServicos -> Create a new prestadorServico.
      */
@@ -42,6 +47,10 @@ public class PrestadorServicoResource {
         if (prestadorServico.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new prestadorServico cannot already have an ID").body(null);
         }
+        Cep cep = Optional
+            .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
+            .orElseGet(() -> cepRepository.save(prestadorServico.getCep()));
+        prestadorServico.setCep(cep);
         PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.created(new URI("/api/prestadorServicos/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", result.getId().toString()))
@@ -60,6 +69,10 @@ public class PrestadorServicoResource {
         if (prestadorServico.getId() == null) {
             return createPrestadorServico(prestadorServico);
         }
+        Cep cep = Optional
+            .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
+            .orElseGet(() -> cepRepository.save(prestadorServico.getCep()));
+        prestadorServico.setCep(cep);
         PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("prestadorServico", prestadorServico.getId().toString()))

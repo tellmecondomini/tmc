@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, entity, Topico, Assunto, Comentario, TopicoComentarios, Principal) {
+    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, $timeout, entity, Topico, Assunto, Comentario, TopicoComentarios, Principal) {
 
         Principal.identity().then(function (account) {
             $scope.account = account;
@@ -25,6 +25,9 @@ angular.module('tmcApp')
             TopicoComentarios.query({id: id}, function (result) {
                 $scope.comentarios = result;
             });
+            //$timeout(function () {
+            //    $scope.load();
+            //}, 5000);
         };
 
         $scope.load();

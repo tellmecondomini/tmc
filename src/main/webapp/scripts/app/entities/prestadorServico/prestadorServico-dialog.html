@@ -11,72 +11,120 @@
 
         <jh-alert-error></jh-alert-error>
 
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.nome" for="field_nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="field_nome"
-                   ng-model="prestadorServico.nome"
-                   required>
-            <div ng-show="editForm.nome.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.nome.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
+        <div class="container">
 
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.email" for="field_email">Email</label>
-            <input type="text" class="form-control" name="email" id="field_email"
-                   ng-model="prestadorServico.email">
-        </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label translate="tmcApp.prestadorServico.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           ng-model="prestadorServico.nome"
+                           required>
+                    <div ng-show="editForm.nome.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.nome.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.tipo" for="field_pessoa">Tipo de Pessoa</label>
-            <select class="form-control" name="tipo" ng-model="prestadorServico.tipo" id="field_pessoa">
-                <option value="FISICA">Pessoa Física</option>
-                <option value="JURIDICA">Pessoa Jurídica</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.numero" for="field_numero">Numero</label>
-            <input type="number" class="form-control" name="numero" id="field_numero"
-                   ng-model="prestadorServico.numero"
-                   required>
-            <div ng-show="editForm.numero.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.numero.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                   ng-show="editForm.numero.$error.number" translate="entity.validation.number">
-                    This field should be a number.
-                </p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.complemento" for="field_complemento">Complemento</label>
-            <input type="text" class="form-control" name="complemento" id="field_complemento"
-                   ng-model="prestadorServico.complemento">
-        </div>
-
-        <div class="form-group">
-            <label for="field_cep">CEP</label>
-            <select class="form-control" id="field_cep" name="cep" ng-model="prestadorServico.cep"
-                    ng-options="cep as cep.id for cep in ceps | orderBy:'id' track by cep.id">
-                <option value=""></option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label translate="tmcApp.prestadorServico.competenciaPrestador" for="field_competenciaPrestador">competenciaPrestador</label>
-            <div class="well">
-                <div id="field_competenciaPrestador" ng-repeat="competenciaPrestador in competenciaprestadors">
-                    <input type="checkbox" data-checklist-model="prestadorServico.competencias"
-                           data-checklist-value="competenciaPrestador"> {{competenciaPrestador.descricao}} <br/>
+                <div class="form-group col-md-4">
+                    <label translate="tmcApp.prestadorServico.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           ng-model="prestadorServico.email">
                 </div>
             </div>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="field_site">Site</label>
+                    <input type="text" class="form-control" name="email" id="field_site"
+                           ng-model="prestadorServico.site">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label translate="tmcApp.prestadorServico.tipo" for="field_pessoa">Pessoa</label>
+                    <select class="form-control" name="tipo" ng-model="prestadorServico.tipo" id="field_pessoa">
+                        <option value="FISICA" translate="tmcApp.Pessoa.FISICA">FISICA</option>
+                        <option value="JURIDICA" translate="tmcApp.Pessoa.JURIDICA">JURIDICA</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="field_cep">Cep</label>
+                    <input type="text" class="form-control" name="cep" id="field_cep"
+                           ng-model="prestadorServico.cep.cep"
+                           ui-mask="99999-999"
+                           ng-blur="buscaCep(prestadorServico.cep.cep)" required>
+
+                    <div ng-show="editForm.cep.$invalid">
+                        <p class="help-block" ng-show="editForm.cep.$error.required"
+                           translate="entity.validation.required">
+                            This field is required.
+                        </p>
+
+                        <p class="help-block" ng-show="editForm.cep.$error.number" translate="entity.validation.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="field_logradouro">Logradouro</label>
+                    <input type="text" class="form-control" name="logradouro" id="field_logradouro"
+                           ng-model="prestadorServico.cep.logradouro" disabled>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="field_bairro">Bairro</label>
+                    <input type="text" class="form-control" name="bairro" id="field_bairro"
+                           ng-model="prestadorServico.cep.bairro" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="field_cidade">Cidade</label>
+                    <input type="text" class="form-control" name="cidade" id="field_cidade"
+                           ng-model="prestadorServico.cep.cidade" disabled>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="field_uf">Uf</label>
+                    <input type="text" class="form-control" name="uf" id="field_uf"
+                           ng-model="prestadorServico.cep.uf" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label translate="tmcApp.prestadorServico.numero" for="field_numero">Numero</label>
+                    <input type="number" class="form-control" name="numero" id="field_numero"
+                           ng-model="prestadorServico.numero">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label translate="tmcApp.prestadorServico.complemento" for="field_complemento">Complemento</label>
+                    <input type="text" class="form-control" name="complemento" id="field_complemento"
+                           ng-model="prestadorServico.complemento">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label translate="tmcApp.prestadorServico.competenciaPrestador" for="field_competenciaPrestador">competenciaPrestador</label>
+                    <div class="well">
+                        <div id="field_competenciaPrestador" ng-repeat="competenciaPrestador in competenciaprestadors">
+                            <input type="checkbox" data-checklist-model="prestadorServico.competencias"
+                                   data-checklist-value="competenciaPrestador"> {{competenciaPrestador.descricao}} <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

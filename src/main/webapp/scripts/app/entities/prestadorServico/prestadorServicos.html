@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="prestadorServico.new">
+                <button class="btn btn-primary" ui-sref="prestadorServico.new" ng-show="['ROLE_MORADOR'].indexOf(settingsAccount.authorities[0]) > -1">
                     <span class="glyphicon glyphicon-flash"></span> <span
                     translate="tmcApp.prestadorServico.home.createLabel">Create a new PrestadorServico</span>
                 </button>
@@ -66,13 +66,13 @@
                             class="btn btn-info btn-sm">
                         <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
                     </button>
-                    <button type="submit"
+                    <button type="submit" ng-show="['ROLE_MORADOR'].indexOf(settingsAccount.authorities[0]) > -1"
                             ui-sref="prestadorServico.edit({id:prestadorServico.id})"
                             class="btn btn-primary btn-sm">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
                         translate="entity.action.edit"> Edit</span>
                     </button>
-                    <button type="submit"
+                    <button type="submit" ng-show="['ROLE_MORADOR'].indexOf(settingsAccount.authorities[0]) > -1"
                             ng-click="delete(prestadorServico.id)"
                             class="btn btn-danger btn-sm">
                         <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span

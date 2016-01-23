@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,7 @@ public class FuncionarioService {
     private final FuncionarioRepository funcionarioRepository;
     private final CepRepository cepRepository;
     private final CondominioRepository condominioRepository;
+    private final CondominioService condominioService;
     private final AuthorityRepository authorityRepository;
     private final UserRepository userRepository;
     private final UserService userService;
@@ -27,12 +29,13 @@ public class FuncionarioService {
 
     @Inject
     public FuncionarioService(FuncionarioRepository funcionarioRepository, CepRepository cepRepository,
-                              CondominioRepository condominioRepository, AuthorityRepository authorityRepository,
+                              CondominioRepository condominioRepository, CondominioService condominioService, AuthorityRepository authorityRepository,
                               UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder,
                               MailService mailService) {
         this.funcionarioRepository = funcionarioRepository;
         this.cepRepository = cepRepository;
         this.condominioRepository = condominioRepository;
+        this.condominioService = condominioService;
         this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
         this.userService = userService;
@@ -89,5 +92,10 @@ public class FuncionarioService {
             funcionarioSaved = funcionarioRepository.save(funcionario);
         }
         return funcionarioSaved;
+    }
+
+    public List<Funcionario> findAllByCondominioAtual() {
+        Condominio condominio = condominioService.getCurrentCondominio();
+        return funcionarioRepository.findAllByCondominio(condominio);
     }
 }

@@ -59,7 +59,7 @@ public class MoradorResource {
     @Timed
     public List<Morador> getAllMoradors() {
         log.debug("REST request to get all Moradors");
-        return moradorRepository.findAll();
+        return moradorService.findAllByCondominioAtual();
     }
 
     /**

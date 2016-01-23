@@ -1,9 +1,13 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Cep;
+import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
+import br.com.unifieo.tmc.service.CondominioService;
+import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
@@ -35,12 +39,18 @@ public class PrestadorServicoResource {
     @Inject
     private CepRepository cepRepository;
 
+    @Inject
+    private CondominioService condominioService;
+
+    @Inject
+    private UserService userService;
+
     /**
      * POST  /prestadorServicos -> Create a new prestadorServico.
      */
     @RequestMapping(value = "/prestadorServicos",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<PrestadorServico> createPrestadorServico(@Valid @RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to save PrestadorServico : {}", prestadorServico);
@@ -50,11 +60,14 @@ public class PrestadorServicoResource {
         Cep cep = Optional
             .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
             .orElseGet(() -> cepRepository.save(prestadorServico.getCep()));
+        Morador morador = userService.getMoradorAtual();
         prestadorServico.setCep(cep);
+        prestadorServico.setMorador(morador);
+        prestadorServico.setCondominio(condominioService.getCurrentCondominio());
         PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.created(new URI("/api/prestadorServicos/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -75,28 +88,29 @@ public class PrestadorServicoResource {
         prestadorServico.setCep(cep);
         PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("prestadorServico", prestadorServico.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("prestadorServico", prestadorServico.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /prestadorServicos -> get all the prestadorServicos.
      */
     @RequestMapping(value = "/prestadorServicos",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<PrestadorServico> getAllPrestadorServicos() {
         log.debug("REST request to get all PrestadorServicos");
-        return prestadorServicoRepository.findAll();
+        Condominio condominio = condominioService.getCurrentCondominio();
+        return prestadorServicoRepository.findAllByCondominio(condominio);
     }
 
     /**
      * GET  /prestadorServicos/:id -> get the "id" prestadorServico.
      */
     @RequestMapping(value = "/prestadorServicos/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<PrestadorServico> getPrestadorServico(@PathVariable Long id) {
         log.debug("REST request to get PrestadorServico : {}", id);
@@ -111,8 +125,8 @@ public class PrestadorServicoResource {
      * DELETE  /prestadorServicos/:id -> delete the "id" prestadorServico.
      */
     @RequestMapping(value = "/prestadorServicos/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deletePrestadorServico(@PathVariable Long id) {
         log.debug("REST request to delete PrestadorServico : {}", id);

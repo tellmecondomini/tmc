@@ -25,10 +25,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -147,5 +144,10 @@ public class MoradorService {
     public Morador getCurrentMorador() {
         User user = userService.getUserWithAuthorities();
         return moradorRepository.findOneByEmail(user.getEmail());
+    }
+
+    public List<Morador> findAllByCondominioAtual() {
+        Condominio condominio = condominioService.getCurrentCondominio();
+        return moradorRepository.findAllByCondominio(condominio);
     }
 }

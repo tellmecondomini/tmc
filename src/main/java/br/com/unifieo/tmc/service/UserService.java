@@ -271,4 +271,9 @@ public class UserService {
 
         return user;
     }
+
+    public Morador getMoradorAtual() {
+        User user = this.getUserWithAuthorities();
+        return moradorRepository.findOneByEmail(user.getEmail());
+    }
 }

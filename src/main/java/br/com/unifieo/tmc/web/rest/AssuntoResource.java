@@ -82,7 +82,8 @@ public class AssuntoResource {
     @Timed
     public List<Assunto> getAllAssuntos() {
         log.debug("REST request to get all Assuntos");
-        return assuntoRepository.findAll();
+        Condominio condominio = condominioService.getCurrentCondominio();
+        return assuntoRepository.findAllByCondominio(condominio);
     }
 
     /**

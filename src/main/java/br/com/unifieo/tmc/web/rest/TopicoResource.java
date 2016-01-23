@@ -1,10 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.StatusTopico;
 import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
 import br.com.unifieo.tmc.repository.TopicoRepository;
+import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.TopicoService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,6 +48,9 @@ public class TopicoResource {
 
     @Inject
     private MailService mailService;
+
+    @Inject
+    private CondominioService condominioService;
 
     /**
      * POST  /topicos -> Create a new topico.
@@ -135,7 +141,22 @@ public class TopicoResource {
     @Timed
     public List<Topico> getAllTopicos() {
         log.debug("REST request to get all Topicos");
-        return topicoRepository.findAll().stream().sorted((t1, t2) -> t2.getData().compareTo(t1.getData())).collect(Collectors.toList());
+
+        Condominio condominio = condominioService.getCurrentCondominio();
+
+        ArrayList<Topico> topicos = new ArrayList<>(Short.MAX_VALUE);
+        List<Topico> allTopicos = topicoRepository.findAll();
+        allTopicos.stream().forEach(topico -> {
+            if(topico.getMorador() == null) {
+                if(topico.getFuncionario().getCondominio().equals(condominio))
+                    topicos.add(topico);
+            } else {
+                if(topico.getMorador().getCondominio().equals(condominio))
+                    topicos.add(topico);
+            }
+        });
+
+        return topicos.stream().sorted((t1, t2) -> t2.getData().compareTo(t1.getData())).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{id}/comentarios",

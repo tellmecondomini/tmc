@@ -96,7 +96,7 @@ public class FuncionarioResource {
     @Timed
     public List<Funcionario> getAllFuncionarios() {
         log.debug("REST request to get all Funcionarios");
-        return funcionarioRepository.findAll();
+        return funcionarioService.findAllByCondominioAtual();
     }
 
     /**

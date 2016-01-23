@@ -82,16 +82,25 @@ public class TopicoResource {
             .body(result);
     }
 
-    /**
-     * PUT  /topicos -> Updates an existing topico.
-     */
-    @RequestMapping(value = "/aprovacao/{id}/{status}/{mensagem}",
+    @RequestMapping(value = "/topico/aprovacao/{id}/{status}/{mensagem}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Topico> updateAprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
+    public ResponseEntity<Topico> aprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
                                                   HttpServletRequest request) throws URISyntaxException {
+        return getUpdateStatusTopico(id, status, mensagem, request);
+    }
 
+    @RequestMapping(value = "/topico/reprovacao/{id}/{status}/{mensagem}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Topico> reprovacao(@PathVariable Long id, @PathVariable String status, @PathVariable String mensagem,
+                                            HttpServletRequest request) throws URISyntaxException {
+        return getUpdateStatusTopico(id, status, mensagem, request);
+    }
+
+    private ResponseEntity<Topico> getUpdateStatusTopico(Long id, String status, String mensagem, HttpServletRequest request) {
         Topico topico = topicoRepository.findOne(id);
 
         log.debug("REST request to update Topico : {}", topico);
@@ -102,15 +111,14 @@ public class TopicoResource {
             ":" +
             request.getServerPort();
 
-        if ("APROVADO".equals(status)) {
+        topico.setMensagemAprovacao(mensagem);
+        if ("ABERTO".equals(status)) {
             topico.setStatusTopico(StatusTopico.ABERTO);
             mailService.topicoAprovado(topico, baseUrl);
         } else {
             topico.setStatusTopico(StatusTopico.REPROVADO);
             mailService.topicoReprovado(topico, baseUrl);
         }
-
-        topico.setMensagemAprovacao(mensagem);
 
         Topico result = topicoService.save(topico);
         return ResponseEntity.ok()

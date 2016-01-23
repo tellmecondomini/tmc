@@ -16,7 +16,7 @@
 
         <br/>
 
-        <p class="lead text-warning">Prioritários</p>
+        <p class="lead text-warning text-center">Prioritários</p>
 
         <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -26,14 +26,16 @@
                     <th>Conteudo</th>
                     <th>Data</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="topico in prioritarios" class="warning">
-                    <td><strong><a ui-sref="topico.comentarios({id:topico.id})">{{topico.titulo}}</a></strong></td>
+                    <td><strong>{{topico.titulo}}</strong></td>
                     <td><small>{{topico.conteudo}}</small></td>
                     <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
                     <td><small>{{topico.statusTopico}}</small></td>
+                    <td><small><a ui-sref="topico.comentarios({id:topico.id})" ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SOLUCAO','ENCERRADO_SEM_SOLUCAO'].indexOf(topico.statusTopico) > -1)">Comentários</a></small></td>
                 </tr>
                 </tbody>
             </table>
@@ -49,14 +51,16 @@
                     <th>Conteudo</th>
                     <th>Data</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="topico in topicos">
-                    <td><strong><a ui-sref="topico.comentarios({id:topico.id})">{{topico.titulo}}</a></strong></td>
+                    <td><strong>{{topico.titulo}}</strong></td>
                     <td><small>{{topico.conteudo}}</small></td>
                     <td><small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small></td>
                     <td><small>{{topico.statusTopico}}</small></td>
+                    <td><small><a ui-sref="topico.comentarios({id:topico.id})" ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SOLUCAO','ENCERRADO_SEM_SOLUCAO'].indexOf(topico.statusTopico) > -1)">Comentários</a></small></td>
                 </tr>
                 </tbody>
             </table>

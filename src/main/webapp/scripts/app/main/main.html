@@ -1,9 +1,9 @@
 <div ng-cloak>
 
-    <div class="container">
+    <div class="container" ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(account.authorities[0]) > -1)">
 
         <!-- Tópicos a serem aprovados -->
-        <p class="lead text-primary">Tópicos a serem aprovados</p>
+        <p class="lead text-primary text-center">Tópicos a serem aprovados</p>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
@@ -30,8 +30,11 @@
                         <small>{{topico.funcionario.nome || topico.morador.nome}}</small>
                     </strong></td>
                     <td>
-                        <button class="btn btn-success" ui-sref="home.topico({id:topico.id})">
+                        <button class="btn btn-success" ui-sref="topico.aprova({id:topico.id})">
                             <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                        <button class="btn btn-danger" ui-sref="topico.reprova({id:topico.id})">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
                         </button>
                     </td>
                 </tr>

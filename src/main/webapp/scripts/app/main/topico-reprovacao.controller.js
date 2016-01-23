@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoAprovarController', function ($scope, $modalInstance, Principal, entity, TopicoAprovacao) {
+    .controller('TopicoReprovacaoController', function ($scope, $modalInstance, Principal, entity, TopicoReprovacao) {
 
         $scope.topico = entity;
 
@@ -11,9 +11,9 @@ angular.module('tmcApp')
         });
 
         $scope.save = function () {
-            TopicoAprovacao.updateAprovacao({
+            TopicoReprovacao.updateAprovacao({
                 id: $scope.topico.id,
-                status: 'APROVADO',
+                status: 'REPROVADO',
                 mensagem: $scope.topico.mensagemAprovacao
             }, function (result) {
                 $modalInstance.close(result);

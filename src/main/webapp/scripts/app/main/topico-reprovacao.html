@@ -2,7 +2,7 @@
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myTopicoLabel">Aprovação de Tópico</h4>
+        <h4 class="modal-title" id="myTopicoLabel">Reprovação de Tópico</h4>
     </div>
 
     <div class="modal-body">
@@ -11,16 +11,16 @@
 
         <div class="form-group">
             <p>
-                Assunto: <spam class="text-success">{{topico.assunto.descricao}}</spam>
+                Assunto: <spam class="text-danger">{{topico.assunto.descricao}}</spam>
             </p>
             <p>
-                Categoria: <spam class="text-success">{{topico.categoria.descricao}}</spam>
+                Categoria: <spam class="text-danger">{{topico.categoria.descricao}}</spam>
             </p>
             <p>
-               Título: <spam class="text-success">{{topico.titulo}}</spam>
+               Título: <spam class="text-danger">{{topico.titulo}}</spam>
             </p>
             <p>
-                Conteudo: <spam class="text-success">{{topico.conteudo}}</spam>
+                Conteudo: <spam class="text-danger">{{topico.conteudo}}</spam>
             </p>
             <label for="field_mensagem">Mensagem</label>
             <input type="text" class="form-control" name="conteudo" id="field_mensagem"
@@ -34,8 +34,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-success">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Aprovar</span>
+        <button type="submit" ng-disabled="editForm.$submitted" class="btn btn-danger">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Reprovar</span>
         </button>
     </div>
 

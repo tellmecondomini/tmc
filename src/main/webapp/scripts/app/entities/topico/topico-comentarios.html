@@ -37,7 +37,7 @@
 
         <footer>
 
-            <div class="row">
+            <div class="row" ng-show="(['ABERTO'].indexOf(topico.statusTopico) > -1)">
 
                 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 

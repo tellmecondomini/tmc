@@ -22,7 +22,7 @@ angular.module('tmcApp')
                     }]
                 }
             })
-            .state('home.topico', {
+            .state('topico.aprova', {
                 parent: 'home',
                 url: 'topico/{id}/aprovacao',
                 data: {
@@ -31,7 +31,7 @@ angular.module('tmcApp')
                 onEnter: ['$stateParams', '$state', '$modal', 'Topico', function ($stateParams, $state, $modal, Topico) {
                     $modal.open({
                         templateUrl: 'scripts/app/main/topico-aprovacao.html',
-                        controller: 'TopicoAprovarController',
+                        controller: 'TopicoAprovacaoController',
                         size: 'lg',
                         resolve: {
                             entity: ['Topico', function (Topico) {
@@ -39,7 +39,30 @@ angular.module('tmcApp')
                             }]
                         }
                     }).result.then(function (result) {
-                        $state.go('topico', null, {reload: true});
+                        $state.go('^', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
+            })
+            .state('topico.reprova', {
+                parent: 'home',
+                url: 'topico/{id}/reprovacao',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'Topico', function ($stateParams, $state, $modal, Topico) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/main/topico-reprovacao.html',
+                        controller: 'TopicoReprovacaoController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Topico', function (Topico) {
+                                return Topico.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('^', null, {reload: true});
                     }, function () {
                         $state.go('^');
                     })

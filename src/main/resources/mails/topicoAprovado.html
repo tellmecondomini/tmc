@@ -6,20 +6,20 @@
     </head>
     <body>
         <h3>
-            O tópico <strong><span th:text="${topico.titulo}" /></strong> foi <i>aprovado</i>!
+            O tópico <strong>"<span th:text="${topico.titulo}" />"</strong> foi <i>aprovado</i>!
         </h3>
         <ul>
             <li>
-                <span th:text="${topico.assunto}" />
+                Assunto: <span th:text="${topico.assunto.descricao}" />
             </li>
             <li>
-                <span th:text="${topico.categoria}" />
+                Categoria: <span th:text="${topico.categoria.descricao}" />
             </li>
             <li>
-                <span th:text="${topico.conteudo}" />
+                Conteudo: <span th:text="${topico.conteudo}" />
             </li>
             <li>
-                <span th:text="${topico.mensagemAprovacao}" />
+                Mensagem do administrador: <span th:text="${topico.mensagemAprovacao}" />
             </li>
         </ul>
         <p>

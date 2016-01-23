@@ -16,7 +16,18 @@ angular.module('tmcApp')
         });
     })
     .factory('TopicoAprovacao', function ($resource) {
-        return $resource('api/aprovacao/:id/:status/:mensagem', {}, {
+        return $resource('api/topico/aprovacao/:id/:status/:mensagem', {}, {
+            'updateAprovacao': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
+    })
+    .factory('TopicoReprovacao', function ($resource) {
+        return $resource('api/topico/reprovacao/:id/:status/:mensagem', {}, {
             'updateAprovacao': {
                 method: 'GET',
                 transformResponse: function (data) {

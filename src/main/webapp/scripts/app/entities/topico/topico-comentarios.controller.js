@@ -73,12 +73,12 @@ angular.module('tmcApp')
         };
 
         $scope.confirmDelete = function (id) {
-            Comentario.delete({id: id},
-                function () {
-                    $scope.load();
-                    $('#deleteComentarioConfirmation').modal('hide');
-                    $scope.clear();
-                });
+            //Comentario.delete({id: id},
+            //    function () {
+            //        $scope.load();
+            //        $('#deleteComentarioConfirmation').modal('hide');
+            //        $scope.clear();
+            //    });
         };
 
     });

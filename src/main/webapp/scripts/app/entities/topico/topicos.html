@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="topico in topicos" ng-class="{'warning': topico.recomendado}">
-                    <td><strong> {{topico.titulo}}</strong>
+                    <td><strong><a ui-sref="topico.detail({id:topico.id})"> {{topico.titulo}}</a></strong>
                         <p ng-show="topico.recomendado">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             <small><i> Leitura recomendada</i></small>

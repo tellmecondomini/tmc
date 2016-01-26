@@ -12,7 +12,7 @@
             <tbody>
             <tr>
                 <td>
-                    <span translate="tmcApp.topico.descricao">Conteudo</span>
+                    <span>Descrição</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{topico.descricao}}</span>
@@ -20,26 +20,26 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.topico.data">Data</span>
+                    <span>Data</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{topico.data}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.topico.aprovado">Aprovado</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{topico.aprovado}}</span>
+                    <span class="form-control-static">{{topico.data | date:'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.topico.assunto">assunto</span>
+                    <span>Status</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="assunto.detail({id:topico.assunto.id})">{{topico.assunto.id}}</a>
+                    <span class="form-control-static">{{topico.statusTopico}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Assunto</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="assunto.detail({id:topico.assunto.id})">{{topico.assunto.descricao}}</a>
                 </td>
             </tr>
             </tbody>

@@ -13,7 +13,7 @@ spring:
         databaseName: ad_683ae4736933e04
         serverName: Cloud Foundry ClearDB
         username: b784245c63af2f
-        password: 804cc789
+        password: 1276aee2ec2b9d0
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048

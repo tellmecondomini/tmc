@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, $timeout, entity, Topico, Assunto, Comentario, TopicoComentarios, Principal) {
+    .controller('TopicoComentariosController', function ($scope, $rootScope, $stateParams, $timeout, $http, entity, Topico,
+                                                         Assunto, Comentario, TopicoComentarios, Principal,
+                                                         ComentarioDeleteByMorador, AccountMorador, SolicitaRemocaoComentario) {
 
         Principal.identity().then(function (account) {
             $scope.account = account;
@@ -11,26 +13,32 @@ angular.module('tmcApp')
 
         $scope.comentarios = [];
 
+        $scope.solicitacoes = [];
+
         $scope.comentario = {
             id: null,
             conteudo: null,
             data: null,
             topico: $scope.topico,
             funcionario: null,
-            morador: null
+            morador: null,
+            solicitacaoJaExiste: false
         };
 
         $scope.load = function () {
-            var id = $stateParams.id;
-            TopicoComentarios.query({id: id}, function (result) {
-                $scope.comentarios = result;
-            });
-            $timeout(function () {
-                $scope.load();
-            }, 10000);
-        };
 
-        $scope.load();
+            var id = $stateParams.id;
+
+            SolicitaRemocaoComentario.query(function (solicitacoes) {
+                $scope.solicitacoes = solicitacoes;
+                TopicoComentarios.query({id: id}, function (comentarios) {
+                    angular.forEach(comentarios, function (value, key) {
+                        value.solicitacaoJaExiste = $scope.isSolicitacaoJaExite(value.id);
+                        this.push(value);
+                    }, $scope.comentarios);
+                });
+            });
+        };
 
         var onSaveFinished = function (result) {
             $scope.refresh();
@@ -51,9 +59,11 @@ angular.module('tmcApp')
                 data: null,
                 topico: $scope.topico,
                 funcionario: null,
-                morador: null
+                morador: null,
+                solicitacaoJaExiste: false
             };
             $scope.comentarios = [];
+            $scope.solicitacoes = [];
         };
 
         $scope.refresh = function () {
@@ -66,19 +76,51 @@ angular.module('tmcApp')
         });
 
         $scope.delete = function (id) {
+
             Comentario.get({id: id}, function (result) {
                 $scope.comentario = result;
-                $('#deleteComentarioConfirmation').modal('show');
+                $scope.motivo = "";
+            });
+
+            AccountMorador.get(function (morador) {
+                $scope.moradorSolicitante = morador;
+                if ($scope.moradorSolicitante)
+                    $('#deleteComentarioByMorador').modal('show');
+                else
+                    $('#deleteComentarioByFuncionario').modal('show');
             });
         };
 
-        $scope.confirmDelete = function (id) {
-            //Comentario.delete({id: id},
-            //    function () {
-            //        $scope.load();
-            //        $('#deleteComentarioConfirmation').modal('hide');
-            //        $scope.clear();
-            //    });
+        $scope.confirmDeleteFuncionario = function (id) {
+            Comentario.delete({id: id},
+                function () {
+                    $scope.load();
+                    $('#deleteComentarioByFuncionario').modal('hide');
+                    $scope.clear();
+                });
         };
 
+        $scope.confirmDeleteMorador = function (id) {
+            ComentarioDeleteByMorador.execute({id: id, moradorId: $scope.moradorSolicitante.id, motivo: $scope.motivo},
+                function () {
+                    $scope.refresh();
+                    $('#deleteComentarioByMorador').modal('hide');
+                    $('#deleteComentarioByMoradorConfirmation').modal('show');
+                });
+        };
+
+        $scope.isSolicitacaoJaExite = function (id) {
+            var filtered = [];
+            angular.forEach($scope.solicitacoes, function (value, key) {
+                if (value.comentario.id === id)
+                    this.push(value);
+            }, filtered);
+            return filtered.length <= 0;
+        };
+
+        $scope.load();
+
+        /*$timeout(function () {
+            $scope.refresh();
+        }, 10000);*/
     });

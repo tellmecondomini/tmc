@@ -150,6 +150,20 @@ public class AccountResource {
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @RequestMapping(value = "/account/morador",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Morador> getCurrentMorador() {
+        String email = userService.getUserDTO().getEmail();
+        log.debug("REST request to get Morador by Email: {}", email);
+        return Optional.ofNullable(moradorRepository.findOneByEmail(email))
+            .map(morador -> new ResponseEntity<>(
+                morador,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     /**
      * POST  /account -> update the current user information.
      */
@@ -239,7 +253,6 @@ public class AccountResource {
                 mailService.sendPasswordResetMail(user, baseUrl);
                 return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
             }).orElse(new ResponseEntity<>("e-mail address not registered", HttpStatus.BAD_REQUEST));
-
     }
 
     @RequestMapping(value = "/account/reset_password/finish",

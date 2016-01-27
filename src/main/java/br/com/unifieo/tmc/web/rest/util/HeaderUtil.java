@@ -7,14 +7,14 @@ import org.springframework.http.HttpHeaders;
  *
  */
 public class HeaderUtil {
- 
+
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-tmcApp-alert", message);
         headers.add("X-tmcApp-params", param);
         return headers;
     }
-    
+
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
         return createAlert("tmcApp." + entityName + ".created", param);
     }
@@ -25,6 +25,10 @@ public class HeaderUtil {
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
         return createAlert("tmcApp." + entityName + ".deleted", param);
+    }
+
+    public static HttpHeaders createSolicitacaoJaExisteAlert() {
+        return createAlert("Já existe uma solicitação de remoção para este comentário.", null);
     }
 
 }

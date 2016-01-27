@@ -172,7 +172,9 @@ public class TopicoResource {
             }
         });
 
-        return topicos.stream().sorted((t1, t2) -> t2.getData().compareTo(t1.getData())).collect(Collectors.toList());
+        return topicos.stream()
+            .sorted((t1, t2) -> t2.getData().compareTo(t1.getData()))
+            .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{id}/comentarios",
@@ -181,7 +183,11 @@ public class TopicoResource {
     @Timed
     public List<Comentario> getComentariosByTopico(@PathVariable Long id) {
         Topico topico = this.topicoRepository.findOne(id);
-        return comentarioRepository.findAllByTopico(topico).stream().sorted((c1, c2) -> c2.getData().compareTo(c1.getData())).collect(Collectors.toList());
+        List<Comentario> comentarios = comentarioRepository.findAllByTopico(topico).stream()
+            .filter(c -> c.getAtivo())
+            .sorted((c1, c2) -> c2.getData().compareTo(c1.getData()))
+            .collect(Collectors.toList());
+        return comentarios;
     }
 
     /**

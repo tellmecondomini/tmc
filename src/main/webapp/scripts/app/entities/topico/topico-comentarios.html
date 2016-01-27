@@ -1,28 +1,82 @@
 <div>
 
-    <div class="modal fade" id="deleteComentarioConfirmation">
+    <div class="modal fade" id="deleteComentarioByFuncionario">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="deleteForm" ng-submit="confirmDelete(comentario.id)">
+                <form name="deleteFormByFuncionario" ng-submit="confirmDeleteFuncionario(comentario.id)">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Uma solicitação de remoção de comentario sera enviada ao administrador. <br/> Confirma essa
-                            operação?</p>
+                        <p>Deseja realmente remover esse comentario?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
                             translate="entity.action.cancel">Cancel</span>
                         </button>
-                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Sim</span>
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteComentarioByMorador">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteFormByMorador" ng-submit="confirmDeleteMorador(comentario.id)" novalidate
+                      show-validation>
+                    <jh-alert-error></jh-alert-error>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Uma solicitação de remoção de comentario sera enviada ao administrador.
+                            <br/> Confirma essa operação?
+                        </p>
+                        <div class="form-group">
+                            <label for="field_motivo">Motivo</label>
+                            <textarea class="form-control" name="motivo" id="field_motivo" ng-model="motivo"
+                                      maxlength="500" required/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                            translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteFormByMorador.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Sim</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteComentarioByMoradorConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title">Solicitação de Remoção</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Solicitação de removação de comentário enviada com sucesso.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        OK
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -51,7 +105,7 @@
             </div>
         </div>
 
-        <div class="well pre-scrollable">
+        <div id="comentarios" class="well pre-scrollable">
 
             <div ng-repeat="comentario in comentarios">
 
@@ -61,8 +115,14 @@
                     <dd>
                         <div class="col-md-0">
                             <small><cite>Escrito em {{comentario.data | date:'dd/MM/yyyy - HH:mm:ss'}}</cite></small>
-                            <small> - <a ng-click="delete(comentario.id)"><span
-                                class="glyphicon glyphicon-floppy-remove"></span></a></small>
+                            <div ng-show="(['ABERTO'].indexOf(topico.statusTopico) > -1)">
+                                <small ng-show="comentario.solicitacaoJaExiste">
+                                    <a ng-click="delete(comentario.id)"> <span class="glyphicon glyphicon-floppy-remove"></span></a>
+                                </small>
+                                <small ng-hide="comentario.solicitacaoJaExiste">
+                                    <i>Exite uma solicitação para remoção deste comentário</i>
+                                </small>
+                            </div>
                         </div>
                     </dd>
                 </dl>

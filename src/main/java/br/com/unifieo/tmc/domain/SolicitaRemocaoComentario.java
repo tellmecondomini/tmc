@@ -43,7 +43,7 @@ public class SolicitaRemocaoComentario implements Serializable {
     @Column(name = "observacao")
     private String observacao;
 
-    @Column(name="aprova")
+    @Column(name="aprovado")
     private Boolean aprovado;
 
     @ManyToOne

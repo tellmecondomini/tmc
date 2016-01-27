@@ -1,8 +1,9 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
+import br.com.unifieo.tmc.domain.SolicitaRemocaoComentario;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
-import br.com.unifieo.tmc.repository.TopicoRepository;
+import br.com.unifieo.tmc.repository.SolicitaRemocaoComentarioRepository;
 import br.com.unifieo.tmc.service.ComentarioService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -32,10 +33,10 @@ public class ComentarioResource {
     private ComentarioRepository comentarioRepository;
 
     @Inject
-    private TopicoRepository topicoRepository;
+    private ComentarioService comentarioService;
 
     @Inject
-    private ComentarioService comentarioService;
+    private SolicitaRemocaoComentarioRepository solicitaRemocaoComentarioRepository;
 
     /**
      * POST  /comentarios -> Create a new comentario.
@@ -108,7 +109,35 @@ public class ComentarioResource {
     @Timed
     public ResponseEntity<Void> deleteComentario(@PathVariable Long id) {
         log.debug("REST request to delete Comentario : {}", id);
-        comentarioRepository.delete(id);
+        Comentario comentario = comentarioRepository.findOne(id);
+        comentario.setAtivo(false);
+        comentarioRepository.save(comentario);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("comentario", id.toString())).build();
     }
+
+    @RequestMapping(value = "/comentarios/remove/{id}/{moradorId}/{motivo}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> deleteComentarioByMorador(@PathVariable Long id, @PathVariable Long moradorId, @PathVariable String motivo) {
+        log.debug("REST request to delete Comentario By Morador : {}", id);
+        Comentario comentario = comentarioRepository.findOne(id);
+        return Optional.ofNullable(solicitaRemocaoComentarioRepository.findOneByComentario(comentario))
+            .map(s -> ResponseEntity.badRequest().headers(HeaderUtil.createSolicitacaoJaExisteAlert()).build())
+            .orElseGet(() -> {
+                comentarioService.getSolicitacaoRemocaoByMorador(comentario, moradorId, motivo);
+                return ResponseEntity.ok().build();
+            });
+    }
+
+    @RequestMapping(value = "/comentarios/remove/{idComentario}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<SolicitaRemocaoComentario> deleteComentarioByMorador(@PathVariable Long idComentario) {
+        Comentario comentario = comentarioRepository.findOne(idComentario);
+        return Optional.ofNullable(solicitaRemocaoComentarioRepository.findOneByComentario(comentario))
+            .map(solicitacao -> new ResponseEntity<>(solicitacao, HttpStatus.OK)).get();
+    }
+
 }

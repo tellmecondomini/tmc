@@ -1,13 +1,7 @@
 package br.com.unifieo.tmc.service;
 
-import br.com.unifieo.tmc.domain.Comentario;
-import br.com.unifieo.tmc.domain.Funcionario;
-import br.com.unifieo.tmc.domain.Morador;
-import br.com.unifieo.tmc.domain.User;
-import br.com.unifieo.tmc.repository.ComentarioRepository;
-import br.com.unifieo.tmc.repository.FuncionarioRepository;
-import br.com.unifieo.tmc.repository.MoradorRepository;
-import br.com.unifieo.tmc.repository.UserRepository;
+import br.com.unifieo.tmc.domain.*;
+import br.com.unifieo.tmc.repository.*;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -27,14 +21,17 @@ public class ComentarioService {
     private final UserRepository userRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final MoradorRepository moradorRepository;
+    private final SolicitaRemocaoComentarioRepository solicitaRemocaoComentarioRepository;
 
     @Inject
     public ComentarioService(ComentarioRepository comentarioRepository, UserRepository userRepository,
-                             FuncionarioRepository funcionarioRepository, MoradorRepository moradorRepository) {
+                             FuncionarioRepository funcionarioRepository, MoradorRepository moradorRepository,
+                             SolicitaRemocaoComentarioRepository solicitaRemocaoComentarioRepository) {
         this.comentarioRepository = comentarioRepository;
         this.userRepository = userRepository;
         this.funcionarioRepository = funcionarioRepository;
         this.moradorRepository = moradorRepository;
+        this.solicitaRemocaoComentarioRepository = solicitaRemocaoComentarioRepository;
     }
 
     public Comentario save(Comentario comentario) {
@@ -48,8 +45,19 @@ public class ComentarioService {
             comentario.setFuncionario(funcionario);
         }
         comentario.setData(new DateTime());
-        comentario.setAtivo(false);
+        comentario.setAtivo(true);
         Comentario comentarioSaved = comentarioRepository.save(comentario);
         return comentarioSaved;
+    }
+
+    public void getSolicitacaoRemocaoByMorador(Comentario comentario, Long moradorId, String motivo) {
+        Morador morador = moradorRepository.findOne(moradorId);
+
+        SolicitaRemocaoComentario remocaoComentario = new SolicitaRemocaoComentario();
+        remocaoComentario.setData(new DateTime());
+        remocaoComentario.setComentario(comentario);
+        remocaoComentario.setMorador(morador);
+        remocaoComentario.setMotivo(motivo);
+        solicitaRemocaoComentarioRepository.save(remocaoComentario);
     }
 }

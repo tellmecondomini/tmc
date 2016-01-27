@@ -10,7 +10,8 @@
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Uma solicitação de remoção de comentario sera enviada ao administrador. <br/> Confirma essa operação?</p>
+                        <p>Uma solicitação de remoção de comentario sera enviada ao administrador. <br/> Confirma essa
+                            operação?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -43,7 +44,8 @@
             </div>
         </div>
 
-        <div class="row" ng-show="(['ABERTO'].indexOf(topico.statusTopico) > -1)">
+        <div class="row"
+             ng-show="(['ABERTO'].indexOf(topico.statusTopico) > -1) && ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1">
             <div class="form-group col-md-12 text-right">
                 <a ui-sref="topico.encerrar({id:topico.id})">Encerrar</a>
             </div>

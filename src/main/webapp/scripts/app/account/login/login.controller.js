@@ -6,7 +6,9 @@ angular.module('tmcApp')
         $scope.errors = {};
 
         $scope.rememberMe = true;
-        $timeout(function (){angular.element('[ng-model="email"]').focus();});
+        $timeout(function () {
+            angular.element('[ng-model="email"]').focus();
+        });
         $scope.login = function (event) {
             event.preventDefault();
             Auth.login({

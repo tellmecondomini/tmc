@@ -124,6 +124,9 @@
                                 <span translate="global.menu.account.password">Password</span>
                             </a>
                         </li>
+                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()">
+                            <span translate="global.menu.account.logout">Log out</span></a>
+                        </li>
                         <li ui-sref-active="active" ng-switch-when="false">
                             <a ui-sref="login">
                                 <span translate="global.menu.account.login">Authenticate</span>
@@ -137,11 +140,8 @@
                     </ul>
                 </li>
 
-                <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span
-                    class="glyphicon glyphicon-log-out"></span>
-                    <span translate="global.menu.account.logout">Log out</span></a></li>
-
             </ul>
+
         </div>
     </div>
 </nav>

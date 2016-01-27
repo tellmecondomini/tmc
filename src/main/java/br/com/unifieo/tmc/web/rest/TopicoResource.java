@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -126,7 +127,7 @@ public class TopicoResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Topico> encerra(@PathVariable Long id, @PathVariable String solucao, @PathVariable String observacao,
+    public ResponseEntity<Topico> encerra(@PathVariable Long id, @PathVariable String solucao, @PathVariable byte[] observacao,
                                           HttpServletRequest request) throws URISyntaxException {
 
         Topico topico = topicoRepository.findOne(id);
@@ -139,7 +140,8 @@ public class TopicoResource {
             ":" +
             request.getServerPort();
 
-        Topico topicoSaved = topicoService.getEncerramentoTopico(topico, solucao, observacao, baseUrl);
+        String obs = new String(observacao, StandardCharsets.UTF_8);
+        Topico topicoSaved = topicoService.getEncerramentoTopico(topico, solucao, obs, baseUrl);
 
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("topico", topico.getId().toString()))

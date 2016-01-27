@@ -28,8 +28,8 @@ public class Comentario implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 240)
-    @Column(name = "conteudo", length = 240, nullable = false)
+    @Size(min = 1, max = 2000)
+    @Column(name = "conteudo", length = 2000, nullable = false)
     private String conteudo;
 
     @Column(name = "ativo")

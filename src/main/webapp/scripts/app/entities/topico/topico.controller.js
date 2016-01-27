@@ -8,10 +8,14 @@ angular.module('tmcApp')
         });
 
         $scope.topicos = [];
+        $scope.encerrados = [];
         $scope.loadAll = function () {
             Topico.query(function (result) {
                 angular.forEach(result, function (topico) {
-                    $scope.topicos.push(topico);
+                    if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1)
+                        $scope.encerrados.push(topico);
+                    else
+                        $scope.topicos.push(topico);
                 });
             });
         };
@@ -39,6 +43,12 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.topico = {conteudo: null, data: null, aprovado: null, id: null};
+            $scope.topico = {
+                titulo: null,
+                descricao: null,
+                data: null,
+                aprovado: null,
+                id: null
+            };
         };
     });

@@ -42,7 +42,7 @@
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
                     </td>
                     <td>
-                        <small>{{topico.statusTopico}}</small>
+                        <small>{{getDescricaoStatusTopico(topico.statusTopico)}}</small>
                     </td>
                     <td>
                         <small><a ui-sref="topico.comentarios({id:topico.id})"
@@ -84,7 +84,7 @@
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
                     </td>
                     <td>
-                        <small>{{topico.statusTopico}}</small>
+                        <small>{{getDescricaoStatusTopico(topico.statusTopico)}}</small>
                     </td>
                     <td>
                         <small><a ui-sref="topico.comentarios({id:topico.id})"

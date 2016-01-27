@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('TopicoController', function ($scope, Topico, Principal) {
+    .controller('TopicoController', function ($scope, $http, Topico, Principal) {
 
         Principal.identity().then(function (account) {
             $scope.account = account;
@@ -51,4 +51,18 @@ angular.module('tmcApp')
                 id: null
             };
         };
+
+        $scope.getDescricaoStatusTopico = function (status) {
+            if (status == "AGUARDANDO_APROVACAO")
+                return "Aguardando aprovação";
+            else if (status == "ABERTO")
+                return "Aberto";
+            else if (status == "ENCERRADO_COM_SUCESSO")
+                return "Encerrado com sucesso";
+            else if (status == "ENCERRADO_SEM_SUCESSO")
+                return "Encerrado sem sucesso";
+            else
+                return "Reprovado";
+        };
+
     });

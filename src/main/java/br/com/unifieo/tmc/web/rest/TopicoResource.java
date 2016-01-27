@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
 import br.com.unifieo.tmc.domain.Condominio;
+import br.com.unifieo.tmc.domain.StatusTopico;
 import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
 import br.com.unifieo.tmc.repository.TopicoRepository;
@@ -215,4 +216,13 @@ public class TopicoResource {
         topicoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("topico", id.toString())).build();
     }
+
+    @RequestMapping(value = "/topicos/status/{status}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<String> getTopico(@PathVariable StatusTopico status) {
+        return new ResponseEntity<>("Aberto", HttpStatus.OK);
+    }
+
 }

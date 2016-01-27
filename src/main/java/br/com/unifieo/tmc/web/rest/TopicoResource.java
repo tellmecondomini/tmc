@@ -2,16 +2,13 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
 import br.com.unifieo.tmc.domain.Condominio;
-import br.com.unifieo.tmc.domain.StatusTopico;
 import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
 import br.com.unifieo.tmc.repository.TopicoRepository;
 import br.com.unifieo.tmc.service.CondominioService;
-import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.TopicoService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

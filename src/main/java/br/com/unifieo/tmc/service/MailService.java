@@ -152,4 +152,16 @@ public class MailService {
         String subject = "TMC - Topico Encerrado";
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
+
+    public void sendSolicitacaoRemocaoComentario(SolicitaRemocaoComentario solicitacao, String baseUrl) {
+        log.debug("Solicitacao de remocao de comentario '{}'", solicitacao.getComentario().getConteudo());
+        User user = userService.getUserWithAuthorities();
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("solicitacao", solicitacao);
+        context.setVariable("baseUrl", baseUrl);
+        String content = templateEngine.process("solicitacaoRemocaoComentario", context);
+        String subject = "TMC - Remoção de Comentário";
+        this.sendEmail(solicitacao.getMorador().getEmail(), subject, content, false, true);
+    }
 }

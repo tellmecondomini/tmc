@@ -13,12 +13,12 @@
             "detail": {
                 "title": "Comentario"
             },
-            "conteudo": "Conteudo",
+            "conteudo": "Conteúdo",
             "data": "Data",
             "ativo": "Ativo",
             "topico": "Topico",
             "morador": "Morador",
-            "funcionario": "Funcionario"
+            "funcionario": "Funcionário"
         }
     }
 }

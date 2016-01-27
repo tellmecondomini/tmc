@@ -15,7 +15,7 @@
                     <span translate="tmcApp.solicitaRemocaoComentario.data">Data</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{solicitaRemocaoComentario.data}}</span>
+                    <span class="form-control-static">{{solicitaRemocaoComentario.data | date: 'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <span translate="tmcApp.solicitaRemocaoComentario.comentario">comentario</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.id}}</a>
+                    <a class="form-control-static" ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.conteudo}}</a>
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     <span translate="tmcApp.solicitaRemocaoComentario.morador">morador</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="morador.detail({id:solicitaRemocaoComentario.morador.id})">{{solicitaRemocaoComentario.morador.id}}</a>
+                    <a class="form-control-static" ui-sref="morador.detail({id:solicitaRemocaoComentario.morador.id})">{{solicitaRemocaoComentario.morador.nome}}</a>
                 </td>
             </tr>
             </tbody>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tell Me Condominium</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h3>
+            Sua solicitação para remoção do comentario <span th:text="${solicitacao.aprovado ? 'foi' : 'não foi'}" /> aprovada!
+        </h3>
+        <ul>
+            <li>
+                Comentário: <span th:text="${solicitacao.comentario.conteudo}" />
+            </li>
+            <li>
+                Motivo: <span th:text="${solicitacao.motivo}" />
+            </li>
+            <li>
+                Observação do Administrador: <span th:text="${solicitacao.observacao}" />
+            </li>
+        </ul>
+        <p>
+            Acesse o sistema, <a th:href="@{|${baseUrl}/#/login|}">clicando aqui</a>
+        </p>
+        <p>
+            Att,
+        <p>
+            <em>Equipe Tell Me Condominium.</em>
+        </p>
+        </p>
+    </body>
+</html>

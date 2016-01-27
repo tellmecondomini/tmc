@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MainController', function ($scope, Principal, Topico) {
+    .controller('MainController', function ($scope, Principal, Topico, SolicitaRemocaoComentario) {
 
         Principal.identity().then(function (account) {
             $scope.account = account;
@@ -18,5 +18,15 @@ angular.module('tmcApp')
             });
         };
         $scope.loadTopicosASeremAprovados();
+
+        $scope.solicitacoes = [];
+        $scope.loadSolicitacoes = function () {
+            SolicitaRemocaoComentario.query(function (result) {
+                $scope.solicitacoes = result.filter(function (value) {
+                    return value.dataAtendimento == null;
+                })
+            });
+        };
+        $scope.loadSolicitacoes();
 
     });

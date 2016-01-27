@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/solicitaRemocaoComentarios',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.solicitaRemocaoComentario.home.title'
                 },
                 views: {
@@ -28,7 +28,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/solicitaRemocaoComentario/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.solicitaRemocaoComentario.detail.title'
                 },
                 views: {
@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('solicitaRemocaoComentario');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'SolicitaRemocaoComentario', function($stateParams, SolicitaRemocaoComentario) {
-                        return SolicitaRemocaoComentario.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'SolicitaRemocaoComentario', function ($stateParams, SolicitaRemocaoComentario) {
+                        return SolicitaRemocaoComentario.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -51,9 +51,9 @@ angular.module('tmcApp')
                 parent: 'solicitaRemocaoComentario',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/solicitaRemocaoComentario/solicitaRemocaoComentario-dialog.html',
                         controller: 'SolicitaRemocaoComentarioDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {data: null, motivo: null, dataAtendimento: null, observacao: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('solicitaRemocaoComentario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('solicitaRemocaoComentario', null, {reload: true});
+                    }, function () {
                         $state.go('solicitaRemocaoComentario');
                     })
                 }]
@@ -74,21 +74,21 @@ angular.module('tmcApp')
                 parent: 'solicitaRemocaoComentario',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/solicitaRemocaoComentario/solicitaRemocaoComentario-dialog.html',
                         controller: 'SolicitaRemocaoComentarioDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['SolicitaRemocaoComentario', function(SolicitaRemocaoComentario) {
-                                return SolicitaRemocaoComentario.get({id : $stateParams.id});
+                            entity: ['SolicitaRemocaoComentario', function (SolicitaRemocaoComentario) {
+                                return SolicitaRemocaoComentario.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('solicitaRemocaoComentario', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('solicitaRemocaoComentario', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

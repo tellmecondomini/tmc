@@ -12,10 +12,10 @@
             <tbody>
             <tr>
                 <td>
-                    <span translate="tmcApp.comentario.descricao">Conteudo</span>
+                    <span translate="tmcApp.comentario.conteudo">Conteudo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{comentario.descricao}}</span>
+                    <span class="form-control-static">{{comentario.conteudo}}</span>
                 </td>
             </tr>
             <tr>
@@ -23,7 +23,7 @@
                     <span translate="tmcApp.comentario.data">Data</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{comentario.data}}</span>
+                    <span class="form-control-static">{{comentario.data | date: 'dd/MM/yyyy'}}</span>
                 </td>
             </tr>
             <tr>

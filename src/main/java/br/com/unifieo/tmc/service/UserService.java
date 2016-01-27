@@ -276,4 +276,10 @@ public class UserService {
         User user = this.getUserWithAuthorities();
         return moradorRepository.findOneByEmail(user.getEmail());
     }
+
+    public Funcionario getFuncionarioAtual() {
+        User user = this.getUserWithAuthorities();
+        return funcionarioRepository.findOneByEmail(user.getEmail());
+    }
+
 }

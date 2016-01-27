@@ -67,5 +67,51 @@ angular.module('tmcApp')
                         $state.go('^');
                     })
                 }]
+            })
+            .state('aprovacao', {
+                parent: 'home',
+                url: 'solicitacao/{id}/aprovacao',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'SolicitaRemocaoComentario', function ($stateParams, $state, $modal, SolicitaRemocaoComentario) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/main/solicitacao-aprovacao.html',
+                        controller: 'SolicitacaoAprovacaoController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['SolicitaRemocaoComentario', function (SolicitaRemocaoComentario) {
+                                return SolicitaRemocaoComentario.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('^', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
+            })
+            .state('reprovacao', {
+                parent: 'home',
+                url: 'solicitacao/{id}/reprovacao',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'SolicitaRemocaoComentario', function ($stateParams, $state, $modal, SolicitaRemocaoComentario) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/main/solicitacao-reprovacao.html',
+                        controller: 'SolicitacaoAprovacaoController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['SolicitaRemocaoComentario', function (SolicitaRemocaoComentario) {
+                                return SolicitaRemocaoComentario.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('^', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
             });
     });

@@ -1,0 +1,52 @@
+<form name="editForm" role="form" novalidate ng-submit="reprova()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myTopicoLabel">Reprovação de Exclusão de Comentário</h4>
+    </div>
+
+    <div class="modal-body">
+
+        <jh-alert-error></jh-alert-error>
+
+        <div class="form-group">
+            <p>
+                Comentário:
+                <spam class="text-success">{{solicitacao.comentario.conteudo}}</spam>
+            </p>
+            <p>
+                Motivo:
+                <spam class="text-success">{{solicitacao.motivo}}</spam>
+            </p>
+            <p>
+                Morador Solicitante:
+                <spam class="text-success">{{solicitacao.morador.nome}}</spam>
+            </p>
+            <div class="form-group">
+                <label for="field_obs">Observação</label>
+                <textarea type="text" class="form-control" name="observacao" id="field_obs"
+                          ng-model="solicitacao.observacao"
+                          required />
+
+                <div ng-show="editForm.observacao.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.observacao.$error.required" translate="entity.validation.required">
+                        This field is required.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-danger">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Reprovar</span>
+        </button>
+    </div>
+
+</form>

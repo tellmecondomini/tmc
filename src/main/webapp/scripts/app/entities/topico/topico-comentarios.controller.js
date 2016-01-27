@@ -82,13 +82,14 @@ angular.module('tmcApp')
                 $scope.motivo = "";
             });
 
-            AccountMorador.get(function (morador) {
-                $scope.moradorSolicitante = morador;
-                if ($scope.moradorSolicitante)
-                    $('#deleteComentarioByMorador').modal('show');
-                else
+            $http.get("api/account/morador").then(
+                function (result) {
+                    $scope.moradorSolicitante = result.data;
+                    if ($scope.moradorSolicitante)
+                        $('#deleteComentarioByMorador').modal('show');
+                }, function (error) {
                     $('#deleteComentarioByFuncionario').modal('show');
-            });
+                });
         };
 
         $scope.confirmDeleteFuncionario = function (id) {
@@ -121,6 +122,6 @@ angular.module('tmcApp')
         $scope.load();
 
         /*$timeout(function () {
-            $scope.refresh();
-        }, 10000);*/
+         $scope.refresh();
+         }, 10000);*/
     });

@@ -3,7 +3,7 @@
 angular.module('tmcApp')
     .factory('SolicitaRemocaoComentario', function ($resource, DateUtils) {
         return $resource('api/solicitaRemocaoComentarios/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -13,6 +13,17 @@ angular.module('tmcApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
+        });
+    })
+    .factory('SolicitaAprovacao', function ($resource) {
+        return $resource('api/solicitaRemocaoComentarios/aprovacao/:id/:aprovado/:observacao', {}, {
+            'execute': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
         });
     });

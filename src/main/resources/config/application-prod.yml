@@ -9,11 +9,11 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/ad_683ae4736933e04
-        databaseName: ad_683ae4736933e04
+        url: jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/ad_6b865fcff027efb
+        databaseName: ad_6b865fcff027efb
         serverName: Cloud Foundry ClearDB
-        username: b784245c63af2f
-        password: 1276aee2ec2b9d0
+        username: b3f90d94184894
+        password: 58403a2e
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048

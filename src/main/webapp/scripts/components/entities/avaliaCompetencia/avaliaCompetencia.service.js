@@ -51,4 +51,15 @@ angular.module('tmcApp')
         return $resource('api/avaliaCompetencias/query/:idPrestador/:idCompetencia', {}, {
             'query': {method: 'GET', isArray: true}
         });
+    })
+    .factory('GetAprovacaoAvaliacao', function ($resource) {
+        return $resource('api/avaliaCompetencias/aprovacao/:idAvaliacao/:aprovado', {}, {
+            'execute': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
     });

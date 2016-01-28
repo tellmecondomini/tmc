@@ -113,5 +113,51 @@ angular.module('tmcApp')
                         $state.go('^');
                     })
                 }]
+            })
+            .state('avaliaCompetencia.aprovacao', {
+                parent: 'home',
+                url: 'avaliacao/{id}/aprovacao',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'AvaliaCompetencia', function ($stateParams, $state, $modal, AvaliaCompetencia) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/main/avaliacao-aprovacao.html',
+                        controller: 'AvaliacaoAprovacaoController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['AvaliaCompetencia', function (AvaliaCompetencia) {
+                                return AvaliaCompetencia.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('^', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
+            })
+            .state('avaliaCompetencia.reprovacao', {
+                parent: 'home',
+                url: 'avaliacao/{id}/reprovacao',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', 'AvaliaCompetencia', function ($stateParams, $state, $modal, AvaliaCompetencia) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/main/avaliacao-reprovacao.html',
+                        controller: 'AvaliacaoAprovacaoController',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['AvaliaCompetencia', function (AvaliaCompetencia) {
+                                return AvaliaCompetencia.get({id: $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function (result) {
+                        $state.go('^', null, {reload: true});
+                    }, function () {
+                        $state.go('^');
+                    })
+                }]
             });
     });

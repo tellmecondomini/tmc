@@ -68,7 +68,6 @@ public class AvaliaCompetenciaResource {
         PrestadorServico prestadorServico = avaliaCompetencia.getPrestadorServico();
         CompetenciaPrestador competenciaPrestador = avaliaCompetencia.getCompetenciaPrestador();
         Morador morador = moradorService.getCurrentMorador();
-        ;
 
         List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(prestadorServico, competenciaPrestador, morador);
 
@@ -190,6 +189,19 @@ public class AvaliaCompetenciaResource {
             .sorted((a1, a2) -> a2.getId().compareTo(a1.getId()))
             .sorted((a1, a2) -> Integer.compare(a2.getNota(), a1.getNota()))
             .collect(toList());
+    }
+
+    @RequestMapping(value = "/avaliaCompetencias/aprovacao/{idAvaliacao}/{aprovado}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<AvaliaCompetencia> getAprovacaoAvaliacao(@PathVariable Long idAvaliacao, @PathVariable boolean aprovado) {
+        AvaliaCompetencia avaliaCompetencia = avaliaCompetenciaRepository.findOne(idAvaliacao);
+        avaliaCompetencia.setAtivo(aprovado);
+        AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("avaliaCompetencia", avaliaCompetencia.getId().toString()))
+            .body(result);
     }
 
     /**

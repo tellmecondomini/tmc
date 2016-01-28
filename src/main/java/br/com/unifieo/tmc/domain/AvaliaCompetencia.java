@@ -45,7 +45,7 @@ public class AvaliaCompetencia implements Serializable {
 
     public AvaliaCompetencia() {
         this.nota = 0;
-        this.ativo = true;
+        this.ativo = false;
         this.data = Funcoes.getIntDate();
     }
 

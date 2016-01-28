@@ -90,6 +90,51 @@
             </table>
         </div>
 
+        <!-- Avaliações de Prestadores de Serviço
+        <p class="lead text-primary text-center">Avaliações de Prestadores de Serviço</p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Prestador de Serviço</th>
+                    <th>Competência Avaliada</th>
+                    <th>Morador</th>
+                    <th>Nota</th>
+                    <th>Mensagem</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="avaliacao in avaliacoes">
+                    <td>
+                        <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{avaliacao.prestadorServico.nome}}</a>
+                    </td>
+                    <td>
+                        <span class="form-control-static">{{avaliacao.competenciaPrestador.descricao}}</span>
+                    </td>
+                    <td>
+                        <spam class="form-control-static">{{avaliacao.morador.nome}}</spam>
+                    </td>
+                    <td>
+                        <rating ng-model="avaliacao.nota" max="5" readonly="true" on-leave="overStar = null" aria-labelledby="default-rating"/>
+                    </td>
+                    <td>
+                        <spam class="form-control-static">{{avaliacao.mensagem}}</spam>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" ui-sref="avaliaCompetencia.aprovacao({id:avaliacao.id})">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                        <button class="btn btn-danger" ui-sref="avaliaCompetencia.reprovacao({id:avaliacao.id})">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        -->
+
     </div>
 
 </div>

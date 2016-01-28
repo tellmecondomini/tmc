@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MainController', function ($scope, Principal, Topico, SolicitaRemocaoComentario) {
+    .controller('MainController', function ($scope, Principal, Topico, SolicitaRemocaoComentario, AvaliaCompetencia) {
 
         Principal.identity().then(function (account) {
             $scope.account = account;
@@ -28,5 +28,16 @@ angular.module('tmcApp')
             });
         };
         $scope.loadSolicitacoes();
+
+        $scope.avaliacoes = [];
+        $scope.loadAvaliacoes = function () {
+            AvaliaCompetencia.query(function (result) {
+                angular.forEach(result, function (value, key) {
+                    if (value.ativo === false)
+                        this.push(value);
+                }, $scope.avaliacoes);
+            });
+        };
+        $scope.loadAvaliacoes();
 
     });

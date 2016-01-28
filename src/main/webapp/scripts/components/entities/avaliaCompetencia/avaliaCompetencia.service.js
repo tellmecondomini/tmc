@@ -14,8 +14,8 @@ angular.module('tmcApp')
             'update': {method: 'PUT'}
         });
     })
-    .factory('NotaAvaliacao', function ($resource) {
-        return $resource('api/avaliaCompetencias/nota/:idPrestador/:idCompetencia', {}, {
+    .factory('NewAvaliacao', function ($resource) {
+        return $resource('api/avaliaCompetencias/new/:idPrestador/:idCompetencia', {}, {
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -23,5 +23,32 @@ angular.module('tmcApp')
                     return data;
                 }
             }
+        });
+    })
+    .factory('GetAvaliacao', function ($resource) {
+        return $resource('api/avaliaCompetencias/get/:idPrestador/:idCompetencia', {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
+    })
+    .factory('GetAvaliacaoByMorador', function ($resource) {
+        return $resource('api/avaliaCompetencias/get/:idPrestador/:idCompetencia/:idMorador', {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
+    })
+    .factory('GetAvaliacoes', function ($resource) {
+        return $resource('api/avaliaCompetencias/query/:idPrestador/:idCompetencia', {}, {
+            'query': {method: 'GET', isArray: true}
         });
     });

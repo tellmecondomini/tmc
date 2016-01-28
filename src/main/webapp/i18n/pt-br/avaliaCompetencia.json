@@ -13,7 +13,7 @@
                 "question": "Are you sure you want to delete AvaliaCompetencia {{ id }}?"
             },
             "detail": {
-                "title": "Avaliação"
+                "title": "Avaliações"
             },
             "nota": "Nota",
             "mensagem": "Mensagem",

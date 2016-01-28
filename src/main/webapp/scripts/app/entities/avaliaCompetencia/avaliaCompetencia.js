@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('avaliaCompetencia');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'NotaAvaliacao', function ($stateParams, NotaAvaliacao) {
-                        return NotaAvaliacao.get({
+                    list: ['$stateParams', 'GetAvaliacoes', function ($stateParams, GetAvaliacoes) {
+                        return GetAvaliacoes.query({
                             idPrestador: $stateParams.idPrestador,
                             idCompetencia: $stateParams.idCompetencia
                         });
@@ -85,8 +85,8 @@ angular.module('tmcApp')
                         controller: 'AvaliaCompetenciaDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['NotaAvaliacao', function (NotaAvaliacao) {
-                                return NotaAvaliacao.get({
+                            entity: ['NewAvaliacao', function (NewAvaliacao) {
+                                return NewAvaliacao.get({
                                     idPrestador: $stateParams.idPrestador,
                                     idCompetencia: $stateParams.idCompetencia
                                 });

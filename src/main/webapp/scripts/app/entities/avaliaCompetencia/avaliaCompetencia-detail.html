@@ -1,67 +1,27 @@
-
 <div>
-    <h2><span translate="tmcApp.avaliaCompetencia.detail.title">AvaliaCompetencia</span> {{avaliaCompetencia.id}}</h2>
+    <h2><span translate="tmcApp.avaliaCompetencia.detail.title">AvaliaCompetencia</span>{{avaliaCompetencia.id}}</h2>
+    <h4>{{avaliacoes[0].prestadorServico.nome}}</h4>
+    <h4>{{avaliacoes[0].competenciaPrestador.descricao}}</h4>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th translate="entity.detail.field">Field</th>
-                <th translate="entity.detail.value">Value</th>
+                <th>Morador</th>
+                <th>Nota</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr ng-repeat="avaliacao in avaliacoes">
                 <td>
-                    <span translate="tmcApp.avaliaCompetencia.nota">Nota</span>
+                    <a class="form-control-static" ui-sref="morador.detail({id:avaliacao.morador.id})">{{avaliacao.morador.nome}}</a>
                 </td>
                 <td>
-                    <span class="form-control-static">{{avaliaCompetencia.nota}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.avaliaCompetencia.mensagem">Mensagem</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{avaliaCompetencia.mensagem}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.avaliaCompetencia.ativo">Ativo</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{avaliaCompetencia.ativo ? 'Sim' : 'Não'}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.avaliaCompetencia.morador">morador</span>
-                </td>
-                <td>
-                    <a class="form-control-static" ui-sref="morador.detail({id:avaliaCompetencia.morador.id})">{{avaliaCompetencia.morador.nome}}</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.avaliaCompetencia.prestadorServico">prestadorServico</span>
-                </td>
-                <td>
-                    <a class="form-control-static" ui-sref="prestadorServico.detail({id:avaliaCompetencia.prestadorServico.id})">{{avaliaCompetencia.prestadorServico.nome}}</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="tmcApp.avaliaCompetencia.competenciaPrestador">competenciaPrestador</span>
-                </td>
-                <td>
-                    <a class="form-control-static" ui-sref="competenciaPrestador.detail({id:avaliaCompetencia.competenciaPrestador.id})">{{avaliaCompetencia.competenciaPrestador.descricao}}</a>
+                    <rating ng-model="avaliacao.nota" max="5" readonly="true" aria-labelledby="default-rating"/>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

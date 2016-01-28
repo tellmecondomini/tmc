@@ -1,11 +1,13 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.commons.Funcoes;
 import br.com.unifieo.tmc.domain.AvaliaCompetencia;
 import br.com.unifieo.tmc.domain.CompetenciaPrestador;
 import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.AvaliaCompetenciaRepository;
 import br.com.unifieo.tmc.repository.CompetenciaPrestadorRepository;
+import br.com.unifieo.tmc.repository.MoradorRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
 import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -22,6 +24,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * REST controller for managing AvaliaCompetencia.
@@ -42,6 +46,9 @@ public class AvaliaCompetenciaResource {
     private CompetenciaPrestadorRepository competenciaPrestadorRepository;
 
     @Inject
+    private MoradorRepository moradorRepository;
+
+    @Inject
     private MoradorService moradorService;
 
     /**
@@ -52,10 +59,24 @@ public class AvaliaCompetenciaResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AvaliaCompetencia> createAvaliaCompetencia(@RequestBody AvaliaCompetencia avaliaCompetencia) throws URISyntaxException {
+
         log.debug("REST request to save AvaliaCompetencia : {}", avaliaCompetencia);
-        if (avaliaCompetencia.getId() != null) {
+
+        if (avaliaCompetencia.getId() != null)
             return ResponseEntity.badRequest().header("Failure", "A new avaliaCompetencia cannot already have an ID").body(null);
-        }
+
+        PrestadorServico prestadorServico = avaliaCompetencia.getPrestadorServico();
+        CompetenciaPrestador competenciaPrestador = avaliaCompetencia.getCompetenciaPrestador();
+        Morador morador = moradorService.getCurrentMorador();
+        ;
+
+        List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(prestadorServico, competenciaPrestador, morador);
+
+        final int dataAtual = Funcoes.getIntDate();
+        if (avaliacoes.stream().filter(a -> a.getData() == dataAtual).findFirst().isPresent())
+            return ResponseEntity.badRequest().header("Erro", "Você já realizou uma avaliação para este Prestador de Serviço e para essa Competência hoje.").body(null);
+
+        avaliaCompetencia.setMorador(morador);
         AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
         return ResponseEntity.created(new URI("/api/avaliacoes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("avaliaCompetencia", result.getId().toString()))
@@ -108,27 +129,67 @@ public class AvaliaCompetenciaResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @RequestMapping(value = "/avaliaCompetencias/nota/{idPrestador}/{idCompetencia}",
+    @RequestMapping(value = "/avaliaCompetencias/new/{idPrestador}/{idCompetencia}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<AvaliaCompetencia> newAvaliacao(@PathVariable Long idPrestador, @PathVariable Long idCompetencia) {
+        PrestadorServico prestadorServico = prestadorServicoRepository.findOne(idPrestador);
+        CompetenciaPrestador competenciaPrestador = competenciaPrestadorRepository.findOne(idCompetencia);
+        AvaliaCompetencia avaliaCompetencia = new AvaliaCompetencia(prestadorServico, competenciaPrestador);
+        return new ResponseEntity<>(avaliaCompetencia, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/avaliaCompetencias/get/{idPrestador}/{idCompetencia}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<AvaliaCompetencia> getAvaliacao(@PathVariable Long idPrestador, @PathVariable Long idCompetencia) {
-
-        AvaliaCompetencia avaliaCompetencia;
-
         PrestadorServico prestadorServico = prestadorServicoRepository.findOne(idPrestador);
         CompetenciaPrestador competenciaPrestador = competenciaPrestadorRepository.findOne(idCompetencia);
 
-        avaliaCompetencia = avaliaCompetenciaRepository.findOneByPrestadorServicoAndCompetenciaPrestador(prestadorServico, competenciaPrestador);
+        List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestador(prestadorServico, competenciaPrestador);
+        Double notaMedia = avaliacoes.stream().map(a -> a.getNota()).collect(toList()).stream().mapToDouble(Integer::doubleValue).average().orElse(0.0D);
 
-        Morador morador = moradorService.getCurrentMorador();
-        if (morador == null)
-            new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        AvaliaCompetencia avaliaCompetencia = new AvaliaCompetencia(prestadorServico, competenciaPrestador, notaMedia.intValue());
+        return new ResponseEntity<>(avaliaCompetencia, HttpStatus.OK);
+    }
 
-        if (avaliaCompetencia == null)
-            avaliaCompetencia = new AvaliaCompetencia(prestadorServico, competenciaPrestador, morador);
+    @RequestMapping(value = "/avaliaCompetencias/get/{idPrestador}/{idCompetencia}/{idMorador}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<AvaliaCompetencia> getAvaliacaoByMorador(@PathVariable Long idPrestador, @PathVariable Long idCompetencia, @PathVariable Long idMorador) {
+        PrestadorServico prestadorServico = prestadorServicoRepository.findOne(idPrestador);
+        CompetenciaPrestador competenciaPrestador = competenciaPrestadorRepository.findOne(idCompetencia);
+        Morador morador = moradorRepository.findOne(idMorador);
+
+        List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(prestadorServico, competenciaPrestador, morador);
+        avaliacoes.stream().map(a -> a.getNota()).collect(toList()).stream().mapToDouble(Integer::doubleValue).average().orElse(0.0D);
+
+        final int today = Funcoes.getIntDate();
+        AvaliaCompetencia avaliaCompetencia = new AvaliaCompetencia();
+        Optional<AvaliaCompetencia> competencia = avaliacoes.stream().filter(a -> a.getData() == today).findAny();
+        if (competencia.isPresent())
+            avaliaCompetencia = competencia.get();
 
         return new ResponseEntity<>(avaliaCompetencia, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/avaliaCompetencias/query/{idPrestador}/{idCompetencia}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<AvaliaCompetencia> getAvaliacoes(@PathVariable Long idPrestador, @PathVariable Long idCompetencia) {
+        log.debug("REST request to get all AvaliaCompetencias");
+        PrestadorServico prestadorServico = prestadorServicoRepository.findOne(idPrestador);
+        CompetenciaPrestador competenciaPrestador = competenciaPrestadorRepository.findOne(idCompetencia);
+        return avaliaCompetenciaRepository
+            .findAllByPrestadorServicoAndCompetenciaPrestador(prestadorServico, competenciaPrestador)
+            .stream()
+            .sorted((a1, a2) -> a2.getId().compareTo(a1.getId()))
+            .sorted((a1, a2) -> Integer.compare(a2.getNota(), a1.getNota()))
+            .collect(toList());
     }
 
     /**

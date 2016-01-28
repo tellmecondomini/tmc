@@ -1,10 +1,16 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('AvaliaCompetenciaController', function ($scope, $http, AvaliaCompetencia, PrestadorServico, NotaAvaliacao, Principal) {
+    .controller('AvaliaCompetenciaController', function ($scope, $http, AvaliaCompetencia, PrestadorServico,
+                                                         GetAvaliacao, Principal, AccountMorador, GetAvaliacaoByMorador) {
 
         Principal.identity(true).then(function (account) {
             $scope.settingsAccount = account;
+        });
+
+        AccountMorador.get(function (morador) {
+            $scope.moradorCorrente = morador;
+            $scope.usuarioCorrenteEhMorador = ($scope.moradorCorrente != null);
         });
 
         $scope.max = 5;
@@ -15,11 +21,23 @@ angular.module('tmcApp')
         };
 
         $scope.getAvaliacao = function (prestador, competencia) {
-            var promise = NotaAvaliacao.get({
+            var promise = GetAvaliacao.get({
                 idPrestador: prestador.id,
                 idCompetencia: competencia.id
             }, function (result) {
-                return result;
+                var promise = GetAvaliacaoByMorador.get({
+                    idPrestador: prestador.id,
+                    idCompetencia: competencia.id,
+                    idMorador: $scope.moradorCorrente.id
+                }, function (result) {
+                    return result;
+                }, function (error) {
+                    console.log(error);
+                    return false;
+                });
+                var avaliacao = result;
+                avaliacao.isExistByDateAndMorador = promise;
+                return avaliacao;
             });
             return promise;
         };

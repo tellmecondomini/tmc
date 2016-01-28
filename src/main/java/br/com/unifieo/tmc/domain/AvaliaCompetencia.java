@@ -1,8 +1,8 @@
 package br.com.unifieo.tmc.domain;
 
+import br.com.unifieo.tmc.commons.Funcoes;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -45,15 +45,19 @@ public class AvaliaCompetencia implements Serializable {
 
     public AvaliaCompetencia() {
         this.nota = 0;
-        this.ativo = false;
-        this.data = new Long(new DateTime().toDate().getTime()).intValue();
+        this.ativo = true;
+        this.data = Funcoes.getIntDate();
     }
 
-    public AvaliaCompetencia(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador, Morador morador) {
+    public AvaliaCompetencia(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador) {
         this();
         this.prestadorServico = prestadorServico;
         this.competenciaPrestador = competenciaPrestador;
-        this.morador = morador;
+    }
+
+    public AvaliaCompetencia(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador, int notaMedia) {
+        this(prestadorServico, competenciaPrestador);
+        this.nota = notaMedia;
     }
 
     public Long getId() {
@@ -150,4 +154,5 @@ public class AvaliaCompetencia implements Serializable {
             ", ativo='" + ativo + "'" +
             '}';
     }
+
 }

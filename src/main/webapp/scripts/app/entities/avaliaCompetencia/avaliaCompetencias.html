@@ -18,24 +18,25 @@
                 <td>
                     <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{avaliacao.prestador.nome}}</a>
                 </td>
-
                 <td>
                     <div ng-repeat="competencia in avaliacao.competencias">
                         <span class="form-control-static">{{competencia.descricao}}</span>
                     </div>
                 </td>
-
                 <td>
                     <div ng-repeat="competencia in avaliacao.competencias">
                         <rating ng-model="competencia.avaliacao.nota" max="max" readonly="true"
                                 on-hover="hoveringOver(value)"
                                 on-leave="overStar = null" aria-labelledby="default-rating"/>
-                        <a ui-sref="avaliaCompetencia.edit({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})"
-                           ng-show="(['ROLE_MORADOR'].indexOf(settingsAccount.authorities[0]) > -1 || avaliacao.morador.email == settingsAccount.email)"> Avaliar</a>
-                        <a ng-hide="competencia.avaliacao.id == null" ui-sref="avaliaCompetencia.detail({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})"> Detalhes</a>
+
+                        <a ng-show="(usuarioCorrenteEhMorador) && (competencia.avaliacao.isExistByDateAndMorador.id == null)"
+                           ui-sref="avaliaCompetencia.edit({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})">
+                            Avaliar</a>
+
+                        <a ui-sref="avaliaCompetencia.detail({idPrestador:avaliacao.prestador.id,idCompetencia:competencia.id})">
+                            Detalhes</a>
                     </div>
                 </td>
-
             </tr>
             </tbody>
         </table>

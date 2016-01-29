@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tell Me Condominium</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h3>
+            Sua avaliação do Prestador de Serviço <i><span th:text="${avaliaCompetencia.prestadorServico.nome}"/></i> <span th:text="${avaliaCompetencia.ativo ? ' foi' : ' não foi'}" /> aprovada!
+        </h3>
+        <ul>
+            <li>
+                Competência: <span th:text="${avaliaCompetencia.competenciaPrestador.descricao}" />
+            </li>
+            <li>
+                Nota: <span th:text="${avaliaCompetencia.nota}" />
+            </li>
+            <li>
+                Mensagem: <span th:text="${avaliaCompetencia.mensagem}" />
+            </li>
+            <li>
+                Observação do Administrador: <span th:text="${observacao}" />
+            </li>
+        </ul>
+        <p>
+            Acesse o sistema, <a th:href="@{|${baseUrl}/#/login|}">clicando aqui</a>
+        </p>
+        <p>
+            Att,
+        <p>
+            <em>Equipe Tell Me Condominium.</em>
+        </p>
+        </p>
+    </body>
+</html>

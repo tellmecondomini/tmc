@@ -5,6 +5,8 @@ angular.module('tmcApp')
 
         $scope.avaliacao = entity;
 
+        $scope.observacao = "";
+
         Principal.identity().then(function (account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
@@ -13,7 +15,8 @@ angular.module('tmcApp')
         $scope.aprova = function () {
             GetAprovacaoAvaliacao.execute({
                 idAvaliacao: $scope.avaliacao.id,
-                aprovado: true
+                aprovado: true,
+                observacao: $scope.observacao
             }, function (result) {
                 $modalInstance.close(result);
             });
@@ -22,7 +25,8 @@ angular.module('tmcApp')
         $scope.reprova = function () {
             GetAprovacaoAvaliacao.execute({
                 idAvaliacao: $scope.avaliacao.id,
-                aprovado: false
+                aprovado: false,
+                observacao: $scope.observacao
             }, function (result) {
                 $modalInstance.close(result);
             });

@@ -33,7 +33,7 @@ angular.module('tmcApp')
         $scope.loadAvaliacoes = function () {
             AvaliaCompetencia.query(function (result) {
                 angular.forEach(result, function (value, key) {
-                    if (value.ativo === false)
+                    if (value.ativo === null)
                         this.push(value);
                 }, $scope.avaliacoes);
             });

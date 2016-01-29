@@ -9,6 +9,7 @@ import br.com.unifieo.tmc.repository.AvaliaCompetenciaRepository;
 import br.com.unifieo.tmc.repository.CompetenciaPrestadorRepository;
 import br.com.unifieo.tmc.repository.MoradorRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
+import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -20,8 +21,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +54,9 @@ public class AvaliaCompetenciaResource {
     @Inject
     private MoradorService moradorService;
 
+    @Inject
+    private MailService mailService;
+
     /**
      * POST  /avaliacoes -> Create a new avaliaCompetencia.
      */
@@ -65,15 +71,7 @@ public class AvaliaCompetenciaResource {
         if (avaliaCompetencia.getId() != null)
             return ResponseEntity.badRequest().header("Failure", "A new avaliaCompetencia cannot already have an ID").body(null);
 
-        PrestadorServico prestadorServico = avaliaCompetencia.getPrestadorServico();
-        CompetenciaPrestador competenciaPrestador = avaliaCompetencia.getCompetenciaPrestador();
         Morador morador = moradorService.getCurrentMorador();
-
-        List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(prestadorServico, competenciaPrestador, morador);
-
-        final int dataAtual = Funcoes.getIntDate();
-        if (avaliacoes.stream().filter(a -> a.getData() == dataAtual).findFirst().isPresent())
-            return ResponseEntity.badRequest().header("Erro", "Você já realizou uma avaliação para este Prestador de Serviço e para essa Competência hoje.").body(null);
 
         avaliaCompetencia.setMorador(morador);
         AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
@@ -148,7 +146,7 @@ public class AvaliaCompetenciaResource {
         CompetenciaPrestador competenciaPrestador = competenciaPrestadorRepository.findOne(idCompetencia);
 
         List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestador(prestadorServico, competenciaPrestador);
-        Double notaMedia = avaliacoes.stream().map(a -> a.getNota()).collect(toList()).stream().mapToDouble(Integer::doubleValue).average().orElse(0.0D);
+        Double notaMedia = avaliacoes.stream().filter(AvaliaCompetencia::isAtivo).map(a -> a.getNota()).mapToDouble(Integer::doubleValue).average().orElse(0.0D);
 
         AvaliaCompetencia avaliaCompetencia = new AvaliaCompetencia(prestadorServico, competenciaPrestador, notaMedia.intValue());
         return new ResponseEntity<>(avaliaCompetencia, HttpStatus.OK);
@@ -164,11 +162,10 @@ public class AvaliaCompetenciaResource {
         Morador morador = moradorRepository.findOne(idMorador);
 
         List<AvaliaCompetencia> avaliacoes = avaliaCompetenciaRepository.findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(prestadorServico, competenciaPrestador, morador);
-        avaliacoes.stream().map(a -> a.getNota()).collect(toList()).stream().mapToDouble(Integer::doubleValue).average().orElse(0.0D);
 
         final int today = Funcoes.getIntDate();
         AvaliaCompetencia avaliaCompetencia = new AvaliaCompetencia();
-        Optional<AvaliaCompetencia> competencia = avaliacoes.stream().filter(a -> a.getData() == today).findAny();
+        Optional<AvaliaCompetencia> competencia = avaliacoes.stream().filter(AvaliaCompetencia::isAtivo).filter(a -> a.getData() == today).findAny();
         if (competencia.isPresent())
             avaliaCompetencia = competencia.get();
 
@@ -186,19 +183,33 @@ public class AvaliaCompetenciaResource {
         return avaliaCompetenciaRepository
             .findAllByPrestadorServicoAndCompetenciaPrestador(prestadorServico, competenciaPrestador)
             .stream()
+            .filter(AvaliaCompetencia::isAtivo)
             .sorted((a1, a2) -> a2.getId().compareTo(a1.getId()))
             .sorted((a1, a2) -> Integer.compare(a2.getNota(), a1.getNota()))
             .collect(toList());
     }
 
-    @RequestMapping(value = "/avaliaCompetencias/aprovacao/{idAvaliacao}/{aprovado}",
+    @RequestMapping(value = "/avaliaCompetencias/aprovacao/{idAvaliacao}/{aprovado}/{observacao}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<AvaliaCompetencia> getAprovacaoAvaliacao(@PathVariable Long idAvaliacao, @PathVariable boolean aprovado) {
+    public ResponseEntity<AvaliaCompetencia> getAprovacaoAvaliacao(@PathVariable Long idAvaliacao,
+                                                                   @PathVariable boolean aprovado,
+                                                                   @PathVariable byte[] observacao,
+                                                                   HttpServletRequest request) {
+
         AvaliaCompetencia avaliaCompetencia = avaliaCompetenciaRepository.findOne(idAvaliacao);
         avaliaCompetencia.setAtivo(aprovado);
         AvaliaCompetencia result = avaliaCompetenciaRepository.save(avaliaCompetencia);
+
+        String baseUrl = request.getScheme() +
+            "://" +
+            request.getServerName() +
+            ":" +
+            request.getServerPort();
+
+        mailService.sendAvaliacaoPrestadorCompetencia(result, baseUrl, new String(observacao, StandardCharsets.UTF_8));
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("avaliaCompetencia", avaliaCompetencia.getId().toString()))
             .body(result);
@@ -216,4 +227,5 @@ public class AvaliaCompetenciaResource {
         avaliaCompetenciaRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("avaliaCompetencia", id.toString())).build();
     }
+
 }

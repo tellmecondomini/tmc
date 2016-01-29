@@ -164,4 +164,17 @@ public class MailService {
         String subject = "TMC - Remoção de Comentário";
         this.sendEmail(solicitacao.getMorador().getEmail(), subject, content, false, true);
     }
+
+    public void sendAvaliacaoPrestadorCompetencia(AvaliaCompetencia avaliaCompetencia, String baseUrl, String observacao) {
+        log.debug("Avaliação Prestador de Serviço '{}'", avaliaCompetencia.getMensagem());
+        User user = userService.getUserWithAuthorities();
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("avaliaCompetencia", avaliaCompetencia);
+        context.setVariable("baseUrl", baseUrl);
+        context.setVariable("observacao", observacao);
+        String content = templateEngine.process("avaliacaoPrestadorServico", context);
+        String subject = "TMC - Avaliação de Prestador de Serviço";
+        this.sendEmail(avaliaCompetencia.getMorador().getEmail(), subject, content, false, true);
+    }
 }

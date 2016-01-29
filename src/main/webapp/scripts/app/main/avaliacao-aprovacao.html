@@ -22,6 +22,19 @@
                 Mensagem de avaliação:
                 <spam class="text-success">{{avaliacao.mensagem}}</spam>
             </p>
+            <div class="form-group">
+                <label for="field_obs">Observação</label>
+                <textarea type="text" class="form-control" name="observacao" id="field_obs"
+                          ng-model="observacao"
+                          required />
+
+                <div ng-show="editForm.observacao.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.observacao.$error.required" translate="entity.validation.required">
+                        This field is required.
+                    </p>
+                </div>
+            </div>
         </div>
 
     </div>

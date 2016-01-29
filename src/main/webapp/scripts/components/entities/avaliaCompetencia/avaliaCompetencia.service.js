@@ -53,7 +53,7 @@ angular.module('tmcApp')
         });
     })
     .factory('GetAprovacaoAvaliacao', function ($resource) {
-        return $resource('api/avaliaCompetencias/aprovacao/:idAvaliacao/:aprovado', {}, {
+        return $resource('api/avaliaCompetencias/aprovacao/:idAvaliacao/:aprovado/:observacao', {}, {
             'execute': {
                 method: 'GET',
                 transformResponse: function (data) {

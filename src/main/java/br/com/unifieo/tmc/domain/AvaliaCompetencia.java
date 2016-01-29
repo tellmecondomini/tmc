@@ -45,7 +45,7 @@ public class AvaliaCompetencia implements Serializable {
 
     public AvaliaCompetencia() {
         this.nota = 0;
-        this.ativo = false;
+        this.ativo = null;
         this.data = Funcoes.getIntDate();
     }
 
@@ -155,4 +155,7 @@ public class AvaliaCompetencia implements Serializable {
             '}';
     }
 
+    public static boolean isAtivo(AvaliaCompetencia a) {
+        return a.getAtivo() == null || a.getAtivo();
+    }
 }

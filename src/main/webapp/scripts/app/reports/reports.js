@@ -11,7 +11,7 @@ angular.module('tmcApp')
                 parent: 'reports',
                 url: '/reports/prestadores',
                 data: {
-                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR']
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO', 'ROLE_MORADOR']
                 },
                 views: {
                     'content@': {
@@ -20,7 +20,31 @@ angular.module('tmcApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('reports.topicoscategorias', {
+                parent: 'reports',
+                url: '/reports/topicos/categorias',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO']
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/reports/topicos-categorias.html',
+                        controller: 'TopicosCategoriasController'
+                    }
+                },
+                resolve: {
+                    entity: function () {
+                        return {
+                            dataInicio: new Date(),
+                            dataFim: new Date()
+                        };
+                    },
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
                         return $translate.refresh();
                     }]
                 }

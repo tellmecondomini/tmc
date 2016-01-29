@@ -4,13 +4,11 @@
     <div class="well">
         <div class="row">
             <div class="form-group col-md-4">
-                <div class="form-group">
-                    <label for="field_competencia">Competências</label>
-                    <select class="form-control" id="field_competencia" name="competencia" ng-model="competencia"
-                            ng-options="competencia as competencia.descricao for competencia in competencias track by competencia.id">
-                        <option value="">Todas</option>
-                    </select>
-                </div>
+                <label for="field_competencia">Competências</label>
+                <select class="form-control" id="field_competencia" name="competencia" ng-model="competencia"
+                        ng-options="competencia as competencia.descricao for competencia in competencias track by competencia.id">
+                    <option value="">Todas</option>
+                </select>
             </div>
             <div class="form-group col-md-4">
                 <label for="field_pessoa">Pessoa</label>
@@ -21,28 +19,22 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <div class="form-group">
-                    <label for="field_sexo">Sexo</label>
-                    <select class="form-control" name="sexo" ng-model="sexo" id="field_sexo">
-                        <option value="">Todos</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                </div>
+                <label for="field_sexo">Sexo</label>
+                <select class="form-control" name="sexo" ng-model="sexo" id="field_sexo">
+                    <option value="">Todos</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-4">
-                <div class="form-group">
-                    <label for="uf">UF</label>
-                    <select id="uf" class="form-control" />
-                </div>
+                <label for="uf">UF</label>
+                <select id="uf" class="form-control"/>
             </div>
             <div class="form-group col-md-4">
-                <div class="form-group">
-                    <label for="cidade">Cidade</label>
-                    <select id="cidade" class="form-control" ng-model="cidade"/>
-                </div>
+                <label for="cidade">Cidade</label>
+                <select id="cidade" class="form-control" ng-model="cidade"/>
             </div>
         </div>
     </div>
@@ -63,21 +55,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="avaliacao in avaliacoes | filter:competencia.descricao | filter:pessoa | filter:filterBySexo | filter:cidade">
+            <tr ng-repeat="item in avaliacoes
+                | filter:competencia.descricao
+                | filter:pessoa
+                | filter:filterBySexo
+                | filter:cidade">
                 <td>
-                    <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{avaliacao.prestador.nome}}</a>
+                    <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{item.prestador.nome}}</a>
                 </td>
-                <td>{{avaliacao.prestador.cep.cidade}}</td>
-                <td>{{avaliacao.prestador.sexo === 'M' ? 'Masculino' : 'Feminino'}}</td>
-                <td>{{avaliacao.prestador.tipo}}</td>
+                <td>{{item.prestador.cep.cidade}}</td>
+                <td>{{item.prestador.sexo === 'M' ? 'Masculino' : 'Feminino'}}</td>
+                <td>{{item.prestador.tipo}}</td>
                 <td>
-                    <div ng-repeat="competencia in avaliacao.competencias">
-                        <span class="form-control-static">{{competencia.descricao}}</span>
+                    <div ng-repeat="rowData in item.competencias | filter:competencia | orderBy:'-avaliacao.nota'">
+                        <span class="form-control-static">{{rowData.descricao}}</span>
                     </div>
                 </td>
                 <td>
-                    <div ng-repeat="competencia in avaliacao.competencias">
-                        <rating ng-model="competencia.avaliacao.nota" max="5" readonly="true"
+                    <div ng-repeat="rowData in item.competencias | filter:competencia | orderBy:'-avaliacao.nota'">
+                        <rating ng-model="rowData.avaliacao.nota" max="5" readonly="true"
                                 aria-labelledby="default-rating"/>
                     </div>
                 </td>

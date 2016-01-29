@@ -1,0 +1,24 @@
+<div class="container">
+    <p class="lead text-primary">Prestadores de Serviço por Nota</p>
+    <div class="well">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="field_data_inicio">Data início</label>
+                <input type="date" class="form-control" name="dataInicio" id="field_data_inicio"
+                       ng-model="reportObj.dataInicio" ng-model-options="{timezone: 'UTC'}"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="field_data_fim">Data fim</label>
+                <input type="date" class="form-control" name="dataFim" id="field_data_fim"
+                       ng-model="reportObj.dataFim" ng-model-options="{timezone: 'UTC'}"
+                       required>
+            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-primary" ng-click="print()">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

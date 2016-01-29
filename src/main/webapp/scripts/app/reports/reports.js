@@ -48,5 +48,29 @@ angular.module('tmcApp')
                         return $translate.refresh();
                     }]
                 }
+            })
+            .state('reports.topicosstatus', {
+                parent: 'reports',
+                url: '/reports/topicos/status',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO']
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/reports/topicos-status.html',
+                        controller: 'TopicosStatusController'
+                    }
+                },
+                resolve: {
+                    entity: function () {
+                        return {
+                            dataInicio: new Date(),
+                            dataFim: new Date()
+                        };
+                    },
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
             });
     });

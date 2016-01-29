@@ -56,6 +56,19 @@ public class ReportResource {
         return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/reports/topicos/status",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<String> topicosStatus(@RequestBody ReportDTO reportDTO) {
+        HashMap<String, Object> parameters = this.newMapParameter();
+        parameters.put("DATA_INICIO", reportDTO.getDataInicio().toDate());
+        parameters.put("DATA_FIM", reportDTO.getDataFim().toDate());
+        JsonObject json = new JsonObject();
+        json.addProperty("url", this.getPdfUrl("reports/reportTopicosStatus.jasper", parameters));
+        return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
+    }
+
     private final String getPdfUrl(final String reportPathName, final Map<String, Object> parameters) {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();

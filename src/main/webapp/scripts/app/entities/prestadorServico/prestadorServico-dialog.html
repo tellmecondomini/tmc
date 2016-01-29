@@ -35,10 +35,19 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-4">
                     <label for="field_site">Site</label>
                     <input type="text" class="form-control" name="email" id="field_site"
                            ng-model="prestadorServico.site">
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label for="field_sexo">Sexo</label>
+                        <select class="form-control" name="sexo" ng-model="prestadorServico.sexo" id="field_sexo">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 

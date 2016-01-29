@@ -105,6 +105,54 @@
                     </ul>
                 </li>
 
+                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-print"></span>
+                            <span class="hidden-tablet">
+                                Relatórios
+                            </span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul id="reports" class="dropdown-menu">
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_ADMIN_CONDOMINIO,ROLE_MORADOR">
+                            <a ui-sref="reports.prestadores">
+                                <span>Prestadores de Serviço</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
+                            <a ui-sref="topicosCategoriaQuantidade">
+                                <span>Quantidade de Tópicos por Categoria</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
+                            <a ui-sref="topicosStatus">
+                                <span>Tópicos por Status</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
+                            <a ui-sref="topicosCategoria">
+                                <span>Tópicos por Categoria</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO"
+                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
+                            <a ui-sref="atividadesMorador">
+                                <span>Atividades por Morador</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>

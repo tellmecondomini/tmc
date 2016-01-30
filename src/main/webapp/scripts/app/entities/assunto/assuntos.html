@@ -36,20 +36,26 @@
             </div>
         </div>
     </div>
+	
+	<br/>
+    <div class="input-group" >
+        <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+        <input type="search" class="form-control" id="search" placeholder="Assunto..." ng-model="searchText">
+	</div>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th translate="global.field.id">ID</th>
-                <th translate="tmcApp.assunto.descricao">Descricao</th>
+                <th>Assuntos</th>
                 <th>Categorias</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="assunto in assuntos">
-                <td><a ui-sref="assunto.detail({id:assunto.id})">{{assunto.id}}</a></td>
+            <tr ng-repeat="assunto in assuntos  | filter:searchText">
+                <td>{{assunto.id}}</td>
                 <td>{{assunto.descricao}}</td>
                 <td>
                     <div ng-repeat="categoria in assunto.categorias">

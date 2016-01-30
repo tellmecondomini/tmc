@@ -15,12 +15,17 @@
         </div>
 
         <br/>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+            <input type="search" class="form-control" id="search" placeholder="Parâmetros da busca"
+                   ng-model="searchText">
+        </div>
 
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Título</th>
+                    <th>Tópico</th>
                     <th>Descrição</th>
                     <th>Categoria</th>
                     <th>Data</th>
@@ -29,16 +34,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="topico in topicos"
-                    ng-class="{'warning': topico.recomendado}">
-                    <td><strong>{{topico.titulo}}</strong>
+                <tr ng-repeat="topico in topicos | filter:searchText" ng-class="{'warning': topico.recomendado}">
+                    <td>
                         <p ng-show="topico.recomendado">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             <small><i> Leitura recomendada</i></small>
                         </p>
+                        <strong>Categoria: {{topico.categoria.descricao}}</strong><br/>
+                        <strong>Assunto: {{topico.assunto.descricao}}</strong><br/>
+                        <strong>Título: {{topico.titulo}}</strong>
                     </td>
                     <td>
-                        <small>{{topico.descricao | limitTo: 20}}...</small>
+                        <small>{{topico.descricao | limitTo: 50}}
+                            <a ui-sref="topico.comentarios({id:topico.id})"
+                               ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SUCESSO','ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1)">...</a>
+                        </small>
                     </td>
                     <td>
                         <small>{{topico.categoria.descricao}}</small>
@@ -76,15 +86,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="topico in encerrados" ng-class="{'warning': topico.recomendado}">
-                    <td><strong><a ui-sref="topico.detail({id:topico.id})"> {{topico.titulo}}</a></strong>
+                <tr ng-repeat="topico in encerrados | filter:searchText" ng-class="{'warning': topico.recomendado}">
+                    <td>
                         <p ng-show="topico.recomendado">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
                             <small><i> Leitura recomendada</i></small>
                         </p>
+                        <strong>Categoria: {{topico.categoria.descricao}}</strong><br/>
+                        <strong>Assunto: {{topico.assunto.descricao}}</strong><br/>
+                        <strong>Título: {{topico.titulo}}</strong>
                     </td>
                     <td>
-                        <small>{{topico.descricao | limitTo: 20}}...</small>
+                        <small>{{topico.descricao | limitTo: 50}}
+                            <a ui-sref="topico.comentarios({id:topico.id})"
+                               ng-show="(['ABERTO','ENCERRADO','ENCERRADO_COM_SUCESSO','ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1)">...</a>
+                        </small>
                     </td>
                     <td>
                         <small>{{topico.categoria.descricao}}</small>

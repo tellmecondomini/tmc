@@ -14,8 +14,8 @@
                 <label for="field_pessoa">Pessoa</label>
                 <select class="form-control" name="tipo" ng-model="pessoa" id="field_pessoa">
                     <option value="">Todas</option>
-                    <option value="FISICA">FISICA</option>
-                    <option value="JURIDICA">JURIDICA</option>
+                    <option value="FISICA">Física</option>
+                    <option value="JURIDICA">Jurídica</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -65,7 +65,7 @@
                 </td>
                 <td>{{item.prestador.cep.cidade}}</td>
                 <td>{{item.prestador.sexo === 'M' ? 'Masculino' : 'Feminino'}}</td>
-                <td>{{item.prestador.tipo}}</td>
+                <td>{{item.prestador.tipo === 'FISICA' ? 'Física' : 'Jurídica'}}</td>
                 <td>
                     <div ng-repeat="rowData in item.competencias | filter:competencia | orderBy:'-avaliacao.nota'">
                         <span class="form-control-static">{{rowData.descricao}}</span>

@@ -8,7 +8,7 @@
             </button>
         </div>
     </div>
-
+    
     <div class="modal fade" id="deleteCompetenciaPrestadorConfirmation">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -37,6 +37,12 @@
             </div>
         </div>
     </div>
+    
+    <br/>
+    <div class="input-group" >
+        <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+        <input type="search" class="form-control" id="search" placeholder="Parâmetros da busca" ng-model="searchText">
+	</div>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -48,10 +54,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="competenciaPrestador in competenciaPrestadors">
-                <td><a
-                    ui-sref="competenciaPrestador.detail({id:competenciaPrestador.id})">{{competenciaPrestador.id}}</a>
-                </td>
+            <tr ng-repeat="competenciaPrestador in competenciaPrestadors | filter:searchText">
+                <td>{{competenciaPrestador.id}}</td>
                 <td>{{competenciaPrestador.descricao}}</td>
                 <td>
                     <!-- <button type="submit"

@@ -3,6 +3,11 @@
 
     <jh-alert></jh-alert>
 
+	<div class="input-group" >
+        <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+        <input type="search" class="form-control" id="search" placeholder="Parâmetros da busca" ng-model="searchText">
+	</div>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -13,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="avaliacao in avaliacoes">
+            <tr ng-repeat="avaliacao in avaliacoes | filter:searchText">
 
                 <td>
                     <a ui-sref="prestadorServico.detail({id:avaliacao.prestador.id})">{{avaliacao.prestador.nome}}</a>

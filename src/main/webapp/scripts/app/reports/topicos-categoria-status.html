@@ -1,0 +1,22 @@
+<div class="container">
+    <p class="lead text-primary">Tópicos e Categorias por Status</p>
+    <div class="well">
+        <form name="editForm" class="form-inline" ng-submit="print()">
+            <div class="form-group">
+                <label for="field_status">Status</label>
+                <select class="form-control" name="status" ng-model="reportObj.statusTopico" id="field_status">
+                    <option value="AGUARDANDO_APROVACAO">Aguardando Aprovação</option>
+                    <option value="ABERTO">Aberto</option>
+                    <option value="ENCERRADO_COM_SUCESSO">Encerrado com sucesso</option>
+                    <option value="ENCERRADO_SEM_SUCESSO">Encerrado sem sucesso</option>
+                    <option value="REPROVADO">Reprovado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

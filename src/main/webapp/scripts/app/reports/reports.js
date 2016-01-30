@@ -72,5 +72,48 @@ angular.module('tmcApp')
                         return $translate.refresh();
                     }]
                 }
+            })
+            .state('reports.topicoscategoriastatus', {
+                parent: 'reports',
+                url: '/reports/topicos/categoria/status',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO']
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/reports/topicos-categoria-status.html',
+                        controller: 'TopicosCategoriaStatusController'
+                    }
+                },
+                resolve: {
+                    entity: function () {
+                        return {
+                            dataInicio: new Date(),
+                            dataFim: new Date(),
+                            statusTopico: null
+                        };
+                    },
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
+            })
+            .state('reports.moradoresatividades', {
+                parent: 'reports',
+                url: '/reports/moradores/atividades',
+                data: {
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_FUNCIONARIO']
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/reports/moradores-atividades.html',
+                        controller: 'MoradoresAtividadesController'
+                    }
+                },
+                resolve: {
+                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate) {
+                        return $translate.refresh();
+                    }]
+                }
             });
     });

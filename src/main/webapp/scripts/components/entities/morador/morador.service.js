@@ -14,4 +14,9 @@ angular.module('tmcApp')
             },
             'update': {method: 'PUT'}
         });
+    })
+    .factory('AtividadesMorador', function ($resource) {
+        return $resource('api/reports/atividades/morador', {}, {
+            'query': {method: 'GET', isArray: true}
+        });
     });

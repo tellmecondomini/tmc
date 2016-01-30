@@ -16,4 +16,6 @@ public interface AvaliaCompetenciaRepository extends JpaRepository<AvaliaCompete
     List<AvaliaCompetencia> findAllByPrestadorServicoAndCompetenciaPrestador(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador);
 
     List<AvaliaCompetencia> findAllByPrestadorServicoAndCompetenciaPrestadorAndMorador(PrestadorServico prestadorServico, CompetenciaPrestador competenciaPrestador, Morador morador);
+
+    List<AvaliaCompetencia> findAllByMorador(Morador morador);
 }

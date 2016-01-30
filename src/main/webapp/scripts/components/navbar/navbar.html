@@ -139,14 +139,14 @@
                         <li ui-sref-active="active"
                             has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO"
                             ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
-                            <a ui-sref="topicosCategoria">
-                                <span>Tópicos por Categoria</span>
+                            <a ui-sref="reports.topicoscategoriastatus">
+                                <span>Tópicos e Categorias por Status</span>
                             </a>
                         </li>
                         <li ui-sref-active="active"
                             has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO"
                             ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
-                            <a ui-sref="atividadesMorador">
+                            <a ui-sref="reports.moradoresatividades">
                                 <span>Atividades por Morador</span>
                             </a>
                         </li>

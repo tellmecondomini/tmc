@@ -1,0 +1,31 @@
+<div class="container">
+    <p class="lead text-primary">Moradores e ações</p>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Morador</th>
+                <th>Tópicos abertos</th>
+                <th>Comentários realizados</th>
+                <th>Avaliações à Prestadores de Serviço</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="atividade in atividades">
+                <td>
+                    <a ui-sref="morador.detail({id:atividade.morador.id})">{{atividade.morador.nome}}</a>
+                </td>
+                <td>
+                    {{atividade.topicosAbertos.length}}
+                </td>
+                <td>
+                    {{atividade.comentariosRealizados.length}}
+                </td>
+                <td>
+                    {{atividade.avaliacoesRealizadas.length}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

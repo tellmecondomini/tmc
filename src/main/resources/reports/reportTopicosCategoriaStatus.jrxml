@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-01-29T19:26:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportTopicosCategoriaStatus" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f716371-5ee2-4f1a-b69a-5ad6cb8a9fae">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="CONDOMINIO" class="java.lang.String"/>
+	<parameter name="TMC_LOGO" class="java.lang.String"/>
+	<parameter name="STATUS" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+	COUNT(T.ID) AS QUANTIDADE,	
+	A.DESCRICAO AS ASSUNTO,
+	C.DESCRICAO AS CATEGORIA
+FROM 
+	TOPICO T
+	JOIN CATEGORIA C ON C.ID = T.CATEGORIA_ID
+	JOIN ASSUNTO A ON A.ID = T.ASSUNTO_ID
+WHERE 
+	T.STATUS_TOPICO =  $P{STATUS} 
+GROUP BY T.CATEGORIA_ID, T.ASSUNTO_ID]]>
+	</queryString>
+	<field name="QUANTIDADE" class="java.lang.Long"/>
+	<field name="ASSUNTO" class="java.lang.String"/>
+	<field name="CATEGORIA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="152" y="10" width="250" height="117" uuid="4c957635-8031-49e8-b856-ac0d68efa88d"/>
+				<imageExpression><![CDATA[$P{TMC_LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="59" width="555" height="30" uuid="8eafd224-2df3-4dc7-b41c-7b3d9e09a461"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Quantidade de Tópicos por Categoria/Assunto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="10" width="555" height="30" uuid="e91dd516-9b7c-49b7-8297-27a2bbe75ca1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CONDOMINIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="414" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="10" y="12" width="535" height="390" uuid="ee5c0c04-07f9-4490-a6f9-329ab877fea8"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{ASSUNTO}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{CATEGORIA}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{QUANTIDADE}]]></valueExpression>
+						<labelExpression><![CDATA["" + $F{QUANTIDADE}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="58" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="58" uuid="65abe84a-6ecf-47e7-bc7e-46e1f8c1d51a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,6 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
+import br.com.unifieo.tmc.domain.Morador;
+import br.com.unifieo.tmc.repository.AvaliaCompetenciaRepository;
+import br.com.unifieo.tmc.repository.ComentarioRepository;
+import br.com.unifieo.tmc.repository.MoradorRepository;
+import br.com.unifieo.tmc.repository.TopicoRepository;
 import br.com.unifieo.tmc.service.CondominioService;
+import br.com.unifieo.tmc.web.rest.dto.AtividadesMoradorDTO;
 import br.com.unifieo.tmc.web.rest.dto.ReportDTO;
 import com.codahale.metrics.annotation.Timed;
 import com.google.gson.Gson;
@@ -26,10 +32,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -42,6 +45,18 @@ public class ReportResource {
 
     @Inject
     private JdbcTemplate jdbcTemplate;
+
+    @Inject
+    private MoradorRepository moradorRepository;
+
+    @Inject
+    private TopicoRepository topicoRepository;
+
+    @Inject
+    private ComentarioRepository comentarioRepository;
+
+    @Inject
+    private AvaliaCompetenciaRepository avaliaCompetenciaRepository;
 
     @RequestMapping(value = "/reports/topicos/categorias",
         method = RequestMethod.POST,
@@ -67,6 +82,36 @@ public class ReportResource {
         JsonObject json = new JsonObject();
         json.addProperty("url", this.getPdfUrl("reports/reportTopicosStatus.jasper", parameters));
         return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/reports/topicos/categoria/status",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<String> topicosCategoriaStatus(@RequestBody ReportDTO reportDTO) {
+        HashMap<String, Object> parameters = this.newMapParameter();
+        parameters.put("STATUS", reportDTO.getStatusTopico());
+        JsonObject json = new JsonObject();
+        json.addProperty("url", this.getPdfUrl("reports/reportTopicosCategoriaStatus.jasper", parameters));
+        return new ResponseEntity<>(new Gson().toJson(json), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/reports/atividades/morador",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<AtividadesMoradorDTO> atividadesMorador() {
+        ArrayList<AtividadesMoradorDTO> atividades = new ArrayList<>(1024);
+        List<Morador> moradores = moradorRepository.findAllByCondominio(condominioService.getCurrentCondominio());
+        moradores.stream().forEach(morador -> {
+            AtividadesMoradorDTO atividade = new AtividadesMoradorDTO();
+            atividade.setMorador(morador);
+            atividade.setTopicosAbertos(topicoRepository.findAllByMorador(morador));
+            atividade.setComentariosRealizados(comentarioRepository.findAllByMorador(morador));
+            atividade.setAvaliacoesRealizadas(avaliaCompetenciaRepository.findAllByMorador(morador));
+            atividades.add(atividade);
+        });
+        return atividades;
     }
 
     private final String getPdfUrl(final String reportPathName, final Map<String, Object> parameters) {

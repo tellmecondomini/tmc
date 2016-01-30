@@ -23,7 +23,7 @@
 
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
-                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="glyphicon glyphicon-file"></span>
                             <span class="hidden-tablet" translate="global.menu.entities.main">Entities</span>
                             <b class="caret"></b>
                         </span>
@@ -31,26 +31,15 @@
 
                     <ul id="entities" class="dropdown-menu">
 
-                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_MORADOR">
-                            <a ui-sref="avaliaCompetencia">Avaliação P. Serviço</a>
-                        </li>
-
                         <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="condominio">
                                 <span translate="global.menu.entities.condominio">condominio</span>
                             </a>
                         </li>
 
-                        <li ui-sref-active="active"
-                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO,ROLE_MORADOR">
-                            <a ui-sref="competenciaPrestador">
-                                <span>Competências (P. Serviço)</span>
-                            </a>
-                        </li>
-
                         <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO">
                             <a ui-sref="funcionario">
-                                <span translate="global.menu.entities.funcionario">funcionario</span>
+                                <span>Funcionários</span>
                             </a>
                         </li>
 
@@ -58,6 +47,32 @@
                             ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
                             <a ui-sref="morador">
                                 <span translate="global.menu.entities.morador">morador</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="hidden-tablet">Prestadores de Serviço</span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+
+                    <ul id="prestadores" class="dropdown-menu">
+
+                        <li ui-sref-active="active" has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_MORADOR">
+                            <a ui-sref="avaliaCompetencia">Busca</a>
+                        </li>
+
+                        <li ui-sref-active="active"
+                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO,ROLE_FUNCIONARIO,ROLE_MORADOR">
+                            <a ui-sref="competenciaPrestador">
+                                <span>Competências</span>
                             </a>
                         </li>
 
@@ -76,7 +91,7 @@
                         <span>
                             <span class="glyphicon glyphicon-bookmark"></span>
                             <span class="hidden-tablet">
-                                Forum
+                                Fórum
                             </span>
                             <b class="caret"></b>
                         </span>
@@ -87,13 +102,6 @@
                             ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
                             <a ui-sref="assunto">
                                 <span translate="global.menu.entities.assunto">assuntos</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active"
-                            has-any-authority="ROLE_ADMIN,ROLE_ADMIN_CONDOMINIO"
-                            ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
-                            <a ui-sref="categoria">
-                                <span>Categorias</span>
                             </a>
                         </li>
                         <li ui-sref-active="active"
@@ -163,13 +171,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active" ng-switch-when="true">
-                            <a ui-sref="settings">
-                                <span>Perfil</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="password">
-                                <span translate="global.menu.account.password">Password</span>
+                                <span>Alterar senha</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()">

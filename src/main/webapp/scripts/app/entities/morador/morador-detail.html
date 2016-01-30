@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span translate="tmcApp.morador.detail.title">Morador</span> {{morador.nome}}</h2>
+    <h2><span>Morador:</span> {{morador.nome}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.morador.cpf">Cpf</span>
+                    <span>CPF</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{morador.cpf | cpf}}</span>
@@ -63,7 +63,7 @@
                     <span translate="tmcApp.morador.tipo">Tipo</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{morador.tipo}}</span>
+                    <span class="form-control-static">{{morador.tipo == 'PROPRIETARIO' ? 'Proprietário' : (morador.tipo == 'LOCATARIO' ? 'Locatário' : 'Dependente')}}</span>
                 </td>
             </tr>
             </tbody>

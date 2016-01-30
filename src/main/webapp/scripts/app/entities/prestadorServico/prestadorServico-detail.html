@@ -1,5 +1,5 @@
 <div>
-    <h2><span translate="tmcApp.prestadorServico.detail.title">PrestadorServico</span> {{prestadorServico.id}}</h2>
+    <h2><span translate="tmcApp.prestadorServico.detail.title">PrestadorServico</span></h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -30,7 +30,7 @@
                     <span translate="tmcApp.prestadorServico.tipo">Pessoa</span>
                 </td>
                 <td>
-                    <span class="form-control-static" translate="{{'tmcApp.Pessoa.' + prestadorServico.tipo}}">{{prestadorServico.tipo}}</span>
+                    <span class="form-control-static">{{prestadorServico.tipo == 'JURIDICO' ? 'Pessoa Jurídica' : 'Pessoa Física'}}</span>
                 </td>
             </tr>
             <tr>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="tmcApp.prestadorServico.cep">cep</span>
+                    <span>CEP</span>
                 </td>
                 <td>
                     <a class="form-control-static" ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.cep | cep}}</a>

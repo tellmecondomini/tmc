@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-            <h1>Morador</h1>
+            <h1>Cadastro de Morador</h1>
 
             <div class="alert alert-success" ng-show="success" translate="register.messages.success">
                 <strong>Registration saved!</strong> Please check your email for confirmation.
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label translate="tmcApp.morador.cpf" for="field_cpf">Cpf</label>
+                    <label>CPF</label>
                     <input type="text" class="form-control" name="cpf" id="field_cpf"
                            ng-model="morador.cpf"
                            ui-mask="999.999.999-99"
@@ -98,9 +98,9 @@
                 <div class="form-group">
                     <label translate="tmcApp.morador.tipo" for="field_tipo">Tipo</label>
                     <select class="form-control" name="tipo" ng-model="morador.tipo" id="field_tipo">
-                        <option value="PROPRIETARIO">PROPRIETARIO</option>
-                        <option value="LOCATARIO">LOCATARIO</option>
-                        <option value="DEPENDENTE">DEPENDENTE</option>
+                        <option value="PROPRIETARIO">Proprietário</option>
+                        <option value="LOCATARIO">Locatário</option>
+                        <option value="DEPENDENTE">Dependente</option>
                     </select>
                 </div>
 

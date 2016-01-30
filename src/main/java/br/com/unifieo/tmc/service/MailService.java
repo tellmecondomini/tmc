@@ -106,7 +106,7 @@ public class MailService {
         context.setVariable("user", user);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("newFuncionarioEmail", context);
-        String subject = "TMC - Novo Funcionario";
+        String subject = "TMC - Novo Funcionário";
         this.sendEmail(funcionario.getEmail(), subject, content, false, true);
     }
 
@@ -129,7 +129,7 @@ public class MailService {
         context.setVariable("topico", topico);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("topicoAprovado", context);
-        String subject = "TMC - Topico Aprovado";
+        String subject = "TMC - Tópico Aprovado";
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
 
@@ -141,7 +141,7 @@ public class MailService {
         context.setVariable("topico", topico);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("topicoReprovado", context);
-        String subject = "TMC - Topico Reprovado";
+        String subject = "TMC - Tópico Reprovado";
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
 
@@ -154,7 +154,7 @@ public class MailService {
         context.setVariable("comentario", comentario);
         context.setVariable("baseUrl", baseUrl);
         String content = templateEngine.process("topicoEncerrado", context);
-        String subject = "TMC - Topico Encerrado";
+        String subject = "TMC - Tópico Encerrado";
         this.sendEmail(topico.getEmail(), subject, content, false, true);
     }
 

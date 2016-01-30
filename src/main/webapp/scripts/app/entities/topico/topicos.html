@@ -22,13 +22,15 @@
                 <tr>
                     <th>Título</th>
                     <th>Descrição</th>
+                    <th>Categoria</th>
                     <th>Data</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="topico in topicos" ng-class="{'warning': topico.recomendado}">
+                <tr ng-repeat="topico in topicos"
+                    ng-class="{'warning': topico.recomendado}">
                     <td><strong>{{topico.titulo}}</strong>
                         <p ng-show="topico.recomendado">
                             <span class="glyphicon glyphicon-exclamation-sign"></span>
@@ -37,6 +39,9 @@
                     </td>
                     <td>
                         <small>{{topico.descricao | limitTo: 20}}...</small>
+                    </td>
+                    <td>
+                        <small>{{topico.categoria.descricao}}</small>
                     </td>
                     <td>
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
@@ -64,6 +69,7 @@
                 <tr>
                     <th>Título</th>
                     <th>Descrição</th>
+                    <th>Categoria</th>
                     <th>Data</th>
                     <th>Status</th>
                     <th></th>
@@ -79,6 +85,9 @@
                     </td>
                     <td>
                         <small>{{topico.descricao | limitTo: 20}}...</small>
+                    </td>
+                    <td>
+                        <small>{{topico.categoria.descricao}}</small>
                     </td>
                     <td>
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>

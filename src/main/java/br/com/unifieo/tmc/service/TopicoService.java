@@ -53,6 +53,9 @@ public class TopicoService {
             topico.setStatusTopico(StatusTopico.ABERTO);
         }
 
+        if (topico.getRecomendado() == null)
+            topico.setRecomendado(false);
+
         topico.setData(new DateTime());
         Topico topicoSaved = this.topicoRepository.save(topico);
         return topicoSaved;

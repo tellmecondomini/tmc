@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth, AccountMorador) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -17,11 +17,12 @@ angular.module('tmcApp')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register') {
-                    $state.go('/');
-                } else {
-                    $rootScope.back();
-                }
+                AccountMorador.get(function (morador) {
+                    if (morador == null)
+                        $state.go('home');
+                    else
+                        $state.go('topico');
+                });
             }).catch(function () {
                 $scope.authenticationError = true;
             });

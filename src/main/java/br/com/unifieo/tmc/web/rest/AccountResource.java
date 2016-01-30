@@ -161,7 +161,21 @@ public class AccountResource {
             .map(morador -> new ResponseEntity<>(
                 morador,
                 HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            .orElse(new ResponseEntity<>(new Morador(), HttpStatus.OK));
+    }
+
+    @RequestMapping(value = "/account/funcionario",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Funcionario> getCurrentFuncionario() {
+        String email = userService.getUserDTO().getEmail();
+        log.debug("REST request to get Morador by Email: {}", email);
+        return Optional.ofNullable(funcionarioRepository.findOneByEmail(email))
+            .map(funcionario -> new ResponseEntity<>(
+                funcionario,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(new Funcionario(), HttpStatus.OK));
     }
 
     /**

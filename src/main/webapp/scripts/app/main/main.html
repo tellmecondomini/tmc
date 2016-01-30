@@ -1,6 +1,7 @@
 <div ng-cloak>
 
-    <div class="container" ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(account.authorities[0]) > -1)">
+    <div class="container"
+         ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(account.authorities[0]) > -1)">
 
         <!-- Tópicos a serem aprovados -->
         <p class="lead text-primary text-center">Tópicos a serem aprovados</p>
@@ -9,7 +10,8 @@
                 <thead>
                 <tr>
                     <th>Título</th>
-                    <th>Conteúdo</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
                     <th>Data</th>
                     <th>Morador/Funcionário</th>
                     <th></th>
@@ -22,6 +24,9 @@
                     </strong></td>
                     <td>
                         <small>{{topico.descricao | limitTo: 20}}...</small>
+                    </td>
+                    <td>
+                        <small>{{topico.categoria.descricao}}</small>
                     </td>
                     <td>
                         <small>{{topico.data | date:'dd/MM/yyyy - HH:mm:ss'}}</small>
@@ -44,6 +49,10 @@
 
         <hr/>
 
+    </div>
+
+    <div class="container"
+         ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(account.authorities[0]) > -1)">
         <!-- Comentarios a serem removidos -->
         <p class="lead text-primary text-center">Solicitações de remoção de comentário</p>
         <div class="table-responsive">
@@ -62,11 +71,14 @@
                 <tr ng-repeat="solicitacao in solicitacoes">
                     <td>
                         <strong>
-                            <small><a ui-sref="solicitaRemocaoComentario.detail({id:solicitacao.id})">{{solicitacao.comentario.conteudo | limitTo: 20}}...</a></small>
+                            <small><a ui-sref="solicitaRemocaoComentario.detail({id:solicitacao.id})">{{solicitacao.comentario.conteudo
+                                | limitTo: 20}}...</a></small>
                         </strong>
                     </td>
                     <td>
-                        <small>{{solicitacao.comentario.funcionario == null ? solicitacao.comentario.funcionario.nome : solicitacao.morador.nome}}</small>
+                        <small>{{solicitacao.comentario.funcionario == null ? solicitacao.comentario.funcionario.nome :
+                            solicitacao.morador.nome}}
+                        </small>
                     </td>
                     <td>
                         <small>{{solicitacao.morador.nome}}</small>
@@ -91,6 +103,11 @@
         </div>
 
         <hr/>
+
+    </div>
+
+    <div class="container"
+         ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(account.authorities[0]) > -1)">
 
         <!-- Avaliações de Prestadores de Serviço -->
         <p class="lead text-primary text-center">Avaliações de Prestadores de Serviço</p>
@@ -118,7 +135,8 @@
                         <spam class="form-control-static">{{avaliacao.morador.nome}}</spam>
                     </td>
                     <td>
-                        <rating ng-model="avaliacao.nota" max="5" readonly="true" on-leave="overStar = null" aria-labelledby="default-rating"/>
+                        <rating ng-model="avaliacao.nota" max="5" readonly="true" on-leave="overStar = null"
+                                aria-labelledby="default-rating"/>
                     </td>
                     <td>
                         <spam class="form-control-static">{{avaliacao.mensagem}}</spam>

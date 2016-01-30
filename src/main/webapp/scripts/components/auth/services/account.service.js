@@ -25,4 +25,16 @@ angular.module('tmcApp')
                 }
             }
         });
+    })
+    .factory('AccountFuncionario', function Account($resource, DateUtils) {
+        return $resource('api/account/funcionario', {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    data.dataNascimento = DateUtils.convertDateTimeFromServer(data.dataNascimento);
+                    return data;
+                }
+            }
+        });
     });

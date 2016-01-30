@@ -172,6 +172,7 @@ public class TopicoResource {
 
         return topicos.stream()
             .sorted((t1, t2) -> t2.getData().compareTo(t1.getData()))
+            .sorted((t1, t2) -> t2.getRecomendado().compareTo(t1.getRecomendado()))
             .collect(Collectors.toList());
     }
 

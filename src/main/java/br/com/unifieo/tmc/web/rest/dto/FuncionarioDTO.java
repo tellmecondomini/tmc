@@ -4,7 +4,6 @@ import br.com.unifieo.tmc.domain.Categoria;
 import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.joda.time.DateTime;
 
 import java.util.Collections;

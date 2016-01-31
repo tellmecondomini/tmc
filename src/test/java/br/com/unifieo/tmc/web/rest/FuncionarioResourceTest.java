@@ -3,7 +3,6 @@ package br.com.unifieo.tmc.web.rest;
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
 import br.com.unifieo.tmc.service.FuncionarioService;
 import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;

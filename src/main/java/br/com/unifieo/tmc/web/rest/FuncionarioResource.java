@@ -3,7 +3,6 @@ package br.com.unifieo.tmc.web.rest;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
-import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.service.FuncionarioService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;

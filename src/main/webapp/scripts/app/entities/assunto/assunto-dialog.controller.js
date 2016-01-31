@@ -13,9 +13,16 @@ angular.module('tmcApp').controller('AssuntoDialogController',
             };
 
             $scope.categorias = [];
-            Categoria.query(function (result) {
-                $scope.categorias = result;
-            });
+            $scope.loadCategorias = function () {
+                Categoria.query(function (result) {
+                    $scope.categorias = result;
+                    if (!$scope.assunto.categorias) {
+                        $scope.assunto.categorias = [];
+                        $scope.assunto.categorias.push($scope.categorias[0]);
+                    }
+                });
+            };
+            $scope.loadCategorias();
 
             var onSaveFinished = function (result) {
                 $scope.$emit('tmcApp:assuntoUpdate', result);

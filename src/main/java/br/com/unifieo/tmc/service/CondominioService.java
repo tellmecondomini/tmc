@@ -46,6 +46,14 @@ public class CondominioService {
         Cep cep = Optional.ofNullable(cepRepository.findOneByCep(condominioDto.getCondominioCep()))
             .orElseGet(() -> cepRepository.save(condominio.getCep()));
 
+        cep.setLogradouro(condominio.getCep().getLogradouro());
+        cep.setBairro(condominio.getCep().getBairro());
+        cep.setCidade(condominio.getCep().getCidade());
+        cep.setCep(condominio.getCep().getCep());
+        cep.setUf(condominio.getCep().getUf());
+
+        cep = cepRepository.save(cep);
+
         condominio.setCep(cep);
 
         Condominio condominioSaved = condominioRepository.save(condominio);

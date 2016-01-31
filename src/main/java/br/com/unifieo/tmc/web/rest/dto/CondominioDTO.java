@@ -5,7 +5,6 @@ import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.TelefoneCondominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class CondominioDTO {
             this.condominioLogradouro = cep.getLogradouro();
             this.condominioBairro = cep.getBairro();
             this.condominioCidade = cep.getCidade();
-            this.condominioUf = cep.getUf() == null ? null : cep.getUf().toString();
+            this.condominioUf = cep.getUf();
         }
         this.telefone1 = new TelefoneCondominio(condominio, 0L);
         this.telefone2 = new TelefoneCondominio(condominio, 0L);

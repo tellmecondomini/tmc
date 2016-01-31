@@ -2,7 +2,6 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Condominio;
-import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
@@ -53,15 +52,25 @@ public class PrestadorServicoResource {
     @Timed
     public ResponseEntity<PrestadorServico> createPrestadorServico(@RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to save PrestadorServico : {}", prestadorServico);
+
         if (prestadorServico.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new prestadorServico cannot already have an ID").body(null);
         }
+
         Cep cep = Optional
             .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
             .orElseGet(() -> cepRepository.save(prestadorServico.getCep()));
-        Morador morador = userService.getMoradorAtual();
+
+        cep.setLogradouro(prestadorServico.getCep().getLogradouro());
+        cep.setBairro(prestadorServico.getCep().getBairro());
+        cep.setCidade(prestadorServico.getCep().getCidade());
+        cep.setCep(prestadorServico.getCep().getCep());
+        cep.setUf(prestadorServico.getCep().getUf());
+
+        cep = cepRepository.save(cep);
+
         prestadorServico.setCep(cep);
-        prestadorServico.setMorador(morador);
+        prestadorServico.setMorador(userService.getMoradorAtual());
         prestadorServico.setCondominio(condominioService.getCurrentCondominio());
         PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.created(new URI("/api/prestadorServicos/" + result.getId()))

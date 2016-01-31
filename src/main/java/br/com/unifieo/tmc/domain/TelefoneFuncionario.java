@@ -30,9 +30,9 @@ public class TelefoneFuncionario implements Serializable {
 
     }
 
-    public TelefoneFuncionario(Long numero, Funcionario funcionario) {
-        this.numero = numero;
+    public TelefoneFuncionario(Funcionario funcionario, Long numero) {
         this.funcionario = funcionario;
+        this.numero = numero;
     }
 
     public Long getId() {

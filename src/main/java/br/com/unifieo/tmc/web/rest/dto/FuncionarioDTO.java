@@ -3,9 +3,11 @@ package br.com.unifieo.tmc.web.rest.dto;
 import br.com.unifieo.tmc.domain.Categoria;
 import br.com.unifieo.tmc.domain.Cep;
 import br.com.unifieo.tmc.domain.Funcionario;
+import br.com.unifieo.tmc.domain.TelefoneFuncionario;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
@@ -21,6 +23,8 @@ public class FuncionarioDTO {
     private String senha;
     private Boolean ativo;
     private Boolean responsavel;
+    private TelefoneFuncionario telefone1;
+    private TelefoneFuncionario telefone2;
 
     private Long cepId;
     private String cep;
@@ -54,6 +58,8 @@ public class FuncionarioDTO {
         this.responsavel = funcionario.getResponsavel();
         this.condominioId = funcionario.getCondominio().getId();
         this.condominioRazaoSocial = funcionario.getCondominio().getRazaoSocial();
+        this.telefone1 = new TelefoneFuncionario(funcionario, 0L);
+        this.telefone2 = new TelefoneFuncionario(funcionario, 0L);
         Cep cep = funcionario.getCep();
         if (cep != null) {
             this.cepId = cep.getId();
@@ -61,11 +67,20 @@ public class FuncionarioDTO {
             this.logradouro = cep.getLogradouro();
             this.bairro = cep.getBairro();
             this.cidade = cep.getCidade();
-            this.uf = cep.getUf() == null ? null : cep.getUf().toString();
+            this.uf = cep.getUf();
         }
         Set<Categoria> categorias = funcionario.getCategorias();
         if (categorias != null)
             this.categorias = categorias;
+        ArrayList<TelefoneFuncionario> TelefoneFuncionarios = new ArrayList<>(funcionario.getTelefoneFuncionarios());
+        if (TelefoneFuncionarios.size() > 0) {
+            TelefoneFuncionario TelefoneFuncionario = TelefoneFuncionarios.get(0);
+            if (TelefoneFuncionario != null)
+                this.telefone1 = TelefoneFuncionario;
+            TelefoneFuncionario = TelefoneFuncionarios.get(1);
+            if (TelefoneFuncionario != null)
+                this.telefone2 = TelefoneFuncionario;
+        }
     }
 
     public Long getId() {
@@ -234,6 +249,22 @@ public class FuncionarioDTO {
 
     public void setCategorias(Set<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    public TelefoneFuncionario getTelefone1() {
+        return telefone1;
+    }
+
+    public void setTelefone1(TelefoneFuncionario telefone1) {
+        this.telefone1 = telefone1;
+    }
+
+    public TelefoneFuncionario getTelefone2() {
+        return telefone2;
+    }
+
+    public void setTelefone2(TelefoneFuncionario telefone2) {
+        this.telefone2 = telefone2;
     }
 
     @Override

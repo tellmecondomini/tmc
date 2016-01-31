@@ -69,7 +69,7 @@ public class PrestadorServico implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "competencias_id"))
     private Set<CompetenciaPrestador> competencias = new HashSet<>();
 
-    @OneToMany(mappedBy = "prestadorServico")
+    @OneToMany(mappedBy = "prestadorServico", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();

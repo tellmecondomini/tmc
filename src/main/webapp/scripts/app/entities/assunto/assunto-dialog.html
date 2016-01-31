@@ -39,7 +39,8 @@
             <div class="well">
                 <div id="field_categorias" ng-repeat="categoria in categorias">
                     <input type="checkbox" data-checklist-model="assunto.categorias"
-                           data-checklist-value="categoria"> {{categoria.descricao}} <br/>
+                           data-checklist-value="categoria"
+                           checklist-before-change="assunto.categorias.length > 1 || checked"> {{categoria.descricao}} <br/>
                 </div>
             </div>
         </div>

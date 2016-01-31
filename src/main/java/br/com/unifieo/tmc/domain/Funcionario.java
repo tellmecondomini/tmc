@@ -90,7 +90,7 @@ public class Funcionario implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "categorias_id"))
     private Set<Categoria> categorias = new HashSet<>();
 
-    @OneToMany(mappedBy = "funcionario")
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneFuncionario> telefoneFuncionarios = new HashSet<>();
@@ -170,6 +170,9 @@ public class Funcionario implements Serializable {
             funcionarioDTO.getUf(),
             funcionarioDTO.getCep());
         this.categorias = Sets.newHashSet(funcionarioDTO.getCategorias());
+        this.telefoneFuncionarios = new HashSet<>(2);
+        this.telefoneFuncionarios.add(funcionarioDTO.getTelefone1());
+        this.telefoneFuncionarios.add(funcionarioDTO.getTelefone2());
     }
 
     public Long getId() {

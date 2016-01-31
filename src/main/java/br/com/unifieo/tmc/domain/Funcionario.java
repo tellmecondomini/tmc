@@ -1,6 +1,7 @@
 package br.com.unifieo.tmc.domain;
 
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
@@ -160,7 +161,7 @@ public class Funcionario implements Serializable {
         this.numero = funcionarioDTO.getNumero();
         this.complemento = funcionarioDTO.getComplemento();
         this.responsavel = funcionarioDTO.getResponsavel();
-        this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf(), funcionarioDTO.getCep());
+        this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf() != null ? Uf.valueOf(funcionarioDTO.getUf()) : null, funcionarioDTO.getCep());
         this.categorias = Sets.newHashSet(funcionarioDTO.getCategorias());
     }
 

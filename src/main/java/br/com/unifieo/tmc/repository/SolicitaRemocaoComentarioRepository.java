@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SolicitaRemocaoComentarioRepository extends JpaRepository<SolicitaRemocaoComentario,Long> {
 
     SolicitaRemocaoComentario findOneByComentario(Comentario comentario);
+
+    SolicitaRemocaoComentario findOneByComentarioAndAprovado(Comentario comentario, Boolean aprovado);
 }

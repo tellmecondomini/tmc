@@ -1,20 +1,23 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MoradorController', function ($scope, $http, Morador, Principal) {
+    .controller('MoradorController', function ($scope, $http, Morador, Principal, AccountMorador) {
 
         Principal.identity(true).then(function (account) {
             $scope.settingsAccount = account;
         });
 
         $scope.moradors = [];
-
         $scope.loadAll = function () {
             Morador.query(function (result) {
-                $scope.moradors = result;
+                AccountMorador.get(function (morador) {
+                    if (morador.id == null)
+                        $scope.moradors = result;
+                    else
+                        $scope.moradors.push(morador);
+                });
             });
         };
-
         $scope.loadAll();
 
         $scope.delete = function (id) {

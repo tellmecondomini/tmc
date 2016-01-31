@@ -28,7 +28,7 @@
             <column name="data_atendimento" type="timestamp"/>
             <column name="observacao" type="varchar(500)"/>
             <column name="comentario_id" type="bigint">
-                <constraints unique="true"/>
+                <constraints unique="false"/>
             </column>
             <column name="morador_id" type="bigint"/>
             <column name="aprovado" type="bit"/>

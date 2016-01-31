@@ -95,11 +95,12 @@ public class AccountResource {
     @Timed
     public ResponseEntity<?> createMorador(@RequestBody MoradorDTO moradorDTO, HttpServletRequest request) {
 
-        Morador byEmail = moradorRepository.findOneByEmail(moradorDTO.getEmail());
-        if (byEmail != null)
-            return new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST);
-
-        userRepository.findOneByEmail(moradorDTO.getEmail()).map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST));
+        Optional<User> userWithAuthoritiesByLogin = userService.getUserWithAuthoritiesByLogin(moradorDTO.getEmail());
+        if (userWithAuthoritiesByLogin.isPresent()) {
+            User usuario = userWithAuthoritiesByLogin.get();
+            if (usuario != null)
+                return new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST);
+        }
 
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 

@@ -119,7 +119,7 @@ public class FuncionarioResourceTest {
         funcionarioDTO.setLogradouro("Logradouro ");
         funcionarioDTO.setBairro("Bairro ");
         funcionarioDTO.setCidade("Cidade ");
-        funcionarioDTO.setUf(Uf.SP);
+        // funcionarioDTO.setUf(Uf.SP);
         funcionarioDTO.setNumero(DEFAULT_NUMERO);
         funcionarioDTO.setComplemento(DEFAULT_COMPLEMENTO);
     }

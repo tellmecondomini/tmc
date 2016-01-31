@@ -33,7 +33,7 @@ angular.module('tmcApp')
                 $scope.solicitacoes = solicitacoes;
                 TopicoComentarios.query({id: id}, function (comentarios) {
                     angular.forEach(comentarios, function (value, key) {
-                        value.solicitacaoJaExiste = $scope.isSolicitacaoJaExite(value.id);
+                        value.solicitacaoJaExiste = $scope.isSolicitacaoJaExiste(value.id);
                         this.push(value);
                     }, $scope.comentarios);
                 });
@@ -85,8 +85,12 @@ angular.module('tmcApp')
             $http.get("api/account/morador").then(
                 function (result) {
                     $scope.moradorSolicitante = result.data;
-                    if ($scope.moradorSolicitante)
-                        $('#deleteComentarioByMorador').modal('show');
+                    if ($scope.moradorSolicitante) {
+                        if ($scope.moradorSolicitante.id === $scope.comentario.morador.id)
+                            $('#deleteComentarioByFuncionario').modal('show');
+                        else
+                            $('#deleteComentarioByMorador').modal('show');
+                    }
                 }, function (error) {
                     $('#deleteComentarioByFuncionario').modal('show');
                 });
@@ -110,10 +114,10 @@ angular.module('tmcApp')
                 });
         };
 
-        $scope.isSolicitacaoJaExite = function (id) {
+        $scope.isSolicitacaoJaExiste = function (id) {
             var filtered = [];
             angular.forEach($scope.solicitacoes, function (value, key) {
-                if (value.comentario.id === id)
+                if (value.aprovado === null && value.comentario.id === id)
                     this.push(value);
             }, filtered);
             return filtered.length <= 0;

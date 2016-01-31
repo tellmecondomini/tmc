@@ -38,19 +38,19 @@ angular.module('tmcApp')
                         }
 
                         if (['ROLE_FUNCIONARIO'].indexOf($scope.account.authorities[0]) > -1) {
-                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1) {
+                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO', 'REPROVADO'].indexOf(topico.statusTopico) > -1) {
                                 addTopicosFuncionario($scope.encerrados);
                             } else {
                                 addTopicosFuncionario($scope.topicos);
                             }
                         } else if ((['ROLE_MORADOR'].indexOf($scope.account.authorities[0]) > -1)) {
-                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1) {
+                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO', 'REPROVADO'].indexOf(topico.statusTopico) > -1) {
                                 addTopicosMorador($scope.encerrados);
                             } else {
                                 addTopicosMorador($scope.topicos);
                             }
                         } else {
-                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO'].indexOf(topico.statusTopico) > -1) {
+                            if (['ENCERRADO_COM_SUCESSO', 'ENCERRADO_SEM_SUCESSO', 'REPROVADO'].indexOf(topico.statusTopico) > -1) {
                                 addTopicosAdmin($scope.encerrados);
                             } else {
                                 addTopicosAdmin($scope.topicos);
@@ -62,10 +62,10 @@ angular.module('tmcApp')
         };
 
         AccountFuncionario.get(function (funcionario) {
-            if(funcionario.id != null)
+            if (funcionario.id != null)
                 $scope.funcionario = funcionario;
             AccountMorador.get(function (morador) {
-                if(morador.id != null)
+                if (morador.id != null)
                     $scope.morador = morador;
                 $scope.loadAll();
             });

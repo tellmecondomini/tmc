@@ -93,7 +93,7 @@
            		 </p>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="form-group col-md-10">
                 <p>
@@ -102,7 +102,7 @@
            		 </p>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="form-group col-md-10">
                 <p>
@@ -111,7 +111,6 @@
            		 </p>
             </div>
         </div>
-		
 
         <div class="row">
             <div class="form-group col-md-10">
@@ -122,6 +121,12 @@
             </div>
             <div class="form-group col-md-2 text-right">
                 <small class="text-danger">Comentarios: {{comentarios.length}}</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;" ng-if="topico.imagem"/>
             </div>
         </div>
 

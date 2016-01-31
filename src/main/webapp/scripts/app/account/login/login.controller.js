@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth, AccountMorador) {
+    .controller('LoginController', function ($rootScope, $scope, $state, $window, $timeout, Auth, AccountMorador) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -18,7 +18,7 @@ angular.module('tmcApp')
             }).then(function () {
                 $scope.authenticationError = false;
                 AccountMorador.get(function (morador) {
-                    if (morador == null)
+                    if (morador.id == null)
                         $state.go('home');
                     else
                         $state.go('topico');

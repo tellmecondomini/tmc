@@ -49,7 +49,7 @@ public class SolicitaRemocaoComentario implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
 
-    @OneToOne
+    @ManyToOne
     private Comentario comentario;
 
     @ManyToOne

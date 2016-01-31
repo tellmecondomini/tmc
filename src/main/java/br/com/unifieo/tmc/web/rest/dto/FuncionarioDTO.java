@@ -28,7 +28,7 @@ public class FuncionarioDTO {
     private String logradouro;
     private String bairro;
     private String cidade;
-    private Uf uf;
+    private String uf;
     private Integer numero;
     private String complemento;
 
@@ -62,7 +62,7 @@ public class FuncionarioDTO {
             this.logradouro = cep.getLogradouro();
             this.bairro = cep.getBairro();
             this.cidade = cep.getCidade();
-            this.uf = cep.getUf();
+            this.uf = cep.getUf().toString();
         }
         Set<Categoria> categorias = funcionario.getCategorias();
         if (categorias != null)
@@ -181,11 +181,11 @@ public class FuncionarioDTO {
         this.cidade = cidade;
     }
 
-    public Uf getUf() {
+    public String getUf() {
         return uf;
     }
 
-    public void setUf(Uf uf) {
+    public void setUf(String uf) {
         this.uf = uf;
     }
 

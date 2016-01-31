@@ -1,8 +1,11 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Funcionario;
+import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
+import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.service.FuncionarioService;
+import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -35,6 +38,9 @@ public class FuncionarioResource {
     @Inject
     private FuncionarioService funcionarioService;
 
+    @Inject
+    private UserService userService;
+
     /**
      * POST  /funcionarios -> Create a new funcionarioDTO.
      */
@@ -45,14 +51,21 @@ public class FuncionarioResource {
     public ResponseEntity<Funcionario> createFuncionario(@RequestBody FuncionarioDTO funcionarioDTO, HttpServletRequest request) throws URISyntaxException {
         log.debug("REST request to save Funcionario : {}", funcionarioDTO);
 
+        if (funcionarioDTO.getId() != null)
+            return ResponseEntity.badRequest().header("Failure", "A new funcionario cannot already have an ID").body(null);
+
+        Optional<User> userWithAuthoritiesByLogin = userService.getUserWithAuthoritiesByLogin(funcionarioDTO.getEmail());
+        if (userWithAuthoritiesByLogin.isPresent()) {
+            User usuario = userWithAuthoritiesByLogin.get();
+            if (usuario != null)
+                return ResponseEntity.badRequest().header("Failure", "e-mail address already in use").body(null);
+        }
+
         String baseUrl = request.getScheme() +
             "://" +
             request.getServerName() +
             ":" +
             request.getServerPort();
-
-        if (funcionarioDTO.getId() != null)
-            return ResponseEntity.badRequest().header("Failure", "A new funcionario cannot already have an ID").body(null);
 
         Funcionario result = funcionarioService.save(funcionarioDTO, baseUrl);
 
@@ -73,6 +86,13 @@ public class FuncionarioResource {
 
         if (funcionarioDTO.getId() == null)
             return createFuncionario(funcionarioDTO, request);
+
+        Optional<User> userWithAuthoritiesByLogin = userService.getUserWithAuthoritiesByLogin(funcionarioDTO.getEmail());
+        if (userWithAuthoritiesByLogin.isPresent()) {
+            User usuario = userWithAuthoritiesByLogin.get();
+            if (usuario != null)
+                return ResponseEntity.badRequest().header("Failure", "e-mail address already in use").body(null);
+        }
 
         String baseUrl = request.getScheme() +
             "://" +

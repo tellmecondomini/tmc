@@ -39,9 +39,23 @@ angular.module('tmcApp').controller('FuncionarioDialogController',
 
             $scope.save = function () {
                 if ($scope.funcionario.id != null) {
-                    Funcionario.update($scope.funcionario, onSaveFinished);
+                    Funcionario.update($scope.funcionario, onSaveFinished, function (response) {
+                        $scope.success = null;
+                        if (response.status === 400) {
+                            $scope.errorEmailExists = 'ERROR';
+                        } else {
+                            $scope.error = 'ERROR';
+                        }
+                    });
                 } else {
-                    Funcionario.save($scope.funcionario, onSaveFinished);
+                    Funcionario.save($scope.funcionario, onSaveFinished, function (response) {
+                        $scope.success = null;
+                        if (response.status === 400) {
+                            $scope.errorEmailExists = 'ERROR';
+                        } else {
+                            $scope.error = 'ERROR';
+                        }
+                    });
                 }
             };
 

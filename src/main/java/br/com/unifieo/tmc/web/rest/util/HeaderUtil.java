@@ -31,4 +31,8 @@ public class HeaderUtil {
         return createAlert("Já existe uma solicitação de remoção para este comentário.", null);
     }
 
+    public static HttpHeaders createEmailJaExisteAlert() {
+        return createAlert("e-mail address already in use", null);
+    }
+
 }

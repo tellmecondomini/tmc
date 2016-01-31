@@ -122,7 +122,7 @@ public class ComentarioResource {
     public ResponseEntity<Void> deleteComentarioByMorador(@PathVariable Long id, @PathVariable Long moradorId, @PathVariable String motivo) {
         log.debug("REST request to delete Comentario By Morador : {}", id);
         Comentario comentario = comentarioRepository.findOne(id);
-        return Optional.ofNullable(solicitaRemocaoComentarioRepository.findOneByComentario(comentario))
+        return Optional.ofNullable(solicitaRemocaoComentarioRepository.findOneByComentarioAndAprovado(comentario, null))
             .map(s -> ResponseEntity.badRequest().headers(HeaderUtil.createSolicitacaoJaExisteAlert()).build())
             .orElseGet(() -> {
                 comentarioService.getSolicitacaoRemocaoByMorador(comentario, moradorId, motivo);

@@ -71,7 +71,7 @@
                     <button type="submit"
                             ui-sref="funcionario.edit({id:funcionario.id})"
                             class="btn btn-primary btn-sm"
-                            ng-show="['ROLE_FUNCIONARIO','ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1 && funcionario.email == settingsAccount.email">
+                            ng-show="['ROLE_FUNCIONARIO','ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1 && (funcionario.email == settingsAccount.email || ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1)">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
                         translate="entity.action.edit"> Edit</span>
                     </button>

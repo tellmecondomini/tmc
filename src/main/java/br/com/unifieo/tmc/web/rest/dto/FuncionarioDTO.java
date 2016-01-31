@@ -61,7 +61,7 @@ public class FuncionarioDTO {
             this.logradouro = cep.getLogradouro();
             this.bairro = cep.getBairro();
             this.cidade = cep.getCidade();
-            this.uf = cep.getUf().toString();
+            this.uf = cep.getUf() == null ? null : cep.getUf().toString();
         }
         Set<Categoria> categorias = funcionario.getCategorias();
         if (categorias != null)

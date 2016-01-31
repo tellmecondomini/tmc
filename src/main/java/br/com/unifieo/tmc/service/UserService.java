@@ -6,6 +6,7 @@ import br.com.unifieo.tmc.security.AuthoritiesConstants;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.util.RandomUtil;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
+import org.apache.commons.collections.SetUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service class for managing users.
@@ -49,6 +51,9 @@ public class UserService {
 
     @Inject
     private AuthorityRepository authorityRepository;
+
+    @Inject
+    private CategoriaRepository categoriaRepository;
 
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
@@ -121,6 +126,8 @@ public class UserService {
         Condominio condominio = new Condominio(userDTO.getCondominio());
         condominio = condominioRepository.save(condominio);
 
+        List<Categoria> categorias = categoriaRepository.findAll();
+
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(userSaved.getFirstName());
         funcionario.setEmail(userSaved.getEmail());
@@ -128,6 +135,7 @@ public class UserService {
         funcionario.setAtivo(true);
         funcionario.setCondominio(condominio);
         funcionario.setResponsavel(true);
+        funcionario.setCategorias(new HashSet<>(categorias));
         funcionarioRepository.save(funcionario);
 
         log.debug("Created Information for User: {}", newUser);

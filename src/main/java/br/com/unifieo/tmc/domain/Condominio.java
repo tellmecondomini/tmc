@@ -1,6 +1,7 @@
 package br.com.unifieo.tmc.domain;
 
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
+import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeDeserializer;
 import br.com.unifieo.tmc.domain.util.CustomDateTimeSerializer;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;
@@ -105,7 +106,11 @@ public class Condominio implements Serializable {
         this.disposicao = condominioDto.getDisposicao();
         this.numero = condominioDto.getCondominioNumero();
         this.complemento = condominioDto.getCondominioComplemento();
-        this.cep = new Cep(condominioDto.getCondominioLogradouro(), condominioDto.getCondominioBairro(), condominioDto.getCondominioCidade(), condominioDto.getCondominioUf(), condominioDto.getCondominioCep());
+        this.cep = new Cep(condominioDto.getCondominioLogradouro(),
+            condominioDto.getCondominioBairro(),
+            condominioDto.getCondominioCidade(),
+            condominioDto.getCondominioUf() != null && !condominioDto.getCondominioUf().isEmpty() ? Uf.valueOf(condominioDto.getCondominioUf()) : null,
+            condominioDto.getCondominioCep());
         this.telefoneCondominios = new HashSet<>(2);
         this.telefoneCondominios.add(condominioDto.getTelefone1());
         this.telefoneCondominios.add(condominioDto.getTelefone2());

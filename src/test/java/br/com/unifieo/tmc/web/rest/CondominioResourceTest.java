@@ -108,7 +108,7 @@ public class CondominioResourceTest {
         condominioDTO.setCondominioLogradouro("Logradouro Condominio");
         condominioDTO.setCondominioBairro("Bairro Condominio");
         condominioDTO.setCondominioCidade("Cidade Condominio");
-        condominioDTO.setCondominioUf(Uf.SP);
+        // condominioDTO.setCondominioUf(Uf.SP);
         condominioDTO.setCondominioNumero(DEFAULT_NUMERO);
         condominioDTO.setCondominioComplemento(DEFAULT_COMPLEMENTO);
         condominioDTO.setResponsavelNome("Responsavel");
@@ -121,7 +121,7 @@ public class CondominioResourceTest {
         condominioDTO.setResponsavelLogradouro("Logradouro Responsavel");
         condominioDTO.setResponsavelBairro("Bairro Responsavel");
         condominioDTO.setResponsavelCidade("Cidade Responsavel");
-        condominioDTO.setResponsavelUf(Uf.SP);
+        // condominioDTO.setResponsavelUf(Uf.SP);
         condominioDTO.setResponsavelNumero(DEFAULT_NUMERO);
         condominioDTO.setResponsavelComplemento(DEFAULT_COMPLEMENTO);
     }

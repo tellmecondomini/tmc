@@ -143,7 +143,11 @@ public class Funcionario implements Serializable {
         this.numero = condominioDTO.getResponsavelNumero();
         this.complemento = condominioDTO.getResponsavelComplemento();
         this.responsavel = false;
-        this.cep = new Cep(condominioDTO.getResponsavelLogradouro(), condominioDTO.getResponsavelBairro(), condominioDTO.getResponsavelCidade(), condominioDTO.getResponsavelUf(), condominioDTO.getResponsavelCep());
+        this.cep = new Cep(condominioDTO.getResponsavelLogradouro(),
+            condominioDTO.getResponsavelBairro(),
+            condominioDTO.getResponsavelCidade(),
+            condominioDTO.getResponsavelUf() != null ? Uf.valueOf(condominioDTO.getResponsavelUf()) : null,
+            condominioDTO.getResponsavelCep());
         this.condominio = condominioSave;
         this.categorias = Collections.EMPTY_SET;
     }
@@ -161,7 +165,11 @@ public class Funcionario implements Serializable {
         this.numero = funcionarioDTO.getNumero();
         this.complemento = funcionarioDTO.getComplemento();
         this.responsavel = funcionarioDTO.getResponsavel();
-        this.cep = new Cep(funcionarioDTO.getLogradouro(), funcionarioDTO.getBairro(), funcionarioDTO.getCidade(), funcionarioDTO.getUf() != null ? Uf.valueOf(funcionarioDTO.getUf()) : null, funcionarioDTO.getCep());
+        this.cep = new Cep(funcionarioDTO.getLogradouro(),
+            funcionarioDTO.getBairro(),
+            funcionarioDTO.getCidade(),
+            funcionarioDTO.getUf() != null && !funcionarioDTO.getUf().isEmpty() ? Uf.valueOf(funcionarioDTO.getUf()) : null,
+            funcionarioDTO.getCep());
         this.categorias = Sets.newHashSet(funcionarioDTO.getCategorias());
     }
 

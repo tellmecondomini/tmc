@@ -5,7 +5,7 @@ import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.TelefoneCondominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class CondominioDTO {
     private String condominioLogradouro;
     private String condominioBairro;
     private String condominioCidade;
-    private Uf condominioUf;
+    private String condominioUf;
     private Integer condominioNumero;
     private String condominioComplemento;
 
@@ -47,7 +47,7 @@ public class CondominioDTO {
     private String responsavelLogradouro;
     private String responsavelBairro;
     private String responsavelCidade;
-    private Uf responsavelUf;
+    private String responsavelUf;
     private Integer responsavelNumero;
     private String responsavelComplemento;
 
@@ -70,7 +70,7 @@ public class CondominioDTO {
             this.condominioLogradouro = cep.getLogradouro();
             this.condominioBairro = cep.getBairro();
             this.condominioCidade = cep.getCidade();
-            this.condominioUf = cep.getUf();
+            this.condominioUf = cep.getUf() == null ? null : cep.getUf().toString();
         }
         this.telefone1 = new TelefoneCondominio(condominio, 0L);
         this.telefone2 = new TelefoneCondominio(condominio, 0L);
@@ -149,11 +149,11 @@ public class CondominioDTO {
         this.condominioCidade = condominioCidade;
     }
 
-    public Uf getCondominioUf() {
+    public String getCondominioUf() {
         return condominioUf;
     }
 
-    public void setCondominioUf(Uf condominioUf) {
+    public void setCondominioUf(String condominioUf) {
         this.condominioUf = condominioUf;
     }
 
@@ -253,11 +253,11 @@ public class CondominioDTO {
         this.responsavelCidade = responsavelCidade;
     }
 
-    public Uf getResponsavelUf() {
+    public String getResponsavelUf() {
         return responsavelUf;
     }
 
-    public void setResponsavelUf(Uf responsavelUf) {
+    public void setResponsavelUf(String responsavelUf) {
         this.responsavelUf = responsavelUf;
     }
 

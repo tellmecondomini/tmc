@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('tmcApp').controller('FuncionarioDialogController',
-    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario', 'Categoria',
-        function ($scope, $http, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario, Categoria) {
+    ['$scope', '$http', '$stateParams', '$modalInstance', '$q', 'entity', 'Funcionario', 'Cep', 'Condominio', 'TelefoneFuncionario', 'Categoria', 'Principal',
+        function ($scope, $http, $stateParams, $modalInstance, $q, entity, Funcionario, Cep, Condominio, TelefoneFuncionario, Categoria, Principal) {
+
+            Principal.identity(true).then(function (account) {
+                $scope.settingsAccount = account;
+            });
 
             $scope.funcionario = entity;
 

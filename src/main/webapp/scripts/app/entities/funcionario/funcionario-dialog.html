@@ -166,11 +166,13 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-8"
+                     ng-show="['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'].indexOf(settingsAccount.authorities[0]) > -1 && funcionario.email != settingsAccount.email">
                     <label for="field_categorias">Categorias</label>
                     <div class="well">
                         <div id="field_categorias" ng-repeat="categoria in categorias">
-                            <input type="checkbox" data-checklist-model="funcionario.categorias" data-checklist-value="categoria"> {{categoria.descricao}} <br/>
+                            <input type="checkbox" data-checklist-model="funcionario.categorias"
+                                   data-checklist-value="categoria"> {{categoria.descricao}} <br/>
                         </div>
                     </div>
                 </div>

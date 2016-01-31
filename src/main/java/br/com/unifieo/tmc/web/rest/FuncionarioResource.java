@@ -86,13 +86,6 @@ public class FuncionarioResource {
         if (funcionarioDTO.getId() == null)
             return createFuncionario(funcionarioDTO, request);
 
-        Optional<User> userWithAuthoritiesByLogin = userService.getUserWithAuthoritiesByLogin(funcionarioDTO.getEmail());
-        if (userWithAuthoritiesByLogin.isPresent()) {
-            User usuario = userWithAuthoritiesByLogin.get();
-            if (usuario != null)
-                return ResponseEntity.badRequest().header("Failure", "e-mail address already in use").body(null);
-        }
-
         String baseUrl = request.getScheme() +
             "://" +
             request.getServerName() +

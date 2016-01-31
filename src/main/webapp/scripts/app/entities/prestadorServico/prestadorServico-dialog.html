@@ -112,7 +112,7 @@
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.prestadorServico.numero" for="field_numero">Numero</label>
                     <input type="number" class="form-control" name="numero" id="field_numero"
-                           ng-model="prestadorServico.numero">
+                           ng-model="prestadorServico.numero" required>
                 </div>
 
                 <div class="form-group col-md-4">
@@ -142,7 +142,7 @@
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
             translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
         </button>
     </div>

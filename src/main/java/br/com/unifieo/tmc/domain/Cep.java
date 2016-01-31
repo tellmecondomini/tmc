@@ -1,6 +1,5 @@
 package br.com.unifieo.tmc.domain;
 
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,9 +29,8 @@ public class Cep implements Serializable {
     @Column(name = "cidade")
     private String cidade;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "uf")
-    private Uf uf;
+    private String uf;
 
     @NotNull
     @Column(name = "cep", nullable = false)
@@ -41,7 +39,7 @@ public class Cep implements Serializable {
     public Cep() {
     }
 
-    public Cep(String logradouro, String bairro, String cidade, Uf uf, String cep) {
+    public Cep(String logradouro, String bairro, String cidade, String uf, String cep) {
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -81,11 +79,11 @@ public class Cep implements Serializable {
         this.cidade = cidade;
     }
 
-    public Uf getUf() {
+    public String getUf() {
         return uf;
     }
 
-    public void setUf(Uf uf) {
+    public void setUf(String uf) {
         this.uf = uf;
     }
 

@@ -2,7 +2,6 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Cep;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.CepRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,8 +46,8 @@ public class CepResourceTest {
     private static final String DEFAULT_CIDADE = "SAMPLE_TEXT";
     private static final String UPDATED_CIDADE = "UPDATED_TEXT";
 
-    private static final Uf DEFAULT_UF = Uf.AC;
-    private static final Uf UPDATED_UF = Uf.AL;
+    private static final String DEFAULT_UF = "AC";
+    private static final String UPDATED_UF = "AL";
 
     private static final String DEFAULT_CEP = "1";
     private static final String UPDATED_CEP = "2";

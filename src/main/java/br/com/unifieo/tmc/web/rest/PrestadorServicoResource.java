@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -52,7 +51,7 @@ public class PrestadorServicoResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<PrestadorServico> createPrestadorServico(@Valid @RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
+    public ResponseEntity<PrestadorServico> createPrestadorServico(@RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to save PrestadorServico : {}", prestadorServico);
         if (prestadorServico.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new prestadorServico cannot already have an ID").body(null);
@@ -77,7 +76,7 @@ public class PrestadorServicoResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<PrestadorServico> updatePrestadorServico(@Valid @RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
+    public ResponseEntity<PrestadorServico> updatePrestadorServico(@RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to update PrestadorServico : {}", prestadorServico);
         if (prestadorServico.getId() == null) {
             return createPrestadorServico(prestadorServico);

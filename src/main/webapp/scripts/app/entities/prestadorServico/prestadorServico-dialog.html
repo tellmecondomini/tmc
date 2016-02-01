@@ -54,10 +54,16 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label translate="tmcApp.prestadorServico.tipo" for="field_pessoa">Pessoa</label>
-                    <select class="form-control" name="tipo" ng-model="prestadorServico.tipo" id="field_pessoa">
+                    <select class="form-control" name="tipo" ng-model="prestadorServico.tipo" id="field_pessoa" required>
                         <option value="FISICA">Pessoa Física</option>
                         <option value="JURIDICA">Pessoa Jurídica</option>
                     </select>
+                    <div ng-show="editForm.tipo.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.tipo.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="form-group col-md-4">
@@ -113,6 +119,12 @@
                     <label translate="tmcApp.prestadorServico.numero" for="field_numero">Numero</label>
                     <input type="number" class="form-control" name="numero" id="field_numero"
                            ng-model="prestadorServico.numero" required>
+                    <div ng-show="editForm.numero.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.numero.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="form-group col-md-4">

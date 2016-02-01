@@ -92,7 +92,7 @@ public class FuncionarioService {
             newUser.setFirstName(funcionario.getNome());
             newUser.setEmail(funcionario.getEmail());
             newUser.setLangKey("pt-br");
-            newUser.setActivated(false);
+            newUser.setActivated(true);
 
             User userSaved = userRepository.save(newUser);
             userService.requestPasswordReset(userSaved.getEmail());

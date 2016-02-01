@@ -90,7 +90,7 @@ public class MoradorService {
         newUser.setFirstName(morador.getNome());
         newUser.setEmail(morador.getEmail());
         newUser.setLangKey("pt-br");
-        newUser.setActivated(false);
+        newUser.setActivated(true);
 
         User userSaved = userRepository.save(newUser);
         userService.requestPasswordReset(userSaved.getEmail());

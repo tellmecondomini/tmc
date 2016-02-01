@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the CompetenciaPrestador entity.
  */
-public interface CompetenciaPrestadorRepository extends JpaRepository<CompetenciaPrestador,Long> {
+public interface CompetenciaPrestadorRepository extends JpaRepository<CompetenciaPrestador, Long> {
 
 }

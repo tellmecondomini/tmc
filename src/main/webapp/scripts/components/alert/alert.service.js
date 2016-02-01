@@ -1,22 +1,22 @@
 'use strict';
 
 angular.module('tmcApp')
-    .factory('AlertService', function ($timeout, $sce,$translate) {
+    .factory('AlertService', function ($timeout, $sce, $translate) {
         var exports = {
-            factory: factory,
-            add: addAlert,
-            closeAlert: closeAlert,
-            closeAlertByIndex: closeAlertByIndex,
-            clear: clear,
-            get: get,
-            success: success,
-            error: error,
-            info: info,
-            warning : warning
-        },
-        alertId = 0, // unique id for each alert. Starts from 0.
-        alerts = [],
-        timeout = 5000; // default timeout
+                factory: factory,
+                add: addAlert,
+                closeAlert: closeAlert,
+                closeAlertByIndex: closeAlertByIndex,
+                clear: clear,
+                get: get,
+                success: success,
+                error: error,
+                info: info,
+                warning: warning
+            },
+            alertId = 0, // unique id for each alert. Starts from 0.
+            alerts = [],
+            timeout = 5000; // default timeout
 
         function clear() {
             alerts = [];
@@ -87,7 +87,9 @@ angular.module('tmcApp')
         }
 
         function closeAlert(id) {
-            return this.closeAlertByIndex(alerts.map(function(e) { return e.id; }).indexOf(id));
+            return this.closeAlertByIndex(alerts.map(function (e) {
+                return e.id;
+            }).indexOf(id));
         }
 
         function closeAlertByIndex(index) {

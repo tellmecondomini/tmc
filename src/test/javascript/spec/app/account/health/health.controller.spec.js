@@ -9,7 +9,7 @@ describe('Controllers Tests ', function () {
 
         beforeEach(inject(function ($rootScope, $controller) {
             $scope = $rootScope.$new();
-            $controller('HealthController', { $scope: $scope });
+            $controller('HealthController', {$scope: $scope});
         }));
 
         describe('isHealthObject and hasSubSystem', function () {
@@ -279,7 +279,7 @@ describe('Controllers Tests ', function () {
 
         describe('getModuleName(path, name)', function () {
             it('should show both path and name if defined', function () {
-                expect($scope.getModuleName('path', 'name')).toEqual('path' +  $scope.separator + 'name');
+                expect($scope.getModuleName('path', 'name')).toEqual('path' + $scope.separator + 'name');
             });
 
             it('should show only path if name is not defined', function () {

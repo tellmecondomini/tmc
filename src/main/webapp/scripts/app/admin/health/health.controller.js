@@ -11,7 +11,7 @@ angular.module('tmcApp')
                 $scope.healthData = $scope.transformHealthData(response);
                 $scope.updatingHealth = false;
             }, function (response) {
-                $scope.healthData =  $scope.transformHealthData(response.data);
+                $scope.healthData = $scope.transformHealthData(response.data);
                 $scope.updatingHealth = false;
             });
         };
@@ -50,7 +50,7 @@ angular.module('tmcApp')
             var result;
             if (path && name) {
                 result = path + $scope.separator + name;
-            }  else if (path) {
+            } else if (path) {
                 result = path;
             } else if (name) {
                 result = name;
@@ -61,19 +61,19 @@ angular.module('tmcApp')
         };
 
 
-        $scope.showHealth = function(health) {
+        $scope.showHealth = function (health) {
             var modalInstance = $modal.open({
                 templateUrl: 'scripts/app/admin/health/health.modal.html',
                 controller: 'HealthModalController',
                 size: 'lg',
                 resolve: {
-                    currentHealth: function() {
+                    currentHealth: function () {
                         return health;
                     },
-                    baseName: function() {
+                    baseName: function () {
                         return $scope.baseName;
                     },
-                    subSystemName: function() {
+                    subSystemName: function () {
                         return $scope.subSystemName;
                     }
 
@@ -102,7 +102,7 @@ angular.module('tmcApp')
 
             // Add the of the details
             if (hasDetails) {
-                angular.extend(healthData, { 'details': details});
+                angular.extend(healthData, {'details': details});
             }
 
             // Only add nodes if they provide additional information
@@ -134,17 +134,17 @@ angular.module('tmcApp')
 
         $scope.baseName = function (name) {
             if (name) {
-              var split = name.split('.');
-              return split[0];
+                var split = name.split('.');
+                return split[0];
             }
         };
 
         $scope.subSystemName = function (name) {
             if (name) {
-              var split = name.split('.');
-              split.splice(0, 1);
-              var remainder = split.join('.');
-              return remainder ? ' - ' + remainder : '';
+                var split = name.split('.');
+                split.splice(0, 1);
+                var remainder = split.join('.');
+                return remainder ? ' - ' + remainder : '';
             }
         };
     });

@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "telefoneFuncionario" : {
+        "telefoneFuncionario": {
             "home": {
                 "title": "TelefoneFuncionarios",
                 "createLabel": "Create a new TelefoneFuncionario",

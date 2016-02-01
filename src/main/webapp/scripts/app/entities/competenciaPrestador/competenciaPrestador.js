@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('competenciaPrestador');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'CompetenciaPrestador', function($stateParams, CompetenciaPrestador) {
-                        return CompetenciaPrestador.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'CompetenciaPrestador', function ($stateParams, CompetenciaPrestador) {
+                        return CompetenciaPrestador.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/competenciaPrestador/competenciaPrestador-dialog.html',
                         controller: 'CompetenciaPrestadorDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {descricao: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('competenciaPrestador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('competenciaPrestador', null, {reload: true});
+                    }, function () {
                         $state.go('competenciaPrestador');
                     })
                 }]
@@ -76,19 +76,19 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/competenciaPrestador/competenciaPrestador-dialog.html',
                         controller: 'CompetenciaPrestadorDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['CompetenciaPrestador', function(CompetenciaPrestador) {
-                                return CompetenciaPrestador.get({id : $stateParams.id});
+                            entity: ['CompetenciaPrestador', function (CompetenciaPrestador) {
+                                return CompetenciaPrestador.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('competenciaPrestador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('competenciaPrestador', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "avaliaCompetencia" : {
+        "avaliaCompetencia": {
             "home": {
                 "title": "AvaliaCompetencias",
                 "createLabel": "Create a new AvaliaCompetencia",

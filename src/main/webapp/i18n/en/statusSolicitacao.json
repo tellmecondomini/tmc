@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "StatusSolicitacao" : {
+        "StatusSolicitacao": {
             "null": "",
             "EM_ABERTO": "EM_ABERTO",
             "AGUARDANDO_ATENDIMENTO": "AGUARDANDO_ATENDIMENTO",

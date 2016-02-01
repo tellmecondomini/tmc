@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "telefoneMorador" : {
+        "telefoneMorador": {
             "home": {
                 "title": "TelefoneMoradors",
                 "createLabel": "Create a new TelefoneMorador",

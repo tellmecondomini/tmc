@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="comentario.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.comentario.home.createLabel">Create a new Comentario</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span
+                    translate="tmcApp.comentario.home.createLabel">Create a new Comentario</span>
                 </button>
             </div>
         </div>
@@ -21,14 +22,17 @@
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-                        <p translate="tmcApp.comentario.delete.question" translate-values="{id: '{{comentario.id}}'}">Are you sure you want to delete this Comentario?</p>
+                        <p translate="tmcApp.comentario.delete.question" translate-values="{id: '{{comentario.id}}'}">
+                            Are you sure you want to delete this Comentario?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                            translate="entity.action.cancel">Cancel</span>
                         </button>
                         <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
+                            translate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </form>
@@ -39,50 +43,52 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.comentario.descricao">Conteudo</th>
-                    <th translate="tmcApp.comentario.data">Data</th>
-                    <th translate="tmcApp.comentario.ativo">Ativo</th>
-                    <th translate="tmcApp.comentario.topico">topico</th>
-                    <th translate="tmcApp.comentario.morador">morador</th>
-                    <th translate="tmcApp.comentario.funcionario">funcionario</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th translate="global.field.id">ID</th>
+                <th translate="tmcApp.comentario.descricao">Conteudo</th>
+                <th translate="tmcApp.comentario.data">Data</th>
+                <th translate="tmcApp.comentario.ativo">Ativo</th>
+                <th translate="tmcApp.comentario.topico">topico</th>
+                <th translate="tmcApp.comentario.morador">morador</th>
+                <th translate="tmcApp.comentario.funcionario">funcionario</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="comentario in comentarios">
-                    <td><a ui-sref="comentario.detail({id:comentario.id})">{{comentario.id}}</a></td>
-                    <td>{{comentario.descricao}}</td>
-                    <td>{{comentario.data}}</td>
-                    <td>{{comentario.ativo}}</td>
-                    <td>
-                        <a ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.descricao}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="morador.detail({id:comentario.morador.id})">{{comentario.morador.nome}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="funcionario.detail({id:comentario.funcionario.id})">{{comentario.funcionario.nome}}</a>
-                    </td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="comentario.detail({id:comentario.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="comentario.edit({id:comentario.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                        </button>
-                        <button type="submit"
-                                ng-click="delete(comentario.id)"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                        </button>
-                    </td>
-                </tr>
+            <tr ng-repeat="comentario in comentarios">
+                <td><a ui-sref="comentario.detail({id:comentario.id})">{{comentario.id}}</a></td>
+                <td>{{comentario.descricao}}</td>
+                <td>{{comentario.data}}</td>
+                <td>{{comentario.ativo}}</td>
+                <td>
+                    <a ui-sref="topico.detail({id:comentario.topico.id})">{{comentario.topico.descricao}}</a>
+                </td>
+                <td>
+                    <a ui-sref="morador.detail({id:comentario.morador.id})">{{comentario.morador.nome}}</a>
+                </td>
+                <td>
+                    <a ui-sref="funcionario.detail({id:comentario.funcionario.id})">{{comentario.funcionario.nome}}</a>
+                </td>
+                <td>
+                    <button type="submit"
+                            ui-sref="comentario.detail({id:comentario.id})"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="comentario.edit({id:comentario.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
+                        translate="entity.action.edit"> Edit</span>
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(comentario.id)"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
+                        translate="entity.action.delete"> Delete</span>
+                    </button>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

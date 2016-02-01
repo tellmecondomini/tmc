@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('CepController', function ($scope, Cep) {
         $scope.ceps = [];
-        $scope.loadAll = function() {
-            Cep.query(function(result) {
-               $scope.ceps = result;
+        $scope.loadAll = function () {
+            Cep.query(function (result) {
+                $scope.ceps = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Cep.get({id: id}, function(result) {
+            Cep.get({id: id}, function (result) {
                 $scope.cep = result;
                 $('#deleteCepConfirmation').modal('show');
             });

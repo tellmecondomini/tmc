@@ -80,9 +80,9 @@ public class CategoriaResourceTest {
         // Create the Categoria
 
         restCategoriaMockMvc.perform(post("/api/categorias")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(categoria)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(categoria)))
+            .andExpect(status().isCreated());
 
         // Validate the Categoria in the database
         List<Categoria> categorias = categoriaRepository.findAll();
@@ -101,9 +101,9 @@ public class CategoriaResourceTest {
         // Create the Categoria, which fails.
 
         restCategoriaMockMvc.perform(post("/api/categorias")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(categoria)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(categoria)))
+            .andExpect(status().isBadRequest());
 
         List<Categoria> categorias = categoriaRepository.findAll();
         assertThat(categorias).hasSize(databaseSizeBeforeTest);
@@ -117,10 +117,10 @@ public class CategoriaResourceTest {
 
         // Get all the categorias
         restCategoriaMockMvc.perform(get("/api/categorias"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(categoria.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(categoria.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test
@@ -142,7 +142,7 @@ public class CategoriaResourceTest {
     public void getNonExistingCategoria() throws Exception {
         // Get the categoria
         restCategoriaMockMvc.perform(get("/api/categorias/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -151,16 +151,16 @@ public class CategoriaResourceTest {
         // Initialize the database
         categoriaRepository.saveAndFlush(categoria);
 
-		int databaseSizeBeforeUpdate = categoriaRepository.findAll().size();
+        int databaseSizeBeforeUpdate = categoriaRepository.findAll().size();
 
         // Update the categoria
         categoria.setDescricao(UPDATED_DESCRICAO);
 
 
         restCategoriaMockMvc.perform(put("/api/categorias")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(categoria)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(categoria)))
+            .andExpect(status().isOk());
 
         // Validate the Categoria in the database
         List<Categoria> categorias = categoriaRepository.findAll();
@@ -175,12 +175,12 @@ public class CategoriaResourceTest {
         // Initialize the database
         categoriaRepository.saveAndFlush(categoria);
 
-		int databaseSizeBeforeDelete = categoriaRepository.findAll().size();
+        int databaseSizeBeforeDelete = categoriaRepository.findAll().size();
 
         // Get the categoria
         restCategoriaMockMvc.perform(delete("/api/categorias/{id}", categoria.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Categoria> categorias = categoriaRepository.findAll();

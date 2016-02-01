@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "telefonePrestadorServico" : {
+        "telefonePrestadorServico": {
             "home": {
                 "title": "TelefonePrestadorServicos",
                 "createLabel": "Create a new TelefonePrestadorServico",

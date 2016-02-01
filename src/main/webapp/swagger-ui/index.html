@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Swagger UI</title>
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
-    <link href='../bower_components/swagger-ui/dist/css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
+    <link href='../bower_components/swagger-ui/dist/css/typography.css' media='screen' rel='stylesheet'
+          type='text/css'/>
     <link href='../bower_components/swagger-ui/dist/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../bower_components/swagger-ui/dist/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../bower_components/swagger-ui/dist/css/reset.css' media='print' rel='stylesheet' type='text/css'/>
@@ -32,15 +33,15 @@
             var url = "/v2/api-docs";
 
             // Pre load translate...
-            if(window.SwaggerTranslator) {
+            if (window.SwaggerTranslator) {
                 window.SwaggerTranslator.translate();
             }
             window.swaggerUi = new SwaggerUi({
                 url: url,
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-                onComplete: function(swaggerApi, swaggerUi){
-                    if(typeof initOAuth == "function") {
+                onComplete: function (swaggerApi, swaggerUi) {
+                    if (typeof initOAuth == "function") {
                         initOAuth({
                             clientId: "your-client-id",
                             clientSecret: "your-client-secret",
@@ -50,15 +51,15 @@
                         });
                     }
 
-                    if(window.SwaggerTranslator) {
+                    if (window.SwaggerTranslator) {
                         window.SwaggerTranslator.translate();
                     }
 
-                    $('pre code').each(function(i, e) {
+                    $('pre code').each(function (i, e) {
                         hljs.highlightBlock(e)
                     });
                 },
-                onFailure: function(data) {
+                onFailure: function (data) {
                     log("Unable to Load SwaggerUI");
                 },
                 docExpansion: "none",
@@ -66,22 +67,21 @@
                 showRequestHeaders: false
             });
 
-            function addApiKeyAuthorization(){
-            
+            function addApiKeyAuthorization() {
+
                 var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-CSRF-TOKEN", getCSRF(), "header");
                 window.swaggerUi.api.clientAuthorizations.add("key", apiKeyAuth);
-            
-            
-            
+
+
             }
 
             function getCSRF() {
                 var name = "CSRF-TOKEN=";
                 var ca = document.cookie.split(';');
-                for(var i=0; i<ca.length; i++) {
+                for (var i = 0; i < ca.length; i++) {
                     var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1);
-                    if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+                    while (c.charAt(0) == ' ') c = c.substring(1);
+                    if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
                 }
                 return "";
             }

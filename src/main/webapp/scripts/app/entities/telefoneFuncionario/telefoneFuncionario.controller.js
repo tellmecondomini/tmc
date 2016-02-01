@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('TelefoneFuncionarioController', function ($scope, TelefoneFuncionario) {
         $scope.telefoneFuncionarios = [];
-        $scope.loadAll = function() {
-            TelefoneFuncionario.query(function(result) {
-               $scope.telefoneFuncionarios = result;
+        $scope.loadAll = function () {
+            TelefoneFuncionario.query(function (result) {
+                $scope.telefoneFuncionarios = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            TelefoneFuncionario.get({id: id}, function(result) {
+            TelefoneFuncionario.get({id: id}, function (result) {
                 $scope.telefoneFuncionario = result;
                 $('#deleteTelefoneFuncionarioConfirmation').modal('show');
             });

@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('CompetenciaPrestadorController', function ($scope, CompetenciaPrestador) {
         $scope.competenciaPrestadors = [];
-        $scope.loadAll = function() {
-            CompetenciaPrestador.query(function(result) {
-               $scope.competenciaPrestadors = result;
+        $scope.loadAll = function () {
+            CompetenciaPrestador.query(function (result) {
+                $scope.competenciaPrestadors = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            CompetenciaPrestador.get({id: id}, function(result) {
+            CompetenciaPrestador.get({id: id}, function (result) {
                 $scope.competenciaPrestador = result;
                 $('#deleteCompetenciaPrestadorConfirmation').modal('show');
             });

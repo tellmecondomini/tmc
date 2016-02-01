@@ -1,4 +1,3 @@
-
 <div>
     <h2><span translate="tmcApp.imagemTopico.detail.title">ImagemTopico</span> {{imagemTopico.id}}</h2>
     <div class="table-responsive">
@@ -15,7 +14,8 @@
                     <span translate="tmcApp.imagemTopico.imagem">Imagem</span>
                 </td>
                 <td>
-                    <img data-ng-src="{{'data:image/*;base64,' + imagemTopico.imagem}}" style="max-width: 100%;" ng-if="imagemTopico.imagem"/>
+                    <img data-ng-src="{{'data:image/*;base64,' + imagemTopico.imagem}}" style="max-width: 100%;"
+                         ng-if="imagemTopico.imagem"/>
                 </td>
             </tr>
             <tr>

@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('CategoriaController', function ($scope, Categoria) {
         $scope.categorias = [];
-        $scope.loadAll = function() {
-            Categoria.query(function(result) {
-               $scope.categorias = result;
+        $scope.loadAll = function () {
+            Categoria.query(function (result) {
+                $scope.categorias = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Categoria.get({id: id}, function(result) {
+            Categoria.get({id: id}, function (result) {
                 $scope.categoria = result;
                 $('#deleteCategoriaConfirmation').modal('show');
             });

@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * Test class for the AuditResource REST controller.
- *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -54,7 +53,7 @@ public class AuditResourceTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         AuditEventService auditEventService =
-                new AuditEventService(auditEventRepository, auditEventConverter);
+            new AuditEventService(auditEventRepository, auditEventConverter);
         AuditResource auditResource = new AuditResource(auditEventService);
         this.restAuditMockMvc = MockMvcBuilders.standaloneSetup(auditResource).build();
     }
@@ -76,10 +75,10 @@ public class AuditResourceTest {
 
         // Get all the audits
         restAuditMockMvc.perform(get("/api/audits"))
-                .andExpect(status().isOk())
-                // .andDo(print())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
+            .andExpect(status().isOk())
+            // .andDo(print())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
     }
 
     @Test
@@ -89,16 +88,16 @@ public class AuditResourceTest {
 
         // Get the audit
         restAuditMockMvc.perform(get("/api/audits/{id}", auditEvent.getId()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.principal").value(SAMPLE_PRINCIPAL));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.principal").value(SAMPLE_PRINCIPAL));
     }
 
     @Test
     public void getNonExistingAudit() throws Exception {
         // Get the audit
         restAuditMockMvc.perform(get("/api/audits/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
 }

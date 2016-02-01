@@ -12,13 +12,15 @@
             </div>
 
             <div class="alert alert-success" ng-show="success == 'OK'">
-                <p translate="reset.request.messages.success">Check your e-mails for details on how to reset your password.</p>
+                <p translate="reset.request.messages.success">Check your e-mails for details on how to reset your
+                    password.</p>
             </div>
 
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="requestReset()" show-validation>
                 <div class="form-group">
                     <label for="email" translate="global.form.email">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
+                    <input type="email" class="form-control" id="email" name="email"
+                           placeholder="{{'global.form.email.placeholder' | translate}}"
                            ng-model="resetAccount.email" ng-minlength=5 ng-maxlength=100 required>
                     <div ng-show="form.email.$dirty && form.email.$invalid">
                         <p class="help-block"

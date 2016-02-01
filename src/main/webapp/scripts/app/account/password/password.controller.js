@@ -2,7 +2,7 @@
 
 angular.module('tmcApp')
     .controller('PasswordController', function ($scope, Auth, Principal) {
-        Principal.identity().then(function(account) {
+        Principal.identity().then(function (account) {
             $scope.account = account;
         });
 

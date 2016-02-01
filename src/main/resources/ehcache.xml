@@ -13,9 +13,9 @@
     <diskStore path="java.io.tmpdir"/>
 
     <defaultCache
-            eternal="false"
-            overflowToDisk="false"
-            />
+        eternal="false"
+        overflowToDisk="false"
+    />
 
     <cache name="br.com.unifieo.tmc.domain.User"
            timeToLiveSeconds="3600">

@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .directive('tmcAppPagination', function() {
+    .directive('tmcAppPagination', function () {
         return {
             templateUrl: 'scripts/components/form/pagination.html'
         };

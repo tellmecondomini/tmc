@@ -82,9 +82,9 @@ public class ImagemTopicoResourceTest {
         // Create the ImagemTopico
 
         restImagemTopicoMockMvc.perform(post("/api/imagemTopicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(imagemTopico)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(imagemTopico)))
+            .andExpect(status().isCreated());
 
         // Validate the ImagemTopico in the database
         List<ImagemTopico> imagemTopicos = imagemTopicoRepository.findAll();
@@ -101,10 +101,10 @@ public class ImagemTopicoResourceTest {
 
         // Get all the imagemTopicos
         restImagemTopicoMockMvc.perform(get("/api/imagemTopicos"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(imagemTopico.getId().intValue())))
-                .andExpect(jsonPath("$.[*].imagem").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEM))));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(imagemTopico.getId().intValue())))
+            .andExpect(jsonPath("$.[*].imagem").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEM))));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class ImagemTopicoResourceTest {
     public void getNonExistingImagemTopico() throws Exception {
         // Get the imagemTopico
         restImagemTopicoMockMvc.perform(get("/api/imagemTopicos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -135,16 +135,16 @@ public class ImagemTopicoResourceTest {
         // Initialize the database
         imagemTopicoRepository.saveAndFlush(imagemTopico);
 
-		int databaseSizeBeforeUpdate = imagemTopicoRepository.findAll().size();
+        int databaseSizeBeforeUpdate = imagemTopicoRepository.findAll().size();
 
         // Update the imagemTopico
         imagemTopico.setImagem(UPDATED_IMAGEM);
 
 
         restImagemTopicoMockMvc.perform(put("/api/imagemTopicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(imagemTopico)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(imagemTopico)))
+            .andExpect(status().isOk());
 
         // Validate the ImagemTopico in the database
         List<ImagemTopico> imagemTopicos = imagemTopicoRepository.findAll();
@@ -159,12 +159,12 @@ public class ImagemTopicoResourceTest {
         // Initialize the database
         imagemTopicoRepository.saveAndFlush(imagemTopico);
 
-		int databaseSizeBeforeDelete = imagemTopicoRepository.findAll().size();
+        int databaseSizeBeforeDelete = imagemTopicoRepository.findAll().size();
 
         // Get the imagemTopico
         restImagemTopicoMockMvc.perform(delete("/api/imagemTopicos/{id}", imagemTopico.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<ImagemTopico> imagemTopicos = imagemTopicoRepository.findAll();

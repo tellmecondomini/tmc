@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the ImagemTopico entity.
  */
-public interface ImagemTopicoRepository extends JpaRepository<ImagemTopico,Long> {
+public interface ImagemTopicoRepository extends JpaRepository<ImagemTopico, Long> {
 
 }

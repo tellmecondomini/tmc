@@ -19,7 +19,7 @@ angular.module('tmcApp')
                         input = input.substr(0, lastspace);
                     }
                 } else {
-                    while (input.charAt(input.length-1) === ' ') {
+                    while (input.charAt(input.length - 1) === ' ') {
                         input = input.substr(0, input.length - 1);
                     }
                 }

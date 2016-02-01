@@ -41,15 +41,15 @@ angular.module('tmcApp')
 
         $scope.refresh();
 
-        $scope.refreshThreadDumpData = function() {
-            MonitoringService.threadDump().then(function(data) {
+        $scope.refreshThreadDumpData = function () {
+            MonitoringService.threadDump().then(function (data) {
 
                 var modalInstance = $modal.open({
                     templateUrl: 'scripts/app/admin/metrics/metrics.modal.html',
                     controller: 'MetricsModalController',
                     size: 'lg',
                     resolve: {
-                        threadDump: function() {
+                        threadDump: function () {
                             return data;
                         }
 

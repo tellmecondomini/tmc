@@ -90,7 +90,7 @@ angular.module('tmcApp')
                 $window.localStorage.removeItem(key);
             },
 
-            clearAll : function () {
+            clearAll: function () {
                 $window.localStorage.clear();
             }
         };

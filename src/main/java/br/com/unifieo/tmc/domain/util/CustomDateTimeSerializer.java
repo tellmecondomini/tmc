@@ -16,12 +16,12 @@ import java.io.IOException;
 public class CustomDateTimeSerializer extends JsonSerializer<DateTime> {
 
     private static DateTimeFormatter formatter = DateTimeFormat
-            .forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        .forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     @Override
     public void serialize(DateTime value, JsonGenerator generator,
                           SerializerProvider serializerProvider)
-            throws IOException {
+        throws IOException {
         generator.writeString(formatter.print(value.toDateTime(DateTimeZone.UTC)));
     }
 

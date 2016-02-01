@@ -1,6 +1,6 @@
-
 <div>
-    <h2><span translate="tmcApp.solicitaRemocaoComentario.detail.title">SolicitaRemocaoComentario</span> {{solicitaRemocaoComentario.id}}</h2>
+    <h2><span translate="tmcApp.solicitaRemocaoComentario.detail.title">SolicitaRemocaoComentario</span>
+        {{solicitaRemocaoComentario.id}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -47,7 +47,8 @@
                     <span translate="tmcApp.solicitaRemocaoComentario.comentario">comentario</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.conteudo}}</a>
+                    <a class="form-control-static"
+                       ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.conteudo}}</a>
                 </td>
             </tr>
             <tr>

@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "competenciaPrestador" : {
+        "competenciaPrestador": {
             "home": {
                 "title": "CompetenciaPrestadors",
                 "createLabel": "Create a new CompetenciaPrestador",

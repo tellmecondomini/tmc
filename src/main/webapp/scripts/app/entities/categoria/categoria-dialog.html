@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
@@ -12,11 +11,11 @@
         <div class="form-group">
             <label translate="tmcApp.categoria.descricao" for="field_descricao">Descricao</label>
             <input type="text" class="form-control" name="descricao" id="field_descricao"
-                    ng-model="categoria.descricao"
-                    required>
+                   ng-model="categoria.descricao"
+                   required>
             <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -24,7 +23,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

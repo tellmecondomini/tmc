@@ -19,11 +19,11 @@
     -->
     <changeSet id="20151008223131" author="jhipster">
         <createTable tableName="TELEFONE_CONDOMINIO">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="numero" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="condominio_id" type="bigint"/>
         </createTable>

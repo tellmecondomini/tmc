@@ -11,7 +11,7 @@ describe('Controllers Tests ', function () {
             $scope = $rootScope.$new();
 
             SessionsService = Sessions;
-            $controller('SessionsController',{$scope:$scope, Sessions:SessionsService});
+            $controller('SessionsController', {$scope: $scope, Sessions: SessionsService});
         }));
 
         it('should invalidate session', function () {

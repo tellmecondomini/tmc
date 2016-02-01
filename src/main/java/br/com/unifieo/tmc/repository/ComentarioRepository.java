@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Comentario entity.
  */
-public interface ComentarioRepository extends JpaRepository<Comentario,Long> {
+public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
     List<Comentario> findAllByTopico(Topico topico);
 

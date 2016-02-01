@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('telefoneMorador');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'TelefoneMorador', function($stateParams, TelefoneMorador) {
-                        return TelefoneMorador.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'TelefoneMorador', function ($stateParams, TelefoneMorador) {
+                        return TelefoneMorador.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/telefoneMorador/telefoneMorador-dialog.html',
                         controller: 'TelefoneMoradorDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {numero: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('telefoneMorador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('telefoneMorador', null, {reload: true});
+                    }, function () {
                         $state.go('telefoneMorador');
                     })
                 }]
@@ -76,19 +76,19 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/telefoneMorador/telefoneMorador-dialog.html',
                         controller: 'TelefoneMoradorDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['TelefoneMorador', function(TelefoneMorador) {
-                                return TelefoneMorador.get({id : $stateParams.id});
+                            entity: ['TelefoneMorador', function (TelefoneMorador) {
+                                return TelefoneMorador.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('telefoneMorador', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('telefoneMorador', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

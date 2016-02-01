@@ -93,9 +93,9 @@ public class CepResourceTest {
         // Create the Cep
 
         restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(cep)))
+            .andExpect(status().isCreated());
 
         // Validate the Cep in the database
         List<Cep> ceps = cepRepository.findAll();
@@ -118,9 +118,9 @@ public class CepResourceTest {
         // Create the Cep, which fails.
 
         restCepMockMvc.perform(post("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(cep)))
+            .andExpect(status().isBadRequest());
 
         List<Cep> ceps = cepRepository.findAll();
         assertThat(ceps).hasSize(databaseSizeBeforeTest);
@@ -134,14 +134,14 @@ public class CepResourceTest {
 
         // Get all the ceps
         restCepMockMvc.perform(get("/api/ceps"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(cep.getId().intValue())))
-                .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO.toString())))
-                .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO.toString())))
-                .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE.toString())))
-                .andExpect(jsonPath("$.[*].uf").value(hasItem(DEFAULT_UF.toString())))
-                .andExpect(jsonPath("$.[*].cep").value(hasItem(DEFAULT_CEP)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(cep.getId().intValue())))
+            .andExpect(jsonPath("$.[*].logradouro").value(hasItem(DEFAULT_LOGRADOURO.toString())))
+            .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO.toString())))
+            .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE.toString())))
+            .andExpect(jsonPath("$.[*].uf").value(hasItem(DEFAULT_UF.toString())))
+            .andExpect(jsonPath("$.[*].cep").value(hasItem(DEFAULT_CEP)));
     }
 
     @Test
@@ -167,7 +167,7 @@ public class CepResourceTest {
     public void getNonExistingCep() throws Exception {
         // Get the cep
         restCepMockMvc.perform(get("/api/ceps/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -176,7 +176,7 @@ public class CepResourceTest {
         // Initialize the database
         cepRepository.saveAndFlush(cep);
 
-		int databaseSizeBeforeUpdate = cepRepository.findAll().size();
+        int databaseSizeBeforeUpdate = cepRepository.findAll().size();
 
         // Update the cep
         cep.setLogradouro(UPDATED_LOGRADOURO);
@@ -187,9 +187,9 @@ public class CepResourceTest {
 
 
         restCepMockMvc.perform(put("/api/ceps")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(cep)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(cep)))
+            .andExpect(status().isOk());
 
         // Validate the Cep in the database
         List<Cep> ceps = cepRepository.findAll();
@@ -208,12 +208,12 @@ public class CepResourceTest {
         // Initialize the database
         cepRepository.saveAndFlush(cep);
 
-		int databaseSizeBeforeDelete = cepRepository.findAll().size();
+        int databaseSizeBeforeDelete = cepRepository.findAll().size();
 
         // Get the cep
         restCepMockMvc.perform(delete("/api/ceps/{id}", cep.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Cep> ceps = cepRepository.findAll();

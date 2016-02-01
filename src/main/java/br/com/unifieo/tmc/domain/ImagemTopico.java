@@ -61,7 +61,7 @@ public class ImagemTopico implements Serializable {
 
         ImagemTopico imagemTopico = (ImagemTopico) o;
 
-        if ( ! Objects.equals(id, imagemTopico.id)) return false;
+        if (!Objects.equals(id, imagemTopico.id)) return false;
 
         return true;
     }
@@ -74,8 +74,8 @@ public class ImagemTopico implements Serializable {
     @Override
     public String toString() {
         return "ImagemTopico{" +
-                "id=" + id +
-                ", imagem='" + imagem + "'" +
-                '}';
+            "id=" + id +
+            ", imagem='" + imagem + "'" +
+            '}';
     }
 }

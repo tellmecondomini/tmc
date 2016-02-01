@@ -96,9 +96,9 @@ public class PrestadorServicoResourceTest {
         // Create the PrestadorServico
 
         restPrestadorServicoMockMvc.perform(post("/api/prestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+            .andExpect(status().isCreated());
 
         // Validate the PrestadorServico in the database
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
@@ -121,9 +121,9 @@ public class PrestadorServicoResourceTest {
         // Create the PrestadorServico, which fails.
 
         restPrestadorServicoMockMvc.perform(post("/api/prestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+            .andExpect(status().isBadRequest());
 
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
         assertThat(prestadorServicos).hasSize(databaseSizeBeforeTest);
@@ -138,9 +138,9 @@ public class PrestadorServicoResourceTest {
         // Create the PrestadorServico, which fails.
 
         restPrestadorServicoMockMvc.perform(post("/api/prestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+            .andExpect(status().isBadRequest());
 
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
         assertThat(prestadorServicos).hasSize(databaseSizeBeforeTest);
@@ -156,9 +156,9 @@ public class PrestadorServicoResourceTest {
         // Create the PrestadorServico, which fails.
 
         restPrestadorServicoMockMvc.perform(post("/api/prestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+            .andExpect(status().isBadRequest());
 
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
         assertThat(prestadorServicos).hasSize(databaseSizeBeforeTest);
@@ -172,15 +172,15 @@ public class PrestadorServicoResourceTest {
 
         // Get all the prestadorServicos
         restPrestadorServicoMockMvc.perform(get("/api/prestadorServicos"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(prestadorServico.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-                .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())))
-                .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_TIPO.toString())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
-                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(prestadorServico.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())))
+            .andExpect(jsonPath("$.[*].pessoa").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+            .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())));
     }
 
     @Test
@@ -207,7 +207,7 @@ public class PrestadorServicoResourceTest {
     public void getNonExistingPrestadorServico() throws Exception {
         // Get the prestadorServico
         restPrestadorServicoMockMvc.perform(get("/api/prestadorServicos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -216,7 +216,7 @@ public class PrestadorServicoResourceTest {
         // Initialize the database
         prestadorServicoRepository.saveAndFlush(prestadorServico);
 
-		int databaseSizeBeforeUpdate = prestadorServicoRepository.findAll().size();
+        int databaseSizeBeforeUpdate = prestadorServicoRepository.findAll().size();
 
         // Update the prestadorServico
         prestadorServico.setNome(UPDATED_NOME);
@@ -227,9 +227,9 @@ public class PrestadorServicoResourceTest {
 
 
         restPrestadorServicoMockMvc.perform(put("/api/prestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(prestadorServico)))
+            .andExpect(status().isOk());
 
         // Validate the PrestadorServico in the database
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();
@@ -248,12 +248,12 @@ public class PrestadorServicoResourceTest {
         // Initialize the database
         prestadorServicoRepository.saveAndFlush(prestadorServico);
 
-		int databaseSizeBeforeDelete = prestadorServicoRepository.findAll().size();
+        int databaseSizeBeforeDelete = prestadorServicoRepository.findAll().size();
 
         // Get the prestadorServico
         restPrestadorServicoMockMvc.perform(delete("/api/prestadorServicos/{id}", prestadorServico.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<PrestadorServico> prestadorServicos = prestadorServicoRepository.findAll();

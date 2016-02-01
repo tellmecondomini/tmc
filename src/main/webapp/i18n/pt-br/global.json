@@ -78,7 +78,7 @@
                 "register": "Não possui uma conta ainda? <a class=\"alert-link\" href=\"#/register\">Crie uma nova conta</a>"
             },
             "error": {
-                "dontmatch" : "A senha e sua confirmação devem ser iguais!"
+                "dontmatch": "A senha e sua confirmação devem ser iguais!"
             },
             "validate": {
                 "newpassword": {
@@ -101,7 +101,7 @@
             }
         },
         "field": {
-            "id" : "Código"
+            "id": "Código"
         }
     },
     "entity": {

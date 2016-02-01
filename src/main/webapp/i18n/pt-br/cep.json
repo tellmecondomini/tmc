@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "cep" : {
+        "cep": {
             "home": {
                 "title": "Ceps",
                 "createLabel": "Create a new Cep",

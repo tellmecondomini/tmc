@@ -3,7 +3,8 @@
     <jh-alert></jh-alert>
     <div class="container">
         <div class="row">
-            <div ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(settingsAccount.authorities[0]) > -1)">
+            <div
+                ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(settingsAccount.authorities[0]) > -1)">
                 <button class="btn btn-primary" ng-click="printRegisterCode()">
                     Imprimir QR-Code
                 </button>
@@ -38,13 +39,15 @@
             </div>
         </div>
     </div>
-    
-    <div ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(settingsAccount.authorities[0]) > -1)">
-    	<br/>
-	     <div class="input-group" >
-	        <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
-	        <input type="search" class="form-control" id="search" placeholder="Parâmetros da busca" ng-model="searchText">
-	    </div>
+
+    <div
+        ng-show="(['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_FUNCIONARIO'].indexOf(settingsAccount.authorities[0]) > -1)">
+        <br/>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><spam class="glyphicon glyphicon-search"></spam></span>
+            <input type="search" class="form-control" id="search" placeholder="Parâmetros da busca"
+                   ng-model="searchText">
+        </div>
     </div>
 
     <div class="table-responsive">

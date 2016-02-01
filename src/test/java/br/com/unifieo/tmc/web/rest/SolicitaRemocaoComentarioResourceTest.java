@@ -99,9 +99,9 @@ public class SolicitaRemocaoComentarioResourceTest {
         // Create the SolicitaRemocaoComentario
 
         restSolicitaRemocaoComentarioMockMvc.perform(post("/api/solicitaRemocaoComentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(solicitaRemocaoComentario)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(solicitaRemocaoComentario)))
+            .andExpect(status().isCreated());
 
         // Validate the SolicitaRemocaoComentario in the database
         List<SolicitaRemocaoComentario> solicitaRemocaoComentarios = solicitaRemocaoComentarioRepository.findAll();
@@ -121,13 +121,13 @@ public class SolicitaRemocaoComentarioResourceTest {
 
         // Get all the solicitaRemocaoComentarios
         restSolicitaRemocaoComentarioMockMvc.perform(get("/api/solicitaRemocaoComentarios"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(solicitaRemocaoComentario.getId().intValue())))
-                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
-                .andExpect(jsonPath("$.[*].motivo").value(hasItem(DEFAULT_MOTIVO.toString())))
-                .andExpect(jsonPath("$.[*].dataAtendimento").value(hasItem(DEFAULT_DATA_ATENDIMENTO_STR)))
-                .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(solicitaRemocaoComentario.getId().intValue())))
+            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
+            .andExpect(jsonPath("$.[*].motivo").value(hasItem(DEFAULT_MOTIVO.toString())))
+            .andExpect(jsonPath("$.[*].dataAtendimento").value(hasItem(DEFAULT_DATA_ATENDIMENTO_STR)))
+            .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO.toString())));
     }
 
     @Test
@@ -152,7 +152,7 @@ public class SolicitaRemocaoComentarioResourceTest {
     public void getNonExistingSolicitaRemocaoComentario() throws Exception {
         // Get the solicitaRemocaoComentario
         restSolicitaRemocaoComentarioMockMvc.perform(get("/api/solicitaRemocaoComentarios/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -161,7 +161,7 @@ public class SolicitaRemocaoComentarioResourceTest {
         // Initialize the database
         solicitaRemocaoComentarioRepository.saveAndFlush(solicitaRemocaoComentario);
 
-		int databaseSizeBeforeUpdate = solicitaRemocaoComentarioRepository.findAll().size();
+        int databaseSizeBeforeUpdate = solicitaRemocaoComentarioRepository.findAll().size();
 
         // Update the solicitaRemocaoComentario
         solicitaRemocaoComentario.setData(UPDATED_DATA);
@@ -171,9 +171,9 @@ public class SolicitaRemocaoComentarioResourceTest {
 
 
         restSolicitaRemocaoComentarioMockMvc.perform(put("/api/solicitaRemocaoComentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(solicitaRemocaoComentario)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(solicitaRemocaoComentario)))
+            .andExpect(status().isOk());
 
         // Validate the SolicitaRemocaoComentario in the database
         List<SolicitaRemocaoComentario> solicitaRemocaoComentarios = solicitaRemocaoComentarioRepository.findAll();
@@ -191,12 +191,12 @@ public class SolicitaRemocaoComentarioResourceTest {
         // Initialize the database
         solicitaRemocaoComentarioRepository.saveAndFlush(solicitaRemocaoComentario);
 
-		int databaseSizeBeforeDelete = solicitaRemocaoComentarioRepository.findAll().size();
+        int databaseSizeBeforeDelete = solicitaRemocaoComentarioRepository.findAll().size();
 
         // Get the solicitaRemocaoComentario
         restSolicitaRemocaoComentarioMockMvc.perform(delete("/api/solicitaRemocaoComentarios/{id}", solicitaRemocaoComentario.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<SolicitaRemocaoComentario> solicitaRemocaoComentarios = solicitaRemocaoComentarioRepository.findAll();

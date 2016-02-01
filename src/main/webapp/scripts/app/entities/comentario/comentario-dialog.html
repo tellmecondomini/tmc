@@ -1,34 +1,36 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myComentarioLabel" translate="tmcApp.comentario.home.createOrEditLabel">Create or edit a Comentario</h4>
+        <h4 class="modal-title" id="myComentarioLabel" translate="tmcApp.comentario.home.createOrEditLabel">Create or
+            edit a Comentario</h4>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="comentario.id" readonly>
+                   ng-model="comentario.id" readonly>
         </div>
         <div class="form-group">
             <label translate="tmcApp.comentario.descricao" for="field_conteudo">Conteudo</label>
             <input type="text" class="form-control" name="descricao" id="field_conteudo"
-                    ng-model="comentario.descricao"
-                    required ng-minlength="1" ng-maxlength="240">
+                   ng-model="comentario.descricao"
+                   required ng-minlength="1" ng-maxlength="240">
             <div ng-show="editForm.descricao.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.descricao.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.descricao.$error.minlength" translate="entity.validation.minlength" translate-value-min="1">
+                   ng-show="editForm.descricao.$error.minlength" translate="entity.validation.minlength"
+                   translate-value-min="1">
                     This field is required to be at least 1 characters.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.descricao.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="240">
+                   ng-show="editForm.descricao.$error.maxlength" translate="entity.validation.maxlength"
+                   translate-value-max="240">
                     This field cannot be longer than 240 characters.
                 </p>
             </div>
@@ -36,15 +38,15 @@
         <div class="form-group">
             <label translate="tmcApp.comentario.data" for="field_data">Data</label>
             <input type="datetime-local" class="form-control" name="data" id="field_data"
-                    ng-model="comentario.data" ng-model-options="{timezone: 'UTC'}"
-                    required>
+                   ng-model="comentario.data" ng-model-options="{timezone: 'UTC'}"
+                   required>
             <div ng-show="editForm.data.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.data.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.data.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.data.$error.datetimelocal" translate="entity.validation.datetimelocal">
+                   ng-show="editForm.data.$error.datetimelocal" translate="entity.validation.datetimelocal">
                     This field should be a date and time.
                 </p>
             </div>
@@ -52,32 +54,36 @@
         <div class="form-group">
             <label translate="tmcApp.comentario.ativo" for="field_ativo">Ativo</label>
             <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
-                    ng-model="comentario.ativo"
-                    >
+                   ng-model="comentario.ativo"
+            >
         </div>
 
         <div class="form-group">
             <label translate="tmcApp.comentario.topico" for="field_topico">topico</label>
-            <select class="form-control" id="field_topico" name="topico" ng-model="comentario.topico" ng-options="topico as topico.descricao for topico in topicos track by topico.id">
+            <select class="form-control" id="field_topico" name="topico" ng-model="comentario.topico"
+                    ng-options="topico as topico.descricao for topico in topicos track by topico.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label translate="tmcApp.comentario.morador" for="field_morador">morador</label>
-            <select class="form-control" id="field_morador" name="morador" ng-model="comentario.morador" ng-options="morador as morador.nome for morador in moradors track by morador.id">
+            <select class="form-control" id="field_morador" name="morador" ng-model="comentario.morador"
+                    ng-options="morador as morador.nome for morador in moradors track by morador.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label translate="tmcApp.comentario.funcionario" for="field_funcionario">funcionario</label>
-            <select class="form-control" id="field_funcionario" name="funcionario" ng-model="comentario.funcionario" ng-options="funcionario as funcionario.nome for funcionario in funcionarios track by funcionario.id">
+            <select class="form-control" id="field_funcionario" name="funcionario" ng-model="comentario.funcionario"
+                    ng-options="funcionario as funcionario.nome for funcionario in funcionarios track by funcionario.id">
                 <option value=""></option>
             </select>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

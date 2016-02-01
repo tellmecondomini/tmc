@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('SolicitaRemocaoComentarioController', function ($scope, SolicitaRemocaoComentario) {
         $scope.solicitaRemocaoComentarios = [];
-        $scope.loadAll = function() {
-            SolicitaRemocaoComentario.query(function(result) {
-               $scope.solicitaRemocaoComentarios = result;
+        $scope.loadAll = function () {
+            SolicitaRemocaoComentario.query(function (result) {
+                $scope.solicitaRemocaoComentarios = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            SolicitaRemocaoComentario.get({id: id}, function(result) {
+            SolicitaRemocaoComentario.get({id: id}, function (result) {
                 $scope.solicitaRemocaoComentario = result;
                 $('#deleteSolicitaRemocaoComentarioConfirmation').modal('show');
             });
@@ -32,6 +32,12 @@ angular.module('tmcApp')
         };
 
         $scope.clear = function () {
-            $scope.solicitaRemocaoComentario = {data: null, motivo: null, dataAtendimento: null, observacao: null, id: null};
+            $scope.solicitaRemocaoComentario = {
+                data: null,
+                motivo: null,
+                dataAtendimento: null,
+                observacao: null,
+                id: null
+            };
         };
     });

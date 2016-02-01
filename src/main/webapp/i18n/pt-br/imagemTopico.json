@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "imagemTopico" : {
+        "imagemTopico": {
             "home": {
                 "title": "ImagemTopicos",
                 "createLabel": "Create a new ImagemTopico",

@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "telefoneCondominio" : {
+        "telefoneCondominio": {
             "home": {
                 "title": "TelefoneCondominios",
                 "createLabel": "Create a new TelefoneCondominio",

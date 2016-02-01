@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Funcionario entity.
  */
-public interface FuncionarioRepository extends JpaRepository<Funcionario,Long> {
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
     Funcionario findOneByCondominioAndResponsavel(Condominio condominio, boolean responsavel);
 

@@ -34,8 +34,8 @@ public class TelefonePrestadorServicoResource {
      * POST  /telefonePrestadorServicos -> Create a new telefonePrestadorServico.
      */
     @RequestMapping(value = "/telefonePrestadorServicos",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<TelefonePrestadorServico> createTelefonePrestadorServico(@Valid @RequestBody TelefonePrestadorServico telefonePrestadorServico) throws URISyntaxException {
         log.debug("REST request to save TelefonePrestadorServico : {}", telefonePrestadorServico);
@@ -44,8 +44,8 @@ public class TelefonePrestadorServicoResource {
         }
         TelefonePrestadorServico result = telefonePrestadorServicoRepository.save(telefonePrestadorServico);
         return ResponseEntity.created(new URI("/api/telefonePrestadorServicos/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("telefonePrestadorServico", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("telefonePrestadorServico", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -62,16 +62,16 @@ public class TelefonePrestadorServicoResource {
         }
         TelefonePrestadorServico result = telefonePrestadorServicoRepository.save(telefonePrestadorServico);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("telefonePrestadorServico", telefonePrestadorServico.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("telefonePrestadorServico", telefonePrestadorServico.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /telefonePrestadorServicos -> get all the telefonePrestadorServicos.
      */
     @RequestMapping(value = "/telefonePrestadorServicos",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<TelefonePrestadorServico> getAllTelefonePrestadorServicos() {
         log.debug("REST request to get all TelefonePrestadorServicos");
@@ -82,8 +82,8 @@ public class TelefonePrestadorServicoResource {
      * GET  /telefonePrestadorServicos/:id -> get the "id" telefonePrestadorServico.
      */
     @RequestMapping(value = "/telefonePrestadorServicos/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<TelefonePrestadorServico> getTelefonePrestadorServico(@PathVariable Long id) {
         log.debug("REST request to get TelefonePrestadorServico : {}", id);
@@ -98,8 +98,8 @@ public class TelefonePrestadorServicoResource {
      * DELETE  /telefonePrestadorServicos/:id -> delete the "id" telefonePrestadorServico.
      */
     @RequestMapping(value = "/telefonePrestadorServicos/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteTelefonePrestadorServico(@PathVariable Long id) {
         log.debug("REST request to delete TelefonePrestadorServico : {}", id);

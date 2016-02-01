@@ -54,13 +54,13 @@ public class DatabaseConfiguration implements EnvironmentAware {
         if (dataSourcePropertyResolver.getProperty("url") == null && dataSourcePropertyResolver.getProperty("databaseName") == null) {
             log.error("Your database connection pool configuration is incorrect! The application" +
                     " cannot start. Please check your Spring profile, current profiles are: {}",
-                    Arrays.toString(env.getActiveProfiles()));
+                Arrays.toString(env.getActiveProfiles()));
 
             throw new ApplicationContextException("Database connection pool is not configured correctly");
         }
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(dataSourcePropertyResolver.getProperty("dataSourceClassName"));
-        if(StringUtils.isEmpty(dataSourcePropertyResolver.getProperty("url"))) {
+        if (StringUtils.isEmpty(dataSourcePropertyResolver.getProperty("url"))) {
             config.addDataSourceProperty("databaseName", dataSourcePropertyResolver.getProperty("databaseName"));
             config.addDataSourceProperty("serverName", dataSourcePropertyResolver.getProperty("serverName"));
         } else {

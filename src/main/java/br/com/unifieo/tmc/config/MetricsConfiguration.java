@@ -114,10 +114,10 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter implements En
 
                 Graphite graphite = new Graphite(new InetSocketAddress(graphiteHost, graphitePort));
                 GraphiteReporter graphiteReporter = GraphiteReporter.forRegistry(metricRegistry)
-                        .convertRatesTo(TimeUnit.SECONDS)
-                        .convertDurationsTo(TimeUnit.MILLISECONDS)
-                        .prefixedWith(graphitePrefix)
-                        .build(graphite);
+                    .convertRatesTo(TimeUnit.SECONDS)
+                    .convertDurationsTo(TimeUnit.MILLISECONDS)
+                    .prefixedWith(graphitePrefix)
+                    .build(graphite);
                 graphiteReporter.start(1, TimeUnit.MINUTES);
             }
         }
@@ -149,9 +149,9 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter implements En
                 Integer sparkPort = propertyResolver.getRequiredProperty(PROP_PORT, Integer.class);
 
                 SparkReporter sparkReporter = SparkReporter.forRegistry(metricRegistry)
-                        .convertRatesTo(TimeUnit.SECONDS)
-                        .convertDurationsTo(TimeUnit.MILLISECONDS)
-                        .build(sparkHost, sparkPort);
+                    .convertRatesTo(TimeUnit.SECONDS)
+                    .convertDurationsTo(TimeUnit.MILLISECONDS)
+                    .build(sparkHost, sparkPort);
                 sparkReporter.start(1, TimeUnit.MINUTES);
             }
         }

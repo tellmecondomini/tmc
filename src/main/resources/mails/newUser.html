@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Tell Me Condominium</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-    <body>
-        <h3>
-            Muito obrigado por se registrar em nosso sistema!
-        </h3>
-        <ul>
-            <li>
-                <span th:text="${user.firstName}" />
-            </li>
-            <li>
-                <span th:text="${condominio.razaoSocial}" />
-            </li>
-            <li>
-                <span th:text="${user.email}" />
-            </li>
-        </ul>
-        <p>
-            Para ativar seu cadastro, <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">clique-aqui</a>
-        </p>
-        <p>
-            Att,
-        <p>
-            <em>Equipe Tell Me Condominium.</em>
-        </p>
-        </p>
-    </body>
+<head>
+    <title>Tell Me Condominium</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h3>
+    Muito obrigado por se registrar em nosso sistema!
+</h3>
+<ul>
+    <li>
+        <span th:text="${user.firstName}"/>
+    </li>
+    <li>
+        <span th:text="${condominio.razaoSocial}"/>
+    </li>
+    <li>
+        <span th:text="${user.email}"/>
+    </li>
+</ul>
+<p>
+    Para ativar seu cadastro, <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">clique-aqui</a>
+</p>
+<p>
+    Att,
+<p>
+    <em>Equipe Tell Me Condominium.</em>
+</p>
+</p>
+</body>
 </html>

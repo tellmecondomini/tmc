@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+            .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -75,16 +75,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .csrf()
             .ignoringAntMatchers("/websocket/**")
-        .and()
+            .and()
             .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
             .exceptionHandling()
             .authenticationEntryPoint(authenticationEntryPoint)
-        .and()
+            .and()
             .rememberMe()
             .rememberMeServices(rememberMeServices)
             .rememberMeParameter("remember-me")
             .key(env.getProperty("jhipster.security.rememberme.key"))
-        .and()
+            .and()
             .formLogin()
             .loginProcessingUrl("/api/authentication")
             .successHandler(ajaxAuthenticationSuccessHandler)
@@ -92,17 +92,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .usernameParameter("j_username")
             .passwordParameter("j_password")
             .permitAll()
-        .and()
+            .and()
             .logout()
             .logoutUrl("/api/logout")
             .logoutSuccessHandler(ajaxLogoutSuccessHandler)
             .deleteCookies("JSESSIONID")
             .permitAll()
-        .and()
+            .and()
             .headers()
             .frameOptions()
             .disable()
-        .and()
+            .and()
             .authorizeRequests()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/register/morador").permitAll()
@@ -129,7 +129,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/security").permitAll()
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/protected/**").authenticated() ;
+            .antMatchers("/protected/**").authenticated();
 
     }
 

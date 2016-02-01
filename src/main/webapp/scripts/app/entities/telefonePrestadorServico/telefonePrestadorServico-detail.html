@@ -1,6 +1,6 @@
-
 <div>
-    <h2><span translate="tmcApp.telefonePrestadorServico.detail.title">TelefonePrestadorServico</span> {{telefonePrestadorServico.id}}</h2>
+    <h2><span translate="tmcApp.telefonePrestadorServico.detail.title">TelefonePrestadorServico</span>
+        {{telefonePrestadorServico.id}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -23,7 +23,8 @@
                     <span translate="tmcApp.telefonePrestadorServico.prestadorServico">prestadorServico</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="prestadorServico.detail({id:telefonePrestadorServico.prestadorServico.id})">{{telefonePrestadorServico.prestadorServico.nome}}</a>
+                    <a class="form-control-static"
+                       ui-sref="prestadorServico.detail({id:telefonePrestadorServico.prestadorServico.id})">{{telefonePrestadorServico.prestadorServico.nome}}</a>
                 </td>
             </tr>
             </tbody>

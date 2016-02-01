@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Morador entity.
  */
-public interface MoradorRepository extends JpaRepository<Morador,Long> {
+public interface MoradorRepository extends JpaRepository<Morador, Long> {
 
     Morador findOneByEmail(String email);
 

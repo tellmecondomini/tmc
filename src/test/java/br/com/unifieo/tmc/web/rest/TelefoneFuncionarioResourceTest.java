@@ -81,9 +81,9 @@ public class TelefoneFuncionarioResourceTest {
         // Create the TelefoneFuncionario
 
         restTelefoneFuncionarioMockMvc.perform(post("/api/telefoneFuncionarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
+            .andExpect(status().isCreated());
 
         // Validate the TelefoneFuncionario in the database
         List<TelefoneFuncionario> telefoneFuncionarios = telefoneFuncionarioRepository.findAll();
@@ -102,9 +102,9 @@ public class TelefoneFuncionarioResourceTest {
         // Create the TelefoneFuncionario, which fails.
 
         restTelefoneFuncionarioMockMvc.perform(post("/api/telefoneFuncionarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
+            .andExpect(status().isBadRequest());
 
         List<TelefoneFuncionario> telefoneFuncionarios = telefoneFuncionarioRepository.findAll();
         assertThat(telefoneFuncionarios).hasSize(databaseSizeBeforeTest);
@@ -118,10 +118,10 @@ public class TelefoneFuncionarioResourceTest {
 
         // Get all the telefoneFuncionarios
         restTelefoneFuncionarioMockMvc.perform(get("/api/telefoneFuncionarios"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(telefoneFuncionario.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(telefoneFuncionario.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
     }
 
     @Test
@@ -143,7 +143,7 @@ public class TelefoneFuncionarioResourceTest {
     public void getNonExistingTelefoneFuncionario() throws Exception {
         // Get the telefoneFuncionario
         restTelefoneFuncionarioMockMvc.perform(get("/api/telefoneFuncionarios/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -152,16 +152,16 @@ public class TelefoneFuncionarioResourceTest {
         // Initialize the database
         telefoneFuncionarioRepository.saveAndFlush(telefoneFuncionario);
 
-		int databaseSizeBeforeUpdate = telefoneFuncionarioRepository.findAll().size();
+        int databaseSizeBeforeUpdate = telefoneFuncionarioRepository.findAll().size();
 
         // Update the telefoneFuncionario
         telefoneFuncionario.setNumero(UPDATED_NUMERO);
 
 
         restTelefoneFuncionarioMockMvc.perform(put("/api/telefoneFuncionarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneFuncionario)))
+            .andExpect(status().isOk());
 
         // Validate the TelefoneFuncionario in the database
         List<TelefoneFuncionario> telefoneFuncionarios = telefoneFuncionarioRepository.findAll();
@@ -176,12 +176,12 @@ public class TelefoneFuncionarioResourceTest {
         // Initialize the database
         telefoneFuncionarioRepository.saveAndFlush(telefoneFuncionario);
 
-		int databaseSizeBeforeDelete = telefoneFuncionarioRepository.findAll().size();
+        int databaseSizeBeforeDelete = telefoneFuncionarioRepository.findAll().size();
 
         // Get the telefoneFuncionario
         restTelefoneFuncionarioMockMvc.perform(delete("/api/telefoneFuncionarios/{id}", telefoneFuncionario.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<TelefoneFuncionario> telefoneFuncionarios = telefoneFuncionarioRepository.findAll();

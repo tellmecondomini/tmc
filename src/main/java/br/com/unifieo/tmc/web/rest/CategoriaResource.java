@@ -34,8 +34,8 @@ public class CategoriaResource {
      * POST  /categorias -> Create a new categoria.
      */
     @RequestMapping(value = "/categorias",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Categoria> createCategoria(@Valid @RequestBody Categoria categoria) throws URISyntaxException {
         log.debug("REST request to save Categoria : {}", categoria);
@@ -44,8 +44,8 @@ public class CategoriaResource {
         }
         Categoria result = categoriaRepository.save(categoria);
         return ResponseEntity.created(new URI("/api/categorias/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("categoria", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("categoria", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -62,16 +62,16 @@ public class CategoriaResource {
         }
         Categoria result = categoriaRepository.save(categoria);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("categoria", categoria.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("categoria", categoria.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /categorias -> get all the categorias.
      */
     @RequestMapping(value = "/categorias",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Categoria> getAllCategorias() {
         log.debug("REST request to get all Categorias");
@@ -82,8 +82,8 @@ public class CategoriaResource {
      * GET  /categorias/:id -> get the "id" categoria.
      */
     @RequestMapping(value = "/categorias/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Categoria> getCategoria(@PathVariable Long id) {
         log.debug("REST request to get Categoria : {}", id);
@@ -98,8 +98,8 @@ public class CategoriaResource {
      * DELETE  /categorias/:id -> delete the "id" categoria.
      */
     @RequestMapping(value = "/categorias/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteCategoria(@PathVariable Long id) {
         log.debug("REST request to delete Categoria : {}", id);

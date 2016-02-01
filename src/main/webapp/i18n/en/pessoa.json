@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "Pessoa" : {
+        "Pessoa": {
             "null": "",
             "FISICA": "FISICA",
             "JURIDICA": "JURIDICA"

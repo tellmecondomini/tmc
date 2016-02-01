@@ -120,9 +120,9 @@ public class MoradorResourceTest {
         // Create the Morador
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isCreated());
 
         // Validate the Morador in the database
         List<Morador> moradors = moradorRepository.findAll();
@@ -148,9 +148,9 @@ public class MoradorResourceTest {
         // Create the Morador, which fails.
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isBadRequest());
 
         List<Morador> moradors = moradorRepository.findAll();
         assertThat(moradors).hasSize(databaseSizeBeforeTest);
@@ -166,9 +166,9 @@ public class MoradorResourceTest {
         // Create the Morador, which fails.
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isBadRequest());
 
         List<Morador> moradors = moradorRepository.findAll();
         assertThat(moradors).hasSize(databaseSizeBeforeTest);
@@ -184,9 +184,9 @@ public class MoradorResourceTest {
         // Create the Morador, which fails.
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isBadRequest());
 
         List<Morador> moradors = moradorRepository.findAll();
         assertThat(moradors).hasSize(databaseSizeBeforeTest);
@@ -202,9 +202,9 @@ public class MoradorResourceTest {
         // Create the Morador, which fails.
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isBadRequest());
 
         List<Morador> moradors = moradorRepository.findAll();
         assertThat(moradors).hasSize(databaseSizeBeforeTest);
@@ -220,9 +220,9 @@ public class MoradorResourceTest {
         // Create the Morador, which fails.
 
         restMoradorMockMvc.perform(post("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isBadRequest());
 
         List<Morador> moradors = moradorRepository.findAll();
         assertThat(moradors).hasSize(databaseSizeBeforeTest);
@@ -236,18 +236,18 @@ public class MoradorResourceTest {
 
         // Get all the moradors
         restMoradorMockMvc.perform(get("/api/moradors"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(morador.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-                .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.toString())))
-                .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
-                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-                .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
-                .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO_STR)))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].bloqueiaAgendamento").value(hasItem(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue())))
-                .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(morador.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
+            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.toString())))
+            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
+            .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO_STR)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].bloqueiaAgendamento").value(hasItem(DEFAULT_BLOQUEIA_AGENDAMENTO.booleanValue())))
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
     }
 
     @Test
@@ -277,7 +277,7 @@ public class MoradorResourceTest {
     public void getNonExistingMorador() throws Exception {
         // Get the morador
         restMoradorMockMvc.perform(get("/api/moradors/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -286,7 +286,7 @@ public class MoradorResourceTest {
         // Initialize the database
         moradorRepository.saveAndFlush(morador);
 
-		int databaseSizeBeforeUpdate = moradorRepository.findAll().size();
+        int databaseSizeBeforeUpdate = moradorRepository.findAll().size();
 
         // Update the morador
         morador.setNome(UPDATED_NOME);
@@ -298,9 +298,9 @@ public class MoradorResourceTest {
         morador.setAtivo(UPDATED_ATIVO);
 
         restMoradorMockMvc.perform(put("/api/moradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(morador)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(morador)))
+            .andExpect(status().isOk());
 
         // Validate the Morador in the database
         List<Morador> moradors = moradorRepository.findAll();
@@ -321,12 +321,12 @@ public class MoradorResourceTest {
         // Initialize the database
         moradorRepository.saveAndFlush(morador);
 
-		int databaseSizeBeforeDelete = moradorRepository.findAll().size();
+        int databaseSizeBeforeDelete = moradorRepository.findAll().size();
 
         // Get the morador
         restMoradorMockMvc.perform(delete("/api/moradors/{id}", morador.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Morador> moradors = moradorRepository.findAll();

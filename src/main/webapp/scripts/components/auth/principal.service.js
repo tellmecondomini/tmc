@@ -14,14 +14,14 @@ angular.module('tmcApp')
             },
             hasAuthority: function (authority) {
                 if (!_authenticated) {
-                   return false;
-               }
+                    return false;
+                }
 
-               return this.identity().then(function(_id) {
-                   return _id.authorities && _id.authorities.indexOf(authority) !== -1;
-               }, function(err){
-                   return false;
-               });
+                return this.identity().then(function (_id) {
+                    return _id.authorities && _id.authorities.indexOf(authority) !== -1;
+                }, function (err) {
+                    return false;
+                });
             },
             hasAnyAuthority: function (authorities) {
                 return true;
@@ -64,7 +64,7 @@ angular.module('tmcApp')
                         _authenticated = true;
                         deferred.resolve(_identity);
                     })
-                    .catch(function() {
+                    .catch(function () {
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);

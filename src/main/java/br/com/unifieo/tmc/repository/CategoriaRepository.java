@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the Categoria entity.
  */
-public interface CategoriaRepository extends JpaRepository<Categoria,Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
 }

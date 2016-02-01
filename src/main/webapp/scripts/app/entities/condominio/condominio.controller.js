@@ -9,16 +9,16 @@ angular.module('tmcApp')
 
         $scope.condominios = [];
 
-        $scope.loadAll = function() {
-            Condominio.query(function(result) {
-               $scope.condominios = result;
+        $scope.loadAll = function () {
+            Condominio.query(function (result) {
+                $scope.condominios = result;
             });
         };
 
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Condominio.get({id: id}, function(result) {
+            Condominio.get({id: id}, function (result) {
                 $scope.condominio = result;
                 $('#deleteCondominioConfirmation').modal('show');
             });

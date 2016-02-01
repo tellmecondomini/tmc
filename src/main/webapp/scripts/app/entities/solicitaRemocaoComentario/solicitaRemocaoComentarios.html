@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="solicitaRemocaoComentario.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="tmcApp.solicitaRemocaoComentario.home.createLabel">Create a new SolicitaRemocaoComentario</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span
+                    translate="tmcApp.solicitaRemocaoComentario.home.createLabel">Create a new SolicitaRemocaoComentario</span>
                 </button>
             </div>
         </div>
@@ -21,14 +22,18 @@
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-                        <p translate="tmcApp.solicitaRemocaoComentario.delete.question" translate-values="{id: '{{solicitaRemocaoComentario.id}}'}">Are you sure you want to delete this SolicitaRemocaoComentario?</p>
+                        <p translate="tmcApp.solicitaRemocaoComentario.delete.question"
+                           translate-values="{id: '{{solicitaRemocaoComentario.id}}'}">Are you sure you want to delete
+                            this SolicitaRemocaoComentario?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                            translate="entity.action.cancel">Cancel</span>
                         </button>
                         <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
+                            translate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </form>
@@ -39,48 +44,51 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th translate="global.field.id">ID</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.data">Data</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.motivo">Motivo</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.dataAtendimento">DataAtendimento</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.observacao">Observacao</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.comentario">comentario</th>
-                    <th translate="tmcApp.solicitaRemocaoComentario.morador">morador</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th translate="global.field.id">ID</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.data">Data</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.motivo">Motivo</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.dataAtendimento">DataAtendimento</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.observacao">Observacao</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.comentario">comentario</th>
+                <th translate="tmcApp.solicitaRemocaoComentario.morador">morador</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="solicitaRemocaoComentario in solicitaRemocaoComentarios">
-                    <td><a ui-sref="solicitaRemocaoComentario.detail({id:solicitaRemocaoComentario.id})">{{solicitaRemocaoComentario.id}}</a></td>
-                    <td>{{solicitaRemocaoComentario.data}}</td>
-                    <td>{{solicitaRemocaoComentario.motivo}}</td>
-                    <td>{{solicitaRemocaoComentario.dataAtendimento}}</td>
-                    <td>{{solicitaRemocaoComentario.observacao}}</td>
-                    <td>
-                        <a ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.id}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="morador.detail({id:solicitaRemocaoComentario.morador.id})">{{solicitaRemocaoComentario.morador.id}}</a>
-                    </td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="solicitaRemocaoComentario.detail({id:solicitaRemocaoComentario.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="solicitaRemocaoComentario.edit({id:solicitaRemocaoComentario.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                        </button>
-                        <button type="submit"
-                                ng-click="delete(solicitaRemocaoComentario.id)"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                        </button>
-                    </td>
-                </tr>
+            <tr ng-repeat="solicitaRemocaoComentario in solicitaRemocaoComentarios">
+                <td><a ui-sref="solicitaRemocaoComentario.detail({id:solicitaRemocaoComentario.id})">{{solicitaRemocaoComentario.id}}</a>
+                </td>
+                <td>{{solicitaRemocaoComentario.data}}</td>
+                <td>{{solicitaRemocaoComentario.motivo}}</td>
+                <td>{{solicitaRemocaoComentario.dataAtendimento}}</td>
+                <td>{{solicitaRemocaoComentario.observacao}}</td>
+                <td>
+                    <a ui-sref="comentario.detail({id:solicitaRemocaoComentario.comentario.id})">{{solicitaRemocaoComentario.comentario.id}}</a>
+                </td>
+                <td>
+                    <a ui-sref="morador.detail({id:solicitaRemocaoComentario.morador.id})">{{solicitaRemocaoComentario.morador.id}}</a>
+                </td>
+                <td>
+                    <button type="submit"
+                            ui-sref="solicitaRemocaoComentario.detail({id:solicitaRemocaoComentario.id})"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="solicitaRemocaoComentario.edit({id:solicitaRemocaoComentario.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span
+                        translate="entity.action.edit"> Edit</span>
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(solicitaRemocaoComentario.id)"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span
+                        translate="entity.action.delete"> Delete</span>
+                    </button>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

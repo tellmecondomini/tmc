@@ -81,9 +81,9 @@ public class TelefoneMoradorResourceTest {
         // Create the TelefoneMorador
 
         restTelefoneMoradorMockMvc.perform(post("/api/telefoneMoradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
+            .andExpect(status().isCreated());
 
         // Validate the TelefoneMorador in the database
         List<TelefoneMorador> telefoneMoradors = telefoneMoradorRepository.findAll();
@@ -102,9 +102,9 @@ public class TelefoneMoradorResourceTest {
         // Create the TelefoneMorador, which fails.
 
         restTelefoneMoradorMockMvc.perform(post("/api/telefoneMoradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
+            .andExpect(status().isBadRequest());
 
         List<TelefoneMorador> telefoneMoradors = telefoneMoradorRepository.findAll();
         assertThat(telefoneMoradors).hasSize(databaseSizeBeforeTest);
@@ -118,10 +118,10 @@ public class TelefoneMoradorResourceTest {
 
         // Get all the telefoneMoradors
         restTelefoneMoradorMockMvc.perform(get("/api/telefoneMoradors"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(telefoneMorador.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(telefoneMorador.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
     }
 
     @Test
@@ -143,7 +143,7 @@ public class TelefoneMoradorResourceTest {
     public void getNonExistingTelefoneMorador() throws Exception {
         // Get the telefoneMorador
         restTelefoneMoradorMockMvc.perform(get("/api/telefoneMoradors/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -152,16 +152,16 @@ public class TelefoneMoradorResourceTest {
         // Initialize the database
         telefoneMoradorRepository.saveAndFlush(telefoneMorador);
 
-		int databaseSizeBeforeUpdate = telefoneMoradorRepository.findAll().size();
+        int databaseSizeBeforeUpdate = telefoneMoradorRepository.findAll().size();
 
         // Update the telefoneMorador
         telefoneMorador.setNumero(UPDATED_NUMERO);
 
 
         restTelefoneMoradorMockMvc.perform(put("/api/telefoneMoradors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefoneMorador)))
+            .andExpect(status().isOk());
 
         // Validate the TelefoneMorador in the database
         List<TelefoneMorador> telefoneMoradors = telefoneMoradorRepository.findAll();
@@ -176,12 +176,12 @@ public class TelefoneMoradorResourceTest {
         // Initialize the database
         telefoneMoradorRepository.saveAndFlush(telefoneMorador);
 
-		int databaseSizeBeforeDelete = telefoneMoradorRepository.findAll().size();
+        int databaseSizeBeforeDelete = telefoneMoradorRepository.findAll().size();
 
         // Get the telefoneMorador
         restTelefoneMoradorMockMvc.perform(delete("/api/telefoneMoradors/{id}", telefoneMorador.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<TelefoneMorador> telefoneMoradors = telefoneMoradorRepository.findAll();

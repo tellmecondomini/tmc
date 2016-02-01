@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "prestadorServico" : {
+        "prestadorServico": {
             "home": {
                 "title": "Prestadores de Serviços",
                 "createLabel": "Novo",

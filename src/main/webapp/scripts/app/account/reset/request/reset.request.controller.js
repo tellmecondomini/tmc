@@ -7,7 +7,9 @@ angular.module('tmcApp')
         $scope.error = null;
         $scope.errorEmailNotExists = null;
         $scope.resetAccount = {};
-        $timeout(function (){angular.element('[ng-model="resetAccount.email"]').focus();});
+        $timeout(function () {
+            angular.element('[ng-model="resetAccount.email"]').focus();
+        });
 
         $scope.requestReset = function () {
 

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Assunto entity.
  */
-public interface AssuntoRepository extends JpaRepository<Assunto,Long> {
+public interface AssuntoRepository extends JpaRepository<Assunto, Long> {
 
     List<Assunto> findAllByCondominio(Condominio condominio);
 }

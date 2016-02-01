@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "topico" : {
+        "topico": {
             "home": {
                 "title": "Topicos",
                 "createLabel": "Create a new Topico",

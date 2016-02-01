@@ -11,15 +11,15 @@ declare module ng.ui {
         templateUrl?: any; // string || () => string
         templateProvider?: any; // () => string || IPromise<string>
         controller?: any;
-        controllerAs?: string;    
+        controllerAs?: string;
         controllerProvider?: any;
         resolve?: {};
         url?: string;
         params?: any;
         views?: {};
         abstract?: boolean;
-        onEnter?: (...args: any[]) => void;
-        onExit?: (...args: any[]) => void;
+        onEnter?: (...args:any[]) => void;
+        onExit?: (...args:any[]) => void;
         data?: any;
         reloadOnSearch?: boolean;
     }
@@ -29,38 +29,38 @@ declare module ng.ui {
     }
 
     interface IStateProvider extends IServiceProvider {
-        state(name: string, config: IState): IStateProvider;
-        state(config: IState): IStateProvider;
-        decorator(name?: string, decorator?: (state: IState, parent: Function) => any): any;
+        state(name:string, config:IState): IStateProvider;
+        state(config:IState): IStateProvider;
+        decorator(name?:string, decorator?:(state:IState, parent:Function) => any): any;
     }
 
     interface IUrlMatcher {
-        concat(pattern: string): IUrlMatcher;
-        exec(path: string, searchParams: {}): {};
+        concat(pattern:string): IUrlMatcher;
+        exec(path:string, searchParams:{}): {};
         parameters(): string[];
-        format(values: {}): string;
+        format(values:{}): string;
     }
 
     interface IUrlMatcherFactory {
-        compile(pattern: string): IUrlMatcher;
-        isMatcher(o: any): boolean;
+        compile(pattern:string): IUrlMatcher;
+        isMatcher(o:any): boolean;
     }
 
     interface IUrlRouterProvider extends IServiceProvider {
-        when(whenPath: RegExp, handler: Function): IUrlRouterProvider;
-        when(whenPath: RegExp, handler: any[]): IUrlRouterProvider;
-        when(whenPath: RegExp, toPath: string): IUrlRouterProvider;
-        when(whenPath: IUrlMatcher, hanlder: Function): IUrlRouterProvider;
-        when(whenPath: IUrlMatcher, handler: any[]): IUrlRouterProvider;
-        when(whenPath: IUrlMatcher, toPath: string): IUrlRouterProvider;
-        when(whenPath: string, handler: Function): IUrlRouterProvider;
-        when(whenPath: string, handler: any[]): IUrlRouterProvider;
-        when(whenPath: string, toPath: string): IUrlRouterProvider;
-        otherwise(handler: Function): IUrlRouterProvider;
-        otherwise(handler: any[]): IUrlRouterProvider;
-        otherwise(path: string): IUrlRouterProvider;
-        rule(handler: Function): IUrlRouterProvider;
-        rule(handler: any[]): IUrlRouterProvider;
+        when(whenPath:RegExp, handler:Function): IUrlRouterProvider;
+        when(whenPath:RegExp, handler:any[]): IUrlRouterProvider;
+        when(whenPath:RegExp, toPath:string): IUrlRouterProvider;
+        when(whenPath:IUrlMatcher, hanlder:Function): IUrlRouterProvider;
+        when(whenPath:IUrlMatcher, handler:any[]): IUrlRouterProvider;
+        when(whenPath:IUrlMatcher, toPath:string): IUrlRouterProvider;
+        when(whenPath:string, handler:Function): IUrlRouterProvider;
+        when(whenPath:string, handler:any[]): IUrlRouterProvider;
+        when(whenPath:string, toPath:string): IUrlRouterProvider;
+        otherwise(handler:Function): IUrlRouterProvider;
+        otherwise(handler:any[]): IUrlRouterProvider;
+        otherwise(path:string): IUrlRouterProvider;
+        rule(handler:Function): IUrlRouterProvider;
+        rule(handler:any[]): IUrlRouterProvider;
     }
 
     interface IStateOptions {
@@ -79,15 +79,15 @@ declare module ng.ui {
     }
 
     interface IStateService {
-        go(to: string, params?: {}, options?: IStateOptions): IPromise<any>;
-        transitionTo(state: string, params?: {}, updateLocation?: boolean): void;
-        transitionTo(state: string, params?: {}, options?: IStateOptions): void;
-        includes(state: string, params?: {}): boolean;
-        is(state:string, params?: {}): boolean;
-        is(state: IState, params?: {}): boolean;
-        href(state: IState, params?: {}, options?: IHrefOptions): string;
-        href(state: string, params?: {}, options?: IHrefOptions): string;
-        get(state: string): IState;
+        go(to:string, params?:{}, options?:IStateOptions): IPromise<any>;
+        transitionTo(state:string, params?:{}, updateLocation?:boolean): void;
+        transitionTo(state:string, params?:{}, options?:IStateOptions): void;
+        includes(state:string, params?:{}): boolean;
+        is(state:string, params?:{}): boolean;
+        is(state:IState, params?:{}): boolean;
+        href(state:IState, params?:{}, options?:IHrefOptions): string;
+        href(state:string, params?:{}, options?:IHrefOptions): string;
+        get(state:string): IState;
         get(): IState[];
         current: IState;
         params: any;
@@ -118,7 +118,7 @@ declare module ng.ui {
 
     interface IUiViewScrollProvider {
         /*
-         * Reverts back to using the core $anchorScroll service for scrolling 
+         * Reverts back to using the core $anchorScroll service for scrolling
          * based on the url anchor.
          */
         useAnchorScroll(): void;

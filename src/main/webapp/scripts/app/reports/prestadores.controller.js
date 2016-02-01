@@ -61,7 +61,7 @@ angular.module('tmcApp')
         $scope.loadCompetencias();
 
         $scope.filterBySexo = function (avaliacao) {
-            if($scope.sexo === '')
+            if ($scope.sexo === '')
                 return true;
             return (avaliacao.prestador.sexo === $scope.sexo);
         };

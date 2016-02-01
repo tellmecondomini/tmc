@@ -43,7 +43,7 @@ public class SolicitaRemocaoComentario implements Serializable {
     @Column(name = "observacao")
     private String observacao;
 
-    @Column(name="aprovado")
+    @Column(name = "aprovado")
     private Boolean aprovado;
 
     @ManyToOne
@@ -138,7 +138,7 @@ public class SolicitaRemocaoComentario implements Serializable {
 
         SolicitaRemocaoComentario solicitaRemocaoComentario = (SolicitaRemocaoComentario) o;
 
-        if ( ! Objects.equals(id, solicitaRemocaoComentario.id)) return false;
+        if (!Objects.equals(id, solicitaRemocaoComentario.id)) return false;
 
         return true;
     }
@@ -151,11 +151,11 @@ public class SolicitaRemocaoComentario implements Serializable {
     @Override
     public String toString() {
         return "SolicitaRemocaoComentario{" +
-                "id=" + id +
-                ", data='" + data + "'" +
-                ", motivo='" + motivo + "'" +
-                ", dataAtendimento='" + dataAtendimento + "'" +
-                ", observacao='" + observacao + "'" +
-                '}';
+            "id=" + id +
+            ", data='" + data + "'" +
+            ", motivo='" + motivo + "'" +
+            ", dataAtendimento='" + dataAtendimento + "'" +
+            ", observacao='" + observacao + "'" +
+            '}';
     }
 }

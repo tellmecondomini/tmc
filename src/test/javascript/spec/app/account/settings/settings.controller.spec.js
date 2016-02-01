@@ -7,13 +7,14 @@ describe('Controllers Tests ', function () {
     var $scope, q, Principal, Auth;
 
     // define the mock Auth service
-    beforeEach(function() {
+    beforeEach(function () {
         Auth = {
-            updateAccount: function() {}
+            updateAccount: function () {
+            }
         };
 
         Principal = {
-            identity: function() {
+            identity: function () {
                 var deferred = q.defer();
                 return deferred.promise;
             }
@@ -26,7 +27,7 @@ describe('Controllers Tests ', function () {
         beforeEach(inject(function ($rootScope, $controller, $q) {
             $scope = $rootScope.$new();
             q = $q;
-            $controller('SettingsController',{$scope:$scope, Principal:Principal, Auth:Auth});
+            $controller('SettingsController', {$scope: $scope, Principal: Principal, Auth: Auth});
         }));
 
         it('should save account', function () {
@@ -37,7 +38,7 @@ describe('Controllers Tests ', function () {
             //SET SPY
             spyOn(Principal, 'identity').and.callThrough();
 
-            spyOn(Auth, 'updateAccount').and.returnValue(new function(){
+            spyOn(Auth, 'updateAccount').and.returnValue(new function () {
                 var deferred = q.defer();
                 $scope.error = null;
                 $scope.success = 'OK';

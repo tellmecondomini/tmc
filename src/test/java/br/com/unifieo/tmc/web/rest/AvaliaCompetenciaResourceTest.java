@@ -87,9 +87,9 @@ public class AvaliaCompetenciaResourceTest {
         // Create the AvaliaCompetencia
 
         restAvaliaCompetenciaMockMvc.perform(post("/api/avaliacoes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
+            .andExpect(status().isCreated());
 
         // Validate the AvaliaCompetencia in the database
         List<AvaliaCompetencia> avaliaCompetencias = avaliaCompetenciaRepository.findAll();
@@ -108,12 +108,12 @@ public class AvaliaCompetenciaResourceTest {
 
         // Get all the avaliacoes
         restAvaliaCompetenciaMockMvc.perform(get("/api/avaliacoes"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(avaliaCompetencia.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nota").value(hasItem(DEFAULT_NOTA)))
-                .andExpect(jsonPath("$.[*].mensagem").value(hasItem(DEFAULT_MENSAGEM.toString())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(avaliaCompetencia.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nota").value(hasItem(DEFAULT_NOTA)))
+            .andExpect(jsonPath("$.[*].mensagem").value(hasItem(DEFAULT_MENSAGEM.toString())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 
     @Test
@@ -137,7 +137,7 @@ public class AvaliaCompetenciaResourceTest {
     public void getNonExistingAvaliaCompetencia() throws Exception {
         // Get the avaliaCompetencia
         restAvaliaCompetenciaMockMvc.perform(get("/api/avaliacoes/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -146,7 +146,7 @@ public class AvaliaCompetenciaResourceTest {
         // Initialize the database
         avaliaCompetenciaRepository.saveAndFlush(avaliaCompetencia);
 
-		int databaseSizeBeforeUpdate = avaliaCompetenciaRepository.findAll().size();
+        int databaseSizeBeforeUpdate = avaliaCompetenciaRepository.findAll().size();
 
         // Update the avaliaCompetencia
         avaliaCompetencia.setNota(UPDATED_NOTA);
@@ -155,9 +155,9 @@ public class AvaliaCompetenciaResourceTest {
 
 
         restAvaliaCompetenciaMockMvc.perform(put("/api/avaliacoes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(avaliaCompetencia)))
+            .andExpect(status().isOk());
 
         // Validate the AvaliaCompetencia in the database
         List<AvaliaCompetencia> avaliaCompetencias = avaliaCompetenciaRepository.findAll();
@@ -174,12 +174,12 @@ public class AvaliaCompetenciaResourceTest {
         // Initialize the database
         avaliaCompetenciaRepository.saveAndFlush(avaliaCompetencia);
 
-		int databaseSizeBeforeDelete = avaliaCompetenciaRepository.findAll().size();
+        int databaseSizeBeforeDelete = avaliaCompetenciaRepository.findAll().size();
 
         // Get the avaliaCompetencia
         restAvaliaCompetenciaMockMvc.perform(delete("/api/avaliacoes/{id}", avaliaCompetencia.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<AvaliaCompetencia> avaliaCompetencias = avaliaCompetenciaRepository.findAll();

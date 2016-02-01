@@ -17,7 +17,7 @@
   ],
   "license": "Apache License 2.0",
   "ignore": [
-        "**/*"
+    "**/*"
   ],
   "dependencies": {
     "angular": "~1.2.19"

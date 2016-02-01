@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/condominios',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.condominio.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/condominio/{id}',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.condominio.detail.title'
                 },
                 views: {
@@ -44,8 +44,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('disposicao');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Condominio', function($stateParams, Condominio) {
-                        return Condominio.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Condominio', function ($stateParams, Condominio) {
+                        return Condominio.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,9 +53,9 @@ angular.module('tmcApp')
                 parent: 'condominio',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/condominio/condominio-dialog.html',
                         controller: 'CondominioDialogController',
@@ -104,9 +104,9 @@ angular.module('tmcApp')
                                 };
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('condominio', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('condominio', null, {reload: true});
+                    }, function () {
                         $state.go('condominio');
                     })
                 }]
@@ -115,21 +115,21 @@ angular.module('tmcApp')
                 parent: 'condominio',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/condominio/condominio-dialog.html',
                         controller: 'CondominioDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Condominio', function(Condominio) {
-                                return Condominio.get({id : $stateParams.id});
+                            entity: ['Condominio', function (Condominio) {
+                                return Condominio.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('condominio', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('condominio', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

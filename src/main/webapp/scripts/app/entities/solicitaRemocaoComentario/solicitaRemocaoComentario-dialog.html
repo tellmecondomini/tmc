@@ -1,59 +1,64 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()">
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="mySolicitaRemocaoComentarioLabel" translate="tmcApp.solicitaRemocaoComentario.home.createOrEditLabel">Create or edit a SolicitaRemocaoComentario</h4>
+        <h4 class="modal-title" id="mySolicitaRemocaoComentarioLabel"
+            translate="tmcApp.solicitaRemocaoComentario.home.createOrEditLabel">Create or edit a
+            SolicitaRemocaoComentario</h4>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="solicitaRemocaoComentario.id" readonly>
+                   ng-model="solicitaRemocaoComentario.id" readonly>
         </div>
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.data" for="field_data">Data</label>
             <input type="datetime-local" class="form-control" name="data" id="field_data"
-                    ng-model="solicitaRemocaoComentario.data" ng-model-options="{timezone: 'UTC'}"
-                    >
+                   ng-model="solicitaRemocaoComentario.data" ng-model-options="{timezone: 'UTC'}"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.motivo" for="field_motivo">Motivo</label>
             <input type="text" class="form-control" name="motivo" id="field_motivo"
-                    ng-model="solicitaRemocaoComentario.motivo"
-                    >
+                   ng-model="solicitaRemocaoComentario.motivo"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.dataAtendimento" for="field_dataAtendimento">DataAtendimento</label>
             <input type="datetime-local" class="form-control" name="dataAtendimento" id="field_dataAtendimento"
-                    ng-model="solicitaRemocaoComentario.dataAtendimento" ng-model-options="{timezone: 'UTC'}"
-                    >
+                   ng-model="solicitaRemocaoComentario.dataAtendimento" ng-model-options="{timezone: 'UTC'}"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.observacao" for="field_observacao">Observacao</label>
             <input type="text" class="form-control" name="observacao" id="field_observacao"
-                    ng-model="solicitaRemocaoComentario.observacao"
-                    >
+                   ng-model="solicitaRemocaoComentario.observacao"
+            >
         </div>
 
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.comentario" for="field_comentario">comentario</label>
-            <select class="form-control" id="field_comentario" name="comentario" ng-model="solicitaRemocaoComentario.comentario" ng-options="comentario as comentario.id for comentario in comentarios | orderBy:'id' track by comentario.id">
+            <select class="form-control" id="field_comentario" name="comentario"
+                    ng-model="solicitaRemocaoComentario.comentario"
+                    ng-options="comentario as comentario.id for comentario in comentarios | orderBy:'id' track by comentario.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label translate="tmcApp.solicitaRemocaoComentario.morador" for="field_morador">morador</label>
-            <select class="form-control" id="field_morador" name="morador" ng-model="solicitaRemocaoComentario.morador" ng-options="morador as morador.id for morador in moradors track by morador.id">
+            <select class="form-control" id="field_morador" name="morador" ng-model="solicitaRemocaoComentario.morador"
+                    ng-options="morador as morador.id for morador in moradors track by morador.id">
                 <option value=""></option>
             </select>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

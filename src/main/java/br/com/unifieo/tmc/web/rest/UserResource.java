@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 /**
  * REST controller for managing users.
- *
+ * <p>
  * <p>This class accesses the User entity, and needs to fetch its collection of authorities.</p>
  * <p>
  * For a normal use-case, it would be better to have an eager relationship between User and Authority,
@@ -73,8 +73,8 @@ public class UserResource {
      * POST  /users -> Create a new user.
      */
     @RequestMapping(value = "/users",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<User> createUser(@RequestBody User user) throws URISyntaxException {
@@ -84,8 +84,8 @@ public class UserResource {
         }
         User result = userRepository.save(user);
         return ResponseEntity.created(new URI("/api/users/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("user", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("user", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -142,14 +142,14 @@ public class UserResource {
      * GET  /users/:login -> get the "login" user.
      */
     @RequestMapping(value = "/users/{login}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<ManagedUserDTO> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
         return userService.getUserWithAuthoritiesByLogin(login)
-                .map(user -> new ManagedUserDTO(user))
-                .map(userDTO -> new ResponseEntity<>(userDTO, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            .map(user -> new ManagedUserDTO(user))
+            .map(userDTO -> new ResponseEntity<>(userDTO, HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

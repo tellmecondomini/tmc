@@ -3,7 +3,7 @@
 angular.module('tmcApp')
     .factory('Sessions', function ($resource) {
         return $resource('api/account/sessions/:series', {}, {
-            'getAll': { method: 'GET', isArray: true}
+            'getAll': {method: 'GET', isArray: true}
         });
     });
 

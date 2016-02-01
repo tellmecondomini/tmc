@@ -81,9 +81,9 @@ public class TelefonePrestadorServicoResourceTest {
         // Create the TelefonePrestadorServico
 
         restTelefonePrestadorServicoMockMvc.perform(post("/api/telefonePrestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
+            .andExpect(status().isCreated());
 
         // Validate the TelefonePrestadorServico in the database
         List<TelefonePrestadorServico> telefonePrestadorServicos = telefonePrestadorServicoRepository.findAll();
@@ -102,9 +102,9 @@ public class TelefonePrestadorServicoResourceTest {
         // Create the TelefonePrestadorServico, which fails.
 
         restTelefonePrestadorServicoMockMvc.perform(post("/api/telefonePrestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
+            .andExpect(status().isBadRequest());
 
         List<TelefonePrestadorServico> telefonePrestadorServicos = telefonePrestadorServicoRepository.findAll();
         assertThat(telefonePrestadorServicos).hasSize(databaseSizeBeforeTest);
@@ -118,10 +118,10 @@ public class TelefonePrestadorServicoResourceTest {
 
         // Get all the telefonePrestadorServicos
         restTelefonePrestadorServicoMockMvc.perform(get("/api/telefonePrestadorServicos"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(telefonePrestadorServico.getId().intValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(telefonePrestadorServico.getId().intValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)));
     }
 
     @Test
@@ -143,7 +143,7 @@ public class TelefonePrestadorServicoResourceTest {
     public void getNonExistingTelefonePrestadorServico() throws Exception {
         // Get the telefonePrestadorServico
         restTelefonePrestadorServicoMockMvc.perform(get("/api/telefonePrestadorServicos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -152,16 +152,16 @@ public class TelefonePrestadorServicoResourceTest {
         // Initialize the database
         telefonePrestadorServicoRepository.saveAndFlush(telefonePrestadorServico);
 
-		int databaseSizeBeforeUpdate = telefonePrestadorServicoRepository.findAll().size();
+        int databaseSizeBeforeUpdate = telefonePrestadorServicoRepository.findAll().size();
 
         // Update the telefonePrestadorServico
         telefonePrestadorServico.setNumero(UPDATED_NUMERO);
 
 
         restTelefonePrestadorServicoMockMvc.perform(put("/api/telefonePrestadorServicos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(telefonePrestadorServico)))
+            .andExpect(status().isOk());
 
         // Validate the TelefonePrestadorServico in the database
         List<TelefonePrestadorServico> telefonePrestadorServicos = telefonePrestadorServicoRepository.findAll();
@@ -176,12 +176,12 @@ public class TelefonePrestadorServicoResourceTest {
         // Initialize the database
         telefonePrestadorServicoRepository.saveAndFlush(telefonePrestadorServico);
 
-		int databaseSizeBeforeDelete = telefonePrestadorServicoRepository.findAll().size();
+        int databaseSizeBeforeDelete = telefonePrestadorServicoRepository.findAll().size();
 
         // Get the telefonePrestadorServico
         restTelefonePrestadorServicoMockMvc.perform(delete("/api/telefonePrestadorServicos/{id}", telefonePrestadorServico.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<TelefonePrestadorServico> telefonePrestadorServicos = telefonePrestadorServicoRepository.findAll();

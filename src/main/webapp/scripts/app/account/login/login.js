@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'account',
                 url: '/login',
                 data: {
-                    authorities: [], 
+                    authorities: [],
                     pageTitle: 'login.title'
                 },
                 views: {

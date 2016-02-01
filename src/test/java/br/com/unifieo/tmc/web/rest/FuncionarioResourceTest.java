@@ -130,9 +130,9 @@ public class FuncionarioResourceTest {
 
         // Create the Funcionario
         restFuncionarioMockMvc.perform(post("/api/funcionarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(funcionarioDTO)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(funcionarioDTO)))
+            .andExpect(status().isCreated());
 
         // Validate the Funcionario in the database
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
@@ -159,19 +159,19 @@ public class FuncionarioResourceTest {
 
         // Get all the funcionarios
         restFuncionarioMockMvc.perform(get("/api/funcionarios"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(funcionarioDTO.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-                .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.toString())))
-                .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
-                .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO_STR)))
-                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-                .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
-                .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
-                .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())))
-                .andExpect(jsonPath("$.[*].responsavel").value(hasItem(DEFAULT_RESPONSAVEL.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(funcionarioDTO.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
+            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.toString())))
+            .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
+            .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO_STR)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].senha").value(hasItem(DEFAULT_SENHA.toString())))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
+            .andExpect(jsonPath("$.[*].complemento").value(hasItem(DEFAULT_COMPLEMENTO.toString())))
+            .andExpect(jsonPath("$.[*].responsavel").value(hasItem(DEFAULT_RESPONSAVEL.booleanValue())));
     }
 
     @Test
@@ -202,7 +202,7 @@ public class FuncionarioResourceTest {
     public void getNonExistingFuncionario() throws Exception {
         // Get the funcionarioDTO
         restFuncionarioMockMvc.perform(get("/api/funcionarios/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -226,9 +226,9 @@ public class FuncionarioResourceTest {
         funcionarioDTO.setComplemento(UPDATED_COMPLEMENTO);
 
         restFuncionarioMockMvc.perform(put("/api/funcionarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(funcionarioDTO)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(funcionarioDTO)))
+            .andExpect(status().isOk());
 
         // Validate the Funcionario in the database
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
@@ -252,12 +252,12 @@ public class FuncionarioResourceTest {
         // Initialize the database
         funcionarioService.save(funcionarioDTO, "");
 
-		int databaseSizeBeforeDelete = funcionarioRepository.findAll().size();
+        int databaseSizeBeforeDelete = funcionarioRepository.findAll().size();
 
         // Get the funcionarioDTO
         restFuncionarioMockMvc.perform(delete("/api/funcionarios/{id}", funcionarioDTO.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Funcionario> funcionarios = funcionarioRepository.findAll();

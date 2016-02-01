@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Tell Me Condominium</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-    <body>
-        <h3>
-            O tópico <strong>"<span th:text="${topico.titulo}" />"</strong> foi <i>aprovado</i>!
-        </h3>
-        <ul>
-            <li>
-                Assunto: <span th:text="${topico.assunto.descricao}" />
-            </li>
-            <li>
-                Categoria: <span th:text="${topico.categoria.descricao}" />
-            </li>
-            <li>
-                Conteúdo: <span th:text="${topico.descricao}" />
-            </li>
-            <li>
-                Mensagem do administrador: <span th:text="${topico.mensagemAprovacao}" />
-            </li>
-        </ul>
-        <p>
-            Acesse o sistema, <a th:href="@{|${baseUrl}/#/login|}">clicando aqui</a>
-        </p>
-        <p>
-            Att,
-        <p>
-            <em>Equipe Tell Me Condominium.</em>
-        </p>
-        </p>
-    </body>
+<head>
+    <title>Tell Me Condominium</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h3>
+    O tópico <strong>"<span th:text="${topico.titulo}"/>"</strong> foi <i>aprovado</i>!
+</h3>
+<ul>
+    <li>
+        Assunto: <span th:text="${topico.assunto.descricao}"/>
+    </li>
+    <li>
+        Categoria: <span th:text="${topico.categoria.descricao}"/>
+    </li>
+    <li>
+        Conteúdo: <span th:text="${topico.descricao}"/>
+    </li>
+    <li>
+        Mensagem do administrador: <span th:text="${topico.mensagemAprovacao}"/>
+    </li>
+</ul>
+<p>
+    Acesse o sistema, <a th:href="@{|${baseUrl}/#/login|}">clicando aqui</a>
+</p>
+<p>
+    Att,
+<p>
+    <em>Equipe Tell Me Condominium.</em>
+</p>
+</p>
+</body>
 </html>

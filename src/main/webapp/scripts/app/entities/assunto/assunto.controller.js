@@ -4,15 +4,15 @@ angular.module('tmcApp')
     .controller('AssuntoController', function ($scope, Assunto) {
 
         $scope.assuntos = [];
-        $scope.loadAll = function() {
-            Assunto.query(function(result) {
-               $scope.assuntos = result;
+        $scope.loadAll = function () {
+            Assunto.query(function (result) {
+                $scope.assuntos = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            Assunto.get({id: id}, function(result) {
+            Assunto.get({id: id}, function (result) {
                 $scope.assunto = result;
                 $('#deleteAssuntoConfirmation').modal('show');
             });

@@ -22,7 +22,7 @@ public final class SecurityUtils {
         Authentication authentication = securityContext.getAuthentication();
         UserDetails springSecurityUser = null;
         String userName = null;
-        if(authentication != null) {
+        if (authentication != null) {
             if (authentication.getPrincipal() instanceof UserDetails) {
                 springSecurityUser = (UserDetails) authentication.getPrincipal();
                 userName = springSecurityUser.getUsername();
@@ -44,13 +44,13 @@ public final class SecurityUtils {
 
     /**
      * If the current user has a specific authority (security role).
-     *
+     * <p>
      * <p>The name of this method comes from the isUserInRole() method in the Servlet API</p>
      */
     public static boolean isUserInRole(String authority) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        if(authentication != null) {
+        if (authentication != null) {
             if (authentication.getPrincipal() instanceof UserDetails) {
                 UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
                 return springSecurityUser.getAuthorities().contains(new SimpleGrantedAuthority(authority));

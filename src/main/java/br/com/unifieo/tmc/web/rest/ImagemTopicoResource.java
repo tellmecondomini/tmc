@@ -33,8 +33,8 @@ public class ImagemTopicoResource {
      * POST  /imagemTopicos -> Create a new imagemTopico.
      */
     @RequestMapping(value = "/imagemTopicos",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<ImagemTopico> createImagemTopico(@RequestBody ImagemTopico imagemTopico) throws URISyntaxException {
         log.debug("REST request to save ImagemTopico : {}", imagemTopico);
@@ -43,8 +43,8 @@ public class ImagemTopicoResource {
         }
         ImagemTopico result = imagemTopicoRepository.save(imagemTopico);
         return ResponseEntity.created(new URI("/api/imagemTopicos/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("imagemTopico", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("imagemTopico", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -61,16 +61,16 @@ public class ImagemTopicoResource {
         }
         ImagemTopico result = imagemTopicoRepository.save(imagemTopico);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("imagemTopico", imagemTopico.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("imagemTopico", imagemTopico.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /imagemTopicos -> get all the imagemTopicos.
      */
     @RequestMapping(value = "/imagemTopicos",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<ImagemTopico> getAllImagemTopicos() {
         log.debug("REST request to get all ImagemTopicos");
@@ -81,8 +81,8 @@ public class ImagemTopicoResource {
      * GET  /imagemTopicos/:id -> get the "id" imagemTopico.
      */
     @RequestMapping(value = "/imagemTopicos/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<ImagemTopico> getImagemTopico(@PathVariable Long id) {
         log.debug("REST request to get ImagemTopico : {}", id);
@@ -97,8 +97,8 @@ public class ImagemTopicoResource {
      * DELETE  /imagemTopicos/:id -> delete the "id" imagemTopico.
      */
     @RequestMapping(value = "/imagemTopicos/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteImagemTopico(@PathVariable Long id) {
         log.debug("REST request to delete ImagemTopico : {}", id);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tmcApp')
-    .controller('MetricsModalController', function($scope, $modalInstance, threadDump) {
+    .controller('MetricsModalController', function ($scope, $modalInstance, threadDump) {
 
         $scope.threadDump = threadDump;
         $scope.threadDumpRunnable = 0;
@@ -9,7 +9,7 @@ angular.module('tmcApp')
         $scope.threadDumpTimedWaiting = 0;
         $scope.threadDumpBlocked = 0;
 
-        angular.forEach(threadDump, function(value) {
+        angular.forEach(threadDump, function (value) {
             if (value.threadState === 'RUNNABLE') {
                 $scope.threadDumpRunnable += 1;
             } else if (value.threadState === 'WAITING') {
@@ -24,7 +24,7 @@ angular.module('tmcApp')
         $scope.threadDumpAll = $scope.threadDumpRunnable + $scope.threadDumpWaiting +
             $scope.threadDumpTimedWaiting + $scope.threadDumpBlocked;
 
-        $scope.cancel = function() {
+        $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
 

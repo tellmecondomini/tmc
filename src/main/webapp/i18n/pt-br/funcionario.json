@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "funcionario" : {
+        "funcionario": {
             "home": {
                 "title": "Funcionários",
                 "createLabel": "Novo",
@@ -33,7 +33,7 @@
             "numero": "Número",
             "complemento": "Complemento"
         },
-        "cep" : {
+        "cep": {
             "logradouro": "Logradouro",
             "bairro": "Bairro",
             "cidade": "Cidade",

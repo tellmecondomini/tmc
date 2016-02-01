@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Tell Me Condominium</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-    <body>
-        <p th:text="${user.firstName}"></p>
-        <p>
-            Seu cadastro foi ativado com sucesso!
-        </p>
-        <p>
-            Para acessar o sistema, <a th:href="@{|${baseUrl}/#/login|}">clique aqui.</a>
-        </p>
-        <p>
-            Att,
-            <p>
-                <em>Equipe Tell Me Condominium.</em>
-            </p>
-        </p>
-    </body>
+<head>
+    <title>Tell Me Condominium</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="${user.firstName}"></p>
+<p>
+    Seu cadastro foi ativado com sucesso!
+</p>
+<p>
+    Para acessar o sistema, <a th:href="@{|${baseUrl}/#/login|}">clique aqui.</a>
+</p>
+<p>
+    Att,
+<p>
+    <em>Equipe Tell Me Condominium.</em>
+</p>
+</p>
+</body>
 </html>

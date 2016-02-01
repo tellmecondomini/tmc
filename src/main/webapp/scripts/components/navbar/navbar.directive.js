@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('tmcApp')
-    .directive('activeMenu', function($translate, $locale, tmhDynamicLocale) {
+    .directive('activeMenu', function ($translate, $locale, tmhDynamicLocale) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
                 var language = attrs.activeMenu;
 
-                scope.$watch(function() {
+                scope.$watch(function () {
                     return $translate.use();
-                }, function(selectedLanguage) {
+                }, function (selectedLanguage) {
                     if (language === selectedLanguage) {
                         tmhDynamicLocale.set(language);
                         element.addClass('active');
@@ -20,7 +20,7 @@ angular.module('tmcApp')
             }
         };
     })
-    .directive('activeLink', function(location) {
+    .directive('activeLink', function (location) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -28,7 +28,7 @@ angular.module('tmcApp')
                 var path = attrs.href;
                 path = path.substring(1); //hack because path does bot return including hashbang
                 scope.location = location;
-                scope.$watch('location.path()', function(newPath) {
+                scope.$watch('location.path()', function (newPath) {
                     if (path === newPath) {
                         element.addClass(clazz);
                     } else {

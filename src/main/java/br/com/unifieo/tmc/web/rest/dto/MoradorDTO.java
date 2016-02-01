@@ -4,9 +4,6 @@ import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.TipoMorador;
 import org.joda.time.DateTime;
 
-/**
- * Created by Arthemus on 20/01/2016.
- */
 public class MoradorDTO {
 
     private Long id;

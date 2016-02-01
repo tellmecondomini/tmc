@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
 
     <div class="modal-header">
@@ -11,25 +10,25 @@
         <div class="form-group">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="cep.id" readonly>
+                   ng-model="cep.id" readonly>
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.logradouro" for="field_logradouro">Logradouro</label>
             <input type="text" class="form-control" name="logradouro" id="field_logradouro"
-                    ng-model="cep.logradouro"
-                    >
+                   ng-model="cep.logradouro"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.bairro" for="field_bairro">Bairro</label>
             <input type="text" class="form-control" name="bairro" id="field_bairro"
-                    ng-model="cep.bairro"
-                    >
+                   ng-model="cep.bairro"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.cidade" for="field_cidade">Cidade</label>
             <input type="text" class="form-control" name="cidade" id="field_cidade"
-                    ng-model="cep.cidade"
-                    >
+                   ng-model="cep.cidade"
+            >
         </div>
         <div class="form-group">
             <label translate="tmcApp.cep.uf" for="field_uf">Uf</label>
@@ -66,15 +65,15 @@
         <div class="form-group">
             <label translate="tmcApp.cep.cep" for="field_cep">Cep</label>
             <input type="number" class="form-control" name="cep" id="field_cep"
-                    ng-model="cep.cep"
-                    required>
+                   ng-model="cep.cep"
+                   required>
             <div ng-show="editForm.cep.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.cep.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.cep.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.cep.$error.number" translate="entity.validation.number">
+                   ng-show="editForm.cep.$error.number" translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
@@ -83,7 +82,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            translate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>

@@ -97,8 +97,8 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 
         log.debug("Registering static resources production Filter");
         FilterRegistration.Dynamic staticResourcesProductionFilter =
-                servletContext.addFilter("staticResourcesProductionFilter",
-                        new StaticResourcesProductionFilter());
+            servletContext.addFilter("staticResourcesProductionFilter",
+                new StaticResourcesProductionFilter());
 
         staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/");
         staticResourcesProductionFilter.addMappingForUrlPatterns(disps, true, "/index.html");
@@ -114,8 +114,8 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
                                               EnumSet<DispatcherType> disps) {
         log.debug("Registering Caching HTTP Headers Filter");
         FilterRegistration.Dynamic cachingHttpHeadersFilter =
-                servletContext.addFilter("cachingHttpHeadersFilter",
-                        new CachingHttpHeadersFilter(env));
+            servletContext.addFilter("cachingHttpHeadersFilter",
+                new CachingHttpHeadersFilter(env));
 
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/assets/*");
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/scripts/*");
@@ -128,20 +128,20 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     private void initMetrics(ServletContext servletContext, EnumSet<DispatcherType> disps) {
         log.debug("Initializing Metrics registries");
         servletContext.setAttribute(InstrumentedFilter.REGISTRY_ATTRIBUTE,
-                metricRegistry);
+            metricRegistry);
         servletContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
-                metricRegistry);
+            metricRegistry);
 
         log.debug("Registering Metrics Filter");
         FilterRegistration.Dynamic metricsFilter = servletContext.addFilter("webappMetricsFilter",
-                new InstrumentedFilter());
+            new InstrumentedFilter());
 
         metricsFilter.addMappingForUrlPatterns(disps, true, "/*");
         metricsFilter.setAsyncSupported(true);
 
         log.debug("Registering Metrics Servlet");
         ServletRegistration.Dynamic metricsAdminServlet =
-                servletContext.addServlet("metricsServlet", new MetricsServlet());
+            servletContext.addServlet("metricsServlet", new MetricsServlet());
 
         metricsAdminServlet.addMapping("/metrics/metrics/*");
         metricsAdminServlet.setAsyncSupported(true);

@@ -21,7 +21,7 @@ public class CachingHttpHeadersFilter implements Filter {
     private Environment env;
 
     public CachingHttpHeadersFilter(Environment env) {
-           this.env = env;
+        this.env = env;
     }
 
     @Override

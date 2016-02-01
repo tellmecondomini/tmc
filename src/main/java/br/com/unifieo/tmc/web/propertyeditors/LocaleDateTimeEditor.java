@@ -21,7 +21,7 @@ public class LocaleDateTimeEditor extends PropertyEditorSupport {
     /**
      * Create a new LocaleDateTimeEditor instance, using the given format for
      * parsing and rendering.
-     * <p/>
+     * <p>
      * The "allowEmpty" parameter states if an empty String should be allowed
      * for parsing, i.e. get interpreted as null value. Otherwise, an
      * IllegalArgumentException gets thrown.
@@ -52,8 +52,8 @@ public class LocaleDateTimeEditor extends PropertyEditorSupport {
      * @throws IllegalArgumentException
      */
     @Override
-    public void setAsText( String text ) throws IllegalArgumentException {
-        if ( allowEmpty && !StringUtils.hasText(text) ) {
+    public void setAsText(String text) throws IllegalArgumentException {
+        if (allowEmpty && !StringUtils.hasText(text)) {
             // Treat empty String as null value.
             setValue(null);
         } else {

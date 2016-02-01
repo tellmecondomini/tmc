@@ -28,8 +28,8 @@ public class AuditEventService {
 
     @Inject
     public AuditEventService(
-            PersistenceAuditEventRepository persistenceAuditEventRepository,
-            AuditEventConverter auditEventConverter) {
+        PersistenceAuditEventRepository persistenceAuditEventRepository,
+        AuditEventConverter auditEventConverter) {
         this.persistenceAuditEventRepository = persistenceAuditEventRepository;
         this.auditEventConverter = auditEventConverter;
     }
@@ -40,7 +40,7 @@ public class AuditEventService {
 
     public List<AuditEvent> findByDates(LocalDateTime fromDate, LocalDateTime toDate) {
         List<PersistentAuditEvent> persistentAuditEvents =
-                persistenceAuditEventRepository.findAllByAuditEventDateBetween(fromDate, toDate);
+            persistenceAuditEventRepository.findAllByAuditEventDateBetween(fromDate, toDate);
 
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }

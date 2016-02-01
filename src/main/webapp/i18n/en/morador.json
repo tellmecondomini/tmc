@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "morador" : {
+        "morador": {
             "home": {
                 "title": "Moradors",
                 "createLabel": "Create a new Morador",

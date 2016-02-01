@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "categoria" : {
+        "categoria": {
             "home": {
                 "title": "Categorias",
                 "createLabel": "Create a new Categoria",

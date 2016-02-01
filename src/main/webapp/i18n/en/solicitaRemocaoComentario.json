@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "solicitaRemocaoComentario" : {
+        "solicitaRemocaoComentario": {
             "home": {
                 "title": "SolicitaRemocaoComentarios",
                 "createLabel": "Create a new SolicitaRemocaoComentario",

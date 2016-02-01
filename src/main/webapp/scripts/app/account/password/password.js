@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'account',
                 url: '/password',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'global.menu.account.password'
                 },
                 views: {

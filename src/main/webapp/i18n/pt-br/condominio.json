@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "condominio" : {
+        "condominio": {
             "updated": "Condomínio atualizado com sucesso",
             "home": {
                 "title": "Condomínio",
@@ -25,7 +25,7 @@
             "dependencia": "Dependência",
             "telefoneCondominio": "Telefones"
         },
-        "cep" : {
+        "cep": {
             "home": {
                 "title": "Cep",
                 "createLabel": "Novo Cep",
@@ -43,7 +43,7 @@
             "uf": "UF",
             "cep": "Cep"
         },
-        "funcionario" : {
+        "funcionario": {
             "home": {
                 "title": "Funcionarios",
                 "createLabel": "Novo Funcionário",

@@ -7,7 +7,7 @@ describe('Services Tests ', function () {
     describe('Auth', function () {
         var $httpBackend, spiedLocalStorageService, authService, spiedAuthServerProvider;
 
-        beforeEach(inject(function($injector, localStorageService, Auth, AuthServerProvider) {
+        beforeEach(inject(function ($injector, localStorageService, Auth, AuthServerProvider) {
             $httpBackend = $injector.get('$httpBackend');
             spiedLocalStorageService = localStorageService;
             authService = Auth;
@@ -21,15 +21,15 @@ describe('Services Tests ', function () {
             $httpBackend.whenGET(globalJson).respond({});
             $httpBackend.whenGET(mainJson).respond({});
             $httpBackend.expectPOST(/api\/logout\?cacheBuster=\d+/).respond(200, '');
-          }));
+        }));
         //make sure no expectations were missed in your tests.
         //(e.g. expectGET or expectPOST)
-        afterEach(function() {
+        afterEach(function () {
             $httpBackend.verifyNoOutstandingExpectation();
             $httpBackend.verifyNoOutstandingRequest();
         });
-        
-        it('should call backend on logout then call authServerProvider.logout', function(){
+
+        it('should call backend on logout then call authServerProvider.logout', function () {
             //GIVEN
             //Set spy
             spyOn(spiedAuthServerProvider, 'logout').and.callThrough();

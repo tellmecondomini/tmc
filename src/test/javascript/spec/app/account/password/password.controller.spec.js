@@ -7,9 +7,10 @@ describe('Controllers Tests ', function () {
     var $scope, $httpBackend, q, Auth;
 
     // define the mock Auth service
-    beforeEach(function() {
+    beforeEach(function () {
         Auth = {
-            changePassword: function() {}
+            changePassword: function () {
+            }
         };
     });
 
@@ -36,7 +37,7 @@ describe('Controllers Tests ', function () {
             $scope.password = pass;
             $scope.confirmPassword = pass;
 
-            spyOn(Auth, 'changePassword').and.returnValue(new function(){
+            spyOn(Auth, 'changePassword').and.returnValue(new function () {
                 var deferred = q.defer();
                 $scope.error = null;
                 $scope.success = 'OK';

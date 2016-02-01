@@ -20,10 +20,12 @@ angular.module('tmcApp')
                 var queryString = {};
                 url.replace(
                     new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-                    function($0, $1, $2, $3) { queryString[$1] = $3; }
+                    function ($0, $1, $2, $3) {
+                        queryString[$1] = $3;
+                    }
                 );
                 var page = queryString['page'];
-                if( angular.isString(page) ) {
+                if (angular.isString(page)) {
                     page = parseInt(page);
                 }
                 var name = section[1].replace(/rel="(.*)"/, '$1').trim();

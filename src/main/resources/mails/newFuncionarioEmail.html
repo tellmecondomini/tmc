@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Tell Me Condominium</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h3>
@@ -10,14 +10,15 @@
 </h3>
 <ul>
     <li>
-        <span th:text="${user.firstName}" />
+        <span th:text="${user.firstName}"/>
     </li>
     <li>
-        <span th:text="${user.email}" />
+        <span th:text="${user.email}"/>
     </li>
 </ul>
 <p>
-    Para finalizar seu cadastro, <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}">Clique-aqui</a> e cadastre sua senha de acesso.
+    Para finalizar seu cadastro, <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}">Clique-aqui</a> e
+    cadastre sua senha de acesso.
 </p>
 <p>
     Att,

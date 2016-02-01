@@ -79,7 +79,7 @@
             "mean": "Mean get time (ms)"
         },
         "datasource": {
-        	"usage": "Usage",
+            "usage": "Usage",
             "title": "DataSource statistics (time in millisecond)",
             "name": "Pool usage",
             "count": "Count",

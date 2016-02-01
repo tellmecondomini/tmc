@@ -95,9 +95,9 @@ public class ComentarioResourceTest {
         // Create the Comentario
 
         restComentarioMockMvc.perform(post("/api/comentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(comentario)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(comentario)))
+            .andExpect(status().isCreated());
 
         // Validate the Comentario in the database
         List<Comentario> comentarios = comentarioRepository.findAll();
@@ -118,9 +118,9 @@ public class ComentarioResourceTest {
         // Create the Comentario, which fails.
 
         restComentarioMockMvc.perform(post("/api/comentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(comentario)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(comentario)))
+            .andExpect(status().isBadRequest());
 
         List<Comentario> comentarios = comentarioRepository.findAll();
         assertThat(comentarios).hasSize(databaseSizeBeforeTest);
@@ -136,9 +136,9 @@ public class ComentarioResourceTest {
         // Create the Comentario, which fails.
 
         restComentarioMockMvc.perform(post("/api/comentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(comentario)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(comentario)))
+            .andExpect(status().isBadRequest());
 
         List<Comentario> comentarios = comentarioRepository.findAll();
         assertThat(comentarios).hasSize(databaseSizeBeforeTest);
@@ -152,12 +152,12 @@ public class ComentarioResourceTest {
 
         // Get all the comentarios
         restComentarioMockMvc.perform(get("/api/comentarios"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(comentario.getId().intValue())))
-                .andExpect(jsonPath("$.[*].conteudo").value(hasItem(DEFAULT_CONTEUDO.toString())))
-                .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
-                .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(comentario.getId().intValue())))
+            .andExpect(jsonPath("$.[*].conteudo").value(hasItem(DEFAULT_CONTEUDO.toString())))
+            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA_STR)))
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
     }
 
     @Test
@@ -181,7 +181,7 @@ public class ComentarioResourceTest {
     public void getNonExistingComentario() throws Exception {
         // Get the comentario
         restComentarioMockMvc.perform(get("/api/comentarios/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -190,7 +190,7 @@ public class ComentarioResourceTest {
         // Initialize the database
         comentarioRepository.saveAndFlush(comentario);
 
-		int databaseSizeBeforeUpdate = comentarioRepository.findAll().size();
+        int databaseSizeBeforeUpdate = comentarioRepository.findAll().size();
 
         // Update the comentario
         comentario.setConteudo(UPDATED_CONTEUDO);
@@ -199,9 +199,9 @@ public class ComentarioResourceTest {
 
 
         restComentarioMockMvc.perform(put("/api/comentarios")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(comentario)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(comentario)))
+            .andExpect(status().isOk());
 
         // Validate the Comentario in the database
         List<Comentario> comentarios = comentarioRepository.findAll();
@@ -218,12 +218,12 @@ public class ComentarioResourceTest {
         // Initialize the database
         comentarioRepository.saveAndFlush(comentario);
 
-		int databaseSizeBeforeDelete = comentarioRepository.findAll().size();
+        int databaseSizeBeforeDelete = comentarioRepository.findAll().size();
 
         // Get the comentario
         restComentarioMockMvc.perform(delete("/api/comentarios/{id}", comentario.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Comentario> comentarios = comentarioRepository.findAll();

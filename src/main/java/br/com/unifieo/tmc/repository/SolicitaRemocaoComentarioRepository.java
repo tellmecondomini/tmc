@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the SolicitaRemocaoComentario entity.
  */
-public interface SolicitaRemocaoComentarioRepository extends JpaRepository<SolicitaRemocaoComentario,Long> {
+public interface SolicitaRemocaoComentarioRepository extends JpaRepository<SolicitaRemocaoComentario, Long> {
 
     SolicitaRemocaoComentario findOneByComentario(Comentario comentario);
 

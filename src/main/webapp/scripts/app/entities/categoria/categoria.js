@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('categoria');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Categoria', function($stateParams, Categoria) {
-                        return Categoria.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Categoria', function ($stateParams, Categoria) {
+                        return Categoria.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,7 +53,7 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/categoria/categoria-dialog.html',
                         controller: 'CategoriaDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {descricao: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('categoria', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('categoria', null, {reload: true});
+                    }, function () {
                         $state.go('categoria');
                     })
                 }]
@@ -76,19 +76,19 @@ angular.module('tmcApp')
                 data: {
                     authorities: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/categoria/categoria-dialog.html',
                         controller: 'CategoriaDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Categoria', function(Categoria) {
-                                return Categoria.get({id : $stateParams.id});
+                            entity: ['Categoria', function (Categoria) {
+                                return Categoria.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('categoria', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('categoria', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

@@ -34,8 +34,8 @@ public class CepResource {
      * POST  /ceps -> Create a new cep.
      */
     @RequestMapping(value = "/ceps",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Cep> createCep(@Valid @RequestBody Cep cep) throws URISyntaxException {
         log.debug("REST request to save Cep : {}", cep);
@@ -44,8 +44,8 @@ public class CepResource {
         }
         Cep result = cepRepository.save(cep);
         return ResponseEntity.created(new URI("/api/ceps/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("cep", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("cep", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -62,16 +62,16 @@ public class CepResource {
         }
         Cep result = cepRepository.save(cep);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("cep", cep.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("cep", cep.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /ceps -> get all the ceps.
      */
     @RequestMapping(value = "/ceps",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Cep> getAllCeps() {
         log.debug("REST request to get all Ceps");
@@ -82,8 +82,8 @@ public class CepResource {
      * GET  /ceps/:id -> get the "id" cep.
      */
     @RequestMapping(value = "/ceps/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Cep> getCep(@PathVariable Long id) {
         log.debug("REST request to get Cep : {}", id);
@@ -98,8 +98,8 @@ public class CepResource {
      * DELETE  /ceps/:id -> delete the "id" cep.
      */
     @RequestMapping(value = "/ceps/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteCep(@PathVariable Long id) {
         log.debug("REST request to delete Cep : {}", id);

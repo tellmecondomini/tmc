@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/ceps',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.cep.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/cep/{id}',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                     pageTitle: 'tmcApp.cep.detail.title'
                 },
                 views: {
@@ -44,8 +44,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('uf');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'Cep', function($stateParams, Cep) {
-                        return Cep.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'Cep', function ($stateParams, Cep) {
+                        return Cep.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,9 +53,9 @@ angular.module('tmcApp')
                 parent: 'cep',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/cep/cep-dialog.html',
                         controller: 'CepDialogController',
@@ -65,9 +65,9 @@ angular.module('tmcApp')
                                 return {logradouro: null, bairro: null, cidade: null, uf: null, cep: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('cep', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('cep', null, {reload: true});
+                    }, function () {
                         $state.go('cep');
                     })
                 }]
@@ -76,21 +76,21 @@ angular.module('tmcApp')
                 parent: 'cep',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/cep/cep-dialog.html',
                         controller: 'CepDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['Cep', function(Cep) {
-                                return Cep.get({id : $stateParams.id});
+                            entity: ['Cep', function (Cep) {
+                                return Cep.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('cep', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('cep', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

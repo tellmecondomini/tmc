@@ -70,8 +70,8 @@ public class Application {
         addLiquibaseScanPackages();
         Environment env = app.run(args).getEnvironment();
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
-            "Local: \t\thttp://127.0.0.1:{}\n\t" +
-            "External: \thttp://{}:{}\n----------------------------------------------------------",
+                "Local: \t\thttp://127.0.0.1:{}\n\t" +
+                "External: \thttp://{}:{}\n----------------------------------------------------------",
             env.getProperty("server.port"),
             InetAddress.getLocalHost().getHostAddress(),
             env.getProperty("server.port"));
@@ -83,7 +83,7 @@ public class Application {
      */
     private static void addDefaultProfile(SpringApplication app, SimpleCommandLinePropertySource source) {
         if (!source.containsProperty("spring.profiles.active") &&
-                !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
+            !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
             app.setAdditionalProfiles(Constants.SPRING_PROFILE_DEVELOPMENT);
         }
     }

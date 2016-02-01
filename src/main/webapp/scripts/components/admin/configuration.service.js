@@ -3,7 +3,7 @@
 angular.module('tmcApp')
     .factory('ConfigurationService', function ($rootScope, $filter, $http) {
         return {
-            get: function() {
+            get: function () {
                 return $http.get('configprops').then(function (response) {
                     var properties = [];
                     angular.forEach(response.data, function (data) {

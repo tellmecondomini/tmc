@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "condominio" : {
+        "condominio": {
             "home": {
                 "title": "Condominios",
                 "createLabel": "Create a new Condominio",
@@ -27,7 +27,7 @@
             "dependencia": "Dependencia",
             "telefoneCondominio": "TelefoneCondominio"
         },
-        "cep" : {
+        "cep": {
             "home": {
                 "title": "Ceps",
                 "createLabel": "Create a new Cep",
@@ -48,7 +48,7 @@
             "uf": "Uf",
             "cep": "Cep"
         },
-        "funcionario" : {
+        "funcionario": {
             "home": {
                 "title": "Funcionarios",
                 "createLabel": "Create a new Funcionario",

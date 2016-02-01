@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/imagemTopicos',
                 data: {
-                    authorities: ['ROLE_USER','ROLE_ADMIN'],
+                    authorities: ['ROLE_USER', 'ROLE_ADMIN'],
                     pageTitle: 'tmcApp.imagemTopico.home.title'
                 },
                 views: {
@@ -28,7 +28,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/imagemTopico/{id}',
                 data: {
-                    authorities: ['ROLE_USER','ROLE_ADMIN'],
+                    authorities: ['ROLE_USER', 'ROLE_ADMIN'],
                     pageTitle: 'tmcApp.imagemTopico.detail.title'
                 },
                 views: {
@@ -42,8 +42,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('imagemTopico');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'ImagemTopico', function($stateParams, ImagemTopico) {
-                        return ImagemTopico.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'ImagemTopico', function ($stateParams, ImagemTopico) {
+                        return ImagemTopico.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -51,9 +51,9 @@ angular.module('tmcApp')
                 parent: 'imagemTopico',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER','ROLE_ADMIN'],
+                    authorities: ['ROLE_USER', 'ROLE_ADMIN'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/imagemTopico/imagemTopico-dialog.html',
                         controller: 'ImagemTopicoDialogController',
@@ -63,9 +63,9 @@ angular.module('tmcApp')
                                 return {imagem: null, id: null};
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('imagemTopico', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('imagemTopico', null, {reload: true});
+                    }, function () {
                         $state.go('imagemTopico');
                     })
                 }]
@@ -74,21 +74,21 @@ angular.module('tmcApp')
                 parent: 'imagemTopico',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER','ROLE_ADMIN'],
+                    authorities: ['ROLE_USER', 'ROLE_ADMIN'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/imagemTopico/imagemTopico-dialog.html',
                         controller: 'ImagemTopicoDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['ImagemTopico', function(ImagemTopico) {
-                                return ImagemTopico.get({id : $stateParams.id});
+                            entity: ['ImagemTopico', function (ImagemTopico) {
+                                return ImagemTopico.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('imagemTopico', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('imagemTopico', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

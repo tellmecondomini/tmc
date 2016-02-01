@@ -13,10 +13,10 @@ public final class GZipResponseUtil {
     /**
      * Gzipping an empty file or stream always results in a 20 byte output
      * This is in java or elsewhere.
-     * <p/>
+     * <p>
      * On a unix system to reproduce do <code>gzip -n empty_file</code>. -n tells gzip to not
      * include the file name. The resulting file size is 20 bytes.
-     * <p/>
+     * <p>
      * Therefore 20 bytes can be used indicate that the gzip byte[] will be empty when ungzipped.
      */
     private static final int EMPTY_GZIPPED_CONTENT_SIZE = 20;
@@ -68,7 +68,7 @@ public final class GZipResponseUtil {
         if (responseStatus == HttpServletResponse.SC_NO_CONTENT) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("{} resulted in a {} response. Removing message body in accordance with RFC2616.",
-                        request.getRequestURL(), HttpServletResponse.SC_NO_CONTENT);
+                    request.getRequestURL(), HttpServletResponse.SC_NO_CONTENT);
             }
             return true;
         }
@@ -77,7 +77,7 @@ public final class GZipResponseUtil {
         if (responseStatus == HttpServletResponse.SC_NOT_MODIFIED) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("{} resulted in a {} response. Removing message body in accordance with RFC2616.",
-                        request.getRequestURL(), HttpServletResponse.SC_NOT_MODIFIED);
+                    request.getRequestURL(), HttpServletResponse.SC_NOT_MODIFIED);
             }
             return true;
         }
@@ -101,7 +101,7 @@ public final class GZipResponseUtil {
         boolean containsEncoding = response.containsHeader("Content-Encoding");
         if (!containsEncoding) {
             throw new GzipResponseHeadersNotModifiableException("Failure when attempting to set "
-                    + "Content-Encoding: gzip");
+                + "Content-Encoding: gzip");
         }
     }
 }

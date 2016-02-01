@@ -41,7 +41,7 @@ public class PrestadorServico implements Serializable {
     @Column(name = "sexo")
     private Sexo sexo;
 
-    @Column(name="site")
+    @Column(name = "site")
     private String site;
 
     @ManyToOne

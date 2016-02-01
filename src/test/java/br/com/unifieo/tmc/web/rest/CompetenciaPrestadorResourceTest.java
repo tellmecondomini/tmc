@@ -80,9 +80,9 @@ public class CompetenciaPrestadorResourceTest {
         // Create the CompetenciaPrestador
 
         restCompetenciaPrestadorMockMvc.perform(post("/api/competenciaPrestadors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
+            .andExpect(status().isCreated());
 
         // Validate the CompetenciaPrestador in the database
         List<CompetenciaPrestador> competenciaPrestadors = competenciaPrestadorRepository.findAll();
@@ -101,9 +101,9 @@ public class CompetenciaPrestadorResourceTest {
         // Create the CompetenciaPrestador, which fails.
 
         restCompetenciaPrestadorMockMvc.perform(post("/api/competenciaPrestadors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
+            .andExpect(status().isBadRequest());
 
         List<CompetenciaPrestador> competenciaPrestadors = competenciaPrestadorRepository.findAll();
         assertThat(competenciaPrestadors).hasSize(databaseSizeBeforeTest);
@@ -117,10 +117,10 @@ public class CompetenciaPrestadorResourceTest {
 
         // Get all the competenciaPrestadors
         restCompetenciaPrestadorMockMvc.perform(get("/api/competenciaPrestadors"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(competenciaPrestador.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(competenciaPrestador.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test
@@ -142,7 +142,7 @@ public class CompetenciaPrestadorResourceTest {
     public void getNonExistingCompetenciaPrestador() throws Exception {
         // Get the competenciaPrestador
         restCompetenciaPrestadorMockMvc.perform(get("/api/competenciaPrestadors/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -151,16 +151,16 @@ public class CompetenciaPrestadorResourceTest {
         // Initialize the database
         competenciaPrestadorRepository.saveAndFlush(competenciaPrestador);
 
-		int databaseSizeBeforeUpdate = competenciaPrestadorRepository.findAll().size();
+        int databaseSizeBeforeUpdate = competenciaPrestadorRepository.findAll().size();
 
         // Update the competenciaPrestador
         competenciaPrestador.setDescricao(UPDATED_DESCRICAO);
 
 
         restCompetenciaPrestadorMockMvc.perform(put("/api/competenciaPrestadors")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(competenciaPrestador)))
+            .andExpect(status().isOk());
 
         // Validate the CompetenciaPrestador in the database
         List<CompetenciaPrestador> competenciaPrestadors = competenciaPrestadorRepository.findAll();
@@ -175,12 +175,12 @@ public class CompetenciaPrestadorResourceTest {
         // Initialize the database
         competenciaPrestadorRepository.saveAndFlush(competenciaPrestador);
 
-		int databaseSizeBeforeDelete = competenciaPrestadorRepository.findAll().size();
+        int databaseSizeBeforeDelete = competenciaPrestadorRepository.findAll().size();
 
         // Get the competenciaPrestador
         restCompetenciaPrestadorMockMvc.perform(delete("/api/competenciaPrestadors/{id}", competenciaPrestador.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<CompetenciaPrestador> competenciaPrestadors = competenciaPrestadorRepository.findAll();

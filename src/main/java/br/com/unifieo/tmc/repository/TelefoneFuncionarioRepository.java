@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Spring Data JPA repository for the TelefoneFuncionario entity.
  */
-public interface TelefoneFuncionarioRepository extends JpaRepository<TelefoneFuncionario,Long> {
+public interface TelefoneFuncionarioRepository extends JpaRepository<TelefoneFuncionario, Long> {
 
 }

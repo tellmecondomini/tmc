@@ -80,9 +80,9 @@ public class AssuntoResourceTest {
         // Create the Assunto
 
         restAssuntoMockMvc.perform(post("/api/assuntos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(assunto)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(assunto)))
+            .andExpect(status().isCreated());
 
         // Validate the Assunto in the database
         List<Assunto> assuntos = assuntoRepository.findAll();
@@ -101,9 +101,9 @@ public class AssuntoResourceTest {
         // Create the Assunto, which fails.
 
         restAssuntoMockMvc.perform(post("/api/assuntos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(assunto)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(assunto)))
+            .andExpect(status().isBadRequest());
 
         List<Assunto> assuntos = assuntoRepository.findAll();
         assertThat(assuntos).hasSize(databaseSizeBeforeTest);
@@ -117,10 +117,10 @@ public class AssuntoResourceTest {
 
         // Get all the assuntos
         restAssuntoMockMvc.perform(get("/api/assuntos"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(assunto.getId().intValue())))
-                .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(assunto.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test
@@ -142,7 +142,7 @@ public class AssuntoResourceTest {
     public void getNonExistingAssunto() throws Exception {
         // Get the assunto
         restAssuntoMockMvc.perform(get("/api/assuntos/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -151,16 +151,16 @@ public class AssuntoResourceTest {
         // Initialize the database
         assuntoRepository.saveAndFlush(assunto);
 
-		int databaseSizeBeforeUpdate = assuntoRepository.findAll().size();
+        int databaseSizeBeforeUpdate = assuntoRepository.findAll().size();
 
         // Update the assunto
         assunto.setDescricao(UPDATED_DESCRICAO);
 
 
         restAssuntoMockMvc.perform(put("/api/assuntos")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(assunto)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(assunto)))
+            .andExpect(status().isOk());
 
         // Validate the Assunto in the database
         List<Assunto> assuntos = assuntoRepository.findAll();
@@ -175,12 +175,12 @@ public class AssuntoResourceTest {
         // Initialize the database
         assuntoRepository.saveAndFlush(assunto);
 
-		int databaseSizeBeforeDelete = assuntoRepository.findAll().size();
+        int databaseSizeBeforeDelete = assuntoRepository.findAll().size();
 
         // Get the assunto
         restAssuntoMockMvc.perform(delete("/api/assuntos/{id}", assunto.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Assunto> assuntos = assuntoRepository.findAll();

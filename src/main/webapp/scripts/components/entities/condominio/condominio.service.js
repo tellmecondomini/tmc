@@ -3,7 +3,7 @@
 angular.module('tmcApp')
     .factory('Condominio', function ($resource, DateUtils) {
         return $resource('api/condominios/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -12,6 +12,6 @@ angular.module('tmcApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
         });
     });

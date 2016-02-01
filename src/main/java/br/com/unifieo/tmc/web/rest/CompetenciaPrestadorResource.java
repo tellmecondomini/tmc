@@ -34,8 +34,8 @@ public class CompetenciaPrestadorResource {
      * POST  /competenciaPrestadors -> Create a new competenciaPrestador.
      */
     @RequestMapping(value = "/competenciaPrestadors",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CompetenciaPrestador> createCompetenciaPrestador(@Valid @RequestBody CompetenciaPrestador competenciaPrestador) throws URISyntaxException {
         log.debug("REST request to save CompetenciaPrestador : {}", competenciaPrestador);
@@ -44,8 +44,8 @@ public class CompetenciaPrestadorResource {
         }
         CompetenciaPrestador result = competenciaPrestadorRepository.save(competenciaPrestador);
         return ResponseEntity.created(new URI("/api/competenciaPrestadors/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("competenciaPrestador", result.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityCreationAlert("competenciaPrestador", result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -62,16 +62,16 @@ public class CompetenciaPrestadorResource {
         }
         CompetenciaPrestador result = competenciaPrestadorRepository.save(competenciaPrestador);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("competenciaPrestador", competenciaPrestador.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("competenciaPrestador", competenciaPrestador.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /competenciaPrestadors -> get all the competenciaPrestadors.
      */
     @RequestMapping(value = "/competenciaPrestadors",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<CompetenciaPrestador> getAllCompetenciaPrestadors() {
         log.debug("REST request to get all CompetenciaPrestadors");
@@ -82,8 +82,8 @@ public class CompetenciaPrestadorResource {
      * GET  /competenciaPrestadors/:id -> get the "id" competenciaPrestador.
      */
     @RequestMapping(value = "/competenciaPrestadors/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CompetenciaPrestador> getCompetenciaPrestador(@PathVariable Long id) {
         log.debug("REST request to get CompetenciaPrestador : {}", id);
@@ -98,8 +98,8 @@ public class CompetenciaPrestadorResource {
      * DELETE  /competenciaPrestadors/:id -> delete the "id" competenciaPrestador.
      */
     @RequestMapping(value = "/competenciaPrestadors/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteCompetenciaPrestador(@PathVariable Long id) {
         log.debug("REST request to delete CompetenciaPrestador : {}", id);

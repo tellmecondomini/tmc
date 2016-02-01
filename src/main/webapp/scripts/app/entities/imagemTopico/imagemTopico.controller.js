@@ -3,15 +3,15 @@
 angular.module('tmcApp')
     .controller('ImagemTopicoController', function ($scope, ImagemTopico) {
         $scope.imagemTopicos = [];
-        $scope.loadAll = function() {
-            ImagemTopico.query(function(result) {
-               $scope.imagemTopicos = result;
+        $scope.loadAll = function () {
+            ImagemTopico.query(function (result) {
+                $scope.imagemTopicos = result;
             });
         };
         $scope.loadAll();
 
         $scope.delete = function (id) {
-            ImagemTopico.get({id: id}, function(result) {
+            ImagemTopico.get({id: id}, function (result) {
                 $scope.imagemTopico = result;
                 $('#deleteImagemTopicoConfirmation').modal('show');
             });
@@ -52,6 +52,7 @@ angular.module('tmcApp')
             function endsWith(suffix, str) {
                 return str.indexOf(suffix, str.length - suffix.length) !== -1;
             }
+
             function paddingSize(base64String) {
                 if (endsWith('==', base64String)) {
                     return 2;
@@ -61,9 +62,11 @@ angular.module('tmcApp')
                 }
                 return 0;
             }
+
             function size(base64String) {
                 return base64String.length / 4 * 3 - paddingSize(base64String);
             }
+
             function formatAsBytes(size) {
                 return size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " bytes";
             }

@@ -8,10 +8,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
-* Test class for the SecurityUtils utility class.
-*
-* @see SecurityUtils
-*/
+ * Test class for the SecurityUtils utility class.
+ *
+ * @see SecurityUtils
+ */
 public class SecurityUtilsTest {
 
     @Test

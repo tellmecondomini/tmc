@@ -1,6 +1,6 @@
 {
     "tmcApp": {
-        "assunto" : {
+        "assunto": {
             "home": {
                 "title": "Assuntos",
                 "createLabel": "Novo",

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -48,7 +49,7 @@ public class FuncionarioService {
     public Funcionario save(FuncionarioDTO funcionarioDTO, String baseUrl) {
 
         Funcionario funcionario = new Funcionario(funcionarioDTO);
-        funcionario.setAtivo(false);
+        funcionario.setAtivo(true);
         funcionario.setResponsavel(false);
 
         Cep cep = Optional
@@ -91,7 +92,7 @@ public class FuncionarioService {
             newUser.setFirstName(funcionario.getNome());
             newUser.setEmail(funcionario.getEmail());
             newUser.setLangKey("pt-br");
-            newUser.setActivated(true);
+            newUser.setActivated(false);
 
             User userSaved = userRepository.save(newUser);
             userService.requestPasswordReset(userSaved.getEmail());
@@ -108,6 +109,6 @@ public class FuncionarioService {
 
     public List<Funcionario> findAllByCondominioAtual() {
         Condominio condominio = condominioService.getCurrentCondominio();
-        return funcionarioRepository.findAllByCondominio(condominio);
+        return funcionarioRepository.findAllByCondominio(condominio).stream().filter(f -> f.getAtivo()).collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package br.com.unifieo.tmc.web.rest;
 import br.com.unifieo.tmc.domain.Funcionario;
 import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.FuncionarioRepository;
+import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.service.FuncionarioService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.dto.FuncionarioDTO;
@@ -39,6 +40,9 @@ public class FuncionarioResource {
 
     @Inject
     private UserService userService;
+
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /funcionarios -> Create a new funcionarioDTO.
@@ -134,7 +138,12 @@ public class FuncionarioResource {
     @Timed
     public ResponseEntity<Void> deleteFuncionario(@PathVariable Long id) {
         log.debug("REST request to delete Funcionario : {}", id);
-        funcionarioRepository.delete(id);
+        Funcionario funcionario = funcionarioRepository.findOne(id);
+        funcionario.setAtivo(false);
+        funcionarioRepository.save(funcionario);
+        User user = userService.getUserWithAuthoritiesByLogin(funcionario.getEmail()).get();
+        user.setActivated(false);
+        userRepository.save(user);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("funcionario", id.toString())).build();
     }
 }

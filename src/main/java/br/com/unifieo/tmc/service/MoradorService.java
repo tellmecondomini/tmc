@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -70,7 +71,7 @@ public class MoradorService {
         if (condominio == null)
             throw new Exception("Condomínio não encontrado.");
 
-        morador.setAtivo(false);
+        morador.setAtivo(true);
         morador.setCondominio(condominio);
 
         User newUser = new User();
@@ -89,7 +90,7 @@ public class MoradorService {
         newUser.setFirstName(morador.getNome());
         newUser.setEmail(morador.getEmail());
         newUser.setLangKey("pt-br");
-        newUser.setActivated(true);
+        newUser.setActivated(false);
 
         User userSaved = userRepository.save(newUser);
         userService.requestPasswordReset(userSaved.getEmail());
@@ -148,6 +149,6 @@ public class MoradorService {
 
     public List<Morador> findAllByCondominioAtual() {
         Condominio condominio = condominioService.getCurrentCondominio();
-        return moradorRepository.findAllByCondominio(condominio);
+        return moradorRepository.findAllByCondominio(condominio).stream().filter(m -> m.getAtivo()).collect(Collectors.toList());
     }
 }

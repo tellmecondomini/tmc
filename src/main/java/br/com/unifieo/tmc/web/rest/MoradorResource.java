@@ -1,9 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Morador;
+import br.com.unifieo.tmc.domain.User;
 import br.com.unifieo.tmc.repository.MoradorRepository;
 import br.com.unifieo.tmc.repository.TelefoneMoradorRepository;
+import br.com.unifieo.tmc.repository.UserRepository;
 import br.com.unifieo.tmc.service.MoradorService;
+import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
 import com.google.gson.Gson;
@@ -38,6 +41,12 @@ public class MoradorResource {
 
     @Inject
     private TelefoneMoradorRepository telefoneMoradorRepository;
+
+    @Inject
+    private UserService userService;
+
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * PUT  /moradors -> Updates an existing morador.
@@ -93,7 +102,12 @@ public class MoradorResource {
     @Timed
     public ResponseEntity<Void> deleteMorador(@PathVariable Long id) {
         log.debug("REST request to delete Morador : {}", id);
-        moradorRepository.delete(id);
+        Morador morador = moradorRepository.findOne(id);
+        morador.setAtivo(false);
+        moradorRepository.save(morador);
+        User user = userService.getUserWithAuthoritiesByLogin(morador.getEmail()).get();
+        user.setActivated(false);
+        userRepository.save(user);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("morador", id.toString())).build();
     }
 

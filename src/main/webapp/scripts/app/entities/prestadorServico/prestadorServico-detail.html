@@ -35,10 +35,34 @@
             </tr>
             <tr>
                 <td>
+                    <span>Telefone #1</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prestadorServico.telefonePrestadorServicos[0].numero | telefone}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Telefone #2</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prestadorServico.telefonePrestadorServicos[1].numero | telefone}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <span>Sexo</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{prestadorServico.sexo == 'M' ? 'Masculino' : 'Feminino'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CEP</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.cep | cep}}</a>
                 </td>
             </tr>
             <tr>
@@ -55,14 +79,6 @@
                 </td>
                 <td>
                     <span class="form-control-static">{{prestadorServico.complemento}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>CEP</span>
-                </td>
-                <td>
-                    <a class="form-control-static" ui-sref="cep.detail({id:prestadorServico.cep.id})">{{prestadorServico.cep.cep | cep}}</a>
                 </td>
             </tr>
             <tr>

@@ -75,7 +75,6 @@ public class Morador implements Serializable {
     private Set<PrestadorServico> prestadoresServicos = new HashSet<>();
 
     @OneToMany(mappedBy = "morador", fetch = FetchType.EAGER)
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefoneMorador> telefoneMoradors = new HashSet<>();
 

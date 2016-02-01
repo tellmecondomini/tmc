@@ -3,6 +3,8 @@
 angular.module('tmcApp')
     .controller('MoradorController', function ($scope, $http, Morador, Principal, AccountMorador) {
 
+        $scope.searchText = '';
+
         Principal.identity(true).then(function (account) {
             $scope.settingsAccount = account;
         });

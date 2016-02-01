@@ -88,6 +88,19 @@
 
             <div class="row">
                 <div class="form-group col-md-4">
+                    <label for="field_telefone1">Telefone 1</label>
+                    <input type="text" class="form-control" name="telefone_1" id="field_telefone1"
+                           ng-model="prestadorServico.telefonePrestadorServicos[0].numero" ui-mask="(99) 9999-9999">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="field_telefone2">Telefone 2</label>
+                    <input type="text" class="form-control" name="telefone_2" id="field_telefone2"
+                           ng-model="prestadorServico.telefonePrestadorServicos[1].numero" ui-mask="(99) 9999-9999">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
                     <label for="field_logradouro">Logradouro</label>
                     <input type="text" class="form-control" name="logradouro" id="field_logradouro"
                            ng-model="prestadorServico.cep.logradouro" disabled>

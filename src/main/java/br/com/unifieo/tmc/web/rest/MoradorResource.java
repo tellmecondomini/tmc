@@ -2,6 +2,7 @@ package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Morador;
 import br.com.unifieo.tmc.repository.MoradorRepository;
+import br.com.unifieo.tmc.repository.TelefoneMoradorRepository;
 import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
 import com.codahale.metrics.annotation.Timed;
@@ -35,6 +36,9 @@ public class MoradorResource {
     @Inject
     private MoradorService moradorService;
 
+    @Inject
+    private TelefoneMoradorRepository telefoneMoradorRepository;
+
     /**
      * PUT  /moradors -> Updates an existing morador.
      */
@@ -44,10 +48,12 @@ public class MoradorResource {
     @Timed
     public ResponseEntity<Morador> updateMorador(@RequestBody Morador morador) throws URISyntaxException {
         log.debug("REST request to update Morador : {}", morador);
-        Morador result = moradorRepository.save(morador);
+        Morador moradorSaved = moradorRepository.save(morador);
+        morador.getTelefoneMoradors().stream().forEach(telefone -> telefone.setMorador(moradorSaved));
+        telefoneMoradorRepository.save(morador.getTelefoneMoradors());
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("morador", morador.getId().toString()))
-            .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("morador", moradorSaved.getId().toString()))
+            .body(moradorSaved);
     }
 
     /**

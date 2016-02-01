@@ -2,7 +2,6 @@ package br.com.unifieo.tmc.domain;
 
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
 import br.com.unifieo.tmc.domain.enumeration.Tipo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
@@ -70,7 +69,6 @@ public class PrestadorServico implements Serializable {
     private Set<CompetenciaPrestador> competencias = new HashSet<>();
 
     @OneToMany(mappedBy = "prestadorServico", fetch = FetchType.EAGER)
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TelefonePrestadorServico> telefonePrestadorServicos = new HashSet<>();
 

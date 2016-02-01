@@ -98,7 +98,15 @@ angular.module('tmcApp')
                         size: 'lg',
                         resolve: {
                             entity: ['Morador', function (Morador) {
-                                return Morador.get({id: $stateParams.id});
+                                var getTelefone = function () {
+                                    return {numero: null, id: null};
+                                };
+                                return Morador.get({id: $stateParams.id}, function (morador) {
+                                    if (morador.telefoneMoradors.length <= 0) {
+                                        morador.telefoneMoradors.push(getTelefone());
+                                        morador.telefoneMoradors.push(getTelefone());
+                                    }
+                                });
                             }]
                         }
                     }).result.then(function (result) {

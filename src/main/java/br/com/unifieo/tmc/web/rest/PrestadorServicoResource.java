@@ -5,6 +5,7 @@ import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.PrestadorServico;
 import br.com.unifieo.tmc.repository.CepRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
+import br.com.unifieo.tmc.repository.TelefonePrestadorServicoRepository;
 import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -43,6 +44,9 @@ public class PrestadorServicoResource {
     @Inject
     private UserService userService;
 
+    @Inject
+    private TelefonePrestadorServicoRepository telefonePrestadorServicoRepository;
+
     /**
      * POST  /prestadorServicos -> Create a new prestadorServico.
      */
@@ -53,9 +57,8 @@ public class PrestadorServicoResource {
     public ResponseEntity<PrestadorServico> createPrestadorServico(@RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to save PrestadorServico : {}", prestadorServico);
 
-        if (prestadorServico.getId() != null) {
+        if (prestadorServico.getId() != null)
             return ResponseEntity.badRequest().header("Failure", "A new prestadorServico cannot already have an ID").body(null);
-        }
 
         Cep cep = Optional
             .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
@@ -68,14 +71,19 @@ public class PrestadorServicoResource {
         cep.setUf(prestadorServico.getCep().getUf());
 
         cep = cepRepository.save(cep);
-
         prestadorServico.setCep(cep);
+
         prestadorServico.setMorador(userService.getMoradorAtual());
         prestadorServico.setCondominio(condominioService.getCurrentCondominio());
-        PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
-        return ResponseEntity.created(new URI("/api/prestadorServicos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", result.getId().toString()))
-            .body(result);
+
+        PrestadorServico prestadorServicoSaved = prestadorServicoRepository.save(prestadorServico);
+
+        prestadorServico.getTelefonePrestadorServicos().stream().forEach(telefone -> telefone.setPrestadorServico(prestadorServicoSaved));
+        telefonePrestadorServicoRepository.save(prestadorServico.getTelefonePrestadorServicos());
+
+        return ResponseEntity.created(new URI("/api/prestadorServicos/" + prestadorServicoSaved.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("prestadorServico", prestadorServicoSaved.getId().toString()))
+            .body(prestadorServicoSaved);
     }
 
     /**
@@ -87,17 +95,18 @@ public class PrestadorServicoResource {
     @Timed
     public ResponseEntity<PrestadorServico> updatePrestadorServico(@RequestBody PrestadorServico prestadorServico) throws URISyntaxException {
         log.debug("REST request to update PrestadorServico : {}", prestadorServico);
-        if (prestadorServico.getId() == null) {
+        if (prestadorServico.getId() == null)
             return createPrestadorServico(prestadorServico);
-        }
         Cep cep = Optional
             .ofNullable(cepRepository.findOneByCep(prestadorServico.getCep().getCep()))
             .orElseGet(() -> cepRepository.save(prestadorServico.getCep()));
         prestadorServico.setCep(cep);
-        PrestadorServico result = prestadorServicoRepository.save(prestadorServico);
+        PrestadorServico prestadorServicoSaved = prestadorServicoRepository.save(prestadorServico);
+        prestadorServico.getTelefonePrestadorServicos().stream().forEach(telefone -> telefone.setPrestadorServico(prestadorServicoSaved));
+        telefonePrestadorServicoRepository.save(prestadorServico.getTelefonePrestadorServicos());
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("prestadorServico", prestadorServico.getId().toString()))
-            .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("prestadorServico", prestadorServicoSaved.getId().toString()))
+            .body(prestadorServicoSaved);
     }
 
     /**

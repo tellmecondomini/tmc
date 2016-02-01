@@ -1,5 +1,6 @@
 package br.com.unifieo.tmc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -24,6 +25,7 @@ public class TelefonePrestadorServico implements Serializable {
     private Long numero;
 
     @ManyToOne
+    @JsonIgnore
     private PrestadorServico prestadorServico;
 
     public TelefonePrestadorServico() {

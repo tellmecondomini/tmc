@@ -4,7 +4,6 @@ import br.com.unifieo.tmc.Application;
 import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.enumeration.Disposicao;
 import br.com.unifieo.tmc.domain.enumeration.Sexo;
-import br.com.unifieo.tmc.domain.enumeration.Uf;
 import br.com.unifieo.tmc.repository.CondominioRepository;
 import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.web.rest.dto.CondominioDTO;

@@ -7,7 +7,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/prestadorServicos',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.prestadorServico.home.title'
                 },
                 views: {
@@ -29,7 +29,7 @@ angular.module('tmcApp')
                 parent: 'entity',
                 url: '/prestadorServico/{id}',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                     pageTitle: 'tmcApp.prestadorServico.detail.title'
                 },
                 views: {
@@ -44,8 +44,8 @@ angular.module('tmcApp')
                         $translatePartialLoader.addPart('pessoa');
                         return $translate.refresh();
                     }],
-                    entity: ['$stateParams', 'PrestadorServico', function($stateParams, PrestadorServico) {
-                        return PrestadorServico.get({id : $stateParams.id});
+                    entity: ['$stateParams', 'PrestadorServico', function ($stateParams, PrestadorServico) {
+                        return PrestadorServico.get({id: $stateParams.id});
                     }]
                 }
             })
@@ -53,21 +53,41 @@ angular.module('tmcApp')
                 parent: 'prestadorServico',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/prestadorServico/prestadorServico-dialog.html',
                         controller: 'PrestadorServicoDialogController',
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {nome: null, email: null, documento: null, pessoa: null, numero: null, complemento: null, id: null};
+
+                                var getTelefone = function () {
+                                    return {numero: null, id: null};
+                                };
+
+                                var telefones = [];
+                                telefones.push(getTelefone());
+                                telefones.push(getTelefone());
+
+                                var prestador = {
+                                    nome: null,
+                                    email: null,
+                                    documento: null,
+                                    pessoa: null,
+                                    numero: null,
+                                    complemento: null,
+                                    id: null,
+                                    telefonePrestadorServicos: telefones
+                                };
+
+                                return prestador;
                             }
                         }
-                    }).result.then(function(result) {
-                        $state.go('prestadorServico', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('prestadorServico', null, {reload: true});
+                    }, function () {
                         $state.go('prestadorServico');
                     })
                 }]
@@ -76,21 +96,21 @@ angular.module('tmcApp')
                 parent: 'prestadorServico',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN','ROLE_ADMIN_CONDOMINIO','ROLE_MORADOR'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_CONDOMINIO', 'ROLE_MORADOR'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/prestadorServico/prestadorServico-dialog.html',
                         controller: 'PrestadorServicoDialogController',
                         size: 'lg',
                         resolve: {
-                            entity: ['PrestadorServico', function(PrestadorServico) {
-                                return PrestadorServico.get({id : $stateParams.id});
+                            entity: ['PrestadorServico', function (PrestadorServico) {
+                                return PrestadorServico.get({id: $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
-                        $state.go('prestadorServico', null, { reload: true });
-                    }, function() {
+                    }).result.then(function (result) {
+                        $state.go('prestadorServico', null, {reload: true});
+                    }, function () {
                         $state.go('^');
                     })
                 }]

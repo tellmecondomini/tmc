@@ -6,7 +6,6 @@ import br.com.unifieo.tmc.security.AuthoritiesConstants;
 import br.com.unifieo.tmc.security.SecurityUtils;
 import br.com.unifieo.tmc.service.util.RandomUtil;
 import br.com.unifieo.tmc.web.rest.dto.UserDTO;
-import org.apache.commons.collections.SetUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Service class for managing users.

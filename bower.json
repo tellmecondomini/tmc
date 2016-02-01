@@ -27,7 +27,8 @@
     "ngInfiniteScroll": "1.2.0",
     "swagger-ui": "2.1.2",
     "angular-ui-mask": "1.6.0",
-    "ng-filters-br": "~1.0.2"
+    "ng-filters-br": "~1.0.2",
+    "ng-cpf-cnpj": "~0.0.5"
   },
   "devDependencies": {
     "angular-mocks": "1.4.5",

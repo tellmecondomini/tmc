@@ -1,19 +1,20 @@
 'use strict';
 
 angular.module('tmcApp', [
-    'LocalStorageModule',
-    'tmh.dynamicLocale',
-    'pascalprecht.translate',
-    'ui.bootstrap',
-    'ngResource',
-    'ui.router',
-    'ngCookies',
-    'ngAria',
-    'ngCacheBuster',
-    'ngFileUpload',
-    'infinite-scroll',
-    'ui.mask',
-    'checklist-model'
+        'LocalStorageModule',
+        'tmh.dynamicLocale',
+        'pascalprecht.translate',
+        'ui.bootstrap',
+        'ngResource',
+        'ui.router',
+        'ngCookies',
+        'ngAria',
+        'ngCacheBuster',
+        'ngFileUpload',
+        'infinite-scroll',
+        'ui.mask',
+        'checklist-model',
+        'ngCpfCnpj'
     ])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
@@ -33,8 +34,8 @@ angular.module('tmcApp', [
             });
         });
 
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-            var titleKey = 'global.title' ;
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            var titleKey = 'global.title';
 
             $rootScope.previousStateName = fromState.name;
             $rootScope.previousStateParams = fromParams;
@@ -50,7 +51,7 @@ angular.module('tmcApp', [
             });
         });
 
-        $rootScope.back = function() {
+        $rootScope.back = function () {
             // If previous state is 'activate' or do not exist go to 'home'
             if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
                 $state.go('home');

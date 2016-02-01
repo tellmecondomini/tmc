@@ -7,17 +7,24 @@
             <thead>
             <tr>
                 <th>Morador</th>
+                <th>Comentário</th>
                 <th>Nota</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="avaliacao in avaliacoes">
                 <td>
-                    <a class="form-control-static" ui-sref="morador.detail({id:avaliacao.morador.id})">{{avaliacao.morador.nome}}</a>
+                    <p>{{avaliacao.morador.nome}}</p>
                 </td>
+                
+                <td>
+                    <p>{{avaliacao.mensagem}}</p>
+                </td>
+                
                 <td>
                     <rating ng-model="avaliacao.nota" max="5" readonly="true" aria-labelledby="default-rating"/>
                 </td>
+                
             </tr>
             </tbody>
         </table>

@@ -156,7 +156,7 @@ public class TopicoResource {
     public List<Topico> getAllTopicos() {
         log.debug("REST request to get all Topicos");
 
-        Condominio condominio = condominioService.getCurrentCondominio();
+        final Condominio condominio = condominioService.getCurrentCondominio();
 
         ArrayList<Topico> topicos = new ArrayList<>(Short.MAX_VALUE);
         List<Topico> allTopicos = topicoRepository.findAll();

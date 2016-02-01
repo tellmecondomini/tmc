@@ -1,9 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.domain.Comentario;
+import br.com.unifieo.tmc.domain.Condominio;
 import br.com.unifieo.tmc.domain.SolicitaRemocaoComentario;
+import br.com.unifieo.tmc.domain.Topico;
 import br.com.unifieo.tmc.repository.ComentarioRepository;
 import br.com.unifieo.tmc.repository.SolicitaRemocaoComentarioRepository;
+import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.UserService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -21,8 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing SolicitaRemocaoComentario.
@@ -44,6 +49,9 @@ public class SolicitaRemocaoComentarioResource {
 
     @Inject
     private ComentarioRepository comentarioRepository;
+
+    @Inject
+    private CondominioService condominioService;
 
     /**
      * POST  /solicitaRemocaoComentarios -> Create a new solicitaRemocaoComentario.
@@ -90,7 +98,11 @@ public class SolicitaRemocaoComentarioResource {
     @Timed
     public List<SolicitaRemocaoComentario> getAllSolicitaRemocaoComentarios() {
         log.debug("REST request to get all SolicitaRemocaoComentarios");
-        return solicitaRemocaoComentarioRepository.findAll();
+        final Condominio condominio = condominioService.getCurrentCondominio();
+        return solicitaRemocaoComentarioRepository.findAll()
+            .stream()
+            .filter(s -> s.getMorador().getCondominio().equals(condominio))
+            .collect(Collectors.toList());
     }
 
     /**

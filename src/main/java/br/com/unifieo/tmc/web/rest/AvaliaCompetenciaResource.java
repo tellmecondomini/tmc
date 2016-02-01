@@ -1,14 +1,12 @@
 package br.com.unifieo.tmc.web.rest;
 
 import br.com.unifieo.tmc.commons.Funcoes;
-import br.com.unifieo.tmc.domain.AvaliaCompetencia;
-import br.com.unifieo.tmc.domain.CompetenciaPrestador;
-import br.com.unifieo.tmc.domain.Morador;
-import br.com.unifieo.tmc.domain.PrestadorServico;
+import br.com.unifieo.tmc.domain.*;
 import br.com.unifieo.tmc.repository.AvaliaCompetenciaRepository;
 import br.com.unifieo.tmc.repository.CompetenciaPrestadorRepository;
 import br.com.unifieo.tmc.repository.MoradorRepository;
 import br.com.unifieo.tmc.repository.PrestadorServicoRepository;
+import br.com.unifieo.tmc.service.CondominioService;
 import br.com.unifieo.tmc.service.MailService;
 import br.com.unifieo.tmc.service.MoradorService;
 import br.com.unifieo.tmc.web.rest.util.HeaderUtil;
@@ -27,6 +25,7 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -56,6 +55,9 @@ public class AvaliaCompetenciaResource {
 
     @Inject
     private MailService mailService;
+
+    @Inject
+    private CondominioService condominioService;
 
     /**
      * POST  /avaliacoes -> Create a new avaliaCompetencia.
@@ -107,7 +109,11 @@ public class AvaliaCompetenciaResource {
     @Timed
     public List<AvaliaCompetencia> getAllAvaliaCompetencias() {
         log.debug("REST request to get all AvaliaCompetencias");
-        return avaliaCompetenciaRepository.findAll();
+        final Condominio condominio = condominioService.getCurrentCondominio();
+        return avaliaCompetenciaRepository.findAll()
+            .stream()
+            .filter(a -> a.getMorador().getCondominio().equals(condominio))
+            .collect(Collectors.toList());
     }
 
     /**

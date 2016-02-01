@@ -128,4 +128,9 @@ angular.module('tmcApp')
         /*$timeout(function () {
          $scope.refresh();
          }, 10000);*/
+
+        $scope.openImage = function () {
+            $('#modalImage').modal('show');
+        };
+
     });

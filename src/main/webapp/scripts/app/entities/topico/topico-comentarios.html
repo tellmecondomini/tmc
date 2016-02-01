@@ -61,6 +61,25 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalImage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="img-responsive text-center">
+                        <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                        translate="entity.action.cancel">OK</span>
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="deleteComentarioByMoradorConfirmation">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -85,39 +104,39 @@
 
         <p class="lead text-primary">Fórum {{account.condominio}} - Comentários</p>
 
-		<div class="row">
+        <div class="row">
             <div class="form-group col-md-10">
                 <p>
-                	<label>Título:</label>
-                	<spam class="text-info">{{topico.titulo}}</spam>
-           		 </p>
+                    <label>Título:</label>
+                    <spam class="text-info">{{topico.titulo}}</spam>
+                </p>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-10">
                 <p>
-                	<label>Categoria:</label>
-                	<spam class="text-info">{{topico.categoria.descricao}}</spam>
-           		 </p>
+                    <label>Categoria:</label>
+                    <spam class="text-info">{{topico.categoria.descricao}}</spam>
+                </p>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-10">
                 <p>
-                	<label>Assunto:</label>
-                	<spam class="text-info">{{topico.assunto.descricao}}</spam>
-           		 </p>
+                    <label>Assunto:</label>
+                    <spam class="text-info">{{topico.assunto.descricao}}</spam>
+                </p>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-10">
                 <p>
-                	<label>Conteúdo:</label><br/>
-                	<spam class="text-info">{{topico.descricao}}</spam>
-           		 </p>
+                    <label>Conteúdo:</label><br/>
+                    <spam class="text-info">{{topico.descricao}}</spam>
+                </p>
             </div>
             <div class="form-group col-md-2 text-right">
                 <small class="text-danger">Comentarios: {{comentarios.length}}</small>
@@ -126,7 +145,10 @@
 
         <div class="row">
             <div class="form-group col-md-4">
-                <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;" ng-if="topico.imagem"/>
+                <a ng-click="openImage()">
+                    <img data-ng-src="{{'data:image/*;base64,' + topico.imagem}}" style="max-height: 100px;"
+                         ng-if="topico.imagem"/>
+                </a>
             </div>
         </div>
 
@@ -149,7 +171,8 @@
                             <small><cite>Escrito em {{comentario.data | date:'dd/MM/yyyy - HH:mm:ss'}}</cite></small>
                             <div ng-show="(['ABERTO'].indexOf(topico.statusTopico) > -1)">
                                 <small ng-show="comentario.solicitacaoJaExiste">
-                                    <a ng-click="delete(comentario.id)"> <span class="glyphicon glyphicon-floppy-remove"></span></a>
+                                    <a ng-click="delete(comentario.id)"> <span
+                                        class="glyphicon glyphicon-floppy-remove"></span></a>
                                 </small>
                                 <small ng-hide="comentario.solicitacaoJaExiste">
                                     <i>Existe uma solicitação para remoção deste comentário</i>
@@ -194,6 +217,5 @@
         </footer>
 
     </div>
-
 
 </div>
